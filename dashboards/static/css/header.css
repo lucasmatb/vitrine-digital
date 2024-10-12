@@ -1,0 +1,48 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.5rem 5.5em;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(17, 136, 17, 0.207);
+
+    & ul {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+
+        & li {
+            width: max-content;
+            display: flex;
+            flex-flow: column;
+            gap: 0.5rem;
+            
+            & a {
+                text-decoration: none;
+                color: inherit;
+                
+                &:focus, &:visited {
+                    
+                }
+                
+                &:hover, &:active {
+                    
+                }
+            }
+
+            & div {
+                width: 0;
+                transition: 500ms ease;
+                background-color: #181;
+                height: 2px;
+            }
+
+            &:hover div {
+                width: 100%;
+            }
+        }
+    }
+}
