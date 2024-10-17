@@ -27,4 +27,8 @@ class Empresas(models.Model):
     razao_social = models.CharField(max_length=255)
     ativo = models.BooleanField()
     situacao = models.CharField(max_length=30)
+    id_usuario = models.ForeignKey(
+        'usuarios.Usuarios',
+        on_delete=models.RESTRICT
+    )
     enderecos = models.ManyToManyField(Enderecos)
