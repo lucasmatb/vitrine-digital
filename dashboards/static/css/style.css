@@ -13,4 +13,21 @@ html {
 body {
     font-size: 1.6rem;
     font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+}
+
+b, h1 {
+    font-weight: 500;
+}
+
+section {
+    padding: 4rem 3rem;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 100rem;
+    display: flex;
+    flex-flow: column;
+    gap: 3rem;
 }
