@@ -8,110 +8,123 @@
 <!-- mudar de lugar depois -->
 <link rel="stylesheet" href="../static/css/style.css" />
 
-<section>
-    <div class="container container-cadastro">
-        <!-- {% if messages %}
-          {% for i in messages %}
-              <div class="alert {{i.tags}}" role="alert">
-                  {{i}}
-              </div>
+<body>
+    <main>
+        <a href="" class="icone-voltar">
+            <img src="../static/images/seta.svg" alt="Ícone de seta, voltar" />
+        </a>
+
+        <section>
+            <div class="container container-cadastro">
+                <!-- {% if messages %}
+                  {% for i in messages %}
+                      <div class="alert {{i.tags}}" role="alert">
+                          {{i}}
+                      </div>
     
-          {% endfor %}
-        {% endif %} -->
+                  {% endfor %}
+                {% endif %} -->
 
-        <h1>Cadastre-se</h1>
+                <h1>Cadastre-se</h1>
 
-        <form method="POST" action="{% url 'valida_cadastro' %}">
-            <!-- {% csrf_token %} -->
-            <div class="input-wrapper nome">
-                <div class="labels-nome">
-                    <label>Primeiro nome</label>
-                    <label>Sobrenome</label>
-                </div>
-                <div class="icone-input">
-                    <div>
-                        <img
-                            src="../static/images/sorriso.svg"
-                            alt="Ícone de sorriso"
-                        />
-                        <input
-                            name="primeiro-nome"
-                            class="form-control"
-                            type="text"
-                            placeholder="Primeiro nome"
-                        />
+                <form method="POST" action="{% url 'valida_cadastro' %}">
+                    <!-- {% csrf_token %} -->
+                    <div class="nome-sobrenome">
+                        <div class="input-wrapper">
+                            <div>
+                                <label>Primeiro nome</label>
+                            </div>
+                            <div class="icone-input">
+                                <img
+                                    src="../static/images/sorriso.svg"
+                                    alt="Ícone de sorriso"
+                                />
+                                <input
+                                    name="primeiro-nome"
+                                    class="form-control"
+                                    type="text"
+                                    placeholder="Primeiro nome"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="input-wrapper">
+                            <label>Sobrenome</label>
+                            <div class="icone-input">
+                                <input
+                                    name="sobrenome"
+                                    class="form-control"
+                                    type="text"
+                                    placeholder="Sobrenome"
+                                />
+                            </div>
+                        </div>
                     </div>
-                    <input
-                        name="sobrenome"
-                        class="form-control"
-                        type="text"
-                        placeholder="Sobrenome"
-                    />
+
+                    <!--Falta validação cpf-->
+                    <div class="input-wrapper">
+                        <label>CPF</label>
+                        <div class="icone-input">
+                            <img
+                                src="../static/images/pessoa.svg"
+                                alt="Ícone de pessoa"
+                            />
+                            <input
+                                name="cpf"
+                                class="form-control"
+                                type="text"
+                                placeholder="CPF"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label>Email</label>
+                        <div class="icone-input">
+                            <img
+                                src="../static/images/email.svg"
+                                alt="Ícone de e-mail"
+                            />
+                            <input
+                                name="email"
+                                class="form-control"
+                                type="email"
+                                placeholder="Email"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label>Senha</label>
+
+                        <div class="icone-input">
+                            <img
+                                src="../static/images/cadeado.svg"
+                                alt="Ícone de cadeado"
+                            />
+                            <input
+                                name="senha"
+                                class="form-control"
+                                type="password"
+                                placeholder="Senha"
+                            />
+                        </div>
+                    </div>
+
+                    <input class="botao" type="submit" value="Enviar" />
+                </form>
+
+                <div class="mudar-login-cadastro">
+                    <p>
+                        Já tem uma conta?
+                        <a href="{% url 'login' %}" class="btn btn-info btn-lg"
+                            >Faça login</a
+                        >
+                    </p>
                 </div>
             </div>
-
-            <!--Falta validação cpf-->
-            <div class="input-wrapper">
-                <label>CPF</label>
-                <div class="icone-input">
-                    <img
-                        src="../static/images/pessoa.svg"
-                        alt="Ícone de pessoa"
-                    />
-                    <input
-                        name="cpf"
-                        class="form-control"
-                        type="text"
-                        placeholder="CPF"
-                    />
-                </div>
-            </div>
-
-            <div class="input-wrapper">
-                <label>Email</label>
-                <div class="icone-input">
-                    <img
-                        src="../static/images/email.svg"
-                        alt="Ícone de e-mail"
-                    />
-                    <input
-                        name="email"
-                        class="form-control"
-                        type="email"
-                        placeholder="Email"
-                    />
-                </div>
-            </div>
-
-            <div class="input-wrapper">
-                <label>Senha</label>
-
-                <div class="icone-input">
-                    <img
-                        src="../static/images/cadeado.svg"
-                        alt="Ícone de cadeado"
-                    />
-                    <input
-                        name="senha"
-                        class="form-control"
-                        type="password"
-                        placeholder="Senha"
-                    />
-                </div>
-            </div>
-
-            <input class="botao" type="submit" value="Enviar" />
-        </form>
-
-        <div class="mudar-login-cadastro">
-            <p>
-                Já tem uma conta?
-                <a href="{% url 'login' %}" class="btn btn-info btn-lg"
-                    >Faça login</a
-                >
-            </p>
-        </div>
-    </div>
-</section>
+        </section>
+    </main>
+</body>
 
 <!-- {% endblock %} -->

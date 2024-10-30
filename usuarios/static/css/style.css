@@ -1,6 +1,22 @@
+main {
+    position: relative;
+}
+
+.icone-voltar {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+}
+
+section {
+    padding-top: 7rem;
+}
+
 .container-cadastro {
     max-width: 70rem;
     gap: 2rem;
+    display: flex;
+    flex-flow: column;
 
     & form {
         display: flex;
@@ -43,20 +59,47 @@
 
                 & input {
                     all: unset;
+                    flex-grow: 1;
                 }
             }
         }
 
+        & .nome-sobrenome {
+            display: flex;
+            gap: 2rem;
+            width: 100%;
+
+            & .input-wrapper {
+                flex: 1;
+            }
+
+            & .icone-input {
+                min-width: 100% !important;
+                max-width: 100% !important;
+            }
+        }
         & .botao {
             background: none;
             border: none;
             cursor: pointer;
             font-family: inherit;
             font-size: inherit;
-            font-weight: inherit;
+            font-weight: 400;
             padding: 0.6rem 2rem;
-            background-color: #cdcdcd;
+            background-color: #e4e4e4;
             border-radius: 0.8rem;
+            align-self: center;
+            min-width: 15rem;
+        }
+    }
+
+    & .mudar-login-cadastro {
+        align-self: center;
+
+        & a {
+            text-decoration: none;
+            color: inherit;
+            font-weight: 500;
         }
     }
 }
