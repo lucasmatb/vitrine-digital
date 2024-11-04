@@ -1,20 +1,20 @@
 from django.db import models
 
 class Estados(models.Model):
-    descricao = models.CharField(max_length=255)
+    descricao = models.CharField(max_length=254)
 
 class Cidades(models.Model):
-    descricao = models.CharField(max_length=255)
+    descricao = models.CharField(max_length=254)
     id_estado = models.ForeignKey(
         Estados,
         on_delete=models.PROTECT
     )
 
 class Enderecos(models.Model):
-    logradouro = models.CharField(max_length=255)
-    numero = models.CharField(max_length=255)
-    complemento = models.CharField(max_length=255)
-    bairro = models.CharField(max_length=255)
+    logradouro = models.CharField(max_length=254)
+    numero = models.CharField(max_length=254)
+    complemento = models.CharField(max_length=254)
+    bairro = models.CharField(max_length=254)
     id_cidade = models.ForeignKey(
         Cidades,
         on_delete=models.PROTECT
@@ -23,8 +23,8 @@ class Enderecos(models.Model):
 
 class Empresas(models.Model):
     cnpj = models.CharField(max_length=14)
-    nome_fantasia = models.CharField(max_length=255)
-    razao_social = models.CharField(max_length=255)
+    nome_fantasia = models.CharField(max_length=254)
+    razao_social = models.CharField(max_length=254)
     ativo = models.BooleanField()
     situacao = models.CharField(max_length=30)
     id_usuario = models.ForeignKey(

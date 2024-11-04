@@ -1,87 +1,43 @@
-<!-- {% extends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block 'titulo' %}Login{% endblock %}
 
-{% block 'conteudo' %} -->
+{% block 'conteudo' %}
 
-<link rel="stylesheet" href="../../dashboards/static/css/style.css" />
-<!-- mudar de lugar depois -->
-<link rel="stylesheet" href="../static/css/style.css" />
+<div class="container">
+    <br>
 
-
-    <main>
-        <a href="" class="icone-voltar">
-            <img src="../static/images/seta.svg" alt="Ícone de seta, voltar" />
-        </a>
-        <section>
-            <div class="container container-login">
-                <!-- {% if messages %}
-                    {% for i in messages %}
-                        <div class="alert {{i.tags}}" role="alert">
-                            {{i}}
-                        </div>
-    
-                    {% endfor %}
-                {% endif %} -->
-
-                <h1>Logar</h1>
-
-                <form method="POST" action="{% url 'valida_login' %}">
-                    <!-- {% csrf_token %} -->
-                    <div class="input-wrapper">
-                        <label>Email:</label>
-                        <div class="icone-input">
-                            <img
-                                src="../static/images/email.svg"
-                                alt="Ícone de e-mail"
-                            />
-                            <input
-                                name="email"
-                                class="form-control"
-                                type="email"
-                                placeholder="Email"
-                            />
-                        </div>
-                    </div>
-
-                    <div class="senha">
-                        <div class="input-wrapper">
-                            <label>Senha:</label>
-                            <div class="icone-input">
-                                <img
-                                    src="../static/images/cadeado.svg"
-                                    alt="Ícone de cadeado"
-                                />
-                                <input
-                                    name="senha"
-                                    class="form-control"
-                                    type="password"
-                                    placeholder="Senha"
-                                />
-                            </div>
-                        </div>
-                        <div><a href="">Esqueci minha senha</a></div>
-                    </div>
-
-                    <input
-                        class="botao"
-                        type="submit"
-                        value="Enviar"
-                    />
-
-                </form>
-
-                <div class="mudar-login-cadastro">
-                    <p>
-                        Ainda não tem uma conta?
-                        <a href="{% url 'cadastro' %}" class="btn btn-info btn-lg"
-                            >Cadastre-se</a
-                        >
-                    </p>
-                </div>
+    {% if messages %}
+        {% for i in messages %}   
+            <div class="alert {{i.tags}}" role="alert">
+                {{i}} 
             </div>
-        </section>
-    </main>
 
+        {% endfor %}
+    {% endif %}
 
-<!-- {% endblock %} -->
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1>Logar</h1>
+            <hr>
+            <form
+                method="POST"
+                action="{% url 'valida_login' %}"
+            >
+                {% csrf_token %}
+                <label>Email:</label>
+                <br>
+                {{ form.email }}
+                <br>
+                <label>Senha:</label>
+                <br>
+                {{ form.password }}
+                <br>
+            </form>
+            <br>
+            <a href="{% url 'cadastro' %}" class="btn btn-info btn-lg">Não tem login? Cadastre-se</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

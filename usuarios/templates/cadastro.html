@@ -1,130 +1,128 @@
-<!-- {% extends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block 'titulo' %}Cadastro{% endblock %}
 
-{% block 'conteudo'%} -->
+{% block 'conteudo'%}
 
-<link rel="stylesheet" href="../../dashboards/static/css/style.css" />
-<!-- mudar de lugar depois -->
-<link rel="stylesheet" href="../static/css/style.css" />
+<div class="container">
+    <br>
 
+    {% if messages %}
+      {% for i in messages %}   
+          <div class="alert {{i.tags}}" role="alert">
+              {{i}} 
+          </div>
 
-    <main>
-        <a href="" class="icone-voltar">
-            <img src="../static/images/seta.svg" alt="Ícone de seta, voltar" />
-        </a>
+      {% endfor %}
+    {% endif %}
 
-        <section>
-            <div class="container container-cadastro">
-                <!-- {% if messages %}
-                  {% for i in messages %}
-                      <div class="alert {{i.tags}}" role="alert">
-                          {{i}}
-                      </div>
-    
-                  {% endfor %}
-                {% endif %} -->
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1>Cadastre-se</h1>
+            <hr>
+            <form
+                method="POST"
+                action="{% url 'valida_cadastro' %}"
+            >
+                {% csrf_token %}
 
-                <h1>Cadastre-se</h1>
-
-                <form method="POST" action="{% url 'valida_cadastro' %}">
-                    <!-- {% csrf_token %} -->
-                    <div class="nome-sobrenome">
-                        <div class="input-wrapper">
+                <label>Primeiro nome:</label>
+                <br>
+                {{ form.first_name }}
+                <br>
+                {% if form.first_name.errors %}
+                    <div>
+                        {% for error in form.first_name.errors %}
                             <div>
-                                <label>Primeiro nome</label>
+                                <strong>{{ error }}</strong>
                             </div>
-                            <div class="icone-input">
-                                <img
-                                    src="../static/images/sorriso.svg"
-                                    alt="Ícone de sorriso"
-                                />
-                                <input
-                                    name="primeiro-nome"
-                                    class="form-control"
-                                    type="text"
-                                    placeholder="Primeiro nome"
-                                />
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <br>
+                <label>Sobrenome:</label>
+                <br>
+                {{ form.last_name }}
+                <br>
+                {% if form.last_name.errors %}
+                    <div>
+                        {% for error in form.last_name.errors %}
+                            <div>
+                                <strong>{{ error }}</strong>
                             </div>
-                        </div>
-
-                        <div class="input-wrapper">
-                            <label>Sobrenome</label>
-                            <div class="icone-input">
-                                <input
-                                    name="sobrenome"
-                                    class="form-control"
-                                    type="text"
-                                    placeholder="Sobrenome"
-                                />
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <br>
+                <label>CPF:</label>
+                <br>
+                {{ form.cpf }}
+                <br>
+                {% if form.cpf.errors %}
+                    <div>
+                        {% for error in form.cpf.errors %}
+                            <div>
+                                <strong>{{ error }}</strong>
                             </div>
-                        </div>
+                        {% endfor %}
                     </div>
-
-                    <!--Falta validação cpf-->
-                    <div class="input-wrapper">
-                        <label>CPF</label>
-                        <div class="icone-input">
-                            <img
-                                src="../static/images/pessoa.svg"
-                                alt="Ícone de pessoa"
-                            />
-                            <input
-                                name="cpf"
-                                class="form-control"
-                                type="text"
-                                placeholder="CPF"
-                            />
-                        </div>
+                {% endif %}
+                <br>
+                <label>Email:</label>
+                <br>
+                {{ form.email }}
+                <br>
+                {% if form.email.errors %}
+                    <div>
+                        {% for error in form.email.errors %}
+                            <div>
+                                <strong>{{ error }}</strong>
+                            </div>
+                        {% endfor %}
                     </div>
-
-                    <div class="input-wrapper">
-                        <label>Email</label>
-                        <div class="icone-input">
-                            <img
-                                src="../static/images/email.svg"
-                                alt="Ícone de e-mail"
-                            />
-                            <input
-                                name="email"
-                                class="form-control"
-                                type="email"
-                                placeholder="Email"
-                            />
-                        </div>
+                {% endif %}
+                <br>
+                <label>Senha:</label>
+                <br>
+                {{ form.password }}
+                <br>
+                {% if form.password.errors %}
+                    <div>
+                        {% for error in form.password.errors %}
+                            <div>
+                                <strong>{{ error }}</strong>
+                            </div>
+                        {% endfor %}
                     </div>
-
-                    <div class="input-wrapper">
-                        <label>Senha</label>
-
-                        <div class="icone-input">
-                            <img
-                                src="../static/images/cadeado.svg"
-                                alt="Ícone de cadeado"
-                            />
-                            <input
-                                name="senha"
-                                class="form-control"
-                                type="password"
-                                placeholder="Senha"
-                            />
-                        </div>
+                {% endif %}
+                <br>
+                <label>Confirmar senha:</label>
+                <br>
+                {{ form.confirm_password }}
+                <br>
+                {% if form.confirm_password.errors %}
+                    <div>
+                        {% for error in form.confirm_password.errors %}
+                            <div>
+                                <strong>{{ error }}</strong>
+                            </div>
+                        {% endfor %}
                     </div>
+                {% endif %}
+                <br>
+                <br>
+                <button class="btn btn-success btn-lg" type="submit">Enviar</button>
+                <br>
+                <br>
+                <a href="{% url 'login' %}" class="btn btn-info btn-lg">Voltar pro Login</a>
+            </form>
+        </div>
+    </div>
+</div>
 
-                    <input class="botao" type="submit" value="Enviar" />
-                </form>
-
-                <div class="mudar-login-cadastro">
-                    <p>
-                        Já tem uma conta?
-                        <a href="{% url 'login' %}" class="btn btn-info btn-lg"
-                            >Faça login</a
-                        >
-                    </p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-
-<!-- {% endblock %} -->
+<script>
+    $(document).ready(function(){
+        $('#cpf').mask('000.000.000-00');  // Aplica a máscara de CPF
+    });
+</script>
+{% endblock %}

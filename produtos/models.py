@@ -1,12 +1,23 @@
 from django.db import models
 
 class Categorias(models.Model):
-    descricao = models.CharField(max_length=255)
+    descricao = models.CharField(max_length=254)
     ativo = models.BooleanField()
 
 class Produtos(models.Model):
-    descricao = models.CharField(max_length=255)
-    preco = models.CharField(max_length=30)
+    descricao = models.CharField(
+        'Descrição do produto',
+        max_length=254
+    )
+    preco = models.DecimalField(
+        'Preço do produto',
+        decimal_places=2,
+        max_digits=8
+    )
+    qtd = models.IntegerField(
+        'Quantidade em estoque',
+        default=0
+    )
     ativo = models.BooleanField()
     id_categoria = models.ForeignKey(
         Categorias,
