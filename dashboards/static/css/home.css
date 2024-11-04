@@ -1,0 +1,34 @@
+.hero {
+    padding-top: calc(15rem + 4rem);
+    height: 100dvh;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+
+    & .titulo-botoes {
+        display: flex;
+        flex-flow: column;
+        gap: 3rem;
+
+        & .titulo {
+            display: flex;
+            flex-flow: column;
+            gap: 2rem;
+        }
+        
+        & h1 {
+            font-size: 3rem;
+        }
+
+        & .botoes {
+            display: flex;
+            gap: 1.5rem;
+
+        }
+    }
+
+    & .ir-para-lojista {
+        display: flex;
+        gap: 1rem;
+    }
+}

@@ -6,6 +6,7 @@
     <title>Home | Vitrine Digital</title>
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="../static/css/header.css">
+    <link rel="stylesheet" href="../static/css/home.css">
 </head>
 <body>
     <header>
@@ -19,5 +20,47 @@
             <li><a href="">Entrar</a><div></div></li>
         </ul>
     </header>
+
+    <main>
+        <section class="secao hero">
+            <div class="titulo-botoes">
+                <div class="titulo">
+                    <p>É consumidor?</p>
+                    <h1>Acesse o melhor da sua cidade com ...</h1>
+                </div>
+                <div class="botoes">
+                    <a href="">Entrar</a>
+                    <a href="">Cadastrar-se</a>
+                </div>
+            </div>
+
+            
+            
+                <div class="ir-para-lojista">
+                    <p>É lojista? <a href="#lojista">Cadastre seu comércio</a></p>
+                    <img src="../static/images/seta-direita.svg" alt="Seta para a direita">
+                </div>
+            
+        </section>
+
+        <section class="secao" id="lojista">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis tempora sapiente repellendus dicta at enim ut officia nulla odit nisi incidunt, corrupti atque et ipsam exercitationem in sed excepturi maxime.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis tempora sapiente repellendus dicta at enim ut officia nulla odit nisi incidunt, corrupti atque et ipsam exercitationem in sed excepturi maxime.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis tempora sapiente repellendus dicta at enim ut officia nulla odit nisi incidunt, corrupti atque et ipsam exercitationem in sed excepturi maxime.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis tempora sapiente repellendus dicta at enim ut officia nulla odit nisi incidunt, corrupti atque et ipsam exercitationem in sed excepturi maxime.</p>
+        </section>
+    </main>
+
+    <script>
+        document.querySelectorAll('a[href^="#lojista"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+    </script>
 </body>
 </html>

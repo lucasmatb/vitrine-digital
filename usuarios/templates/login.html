@@ -8,7 +8,7 @@
 <!-- mudar de lugar depois -->
 <link rel="stylesheet" href="../static/css/style.css" />
 
-<body>
+
     <main>
         <a href="" class="icone-voltar">
             <img src="../static/images/seta.svg" alt="Ícone de seta, voltar" />
@@ -28,34 +28,60 @@
 
                 <form method="POST" action="{% url 'valida_login' %}">
                     <!-- {% csrf_token %} -->
-                    <label>Nome:</label>
+                    <div class="input-wrapper">
+                        <label>Email:</label>
+                        <div class="icone-input">
+                            <img
+                                src="../static/images/email.svg"
+                                alt="Ícone de e-mail"
+                            />
+                            <input
+                                name="email"
+                                class="form-control"
+                                type="email"
+                                placeholder="Email"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="senha">
+                        <div class="input-wrapper">
+                            <label>Senha:</label>
+                            <div class="icone-input">
+                                <img
+                                    src="../static/images/cadeado.svg"
+                                    alt="Ícone de cadeado"
+                                />
+                                <input
+                                    name="senha"
+                                    class="form-control"
+                                    type="password"
+                                    placeholder="Senha"
+                                />
+                            </div>
+                        </div>
+                        <div><a href="">Esqueci minha senha</a></div>
+                    </div>
+
                     <input
-                        name="nome"
-                        class="form-control"
-                        type="text"
-                        placeholder="Nome..."
-                    />
-                    <br />
-                    <label>Senha:</label>
-                    <input
-                        name="senha"
-                        class="form-control"
-                        type="password"
-                        placeholder="Senha..."
-                    />
-                    <br />
-                    <input
-                        class="btn btn-success btn-lg"
+                        class="botao"
                         type="submit"
                         value="Enviar"
                     />
-                    <a href="{% url 'cadastro' %}" class="btn btn-info btn-lg"
-                        >Cadastre-se</a
-                    >
+
                 </form>
+
+                <div class="mudar-login-cadastro">
+                    <p>
+                        Ainda não tem uma conta?
+                        <a href="{% url 'cadastro' %}" class="btn btn-info btn-lg"
+                            >Cadastre-se</a
+                        >
+                    </p>
+                </div>
             </div>
         </section>
     </main>
-</body>
+
 
 <!-- {% endblock %} -->
