@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib import messages, auth
 from .forms import UsuariosLoginForm, UsuariosRegistrationForm, trata_cpf_apenas_numeros
+from vitrine_digital.helper import descriptarAESGCM
 from .models import Usuarios
-import re
 
 def login(request):
     if request.user.is_authenticated:
@@ -15,15 +15,33 @@ def login(request):
 def valida_login(request):
     form = UsuariosLoginForm(request.POST or None)
     if form.is_valid():
-        usuario = auth.authenticate(
-            email = form.email,
-            password = form.senha
-        )
-        auth.login(request, usuario)
-        return redirect('/dashboards/index')
-    else:
-        messages.error(request, 'Email ou senha inválido')
-        return redirect('/auth/login/')
+        usuario = buscar_usuario_por_email(form.cleaned_data['email'])
+        if usuario is None:
+            messages.error(request, 'Usuário não encontrado')
+        else:
+            usuario = auth.authenticate(
+                email = usuario.email,
+                password = form.cleaned_data['password']
+            )
+
+            if usuario is not None:
+                print("Login deu certo")
+                auth.login(request, usuario)
+                return redirect('/dashboards/index')
+            else: 
+                messages.error(request, 'Senha incorreta')
+
+    return render(request, 'login.html', {'form': form})
+
+def buscar_usuario_por_email(email: str):
+    usuarioEncontrado = None
+    usuarios = Usuarios.objects.all()
+    for usuario in usuarios:
+        if descriptarAESGCM(usuario.email).lower() == email.lower():
+            usuarioEncontrado = usuario
+            break
+    
+    return usuarioEncontrado
 
 def cadastro(request):
     if request.user.is_authenticated:
@@ -47,8 +65,6 @@ def valida_cadastro(request):
 
         messages.success(request, 'Cadastro realizado com sucesso!')
         return redirect('/auth/login/')
-    else:
-        pass
     
     return render(request, 'cadastro.html', {'form': form})
 
