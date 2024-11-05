@@ -1,0 +1,88 @@
+.header-logado {
+    & svg {
+        max-width: 3rem;
+    }
+}
+
+/* .navbar-secoes {
+    display: flex;
+
+} */
+
+aside {
+    max-width: 20rem;
+    width: 100%;
+    background-color:beige;
+    padding: 2rem;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top: 0;
+
+    .navbar {
+        padding-top: 10rem;
+        
+        &.navbar-empresa {
+            display: none;
+        }
+    }
+}
+
+.secoes {
+    padding: 10rem 5rem 4rem 25rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    & section {
+        display: flex;
+        flex-flow: column;
+        gap: 2rem;
+
+        &.empresas-recomendadas {
+            & .card-empresa {
+                width: 25rem;
+                aspect-ratio: 1;
+                border: solid 1px hotpink;
+                border-radius: 2rem;
+                overflow: hidden;
+
+                & .img-capa {
+                    width: 100%;
+                    aspect-ratio: 3/1.5;
+                    background-image: url(../images/capa-empresa-1.jpg);
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: 50%;
+                }
+
+                & .textos {
+                    & .card-empresa-nome {
+
+                    }
+                }
+
+                & .nome {
+
+                }
+
+                & .descricao {
+                    max-height: 4rem;
+                    overflow-y: hidden;
+                }
+
+                & .categoria-favoritos {
+
+                }
+
+                & .categoria {
+
+                }
+
+                & .favoritos {
+
+                }
+            }
+        }
+    }
+
+}
