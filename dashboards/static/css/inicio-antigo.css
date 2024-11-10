@@ -1,0 +1,151 @@
+/* @import url("global.css");
+@import url("header.css");
+
+.header-logado {
+    & svg {
+        max-width: 3rem;
+    }
+}
+
+/* .navbar-secoes {
+    display: flex;
+
+} */
+
+aside {
+    /* max-width: 20rem; */
+    /* width: 100%; */
+    width: auto;
+    background-color:beige;
+    padding: 2rem;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    display: grid;
+    grid-template-columns: auto;
+
+    .navbar {
+        padding-top: 10rem;
+        list-style: none;
+
+
+        &.navbar-empresa {
+            display: none;
+        }
+
+        & li {
+            display: flex;
+            align-items: center;
+            gap: var(--spc-100);
+            position: relative;
+
+            & span {
+                position: absolute;
+                top: 0;
+                left: 15rem;
+                width: max-content;
+
+            }
+
+            &.item-navbar-perfil {
+                & div {
+                    width: 3.5rem;
+                    aspect-ratio: 1;
+                    background-image: url(../images/img-perfil-exemplo.jpeg);
+                    background-position: 50%;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    border-radius: 100vw;
+                    overflow: hidden;
+                }
+            }
+        }
+    }
+}
+
+.secoes {
+    padding: 10rem 5rem 4rem 25rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    & section {
+        display: flex;
+        flex-flow: column;
+        gap: 2rem;
+
+        & h2 {
+            font-weight: 500;
+        }
+
+        &.empresas-recomendadas {
+            & .card-empresa {
+                width: 25rem;
+                /* aspect-ratio: 1; */
+                border: solid 1px hotpink;
+                border-radius: 2rem;
+                overflow: hidden;
+
+                & .img-capa {
+                    width: 100%;
+                    aspect-ratio: 3/1.5;
+                    background-image: url(../images/capa-empresa-1.jpg);
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: 50%;
+                }
+
+                & .textos {
+                    padding: var(--spc-200) var(--spc-300);
+                    display: flex;
+                    flex-flow: column;
+                    gap: var(--spc-100);
+                    & .card-empresa-nome {
+
+                    }
+                }
+
+                & .nome {
+                    font-weight: 500;
+                    font-size: var(--fs-300);
+
+                }
+
+                & .descricao {
+                    max-height: 4rem;
+                    overflow-y: hidden;
+                    font-size: var(--fs-200);
+                }
+
+                & .categoria-favoritos {
+                    display: flex;
+                    justify-content: space-between;
+                    gap: var(--spc-400);
+                    font-size: var(--fs-100);
+                }
+
+                & .categoria {
+                    padding: var(--spc-50) var(--spc-100);
+                    background-color: #f8e9ff;
+                    border-radius: 0.8rem;
+
+                }
+
+                & .favoritos {
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spc-70);
+
+                    & img {
+                        max-width: var(--spc-400);
+                    }
+
+                    & span {
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
+
+} */

@@ -1,0 +1,37 @@
+:root {
+/* Cores */
+
+
+/* Tamanhos de fonte */
+/* https://typescale.com/ */
+    --fs-50: 1.11rem;
+    --fs-100: 1.33rem;
+    --fs-200: 1.6rem;
+    --fs-300: 1.92rem;
+    --fs-400: 2.3rem;
+    --fs-500: 2.76rem;
+    --fs-600: 3.31rem;
+    --fs-700: 3.98rem;
+    --fs-800: 4.77rem;
+
+/* Espaçamentos */
+    --spc-50: 0.27rem;
+    --spc-60: 0.33rem;
+    --spc-70: 0.42rem;
+    --spc-80: 0.52rem;
+    --spc-90: 0.65rem;
+    --spc-100: 0.82rem;
+    --spc-200: 1.02rem;
+    --spc-300: 1.28rem;
+    --spc-400: 1.6rem;
+    --spc-500: 2rem;
+    --spc-600: 2.5rem;
+    --spc-700: 3.12rem;
+    --spc-800: 3.9rem;
+    --spc-900: 4.88rem;
+    --spc-1000: 6.1rem;
+    --spc-1100: 7.63rem;
+    --spc-1200: 9.54rem;
+    --spc-1300: 11.92rem;
+    --spc-1400: 14.9rem;
+}
