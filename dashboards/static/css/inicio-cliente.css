@@ -312,7 +312,6 @@ body {
             
 
             &.card-empresa {
-                /* &:first-child { */
                     & .img-capa {
                         width: 100%;
                         aspect-ratio: 3/1.5;
@@ -321,11 +320,9 @@ body {
                         background-repeat: no-repeat;
                         background-position: 50%;
                     }
-                /* } */
             }
 
             &.card-produto {
-                /* &:first-child { */
                     & .img-capa {
                         width: 100%;
                         aspect-ratio: 3/1.5;
@@ -334,7 +331,21 @@ body {
                         background-repeat: no-repeat;
                         background-position: 50%;
                     }
-                /* } */
+            }
+
+            & .img-perfil {
+                background-image: url(../images/perfil-empresa-1.jpg);
+                background-position: 50%;
+                background-repeat: no-repeat;
+                background-size: cover; 
+                width: 7rem;
+                aspect-ratio: 1;
+                border-radius: 100vw;
+                overflow: hidden;
+                border: solid 3px #fff;
+                position: absolute;
+                top: 9rem;
+                left: 1rem;
             }
 
 
@@ -344,8 +355,12 @@ body {
                 display: flex;
                 flex-flow: column;
                 gap: var(--spc-100);
+            }
 
-                
+            &.card-empresa {
+                & .textos {
+                    padding-top: var(--spc-800);
+                }
             }
 
             & .nome {
@@ -393,4 +408,92 @@ body {
 }
 
 
+
+& .secao-swiper {
+    max-width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & .container-swiper {
+        margin: 0;
+        width: 100%;
+
+
+        & .card-wrapper {
+            min-width: 100%;
+        }
+        .card-list .card-item {
+            list-style: none;
+            width: 400px;
+        }
+        
+        .card-list .card-item .card-link {
+            /* max-width: 400px; */
+            width: 100%;
+            display: block;
+            background-color: #fff;
+            padding: 18px;
+            border-radius: 12px;
+            text-decoration: none;
+            max-width: 100%;
+        }
+        
+        .card-list .card-item .card-link:active {
+            cursor: grabbing;
+        }
+        
+        .card-list .card-link .card-image {
+            max-width: 200px;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
+        .card-list .card-link .badge {
+            color: palevioletred;
+        
+        }
+        
+        
+        
+        
+        
+        
+        .card-wrapper {
+            max-width: 1100px;
+            margin: 0 60px 35px;
+        
+            overflow: hidden;
+        }
+        
+        .card-wrapper .swiper-pagination-bullet {
+            height: 13px;
+            width: 13px;
+            opacity: 0.5;
+            background-color: rgb(255, 106, 130);
+        }
+        
+        .card-wrapper .swiper-pagination-bullet-active {
+            opacity: 1;
+        
+        }
+        
+        .card-wrapper .swiper-slide-button {
+            color: rgb(255, 106, 130);
+            margin-top: -35px;
+        }
+        
+        @media screen and (max-width: 768px){
+            .card-wrapper {
+                margin: 0 10px 25px;
+            }
+        
+            .card-wrapper .swiper-slide-button {
+                display: none;
+            }
+        }
+    }
+}
 
