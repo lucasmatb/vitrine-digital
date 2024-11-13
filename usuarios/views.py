@@ -23,11 +23,16 @@ def valida_login(request):
                 email = usuario.email,
                 password = form.cleaned_data['password']
             )
-
             if usuario is not None:
-                print("Login deu certo")
-                auth.login(request, usuario)
-                return redirect('/dashboards/index')
+                if usuario.is_active is False:
+                    messages.error(request, 'O usuário foi desativado, entre em contato com o suporte')
+                else:
+                    print("Login deu certo")
+                    auth.login(request, usuario)
+                    if usuario.is_superuser:
+                        return redirect('/admin')
+                    else:
+                        return redirect('/dashboards/index')
             else: 
                 messages.error(request, 'Senha incorreta')
 
