@@ -1,0 +1,175 @@
+.card {
+    width: 25rem;
+    /* aspect-ratio: 1; */
+    /* border: solid 1px hotpink; */
+    border-radius: 2rem;
+    overflow: hidden;
+    background-color: #fff;
+
+    position: relative;
+
+    cursor: pointer;
+
+    /* &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background-color: rgba(255,255,255,.5);
+        transition-property: width, height;
+        transition-duration: 0.3s;
+        transition-timing-function: ease-in-out;
+
+    }
+    
+    &:hover {
+        &::before {
+            width: 105%;
+            height: 105%;
+        }
+    } */
+    
+
+    &.card-empresa {
+            & .img-capa {
+                width: 100%;
+                aspect-ratio: 3/1.5;
+                background-image: url(../images/capa-empresa-1.jpg);
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: 50%;
+            }
+    }
+
+    &.card-produto {
+        box-shadow: 0 1rem 1rem rgba(0,0,0,0.05);
+            & .img-capa {
+                width: 100%;
+                aspect-ratio: 3/1.5;
+                background-image: url(../images/capa-produto-1.jpg);
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: 50%;
+            }
+
+            & .textos {
+                & .nome {
+
+                }
+
+                & .loja {
+                    display: flex;
+                    /* justify-content: space-between; */
+                    gap: var(--spc-100);
+                    align-items: center;
+                    
+                    & .img-loja {
+                        width: 2.5rem;
+                        aspect-ratio: 1;
+                        border-radius: 100vw;
+                        background-image: url(../images/perfil-empresa-1.jpg);
+                        background-position: 50%;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+
+                    & .nome-loja {
+
+                    }
+                }
+
+                & .preco-disponibilidade {
+                    display: flex;
+                    justify-content: space-between;
+                    gap: var(--spc-200);
+
+                    & .preco {
+
+                    }
+
+                    & .disponibilidade {
+                        font-size: var(--fs-100);
+                        padding: var(--spc-50) var(--spc-100);
+                        background-color: #e3e3e3;
+                        border-radius: 0.8rem;
+                        color: #767676;
+                    }
+                }
+            }
+    }
+
+    & .img-perfil {
+        background-image: url(../images/perfil-empresa-1.jpg);
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: cover; 
+        width: 7rem;
+        aspect-ratio: 1;
+        border-radius: 100vw;
+        overflow: hidden;
+        border: solid 3px #fff;
+        position: absolute;
+        top: 9rem;
+        left: 1rem;
+    }
+
+
+    & .textos {
+        padding:var(--spc-300);
+        padding-top: var(--spc-200);
+        display: flex;
+        flex-flow: column;
+        gap: var(--spc-100);
+    }
+
+    &.card-empresa {
+        & .textos {
+            padding-top: var(--spc-800);
+        }
+    }
+
+    & .nome {
+        font-weight: 500;
+        font-size: var(--fs-300);
+
+    }
+
+    & .descricao {
+        font-size: var(--fs-100);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    & .categoria-favoritos {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--spc-400);
+        font-size: var(--fs-100);
+    }
+
+    & .categoria {
+        padding: var(--spc-50) var(--spc-100);
+        background-color: #f8e9ff;
+        border-radius: 0.8rem;
+        color: #c341ff
+    }
+
+    & .favoritos {
+        display: flex;
+        align-items: center;
+        gap: var(--spc-70);
+
+        & img {
+            max-width: var(--spc-400);
+        }
+
+        & span {
+            font-weight: 500;
+        }
+    }
+}
