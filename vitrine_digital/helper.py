@@ -3,6 +3,7 @@ from Crypto.Random import get_random_bytes
 from Crypto.Protocol.KDF import scrypt
 import base64
 from django.conf import settings
+import uuid
 
 crypto_key = settings.CRYPTO_KEY.encode('utf-8')
 
@@ -28,3 +29,8 @@ def descriptarAESGCM(textoCriptografado):
     texto_decriptado = cipher.decrypt_and_verify(texto_encriptado, tag)
 
     return texto_decriptado.decode('utf-8')
+
+def retornaCaminhoImagemAleatorio(_instance, filename):
+    ext = filename.split('.')[-1]
+    filename = f'{uuid.uuid4()}.{ext}'
+    return filename

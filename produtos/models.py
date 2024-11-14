@@ -1,10 +1,10 @@
 from django.db import models
 
-class Categorias(models.Model):
+class Categoria_Produto(models.Model):
     descricao = models.CharField(max_length=254)
     ativo = models.BooleanField()
 
-class Produtos(models.Model):
+class Produto(models.Model):
     descricao = models.CharField(
         'Descrição do produto',
         max_length=254
@@ -19,11 +19,12 @@ class Produtos(models.Model):
         default=0
     )
     ativo = models.BooleanField()
-    id_categoria = models.ForeignKey(
-        Categorias,
+    destaque = models.BooleanField()
+    id_empresa = models.ForeignKey(
+        'empresas.Empresa',
         on_delete=models.RESTRICT
     )
-    id_empresa = models.ForeignKey(
-        'empresas.Empresas',
+    id_categoria_produto = models.ForeignKey(
+        Categoria_Produto,
         on_delete=models.RESTRICT
     )

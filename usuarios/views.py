@@ -1,19 +1,19 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib import messages, auth
-from .forms import UsuariosLoginForm, UsuariosRegistrationForm, trata_cpf_apenas_numeros
+from .forms import UsuarioLoginForm, UsuarioRegistrationForm, trata_cpf_apenas_numeros
 from vitrine_digital.helper import descriptarAESGCM
-from .models import Usuarios
+from .models import Usuario
 
 def login(request):
     if request.user.is_authenticated:
         return redirect('/dashboards/index')
     data = {}
-    data['form'] = UsuariosLoginForm()
+    data['form'] = UsuarioLoginForm()
     return render(request, 'login.html', data)
 
 def valida_login(request):
-    form = UsuariosLoginForm(request.POST or None)
+    form = UsuarioLoginForm(request.POST or None)
     if form.is_valid():
         usuario = buscar_usuario_por_email(form.cleaned_data['email'])
         if usuario is None:
@@ -40,7 +40,7 @@ def valida_login(request):
 
 def buscar_usuario_por_email(email: str):
     usuarioEncontrado = None
-    usuarios = Usuarios.objects.all()
+    usuarios = Usuario.objects.all()
     for usuario in usuarios:
         if descriptarAESGCM(usuario.email).lower() == email.lower():
             usuarioEncontrado = usuario
@@ -52,15 +52,15 @@ def cadastro(request):
     if request.user.is_authenticated:
         return redirect('/dashboards/index')
     data = {}
-    data['form'] = UsuariosRegistrationForm()
+    data['form'] = UsuarioRegistrationForm()
     return render(request, 'cadastro.html', data)
 
 def valida_cadastro(request):
-    form = UsuariosRegistrationForm(request.POST or None)
+    form = UsuarioRegistrationForm(request.POST or None)
     if form.is_valid():
         cpfTratado = trata_cpf_apenas_numeros(form.cleaned_data['cpf'])
 
-        Usuarios.objects.create_user(
+        Usuario.objects.create_user(
             email = form.cleaned_data['email'],
             password = form.cleaned_data['password'],
             first_name = form.cleaned_data['first_name'],

@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'empresas'
 ]
 
-AUTH_USER_MODEL = "usuarios.Usuarios"
+AUTH_USER_MODEL = "usuarios.Usuario"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -135,3 +135,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_URL = 'media/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'media')

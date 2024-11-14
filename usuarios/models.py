@@ -5,7 +5,10 @@ from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import BaseUserManager
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
-from vitrine_digital.helper import encriptarAESGCM
+from empresas.models import Empresa
+from produtos.models import Produto
+from vitrine_digital.helper import encriptarAESGCM, retornaCaminhoImagemAleatorio
+from stdimage.models import StdImageField
 
 class UserManager(BaseUserManager):
 
@@ -44,7 +47,7 @@ class UserManager(BaseUserManager):
 
         return self._create_user(email, password, **extra_fields)
 
-class Usuarios(AbstractBaseUser, PermissionsMixin):
+class Usuario(AbstractBaseUser, PermissionsMixin):
 
     email = models.CharField(
         _('email'),
@@ -95,6 +98,15 @@ class Usuarios(AbstractBaseUser, PermissionsMixin):
         unique=True,
         blank=False
     )
+
+    imagem = StdImageField(
+        'imagem',
+        upload_to=retornaCaminhoImagemAleatorio,
+        variations={'thumb': {'width': 480, 'height': 480, 'crop': True}},
+    )
+
+    favorito_produto = models.ManyToManyField(Produto)
+    favorito_empresa = models.ManyToManyField(Empresa)
 
     def save(self, *args, **kwargs):
         self.email = encriptarAESGCM(self.email)

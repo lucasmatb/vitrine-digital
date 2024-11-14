@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from usuarios.views import valida_login
 
 admin.site.login = valida_login
@@ -25,4 +27,4 @@ urlpatterns = [
     path('produtos/', include('produtos.urls')),
     path('empresas/', include('empresas.urls')),
     path('dashboards/', include('dashboards.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

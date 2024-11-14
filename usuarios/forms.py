@@ -1,11 +1,11 @@
 from django import forms
-from .models import Usuarios
+from .models import Usuario
 from vitrine_digital.helper import descriptarAESGCM
 import re
 
-class UsuariosLoginForm(forms.ModelForm):
+class UsuarioLoginForm(forms.ModelForm):
     class Meta:
-        model = Usuarios
+        model = Usuario
         fields = [
             'email',
             'password'
@@ -14,7 +14,7 @@ class UsuariosLoginForm(forms.ModelForm):
             'password': forms.PasswordInput()
         }
 
-class UsuariosRegistrationForm(forms.ModelForm):
+class UsuarioRegistrationForm(forms.ModelForm):
     first_name = forms.CharField(
         max_length=254,
         required=True,
@@ -62,11 +62,11 @@ class UsuariosRegistrationForm(forms.ModelForm):
         required=True
     )
     class Meta:
-        model = Usuarios
+        model = Usuario
         fields = ['first_name', 'last_name', 'cpf', 'email', 'password']
     
     def clean(self):
-        cleaned_data = super(UsuariosRegistrationForm, self).clean()
+        cleaned_data = super(UsuarioRegistrationForm, self).clean()
 
         cpfTratado = trata_cpf_apenas_numeros(cleaned_data.get("cpf"))
 
@@ -82,7 +82,7 @@ class UsuariosRegistrationForm(forms.ModelForm):
         return cleaned_data
 
 def verifica_email_unico(email: str) -> bool:
-    emails = [descriptarAESGCM(email) for email in Usuarios.objects.values_list('email', flat=True)]
+    emails = [descriptarAESGCM(email) for email in Usuario.objects.values_list('email', flat=True)]
     if email in emails:
         return True
 
@@ -91,7 +91,7 @@ def verifica_cpf_valido(cpf: str):
         return True
     
 def verifica_cpf_unico(cpf: str):
-    cpfs = [descriptarAESGCM(cpf) for cpf in Usuarios.objects.values_list('cpf', flat=True)]
+    cpfs = [descriptarAESGCM(cpf) for cpf in Usuario.objects.values_list('cpf', flat=True)]
     if cpf in cpfs:
         return True
     
