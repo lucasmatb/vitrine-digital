@@ -34,8 +34,5 @@ class Produto(models.Model):
         'empresas.Empresa',
         on_delete=models.RESTRICT
     )
-    id_categoria_produto = models.ForeignKey(
-        Categoria_Produto,
-        on_delete=models.RESTRICT
-    )
+    categoria_produto = models.ManyToManyField(Categoria_Produto)
     imagem_produto = models.ManyToManyField(Imagem_Produto)

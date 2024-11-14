@@ -38,10 +38,6 @@ class Empresa(models.Model):
         'usuarios.Usuario',
         on_delete=models.RESTRICT
     )
-    id_categoria_empresa = models.ForeignKey(
-        Categoria_Empresa,
-        on_delete=models.RESTRICT
-    )
     imagem_capa = StdImageField(
         'imagem',
         default='default_capa_empresa.jpg',
@@ -54,4 +50,5 @@ class Empresa(models.Model):
         upload_to=retornaCaminhoImagemAleatorio,
         variations={'thumb': {'width': 480, 'height': 480, 'crop': True}},
     )
+    categoria_produto = models.ManyToManyField(Categoria_Empresa)
     empresa_endereco = models.ManyToManyField(Endereco)
