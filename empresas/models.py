@@ -1,4 +1,6 @@
 from django.db import models
+from vitrine_digital.helper import retornaCaminhoImagemAleatorio
+from stdimage.models import StdImageField
 
 class Estado(models.Model):
     descricao = models.CharField(max_length=254)
@@ -40,5 +42,16 @@ class Empresa(models.Model):
         Categoria_Empresa,
         on_delete=models.RESTRICT
     )
-    
-    endereco = models.ManyToManyField(Endereco)
+    imagem_capa = StdImageField(
+        'imagem',
+        default='default_capa_empresa.jpg',
+        upload_to=retornaCaminhoImagemAleatorio,
+        variations={'mid': {'width': 480, 'height': 480, 'crop': True}},
+    )
+    imagem_perfil = StdImageField(
+        'imagem',
+        default='default_perfil_empresa.jpg',
+        upload_to=retornaCaminhoImagemAleatorio,
+        variations={'thumb': {'width': 480, 'height': 480, 'crop': True}},
+    )
+    empresa_endereco = models.ManyToManyField(Endereco)

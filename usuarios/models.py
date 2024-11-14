@@ -101,6 +101,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
 
     imagem = StdImageField(
         'imagem',
+        default='default_profile.jpg',
         upload_to=retornaCaminhoImagemAleatorio,
         variations={'thumb': {'width': 480, 'height': 480, 'crop': True}},
     )
