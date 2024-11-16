@@ -2,8 +2,9 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib import messages, auth
 from .forms import UsuarioLoginForm, UsuarioRegistrationForm, trata_cpf_apenas_numeros
-from vitrine_digital.helper import descriptarAESGCM
+from vitrine_digital.helper import encriptarAESGCM, descriptarAESGCM
 from .models import Usuario
+from django.contrib.auth.forms import PasswordResetForm
 
 def login(request):
     if request.user.is_authenticated:
@@ -27,7 +28,6 @@ def valida_login(request):
                 if usuario.is_active is False:
                     messages.error(request, 'O usuário foi desativado, entre em contato com o suporte')
                 else:
-                    print("Login deu certo")
                     auth.login(request, usuario)
                     if usuario.is_superuser:
                         return redirect('/admin')
@@ -38,9 +38,14 @@ def valida_login(request):
 
     return render(request, 'login.html', {'form': form})
 
-def buscar_usuario_por_email(email: str):
+def buscar_usuario_por_email(email: str, ativo: bool = False):
     usuarioEncontrado = None
-    usuarios = Usuario.objects.all()
+    if ativo:
+        usuarios = Usuario._default_manager.filter(**{
+            'is_active': ativo
+        })
+    else:
+        usuarios = Usuario.objects.all()
     for usuario in usuarios:
         if descriptarAESGCM(usuario.email).lower() == email.lower():
             usuarioEncontrado = usuario
@@ -61,19 +66,14 @@ def valida_cadastro(request):
         cpfTratado = trata_cpf_apenas_numeros(form.cleaned_data['cpf'])
 
         Usuario.objects.create_user(
-            email = form.cleaned_data['email'],
-            password = form.cleaned_data['password'],
-            first_name = form.cleaned_data['first_name'],
-            last_name = form.cleaned_data['last_name'],
-            cpf = cpfTratado
+            email = encriptarAESGCM(form.cleaned_data['email']),
+            password =  form.cleaned_data['password'],
+            first_name =  encriptarAESGCM(form.cleaned_data['first_name']),
+            last_name =  encriptarAESGCM(form.cleaned_data['last_name']),
+            cpf =  encriptarAESGCM(cpfTratado)
         )
 
         messages.success(request, 'Cadastro realizado com sucesso!')
         return redirect('/auth/login/')
     
     return render(request, 'cadastro.html', {'form': form})
-
-def logout(request):
-    auth.logout(request)
-    messages.error(request, 'Faça login antes de acessar a plataforma')
-    return redirect('/auth/login/')

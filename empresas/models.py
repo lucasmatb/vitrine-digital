@@ -34,6 +34,8 @@ class Empresa(models.Model):
     razao_social = models.CharField(max_length=254)
     ativo = models.BooleanField()
     situacao = models.CharField(max_length=30)
+    email = models.EmailField(max_length=254)
+    telefone = models.CharField(max_length=30)
     id_usuario = models.ForeignKey(
         'usuarios.Usuario',
         on_delete=models.RESTRICT

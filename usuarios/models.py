@@ -7,7 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 from empresas.models import Empresa
 from produtos.models import Produto
-from vitrine_digital.helper import encriptarAESGCM, retornaCaminhoImagemAleatorio
+from vitrine_digital.helper import retornaCaminhoImagemAleatorio
 from stdimage.models import StdImageField
 
 class UserManager(BaseUserManager):
@@ -108,13 +108,6 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
 
     favorito_produto = models.ManyToManyField(Produto)
     favorito_empresa = models.ManyToManyField(Empresa)
-
-    def save(self, *args, **kwargs):
-        self.email = encriptarAESGCM(self.email)
-        self.first_name = encriptarAESGCM(self.first_name)
-        self.last_name = encriptarAESGCM(self.last_name)
-        self.cpf = encriptarAESGCM(self.cpf)
-        super().save(*args, **kwargs)
 
     objects = UserManager()
 
