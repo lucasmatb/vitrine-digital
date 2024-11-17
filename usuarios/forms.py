@@ -79,6 +79,8 @@ class UsuarioRegistrationForm(forms.ModelForm):
         if verifica_cpf_unico(cpfTratado):
             self.add_error('cpf', "CPF já cadastrado")
             
+        cleaned_data['cpf'] = cpfTratado
+
         return cleaned_data
 
 def verifica_email_unico(email: str) -> bool:

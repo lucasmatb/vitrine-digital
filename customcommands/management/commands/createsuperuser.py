@@ -12,13 +12,16 @@ from django.core import exceptions
 from django.core.management.base import BaseCommand, CommandError
 from django.db import DEFAULT_DB_ALIAS
 from django.utils.text import capfirst
-from vitrine_digital.helper import descriptarAESGCM
+from vitrine_digital.helper import encriptarAESGCM, descriptarAESGCM
+from usuarios.forms import verifica_cpf_valido, verifica_cpf_unico, trata_cpf_apenas_numeros
+from django.core.exceptions import ValidationError
 
 class NotRunningInTTYException(Exception):
     pass
 
 
 PASSWORD_FIELD = 'password'
+CPF_FIELD = 'cpf'
 
 
 class Command(BaseCommand):
@@ -120,6 +123,7 @@ class Command(BaseCommand):
                     self.username_field.remote_field.model(username)
                     if self.username_field.remote_field else username
                 )
+
                 # Prompt for required fields.
                 for field_name in self.UserModel.REQUIRED_FIELDS:
                     field = self.UserModel._meta.get_field(field_name)
@@ -140,6 +144,37 @@ class Command(BaseCommand):
                         # Wrap any foreign keys in fake model instances
                         if field.many_to_one:
                             fake_user_data[field_name] = field.remote_field.model(input_value)
+
+                if user_data[CPF_FIELD]:
+                    try:
+                        user_data[CPF_FIELD] = self._validate_cpf(user_data[CPF_FIELD])
+                    except exceptions.ValidationError as err:
+                        self.stderr.write('\n'.join(err.messages))
+                        user_data[CPF_FIELD] = None
+
+                cpf_verificador = user_data[CPF_FIELD]
+                while cpf_verificador is None:
+                    field = self.UserModel._meta.get_field(CPF_FIELD)
+                    message = self._get_input_message(field)
+                    cpf_verificador = self.get_input_data(field, message)
+                    if cpf_verificador:
+                        try:
+                            cpf_verificador = self._validate_cpf(cpf_verificador)
+                        except exceptions.ValidationError as err:
+                            self.stderr.write('\n'.join(err.messages))
+                            cpf_verificador = None
+                            continue
+                user_data[CPF_FIELD] = cpf_verificador
+
+                while username is None:
+                    message = self._get_input_message(self.username_field, default_username)
+                    username = self.get_input_data(self.username_field, message, default_username)
+                    if username:
+                        error_msg = self._validate_username(username, verbose_field_name, database)
+                        if error_msg:
+                            self.stderr.write(error_msg)
+                            username = None
+                            continue
 
                 # Prompt for a password if the model has one.
                 while PASSWORD_FIELD in user_data and user_data[PASSWORD_FIELD] is None:
@@ -185,6 +220,10 @@ class Command(BaseCommand):
                         raise CommandError('You must use --%s with --noinput.' % field_name)
                     field = self.UserModel._meta.get_field(field_name)
                     user_data[field_name] = field.clean(value, None)
+
+            user_data[self.UserModel.USERNAME_FIELD] = encriptarAESGCM(user_data[self.UserModel.USERNAME_FIELD])
+            for field_name in self.UserModel.REQUIRED_FIELDS:
+                user_data[field_name] = encriptarAESGCM(user_data[field_name])
 
             self.UserModel._default_manager.db_manager(database).create_superuser(**user_data)
             if options['verbosity'] >= 1:
@@ -244,3 +283,19 @@ class Command(BaseCommand):
             self.username_field.clean(username, None)
         except exceptions.ValidationError as e:
             return '; '.join(e.messages)
+        
+    def _validate_cpf(self, cpf):
+        erro = None
+
+        if verifica_cpf_valido(cpf):
+            erro = 'Error: CPF inválido'
+        cpfTratado = trata_cpf_apenas_numeros(cpf)
+        if verifica_cpf_unico(cpfTratado):
+            erro = 'Error: CPF já cadastrado'
+        cpf = cpfTratado
+        
+        if erro is not None:
+            raise ValidationError(erro)
+        else:
+            return cpfTratado
+

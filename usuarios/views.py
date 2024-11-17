@@ -4,11 +4,13 @@ from django.contrib import messages, auth
 from .forms import UsuarioLoginForm, UsuarioRegistrationForm, trata_cpf_apenas_numeros
 from vitrine_digital.helper import encriptarAESGCM, descriptarAESGCM
 from .models import Usuario
-from django.contrib.auth.forms import PasswordResetForm
 
 def login(request):
     if request.user.is_authenticated:
-        return redirect('/dashboards/index')
+        if request.user.is_superuser:
+            return redirect('admin:index')
+        else:
+            return redirect('home-area-cliente')
     data = {}
     data['form'] = UsuarioLoginForm()
     return render(request, 'login.html', data)
@@ -30,9 +32,9 @@ def valida_login(request):
                 else:
                     auth.login(request, usuario)
                     if usuario.is_superuser:
-                        return redirect('/admin')
+                        return redirect('admin:index')
                     else:
-                        return redirect('/dashboards/index')
+                        return redirect('home-area-cliente')
             else: 
                 messages.error(request, 'Senha incorreta')
 
@@ -55,7 +57,10 @@ def buscar_usuario_por_email(email: str, ativo: bool = False):
 
 def cadastro(request):
     if request.user.is_authenticated:
-        return redirect('/dashboards/index')
+        if request.user.is_superuser:
+            return redirect('admin:index')
+        else:
+            return redirect('home-area-cliente')
     data = {}
     data['form'] = UsuarioRegistrationForm()
     return render(request, 'cadastro.html', data)

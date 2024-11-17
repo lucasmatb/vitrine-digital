@@ -4,4 +4,7 @@ from django.http import HttpResponse
 # Create your views here.
 
 def index(request):
-    return HttpResponse('Teste Dashboards')
+    return HttpResponse('Página inicial livre')
+
+def indexLogadoAreaCliente(request):
+    return HttpResponse('Página inicial área do cliente logado')
