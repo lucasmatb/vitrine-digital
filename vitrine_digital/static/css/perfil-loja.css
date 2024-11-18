@@ -1,0 +1,177 @@
+@import url("global.css");
+@import url("sidebar.css");
+@import url("card.css");
+
+body {
+    background: radial-gradient(circle at center, #eeaeca, #94bbe9);
+    overflow: hidden;
+
+    & .container-inicio {
+        display: flex;
+        /* position: relative; */
+        max-height: 100vh;
+        overflow: hidden;
+    }
+
+    & .main {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+
+        max-height: 100vh;
+        
+        width: 100%;
+        overflow: hidden;
+        /* padding: 1.5rem; */
+        /* justify-content: center; */
+        /* align-items: center; */
+        
+        overflow-y: hidden;
+        
+        & .main-scrollable {
+            overflow-y: scroll;
+            max-height: 100vh;
+            width: 100%;
+            /* padding: var(--spc-1000) var(--spc-700); */
+            display: flex;
+            flex-flow: column;
+            gap: var(--spc-700);
+            background: radial-gradient(circle at center, hsl(264, 100%, 90%) 0%, rgba(242,248,255,1) 100%);
+            /* https://cssgradient.io/ */
+
+            &::-webkit-scrollbar-track {
+                background-color: transparent;
+            }
+            
+            &::-webkit-scrollbar-thumb {
+                background-color: #d6dee1;
+                border-radius: 20px;
+                border: 6px solid transparent;
+                background-clip: content-box;
+            }
+
+            &::-webkit-scrollbar-thumb:hover {
+                background-color: #a8bbbf;
+            }
+            
+            & .perfil {
+                padding: 0;
+                position: relative;
+
+                /* overflow-x: hidden; */
+
+                & .img-capa {
+                    /* width: 100%;
+                    aspect-ratio: 3/0.5; */
+                    height: 20rem;
+                    /* aspect-ratio: 3/0.5; */
+                    max-width: 100%;
+
+                    background-image: url(../images/capa-empresa-1.jpg);
+                    background-position: 50%;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+                
+                & .img-perfil {
+                    position: absolute;
+                    top: 15rem;
+                    left: 5rem;
+                    background-image: url(../images/perfil-empresa-1.jpg);
+                    background-position: 50%;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    border-radius: 100vw;
+                    width: 10rem;
+                    aspect-ratio: 1;
+                    border: solid 4px #EEEDFF;
+                }
+
+                & .informacoes {
+                    padding: var(--spc-900);
+                    padding-bottom: var(--spc-600);
+                    padding-top: var(--spc-1000);
+
+                    & .nome-categorias {
+                        display: flex;
+                        flex-flow: column;
+                        gap: var(--spc-300);
+
+                        & .categorias {
+                            display: flex;
+                            flex-flow: row wrap;
+                            gap: var(--spc-80);
+                            font-size: var(--fs-100);
+
+                            & span {
+                                background-color: #94bbe9;
+                                padding: var(--spc-50) var(--spc-100);
+                                /* background-color: #f8e9ff; */
+                                border-radius: 0.5rem;
+                                /* color: #c341ff; */
+                            }
+                        }
+                    }
+                }
+            }
+
+            & .produtos {
+                display: flex;
+                flex-flow: column;
+                gap: var(--spc-900);
+                padding: var(--spc-600) var(--spc-900);
+
+                & .destaques {
+                    width: 100%;
+                    display: flex;
+                    flex-flow: column;
+                    gap: var(--spc-400);
+
+                    /* & .conteudo { */
+
+                        & .carrossel {
+                            display: grid;
+                            grid-auto-flow: column;
+                            scroll-behavior: auto;
+                            gap: var(--spc-300);
+                            overflow-y: auto;
+                            overscroll-behavior-x: contain;
+                            scroll-snap-type: x mandatory;
+                            scrollbar-width: none;
+
+                            &::-webkit-scrollbar {
+                                display: none;
+                            }
+
+                            & .card {
+                                scroll-snap-align: start;
+                                /* border-radius: 30px; */
+                                /* min-height: 200px; */
+                                /* min-width: 300px; */
+                                /* display: flex; */
+                                /* align-items: center; */
+                                /* justify-content: center; */
+                                /* background-color: #eeaeca; */
+                            }
+                        }
+                    /* } */
+                }
+
+                & .todos {
+                    width: 100%;
+                    display: flex;
+                    flex-flow: column;
+                    gap: var(--spc-400);
+
+                    & .todos-produtos {
+                        display: flex;
+                        flex-flow: row wrap;
+                        gap: var(--spc-600);
+                    }
+                }
+            }
+        }
+
+        
+    }
+}

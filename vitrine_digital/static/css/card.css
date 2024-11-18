@@ -156,7 +156,7 @@
         padding: var(--spc-50) var(--spc-100);
         background-color: #f8e9ff;
         border-radius: 0.8rem;
-        color: #c341ff
+        color: #c341ff;
     }
 
     & .favoritos {

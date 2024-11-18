@@ -49,6 +49,7 @@ body {
             flex-flow: column;
             gap: var(--spc-700);
             background: radial-gradient(circle at center, hsl(264, 100%, 90%) 0%, rgba(242,248,255,1) 100%);
+            /* https://cssgradient.io/ */
 
             &::-webkit-scrollbar-track {
                 background-color: transparent;

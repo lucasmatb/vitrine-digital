@@ -22,7 +22,7 @@ body {
     position: relative;
 }
 
-b, h1 {
+b, h1, h2, h3 {
     font-weight: 500;
 }
 
