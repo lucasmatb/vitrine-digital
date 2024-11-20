@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'usuarios',
     'dashboards',
     'produtos',
-    'empresas'
+    'empresas',
+    'django_seed',
 ]
 
 AUTH_USER_MODEL = "usuarios.Usuario"

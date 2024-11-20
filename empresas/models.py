@@ -4,6 +4,7 @@ from stdimage.models import StdImageField
 
 class Estado(models.Model):
     descricao = models.CharField(max_length=254)
+    uf = models.CharField(max_length=2)
 
 class Cidade(models.Model):
     descricao = models.CharField(max_length=254)
