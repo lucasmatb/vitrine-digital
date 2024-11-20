@@ -3,8 +3,8 @@ from django.http import HttpResponse
 
 # Create your views here.
 
-def index(request):
-    return HttpResponse('Página inicial livre')
+def home(request):
+    return render(request, 'home.html')
 
 def indexLogadoAreaCliente(request):
     return HttpResponse('Página inicial área do cliente logado')

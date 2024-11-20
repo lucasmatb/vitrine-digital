@@ -1,5 +1,4 @@
-@import url("../../../vitrine_digital/static/css/global.css");
-@import url("./header.css");
+@import 'header.css';
 
 .hero {
     padding-top: calc(15rem + 4rem);

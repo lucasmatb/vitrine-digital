@@ -1,21 +1,24 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | Vitrine Digital</title>
+{% extends 'base.html' %}
+
+{% block 'head' %}
     <link rel="stylesheet" href="../static/css/home.css">
-</head>
-<body>
+{% endblock %}
+
+{% block 'titulo' %}
+    Home | Vitrine Digital
+{% endblock %}
+
+{% block 'conteudo'%}
+
     <header>
         <img src="" alt="Logo da Vitrine Digital">
 
         <ul>
-            <li><a href="">Home</a><div></div></li>
+            <li><a href="{% url 'home' %}">Home</a><div></div></li>
             <!-- <li><a href="">Sobre nós</a><div></div></li> -->
-            <li><a href="">Contato</a><div></div></li>
-            <li><a href="">Sou comerciante</a><div></div></li>
-            <li><a href="">Entrar</a><div></div></li>
+            <li><a href="#">Contato</a><div></div></li>
+            <li><a href="#">Sou comerciante</a><div></div></li>
+            <li><a href="{% url 'login' %}">Entrar</a><div></div></li>
         </ul>
     </header>
 
@@ -27,17 +30,15 @@
                     <h1>Acesse o melhor da sua cidade com ...</h1>
                 </div>
                 <div class="botoes">
-                    <a href="">Entrar</a>
-                    <a href="">Cadastrar-se</a>
+                    <a href="{% url 'login' %}">Entrar</a>
+                    <a href="{% url 'cadastro' %}">Cadastrar-se</a>
                 </div>
             </div>
 
-            
-            
-                <div class="ir-para-lojista">
-                    <p>É lojista? <a href="#lojista">Cadastre seu comércio</a></p>
-                    <img src="../../vitrine_digital/static/images/seta-direita.svg" alt="Seta para a direita">
-                </div>
+            <div class="ir-para-lojista">
+                <p>É lojista? <a href="#lojista">Cadastre seu comércio</a></p>
+                <img src="../static/images/seta-direita.svg" alt="Seta para a direita">
+            </div>
             
         </section>
 
@@ -52,13 +53,13 @@
     <script>
         document.querySelectorAll('a[href^="#lojista"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-            e.preventDefault();
+                e.preventDefault();
 
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
         });
-    });
-});
     </script>
-</body>
-</html>
+
+{% endblock %}
