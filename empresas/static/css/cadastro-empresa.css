@@ -49,7 +49,8 @@
 #C3B1E1
 #6E85B7 */
 
-@import url("global.css");
+@import url("../../../vitrine_digital/static/css/global.css");
+@import url("../../../vitrine_digital/static/css/sidebar.css");
 
 .detalhes {
     & .container {

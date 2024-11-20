@@ -1,5 +1,6 @@
-@import url("global.css");
-@import url("card.css");
+@import url("../../../vitrine_digital/static/css/global.css");
+@import url("../../../vitrine_digital/static/css/sidebar.css");
+@import url("../../../vitrine_digital/static/css/card.css");
 
 body {
     background: radial-gradient(circle at center, hsl(264, 100%, 90%) 0%, rgba(242,248,255,1) 100%);

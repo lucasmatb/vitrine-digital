@@ -1,6 +1,6 @@
-@import url("global.css");
-@import url("sidebar.css");
-@import url("card.css");
+@import url("../../../vitrine_digital/static/css/global.css");
+@import url("../../../vitrine_digital/static/css/sidebar.css");
+@import url("../../../vitrine_digital/static/css/card.css");
 
 body {
     background: radial-gradient(circle at center, #eeaeca, #94bbe9);
@@ -67,7 +67,7 @@ body {
                     /* aspect-ratio: 3/0.5; */
                     max-width: 100%;
 
-                    background-image: url(../images/capa-empresa-1.jpg);
+                    background-image: url(../../../vitrine_digital/static/images/capa-empresa-1.jpg);
                     background-position: 50%;
                     background-repeat: no-repeat;
                     background-size: cover;
@@ -77,7 +77,7 @@ body {
                     position: absolute;
                     top: 15rem;
                     left: 5rem;
-                    background-image: url(../images/perfil-empresa-1.jpg);
+                    background-image: url(../../../vitrine_digital/static/images/perfil-empresa-1.jpg);
                     background-position: 50%;
                     background-repeat: no-repeat;
                     background-size: cover;
