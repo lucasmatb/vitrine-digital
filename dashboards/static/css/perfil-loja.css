@@ -61,10 +61,7 @@ body {
                 /* overflow-x: hidden; */
 
                 & .img-capa {
-                    /* width: 100%;
-                    aspect-ratio: 3/0.5; */
                     height: 20rem;
-                    /* aspect-ratio: 3/0.5; */
                     max-width: 100%;
 
                     background-image: url(../../../vitrine_digital/static/images/capa-empresa-1.jpg);
