@@ -15,6 +15,7 @@ from django.utils.text import capfirst
 from vitrine_digital.helper import encriptarAESGCM, descriptarAESGCM
 from usuarios.forms import verifica_cpf_valido, verifica_cpf_unico, trata_cpf_apenas_numeros
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import Group
 
 class NotRunningInTTYException(Exception):
     pass
@@ -225,7 +226,10 @@ class Command(BaseCommand):
             for field_name in self.UserModel.REQUIRED_FIELDS:
                 user_data[field_name] = encriptarAESGCM(user_data[field_name])
 
-            self.UserModel._default_manager.db_manager(database).create_superuser(**user_data)
+            usuario = self.UserModel._default_manager.db_manager(database).create_superuser(**user_data)
+            grupo = Group.objects.get(name='Administrador')
+            
+            usuario.groups.add(grupo)
             if options['verbosity'] >= 1:
                 self.stdout.write("Superuser created successfully.")
         except KeyboardInterrupt:

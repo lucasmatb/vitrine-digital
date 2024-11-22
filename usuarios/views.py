@@ -4,6 +4,7 @@ from django.contrib import messages, auth
 from .forms import UsuarioLoginForm, UsuarioRegistrationForm, trata_cpf_apenas_numeros
 from vitrine_digital.helper import encriptarAESGCM, descriptarAESGCM
 from .models import Usuario
+from django.contrib.auth.models import Group
 
 def login(request):
     if request.user.is_authenticated:
@@ -70,13 +71,17 @@ def valida_cadastro(request):
     if form.is_valid():
         cpfTratado = trata_cpf_apenas_numeros(form.cleaned_data['cpf'])
 
-        Usuario.objects.create_user(
+        usuario = Usuario.objects.create_user(
             email = encriptarAESGCM(form.cleaned_data['email']),
             password =  form.cleaned_data['password'],
             first_name =  encriptarAESGCM(form.cleaned_data['first_name']),
             last_name =  encriptarAESGCM(form.cleaned_data['last_name']),
             cpf =  encriptarAESGCM(cpfTratado)
         )
+
+        grupo = Group.objects.get(name='Usuário')
+
+        usuario.groups.add(grupo)
 
         messages.success(request, 'Cadastro realizado com sucesso!')
         return redirect('/auth/login/')
