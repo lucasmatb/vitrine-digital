@@ -27,7 +27,8 @@ b, h1, h2, h3 {
 }
 
 section {
-    padding: 4rem 3rem;
+    /* padding: 4rem 3rem; */
+    padding: 4rem 0rem;
 }
 
 .container {

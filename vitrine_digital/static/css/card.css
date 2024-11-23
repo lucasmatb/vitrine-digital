@@ -157,6 +157,7 @@
         background-color: #f8e9ff;
         border-radius: 0.8rem;
         color: #c341ff;
+        height: max-content;
     }
 
     & .favoritos {

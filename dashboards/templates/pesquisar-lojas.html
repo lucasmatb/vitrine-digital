@@ -8,6 +8,8 @@
 </head>
 <body>
     <div class="container-inicio">
+
+        <!-- INÍCIO SIDEBAR -->
         <aside id="sidebar">
             <input type="checkbox" id="toggler">
             <label for="toggler" class="toggle-btn">
@@ -26,7 +28,7 @@
                 <div class="sidebar-nav-items">
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link">
-                            <img src="../static/images/icone-estrela.svg" alt="">
+                            <img src="../static/images/icone-coracao.svg" alt="">
                             <span>Lojas favoritas</span>
                         </a>
                     </li>
@@ -70,75 +72,198 @@
                 </div>
               </div>
         </aside>
+        <!-- FIM SIDEBAR -->
 
-        <div class="main">
+        <!-- <div class="main"> -->
+        <main>
             <div class="main-scrollable">
 
                 <section>
-                    <!-- <div class="cabecalho">
-                        <h1>Seus produtos salvos</h1>
-                        <button class="botao-editar">Editar</button>
-                    </div> -->
-
                     <div class="busca">
                         <form action="" class="form-busca">
                             <input type="text" placeholder="Nome da loja">
                             <button type="submit"><img src="../../vitrine_digital/static/images/icone-lupa.svg" alt="">
                             </button>
                         </form>
-                        <div class="categorias"></div>
+                        <div class="categorias">
+                            <div class="wrapper-categoria">
+                                <input type="checkbox"class="checkbox-categoria">
+                                <label class="label-categoria">
+                                    Categoria tal
+                                </label>
+                            </div>
+                            <div class="wrapper-categoria">
+                                <input type="checkbox"class="checkbox-categoria">
+                                <label class="label-categoria">
+                                    Categoria tal
+                                </label>
+                            </div>
+                            <div class="wrapper-categoria">
+                                <input type="checkbox"class="checkbox-categoria">
+                                <label class="label-categoria">
+                                    Categoria tal
+                                </label>
+                            </div>
+                        </div>
                     </div>
-                
+                </section>
+
+                <section>
                     <div class="todos-cards">
-
-                        <div class="card-botao">
-                            <button class="botao-excluir"><img src="../../vitrine_digital/static/images/icone-x.svg" alt=""></button>
-                            <div class="card card-produto">
-                                <div class="img-capa"></div>
-                                <div class="textos">
-                                    <p class="nome">Nome do produto</p>
-                                    <div class="loja">
-                                        <div class="img-loja"></div>
-                                        <span class="nome-loja">Nome da loja</span>
-                                    </div>
-                                    <div class="preco-disponibilidade">
-                                         <div class="preco">R$ 299,90</div>
-                                        <div class="disponibilidade">
-                                            <span>Indisponível</span>
-                                        </div>
+                        <div class="card card-empresa">
+                            <div class="img-perfil"></div>
+                            <div class="img-capa"></div>
+                            <div class="textos">
+                                <p class="nome">Nome da empresa</p>
+                                <p class="descricao">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
+                                </p>
+                                <div class="categoria-favoritos">
+                                    <div class="categoria">Categoria</div>
+                                    <div class="favoritos">
+                                        <img src="../../vitrine_digital/static/images/icone-coracao.svg" alt="Ícone estrela">
+                                        <span>1.3K</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="card-botao">
-                            <button class="botao-excluir"><img src="../../vitrine_digital/static/images/icone-x.svg" alt=""></button>
-                            <div class="card card-produto">
-                                <div class="img-capa"></div>
-                                <div class="textos">
-                                    <p class="nome">Nome do produto</p>
-                                    <div class="loja">
-                                        <div class="img-loja"></div>
-                                        <span class="nome-loja">Nome da loja</span>
-                                    </div>
-                                    <div class="preco-disponibilidade">
-                                         <div class="preco">R$ 299,90</div>
-                                        <div class="disponibilidade">
-                                            <span>Indisponível</span>
-                                        </div>
+                        <div class="card card-empresa">
+                            <div class="img-perfil"></div>
+                            <div class="img-capa"></div>
+                            <div class="textos">
+                                <p class="nome">Nome da empresa</p>
+                                <p class="descricao">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
+                                </p>
+                                <div class="categoria-favoritos">
+                                    <div class="categoria">Categoria</div>
+                                    <div class="favoritos">
+                                        <img src="../../vitrine_digital/static/images/icone-coracao.svg" alt="Ícone estrela">
+                                        <span>1.3K</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
+                        <div class="card card-empresa">
+                            <div class="img-perfil"></div>
+                            <div class="img-capa"></div>
+                            <div class="textos">
+                                <p class="nome">Nome da empresa</p>
+                                <p class="descricao">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
+                                </p>
+                                <div class="categoria-favoritos">
+                                    <div class="categoria">Categoria</div>
+                                    <div class="favoritos">
+                                        <img src="../../vitrine_digital/static/images/icone-coracao.svg" alt="Ícone estrela">
+                                        <span>1.3K</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-empresa">
+                            <div class="img-perfil"></div>
+                            <div class="img-capa"></div>
+                            <div class="textos">
+                                <p class="nome">Nome da empresa</p>
+                                <p class="descricao">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
+                                </p>
+                                <div class="categoria-favoritos">
+                                    <div class="categoria">Categoria</div>
+                                    <div class="favoritos">
+                                        <img src="../../vitrine_digital/static/images/icone-coracao.svg" alt="Ícone estrela">
+                                        <span>1.3K</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-empresa">
+                            <div class="img-perfil"></div>
+                            <div class="img-capa"></div>
+                            <div class="textos">
+                                <p class="nome">Nome da empresa</p>
+                                <p class="descricao">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
+                                </p>
+                                <div class="categoria-favoritos">
+                                    <div class="categoria">Categoria</div>
+                                    <div class="favoritos">
+                                        <img src="../../vitrine_digital/static/images/icone-coracao.svg" alt="Ícone estrela">
+                                        <span>1.3K</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-empresa">
+                            <div class="img-perfil"></div>
+                            <div class="img-capa"></div>
+                            <div class="textos">
+                                <p class="nome">Nome da empresa</p>
+                                <p class="descricao">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
+                                </p>
+                                <div class="categoria-favoritos">
+                                    <div class="categoria">Categoria</div>
+                                    <div class="favoritos">
+                                        <img src="../../vitrine_digital/static/images/icone-coracao.svg" alt="Ícone estrela">
+                                        <span>1.3K</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-empresa">
+                            <div class="img-perfil"></div>
+                            <div class="img-capa"></div>
+                            <div class="textos">
+                                <p class="nome">Nome da empresa</p>
+                                <p class="descricao">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
+                                </p>
+                                <div class="categoria-favoritos">
+                                    <div class="categoria">Categoria</div>
+                                    <div class="favoritos">
+                                        <img src="../../vitrine_digital/static/images/icone-coracao.svg" alt="Ícone estrela">
+                                        <span>1.3K</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                
                 </section>
             </div>
             
-        </div>
+        </main>
     </div>
 
-    <script src="../static/js/remover-favs-salvos.js"></script>
+    <script>        
+        // const checkboxCategorias = document.querySelectorAll('.checkbox-categoria');
+
+        // i = 1;
+
+        // checkboxCategorias.forEach(cc => {
+        //     cc.id = `checkbox-categoria-${i}`;
+        //     i++;
+        //     console.log(cc);
+        // })
+
+
+        const wrapperCategoria = document.querySelectorAll('.wrapper-categoria');
+        
+        let i = 1;
+        
+        wrapperCategoria.forEach(w => {
+            const checkbox = w.querySelector('.checkbox-categoria');
+            const label = w.querySelector('.label-categoria');
+            
+            const id = `checkbox-categoria-${i}`;
+
+            checkbox.id = id;
+            label.htmlFor = id;
+            console.log(checkbox, label);
+            i++;
+        })
+    </script>
+
 </body>
 </html>

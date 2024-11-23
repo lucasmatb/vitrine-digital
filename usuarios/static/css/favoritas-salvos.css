@@ -1,183 +1,152 @@
 @import url("../../../vitrine_digital/static/css/global.css");
 @import url("../../../vitrine_digital/static/css/sidebar.css");
 @import url("../../../vitrine_digital/static/css/card.css");
+@import url("../../../vitrine_digital/static/css/body-main.css");
 
-body {
-    background: radial-gradient(circle at center, #eeaeca, #94bbe9);
-    overflow: hidden;
 
-    & .container-inicio {
-        display: flex;
-        max-height: 100vh;
-        overflow: hidden;
+body.modo-edicao {
+    & .botao-excluir {
+        display: grid !important;
+    }
+}
+  
+.modal-confirmacao {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+
+    display: none;
+
+    &.aberto {
+        display: grid;
     }
 
-    & .main {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        max-height: 100vh;
+    & .fundo-modal-confirmacao {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
+        height: 100%;
+        background-color: rgba(255,255,255,0.6);
+        z-index: 3;
+    }
+
+    & .conteudo-modal-confirmacao {
+        z-index: 4;
+        display: flex;
+        flex-flow: column;
+        /* gap: var(--spc-400); */
+        background-color: white;
+        border-radius: 0.8rem;
+        border: solid 1px #cdcdcd;
+        max-width: 40rem;
+        text-align: center;
         overflow: hidden;
-        overflow-y: hidden;
+        margin-inline: var(--spc-500);
+
+        & p {
+            padding: var(--spc-700) var(--spc-600);
+        }
         
-        & .main-scrollable {
-            overflow-y: scroll;
-            max-height: 100vh;
-            width: 100%;
-            padding: var(--spc-1000) var(--spc-700);
+        & .botoes-confirmacao {
             display: flex;
-            flex-flow: column;
-            gap: var(--spc-700);
-            background: radial-gradient(circle at center, hsl(264, 100%, 90%) 0%, rgba(242,248,255,1) 100%);
-            /* https://cssgradient.io/ */
-
-            height: 100%;
-            position: relative;
-
+            border-top: solid 1px #cdcdcd;
+            background-color: #cdcdcd;
+            gap: 1px;
             
-            & .modal-confirmacao {
+            & button {
+                all: unset;
+                flex: 1;
+                cursor: pointer;
+                text-align: center;
+                background-color: white;
+                padding: var(--spc-200);
+            }
+        }
+    }
+    
+}
+
+section {
+    display: flex;
+    flex-flow: column;
+    gap: var(--spc-700);
+
+    & .cabecalho {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--spc-400);
+
+        & button {
+            all: unset;
+            display: flex;
+            gap: var(--spc-60);
+            align-items: center;
+            cursor: pointer;
+            /* background-color: hsl(212, 66%, 85%); */
+            background-color: rgba(255,255,255,0.35);
+            /* border: solid 1px rgba(255,255,255,0.75); */
+            border: solid 1px;
+            border-color: rgba(255,255,255,0.75);
+            border-radius: 0.5rem;
+            padding: var(--spc-90) var(--spc-200);
+            width: max-content;
+            transition: background-color .3s ease;
+            
+            &:hover {
+                /* background-color: hsl(212, 66%, 80%); */
+                background-color: hsl(267, 100%, 90%);
+                border-color:hsl(264, 100%, 85%);
+            }
+        }
+    }
+    
+    & .todos-cards {
+        display: flex;
+        flex-flow: row wrap;
+        gap: var(--spc-600);
+
+        & .card-botao {
+            position: relative;
+            overflow: visible !important;
+            width: max-content;
+            height: max-content;
+            
+            & .botao-excluir {
+                all: unset;
+                cursor: pointer;
                 position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
+                top: -1rem;
+                right: -1rem;
+                width: 2.5rem;
+                aspect-ratio: 1;
+                border-radius: 100vw;
+                padding: var(--spc-70);
+                background-color: red;
+                color: white;
                 display: grid;
                 place-items: center;
+                z-index: 1;
+                font-family: inherit;
 
                 display: none;
 
-                &.aberto {
-                    display: grid;
+                & img {
+                    width:fit-content;
                 }
-
-                & .fundo-modal-confirmacao {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background-color: rgba(255,255,255,0.6);
-                    z-index: 3;
-                }
-
-                & .conteudo-modal-confirmacao {
-                    z-index: 4;
-                    display: flex;
-                    flex-flow: column;
-                    /* gap: var(--spc-400); */
-                    background-color: white;
-                    border-radius: 0.8rem;
-                    border: solid 1px #cdcdcd;
-                    max-width: 40rem;
-                    text-align: center;
-                    overflow: hidden;
-                    margin-inline: var(--spc-500);
-
-                    & p {
-                        padding: var(--spc-700) var(--spc-600);
-                    }
-                    
-                    & .botoes-confirmacao {
-                        display: flex;
-                        border-top: solid 1px #cdcdcd;
-                        background-color: #cdcdcd;
-                        gap: 1px;
-                        
-                        & button {
-                            all: unset;
-                            flex: 1;
-                            cursor: pointer;
-                            text-align: center;
-                            background-color: white;
-                            padding: var(--spc-200);
-                        }
-                    }
-                }
-                
             }
-
-            & section {
-            display: flex;
-            flex-flow: column;
-            gap: var(--spc-700);
-            
-                & .cabecalho {
-                    display: flex;
-                    justify-content: space-between;
-                    gap: var(--spc-400);
-
-                    & button {
-                        all: unset;
-                        display: flex;
-                        gap: var(--spc-60);
-                        align-items: center;
-                        cursor: pointer;
-                        /* background-color: hsl(212, 66%, 85%); */
-                        background-color: rgba(255,255,255,0.35);
-                        /* border: solid 1px rgba(255,255,255,0.75); */
-                        border: solid 1px;
-                        border-color: rgba(255,255,255,0.75);
-                        border-radius: 0.5rem;
-                        padding: var(--spc-90) var(--spc-200);
-                        width: max-content;
-                        transition: background-color .3s ease;
-                        
-                        &:hover {
-                            /* background-color: hsl(212, 66%, 80%); */
-                            background-color: hsl(267, 100%, 90%);
-                            border-color:hsl(264, 100%, 85%);
-                        }
-                    }
-                }
-                
-                & .todos-cards {
-                    display: flex;
-                    flex-flow: row wrap;
-                    gap: var(--spc-600);
-
-                    & .card-botao {
-                        position: relative;
-                        overflow: visible !important;
-                        width: max-content;
-                        height: max-content;
-                        
-                        & .botao-excluir {
-                            all: unset;
-                            cursor: pointer;
-                            position: absolute;
-                            top: -1rem;
-                            right: -1rem;
-                            width: 2.5rem;
-                            aspect-ratio: 1;
-                            border-radius: 100vw;
-                            padding: var(--spc-70);
-                            background-color: red;
-                            color: white;
-                            display: grid;
-                            place-items: center;
-                            z-index: 1;
-                            font-family: inherit;
-
-                            display: none;
-
-                            & img {
-                                width:fit-content;
-                            }
-                        }
-                    }
-                }
-            
-            }
-
         }
     }
 
-
-    &.modo-edicao {
-        & .botao-excluir {
-            display: grid !important;
-        }
-    }
-       
 }
+
+        
+    
+
+
+    
+       

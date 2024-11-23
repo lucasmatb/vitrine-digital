@@ -7,194 +7,219 @@
     <link rel="stylesheet" href="../static/css/cadastro-empresa.css">
 </head>
 <body>
-    <main>
-        <!-- botão voltar -->
+    <div class="container-inicio">
+        <!-- INÍCIO SIDEBAR -->
+        <aside id="sidebar">
+            <input type="checkbox" id="toggler">
+            <label for="toggler" class="toggle-btn">
+                <img src="../../vitrine_digital/static/images/icone-grid.svg" alt="">
+                <span>Vitrine Digital</span>
+            </label>
+            <form action="#" class="search-bar">
+                <span class="search-icon">
+                    <img src="../../vitrine_digital/static/images/icone-lupa.svg" alt="">
+                </span>
+                <input type="text" class="search-query" placeholder="Search...">
+            </form>
 
-        <!-- sidebar -->
-
-        <section class="detalhes">
-            <div class="container">
-                <h2>Cadastre sua loja</h2>
-                <div class="preco-funcionamento">
-                    <div class="preco">
-                        <div>
-                            <span class="preco-mensal">R$ 19,90<span>/mês</span></span>
-                            <span class="preco-anual">ou R$ 191,00/ano: economize 20%</span>
-                        </div>
-
-                        <ul>
-                            <!-- Ícone check -->
-                            <li><img src="" alt=""><span>Perfil da empresa com produtos e destaques</span></li>
-                            <!-- Ícone check -->
-                            <li><img src="" alt=""><span>Dados estetísticos de popularidade do perfil</span></li>
-                            
-                        </ul>
-                    </div>
-                    
-                    <div class="como-funciona">
-                        <h3>Como funciona?</h3>
-                        <p>Após o envio do <a href="#form-cadastro">formulário de cadastro</a> abaixo, analisaremos seu pedido e, quando aprovado, você receberá um e-mail contendo o link para o local do pagamento. Completado o pagamento, o perfil da sua loja será ativado em até 24 horas.</p>
-                    </div>
+            <!-- sidebar navigation begins -->
+                <ul class="sidebar-nav">
+                <div class="sidebar-nav-items">
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link">
+                            <img src="../../vitrine_digital/static/images/icone-estrela.svg" alt="">
+                            <span>Lojas favoritas</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link">
+                            <img src="../../vitrine_digital/static/images/icone-salvar.svg" alt="">
+                            <span>Produtos salvos</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link">
+                            <img src="../../vitrine_digital/static/images/icone-lupa.svg" alt="">
+                            <span>Pesquisar lojas</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link">
+                            <img src="../../vitrine_digital/static/images/icone-maleta.svg" alt="">
+                            <span>Para lojas</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link">
+                            <img src="../../vitrine_digital/static/images/icone-configuracoes.svg" alt="">
+                            <span>Configurações</span>
+                        </a>
+                    </li>
                 </div>
-            </div>
-        </section>
+                </ul>
+                <!-- sidebar navigation ends -->
+                <div class="sidebar-footer">
+                <div class="sidebar-footer-items">
+                    <a href="#" class="sidebar-link profile-btn">
+                        <div class="sidebar-profile-pic"></div>
+                        <span>Meu perfil</span>
+                    </a>
+                    <a href="#" class="sidebar-link my-companies-btn">
+                        <img src="../../vitrine_digital/static/images/icone-maleta.svg" alt="">
+                        <span>Minhas empresas</span>
+                    </a>
+                </div>
+                </div>
+        </aside>
+        <!-- FIM SIDEBAR -->
 
+        <main>
+            <div class="main-scrollable">
+                <section class="detalhes">
+                    <div class="container">
+                        <h2>Cadastre sua loja</h2>
+                        <div class="preco-funcionamento">
+                            <div class="preco">
+                                <div>
+                                    <span class="preco-mensal">R$ 19,90<span>/mês</span></span>
+                                    <span class="preco-anual">ou R$ 191,00/ano: economize 20%</span>
+                                </div>
 
-        <section id="form-cadastro">
-            <div class="container">
-                <form action="">
-                    <div class="titulo-campos">
-                        <p>Informações básicas</p>
-                        <div class="conjuntos-campos campos-basicos">
-                            <!-- <div> -->
-                                <div class="input-wrapper">
-                                    <label for="">Nome fantasia <span>*</span></label>
-                                    <input type="text">
-                                </div>
-                                <div class="input-wrapper">
-                                    <label for="">Razão social <span>*</span></label>
-                                    <input type="text">
-                                </div>
-                                <div class="input-wrapper">
-                                    <label for="">CNPJ <span>*</span></label>
-                                    <input type="text">
-                                </div>
-                            <!-- </div> -->
-                            <!-- <div> -->
-                                <div class="input-wrapper">
-                                    <label for="">Telefone de contato <span>*</span></label>
-                                    <input type="text">
-                                </div>
-                                <div class="input-wrapper">
-                                    <label for="">E-mail de contato <span>*</span></label>
-                                    <input type="text">
-                                </div>
-                                <div class="input-wrapper">
-                                </div>
-                            <!-- </div> -->
-                        </div>
-                    </div>
-
-                    <div class="titulo-campos">
-                        <p>Endereço</p>
-                        <div class="conjuntos-campos campos-endereco">
-                            <!-- <div> -->
-                                <div class="input-wrapper">
-                                    <label for="">Logradouro <span>*</span></label>
-                                    <input type="text">
-                                </div>
-                                <div class="input-wrapper">
-                                    <label for="">Número <span>*</span></label>
-                                    <input type="text">
-                                </div>
-                                <div class="input-wrapper">
-                                    <label for="">Complemento <span>*</span></label>
-                                    <input type="text">
-                                </div>
-                            <!-- </div> -->
-                            <!-- <div> -->
-                                <div class="input-wrapper">
-                                    <label for="">Bairro <span>*</span></label>
-                                    <input type="text">
-                                </div>
-                                <div class="input-wrapper">
-                                    <label for="">Cidade <span>*</span></label>
-                                    <input type="text">
-                                </div>
-                                <div class="input-wrapper">
-                                    <label for="">Estado <span>*</span></label>
-                                    <input type="text">
-                                </div>
-                            <!-- </div> -->
-                        </div>
-                    </div>
-
-                    <div class="titulo-campos">
-                        <p>Categoria(s) dos produtos <span>(mínimo 1, máximo 10)</span></p>
-                        <div class="categorias">
-                            <div class="categorias-itens">
-                                <div class="categoria selecionado">
-                                    <img class="img-nao-selecionado" src="../static/images/icone-circulo.svg" alt="Ícone de círculo">
-                                    <img class="img-selecionado" src="../static/images/icone-circulo-check.svg" alt="Ícone de check">
-                                    <span>Eletrônicos</span>
-                                </div>
-                                <div class="categoria">
-                                    <img class="img-nao-selecionado" src="../static/images/icone-circulo.svg" alt="Ícone de círculo">
-                                    <img class="img-selecionado" src="../static/images/icone-circulo-check.svg" alt="Ícone de check">
-                                    <span>Beleza e Cuidados Pessoais</span>
-                                </div>
-                                <div class="categoria">
-                                    <img class="img-nao-selecionado" src="../static/images/icone-circulo.svg" alt="Ícone de círculo">
-                                    <img class="img-selecionado" src="../static/images/icone-circulo-check.svg" alt="Ícone de check">
-                                    <span>Alimentos e Bebidas</span>
-                                </div>
-                                <div class="categoria">
-                                    <img class="img-nao-selecionado" src="../static/images/icone-circulo.svg" alt="Ícone de círculo">
-                                    <img class="img-selecionado" src="../static/images/icone-circulo-check.svg" alt="Ícone de check">
-                                    <span>Moda e Vestuário</span>
-                                </div>
-                                <div class="categoria">
-                                    <img class="img-nao-selecionado" src="../static/images/icone-circulo.svg" alt="Ícone de círculo">
-                                    <img class="img-selecionado" src="../static/images/icone-circulo-check.svg" alt="Ícone de check">
-                                    <span>Saúde e Bem-Estar</span>
-                                </div>
-                                <div class="categoria">
-                                    <img class="img-nao-selecionado" src="../static/images/icone-circulo.svg" alt="Ícone de círculo">
-                                    <img class="img-selecionado" src="../static/images/icone-circulo-check.svg" alt="Ícone de check">
-                                    <span>Produtos para Casa e Cozinha</span>
-                                </div>
-                                <div class="categoria">
-                                    <img class="img-nao-selecionado" src="../static/images/icone-circulo.svg" alt="Ícone de círculo">
-                                    <img class="img-selecionado" src="../static/images/icone-circulo-check.svg" alt="Ícone de check">
-                                    <span>Brinquedos e Jogos</span>
-                                </div>
-                                <div class="categoria">
-                                    <img class="img-nao-selecionado" src="../static/images/icone-circulo.svg" alt="Ícone de círculo">
-                                    <img class="img-selecionado" src="../static/images/icone-circulo-check.svg" alt="Ícone de check">
-                                    <span>Móveis e Decoração</span>
-                                </div>
-                                <div class="categoria">
-                                    <img class="img-nao-selecionado" src="../static/images/icone-circulo.svg" alt="Ícone de círculo">
-                                    <img class="img-selecionado" src="../static/images/icone-circulo-check.svg" alt="Ícone de check">
-                                    <span>Esportes e Lazer</span>
-                                </div>
-                                <div class="categoria">
-                                    <img class="img-nao-selecionado" src="../static/images/icone-circulo.svg" alt="Ícone de círculo">
-                                    <img class="img-selecionado" src="../static/images/icone-circulo-check.svg" alt="Ícone de check">
-                                    <span>Livros e Material de Escritório</span>
-                                </div>
-                                <div class="categoria">
-                                    <img class="img-nao-selecionado" src="../static/images/icone-circulo.svg" alt="Ícone de círculo">
-                                    <img class="img-selecionado" src="../static/images/icone-circulo-check.svg" alt="Ícone de check">
-                                    <span>Automotivo</span>
-                                </div>
-                                <div class="categoria">
-                                    <img class="img-nao-selecionado" src="../static/images/icone-circulo.svg" alt="Ícone de círculo">
-                                    <img class="img-selecionado" src="../static/images/icone-circulo-check.svg" alt="Ícone de check">
-                                    <span>Ferramentas e Construção</span>
-                                </div>
-                                <div class="categoria">
-                                    <img class="img-nao-selecionado" src="../static/images/icone-circulo.svg" alt="Ícone de círculo">
-                                    <img class="img-selecionado" src="../static/images/icone-circulo-check.svg" alt="Ícone de check">
-                                    <span>Bebês e Infantil</span>
-                                </div>
-                        
+                                <ul>
+                                    <!-- Ícone check -->
+                                    <li><img src="" alt=""><span>Perfil da empresa com produtos e destaques</span></li>
+                                    <!-- Ícone check -->
+                                    <li><img src="" alt=""><span>Dados estetísticos de popularidade do perfil</span></li>
+                                    
+                                </ul>
+                            </div>
+                            
+                            <div class="como-funciona">
+                                <h3>Como funciona?</h3>
+                                <p>Após o envio do <a href="#form-cadastro">formulário de cadastro</a> abaixo, analisaremos seu pedido e, quando aprovado, você receberá um e-mail contendo o link para o local do pagamento. Completado o pagamento, o perfil da sua loja será ativado em até 24 horas.</p>
                             </div>
                         </div>
                     </div>
+                </section>
 
-                    <!-- <div class="categoria-principal">
-                        <span>Categoria principal</span>
-                        <div class="categorias-itens"></div>
-                    </div> -->
 
-                    <input class="form-botao" type="submit" value="Enviar">
-                </form>
+                <section id="form-cadastro">
+                    <div class="container">
+                        <form action="">
+                            <div class="titulo-campos">
+                                <p>Informações básicas</p>
+                                <div class="conjuntos-campos campos-basicos">
+                                    <!-- <div> -->
+                                        <div class="input-wrapper">
+                                            <label for="">Nome fantasia <span>*</span></label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="input-wrapper">
+                                            <label for="">Razão social <span>*</span></label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="input-wrapper">
+                                            <label for="">CNPJ <span>*</span></label>
+                                            <input type="text">
+                                        </div>
+                                    <!-- </div> -->
+                                    <!-- <div> -->
+                                        <div class="input-wrapper">
+                                            <label for="">Telefone de contato <span>*</span></label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="input-wrapper">
+                                            <label for="">E-mail de contato <span>*</span></label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="input-wrapper">
+                                        </div>
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+
+                            <div class="titulo-campos">
+                                <p>Endereço</p>
+                                <div class="conjuntos-campos campos-endereco">
+                                    <!-- <div> -->
+                                        <div class="input-wrapper">
+                                            <label for="">Logradouro <span>*</span></label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="input-wrapper">
+                                            <label for="">Número <span>*</span></label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="input-wrapper">
+                                            <label for="">Complemento <span>*</span></label>
+                                            <input type="text">
+                                        </div>
+                                    <!-- </div> -->
+                                    <!-- <div> -->
+                                        <div class="input-wrapper">
+                                            <label for="">Bairro <span>*</span></label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="input-wrapper">
+                                            <label for="">Cidade <span>*</span></label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="input-wrapper">
+                                            <label for="">Estado <span>*</span></label>
+                                            <input type="text">
+                                        </div>
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+
+                            <div class="titulo-campos">
+                                <p>Categoria(s) dos produtos <span>(mínimo 1, máximo 10)</span></p>
+                                <div class="categorias">
+                                    <div class="categorias-itens">
+                                        <div class="categoria selecionado">
+                                            <img class="img-nao-selecionado" src="../../vitrine_digital/static/images/icone-circulo-check.svg" alt="Ícone de círculo">
+                                            <img class="img-selecionado" src="../../vitrine_digital/static/images/icone-circulo-check.svg" alt="Ícone de check">
+                                            <span>Nome da categoria</span>
+                                        </div>
+                                        <div class="categoria selecionado">
+                                            <img class="img-nao-selecionado" src="../../vitrine_digital/static/images/icone-circulo-check.svg" alt="Ícone de círculo">
+                                            <img class="img-selecionado" src="../../vitrine_digital/static/images/icone-circulo-check.svg" alt="Ícone de check">
+                                            <span>Nome da categoria</span>
+                                        </div>
+                                        <div class="categoria selecionado">
+                                            <img class="img-nao-selecionado" src="../../vitrine_digital/static/images/icone-circulo-check.svg" alt="Ícone de círculo">
+                                            <img class="img-selecionado" src="../../vitrine_digital/static/images/icone-circulo-check.svg" alt="Ícone de check">
+                                            <span>Nome da categoria</span>
+                                        </div>
+                                        <div class="categoria selecionado">
+                                            <img class="img-nao-selecionado" src="../../vitrine_digital/static/images/icone-circulo-check.svg" alt="Ícone de círculo">
+                                            <img class="img-selecionado" src="../../vitrine_digital/static/images/icone-circulo-check.svg" alt="Ícone de check">
+                                            <span>Nome da categoria</span>
+                                        </div>
+                                        <div class="categoria selecionado">
+                                            <img class="img-nao-selecionado" src="../../vitrine_digital/static/images/icone-circulo-check.svg" alt="Ícone de círculo">
+                                            <img class="img-selecionado" src="../../vitrine_digital/static/images/icone-circulo-check.svg" alt="Ícone de check">
+                                            <span>Nome da categoria</span>
+                                        </div>
+                                        
+                                
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="categoria-principal">
+                                <span>Categoria principal</span>
+                                <div class="categorias-itens"></div>
+                            </div> -->
+
+                            <input class="form-botao" type="submit" value="Enviar">
+                        </form>
+                    </div>
+                </section>
             </div>
-        </section>
-    </main>
-
-
+        </main>
+    </div>
+    
     <script>
         const categoria = document.querySelectorAll('.categoria');
 

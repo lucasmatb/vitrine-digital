@@ -1,28 +1,8 @@
 @import url("../../../vitrine_digital/static/css/global.css");
 @import url("../../../vitrine_digital/static/css/sidebar.css");
 @import url("../../../vitrine_digital/static/css/card.css");
+@import url("../../../vitrine_digital/static/css/body-main.css");
 
-body {
-    background: radial-gradient(circle at center, hsl(264, 100%, 90%) 0%, rgba(242,248,255,1) 100%);
-
-}
-
-main {
-    position: relative;
-    height: 100%;
-}
-
-.botao-voltar {
-    border-radius: 100vw;
-    background-color: pink;
-    width: max-content;
-    display: flex;
-    gap: var(--spc-300);
-    padding: var(--spc-70) var(--spc-300);
-    position: absolute;
-    top: 3rem;
-    left: 3rem;
-}
 
 .secao-minhas-empresas {
     padding: var(--spc-1300) var(--spc-400);
