@@ -1,76 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vitrine Digital | Lojas favoritas</title>
-    <link rel="stylesheet" href="../static/css/conta-cliente.css">
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/conta-cliente.css' %}">
+{% endblock %}
+
+{% block 'titulo' %}
+    Vitrine Digital | Lojas favoritas
+{% endblock %}
+
+{% block 'conteudo'%}
     <div class="container-inicio">
-        <aside id="sidebar">
-            <input type="checkbox" id="toggler">
-            <label for="toggler" class="toggle-btn">
-                <img src="../static/images/icone-grid.svg" alt="">
-                <span>Vitrine Digital</span>
-            </label>
-            <form action="#" class="search-bar">
-                <span class="search-icon">
-                    <img src="../static/images/icone-lupa.svg" alt="">
-                </span>
-                <input type="text" class="search-query" placeholder="Search...">
-            </form>
-
-            <!-- sidebar navigation begins -->
-             <ul class="sidebar-nav">
-                <div class="sidebar-nav-items">
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <img src="../static/images/icone-estrela.svg" alt="">
-                            <span>Lojas favoritas</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <img src="../static/images/icone-salvar.svg" alt="">
-                            <span>Produtos salvos</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <img src="../static/images/icone-lupa.svg" alt="">
-                            <span>Pesquisar lojas</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <img src="../static/images/icone-maleta.svg" alt="">
-                            <span>Para lojas</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <img src="../static/images/icone-configuracoes.svg" alt="">
-                            <span>Configurações</span>
-                        </a>
-                    </li>
-                </div>
-             </ul>
-             <!-- sidebar navigation ends -->
-                <div class="sidebar-footer">
-                <div class="sidebar-footer-items">
-                    <a href="#" class="sidebar-link profile-btn">
-                        <div class="sidebar-profile-pic"></div>
-                        <span>Meu perfil</span>
-                    </a>
-                    <a href="#" class="sidebar-link my-companies-btn">
-                        <img src="../static/images/icone-maleta.svg" alt="">
-                        <span>Minhas empresas</span>
-                    </a>
-                </div>
-              </div>
-        </aside>
-
         <main>
             <div class="main-scrollable">
                 <section class="dados">
@@ -79,7 +19,7 @@
                         <button>Editar</button>
                     </div>
 
-                    <img class="img-perfil" src="../../vitrine_digital/static/images/img-perfil-exemplo.jpeg" alt="">
+                    <img class="img-perfil" src="{% static 'images/img-perfil-exemplo.jpeg' %}" alt="">
                     <span class="nome">Nome</span>
                     <span class="cpf">000.000.000-00</span>
                     <span class="email">email@gmail.com</span>
@@ -95,11 +35,11 @@
                                 <span class="nome-usuario">Nome do usuário</span>
                             </div>
                             <div class="estrelas">
-                                <img src="../../vitrine_digital/static/images/estrela-preenchida.svg" alt="">
-                                <img src="../../vitrine_digital/static/images/estrela-preenchida.svg" alt="">
-                                <img src="../../vitrine_digital/static/images/estrela-preenchida.svg" alt="">
-                                <img src="../../vitrine_digital/static/images/estrela-vazada.svg" alt="">
-                                <img src="../../vitrine_digital/static/images/estrela-vazada.svg" alt="">
+                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                                <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
+                                <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
                             </div>
                         </div>
                         <div class="corpo-avaliacao">
@@ -116,11 +56,11 @@
                                 <span class="nome-usuario">Nome do usuário</span>
                             </div>
                             <div class="estrelas">
-                                <img src="../../vitrine_digital/static/images/estrela-preenchida.svg" alt="">
-                                <img src="../../vitrine_digital/static/images/estrela-preenchida.svg" alt="">
-                                <img src="../../vitrine_digital/static/images/estrela-preenchida.svg" alt="">
-                                <img src="../../vitrine_digital/static/images/estrela-vazada.svg" alt="">
-                                <img src="../../vitrine_digital/static/images/estrela-vazada.svg" alt="">
+                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                                <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
+                                <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
                             </div>
                         </div>
                         <div class="corpo-avaliacao">
@@ -136,11 +76,11 @@
                                 <span class="nome-usuario">Nome do usuário</span>
                             </div>
                             <div class="estrelas">
-                                <img src="../../vitrine_digital/static/images/estrela-preenchida.svg" alt="">
-                                <img src="../../vitrine_digital/static/images/estrela-preenchida.svg" alt="">
-                                <img src="../../vitrine_digital/static/images/estrela-preenchida.svg" alt="">
-                                <img src="../../vitrine_digital/static/images/estrela-vazada.svg" alt="">
-                                <img src="../../vitrine_digital/static/images/estrela-vazada.svg" alt="">
+                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                                <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
+                                <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
                             </div>
                         </div>
                         <div class="corpo-avaliacao">
@@ -156,11 +96,11 @@
                                 <span class="nome-usuario">Nome do usuário</span>
                             </div>
                             <div class="estrelas">
-                                <img src="../../vitrine_digital/static/images/estrela-preenchida.svg" alt="">
-                                <img src="../../vitrine_digital/static/images/estrela-preenchida.svg" alt="">
-                                <img src="../../vitrine_digital/static/images/estrela-preenchida.svg" alt="">
-                                <img src="../../vitrine_digital/static/images/estrela-vazada.svg" alt="">
-                                <img src="../../vitrine_digital/static/images/estrela-vazada.svg" alt="">
+                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                                <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
+                                <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
                             </div>
                         </div>
                         <div class="corpo-avaliacao">
@@ -171,5 +111,5 @@
             </div>
         </main>
     </div>
-</body>
-</html>
+
+{% endblock %}

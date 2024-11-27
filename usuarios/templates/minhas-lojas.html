@@ -1,78 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vitrine Digital | Minhas lojas</title>
-    <link rel="stylesheet" href="../static/css/minhas-lojas.css">
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/minhas-lojas.css' %}">
+{% endblock %}
+
+{% block 'titulo' %}
+    Vitrine Digital | Minhas lojas
+{% endblock %}
+
+{% block 'conteudo'%}
     <div class="container-inicio">
-        <!-- INÍCIO SIDEBAR -->
-        <aside id="sidebar">
-            <input type="checkbox" id="toggler">
-            <label for="toggler" class="toggle-btn">
-                <img src="../../vitrine_digital/static/images/icone-grid.svg" alt="">
-                <span>Vitrine Digital</span>
-            </label>
-            <form action="#" class="search-bar">
-                <span class="search-icon">
-                    <img src="../../vitrine_digital/static/images/icone-lupa.svg" alt="">
-                </span>
-                <input type="text" class="search-query" placeholder="Search...">
-            </form>
-
-            <!-- sidebar navigation begins -->
-             <ul class="sidebar-nav">
-                <div class="sidebar-nav-items">
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <img src="../../vitrine_digital/static/images/icone-estrela.svg" alt="">
-                            <span>Lojas favoritas</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <img src="../../vitrine_digital/static/images/icone-salvar.svg" alt="">
-                            <span>Produtos salvos</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <img src="../../vitrine_digital/static/images/icone-lupa.svg" alt="">
-                            <span>Pesquisar lojas</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <img src="../../vitrine_digital/static/images/icone-maleta.svg" alt="">
-                            <span>Para lojas</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <img src="../../vitrine_digital/static/images/icone-configuracoes.svg" alt="">
-                            <span>Configurações</span>
-                        </a>
-                    </li>
-                </div>
-             </ul>
-             <!-- sidebar navigation ends -->
-                <div class="sidebar-footer">
-                <div class="sidebar-footer-items">
-                    <a href="#" class="sidebar-link profile-btn">
-                        <div class="sidebar-profile-pic"></div>
-                        <span>Meu perfil</span>
-                    </a>
-                    <a href="#" class="sidebar-link my-companies-btn">
-                        <img src="../../vitrine_digital/static/images/icone-maleta.svg" alt="">
-                        <span>Minhas empresas</span>
-                    </a>
-                </div>
-              </div>
-        </aside>
-        <!-- FIM SIDEBAR -->
-
         <main>
             <div class="main-scrollable">
                 <section class="secao-minhas-empresas">
@@ -90,7 +28,7 @@
                                     <div class="categoria-favoritos">
                                         <div class="categoria">Categoria</div>
                                         <div class="favoritos">
-                                            <img src="../static/images/icone-estrela.svg" alt="Ícone estrela">
+                                            <img src="{% static 'images/icone-estrela.svg' %}" alt="Ícone estrela">
                                             <span>1.3K</span>
                                         </div>
                                     </div>
@@ -108,7 +46,7 @@
                                     <div class="categoria-favoritos">
                                         <div class="categoria">Categoria</div>
                                         <div class="favoritos">
-                                            <img src="../static/images/icone-estrela.svg" alt="Ícone estrela">
+                                            <img src="{% static 'images/icone-estrela.svg' %}" alt="Ícone estrela">
                                             <span>1.3K</span>
                                         </div>
                                     </div>
@@ -126,7 +64,7 @@
                                     <div class="categoria-favoritos">
                                         <div class="categoria">Categoria</div>
                                         <div class="favoritos">
-                                            <img src="../static/images/icone-estrela.svg" alt="Ícone estrela">
+                                            <img src="{% static 'images/icone-estrela.svg' %}" alt="Ícone estrela">
                                             <span>1.3K</span>
                                         </div>
                                     </div>
@@ -144,7 +82,7 @@
                                     <div class="categoria-favoritos">
                                         <div class="categoria">Categoria</div>
                                         <div class="favoritos">
-                                            <img src="../static/images/icone-estrela.svg" alt="Ícone estrela">
+                                            <img src="{% static 'images/icone-estrela.svg' %}" alt="Ícone estrela">
                                             <span>1.3K</span>
                                         </div>
                                     </div>
@@ -162,7 +100,7 @@
                                     <div class="categoria-favoritos">
                                         <div class="categoria">Categoria</div>
                                         <div class="favoritos">
-                                            <img src="../static/images/icone-estrela.svg" alt="Ícone estrela">
+                                            <img src="{% static 'images/icone-estrela.svg' %}" alt="Ícone estrela">
                                             <span>1.3K</span>
                                         </div>
                                     </div>
@@ -180,7 +118,7 @@
                                     <div class="categoria-favoritos">
                                         <div class="categoria">Categoria</div>
                                         <div class="favoritos">
-                                            <img src="../static/images/icone-estrela.svg" alt="Ícone estrela">
+                                            <img src="{% static 'images/icone-estrela.svg' %}" alt="Ícone estrela">
                                             <span>1.3K</span>
                                         </div>
                                     </div>
@@ -194,5 +132,5 @@
         </main>
 
     </div>
-</body>
-</html>
+
+{% endblock %}
