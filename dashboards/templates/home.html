@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block 'head' %}
-    <link rel="stylesheet" href="../static/css/home.css">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">>
 {% endblock %}
 
 {% block 'titulo' %}
@@ -9,19 +10,6 @@
 {% endblock %}
 
 {% block 'conteudo'%}
-
-    <header>
-        <div class="container">
-            <img src="" alt="Logo da Vitrine Digital">
-            <ul>
-                <li><a href="{% url 'home' %}">Home</a><div></div></li>
-                <li><a href="#">Sou comerciante</a><div></div></li>
-                <li><a href="#">Cadastrar-se</a><div></div></li>
-                <li><a class="botao-entrar" href="{% url 'login' %}">Entrar</a><div></div></li>
-            </ul>
-        </div>
-    </header>
-
     <main>
         <section class="secao hero">
             <div class="container">

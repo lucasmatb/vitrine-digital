@@ -1,6 +1,3 @@
-@import url("../../../vitrine_digital/static/css/global.css");
-
-
 header {
     padding: var(--spc-500) var(--spc-600);
     position: sticky;

@@ -4,18 +4,6 @@
 
 {% block 'conteudo'%}
 
-<header>
-    <img src="" alt="Logo da Vitrine Digital">
-
-    <ul>
-        <li><a href="{% url 'home' %}">Home</a><div></div></li>
-        <!-- <li><a href="">Sobre nós</a><div></div></li> -->
-        <li><a href="#">Contato</a><div></div></li>
-        <li><a href="#">Sou comerciante</a><div></div></li>
-        <li><a href="{% url 'login' %}">Entrar</a><div></div></li>
-    </ul>
-</header>
-
 <div class="container">
     <br>
 
@@ -137,4 +125,5 @@
         $('#cpf').mask('000.000.000-00');  // Aplica a máscara de CPF
     });
 </script>
+
 {% endblock %}

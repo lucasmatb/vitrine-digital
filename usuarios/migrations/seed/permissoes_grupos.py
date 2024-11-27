@@ -61,7 +61,13 @@ def retorna_permissoes_grupo_administrador():
 def retorna_permissoes_grupo_usuario():
     return [
         "change_usuario",
-        "view_usuario"
+        "view_usuario",
+        "view_categoria_produto",
+        "view_imagem_produto",
+        "view_produto",
+        "view_categoria_empresa",
+        "view_endereco",
+        "view_empresa"
     ]
 
 def retorna_permissoes_grupo_lojista():
@@ -69,25 +75,19 @@ def retorna_permissoes_grupo_lojista():
         "add_categoria_produto",
         "change_categoria_produto",
         "delete_categoria_produto",
-        "view_categoria_produto",
         "add_imagem_produto",
         "change_imagem_produto",
         "delete_imagem_produto",
-        "view_imagem_produto",
         "add_produto",
         "change_produto",
         "delete_produto",
-        "view_produto",
         "add_categoria_empresa",
         "change_categoria_empresa",
         "delete_categoria_empresa",
-        "view_categoria_empresa",
         "add_endereco",
         "change_endereco",
         "delete_endereco",
-        "view_endereco",
         "add_empresa",
         "change_empresa",
-        "delete_empresa",
-        "view_empresa"
+        "delete_empresa"
     ]
