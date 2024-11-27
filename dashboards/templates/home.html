@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block 'head' %}
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
 
 {% block 'titulo' %}
@@ -27,7 +27,7 @@
                 </div>
                 <div class="ir-para-comerciante">
                     <p>É comerciante? <a href="#comerciante">Cadastre sua loja</a></p>
-                    <img src="../static/images/seta-direita.svg" alt="Seta para a direita">
+                    <img src="{% static 'images/seta-direita.svg' %}"  alt="Seta para a direita">
                 </div>
             </div>  
         </section>

@@ -1,81 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vitrine Digital | Área da empresa</title>
+{% extends 'base.html' %}
+{% load static %}
 
-    <link rel="stylesheet" href="../static/css/inicio-empresa.css">
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-</head>
-<body>
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/inicio-empresa.css' %}">
+{% endblock %}
+
+{% block 'titulo' %}
+    Vitrine Digital | Área da empresa
+{% endblock %}
+
+{% block 'conteudo'%}
     <div class="container-inicio">
-        <aside id="sidebar">
-            <input type="checkbox" id="toggler">
-            <label for="toggler" class="toggle-btn">
-                <img src="../static/images/icone-grid.svg" alt="">
-                <span>Vitrine Digital</span>
-            </label>
-            <form action="#" class="search-bar">
-                <span class="search-icon">
-                    <img src="../static/images/icone-lupa.svg" alt="">
-                </span>
-                <input type="text" class="search-query" placeholder="Search...">
-            </form>
-
-            <!-- sidebar navigation begins -->
-             <ul class="sidebar-nav">
-                <div class="sidebar-nav-items">
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <img src="../static/images/icone-estrela.svg" alt="">
-                            <span>Lojas favoritas</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <img src="../static/images/icone-salvar.svg" alt="">
-                            <span>Produtos salvos</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <img src="../static/images/icone-lupa.svg" alt="">
-                            <span>Pesquisar lojas</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <img src="../static/images/icone-configuracoes.svg" alt="">
-                            <span>Configurações</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <img src="../static/images/icone-comentario.svg" alt="">
-                            <span>Avaliações</span>
-                        </a>
-                    </li>
-                </div>
-             </ul>
-             <!-- sidebar navigation ends -->
-                <div class="sidebar-footer">
-                <div class="sidebar-footer-items">
-                    <a href="#" class="sidebar-link profile-btn">
-                        <div class="sidebar-profile-pic"></div>
-                        <span>Meu perfil</span>
-                    </a>
-                    <a href="#" class="sidebar-link my-companies-btn">
-                        <img src="../static/images/icone-maleta.svg" alt="">
-                        <span>Minhas empresas</span>
-                    </a>
-                </div>
-              </div>
-        </aside>
-
         <main>
             <div class="main-scrollable">
                 <div class="item-dashboard item-dashboard-1">
@@ -222,7 +157,5 @@
             }
         });
     </script>
-</body>
-</html>
-
-
+    
+{% endblock %}
