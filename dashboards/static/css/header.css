@@ -1,20 +1,23 @@
-@import url("global.css");
+@import url("../../../vitrine_digital/static/css/global.css");
 
 
 header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 2.5rem 5.5em;
-    position: fixed;
+    padding: var(--spc-500) var(--spc-600);
+    position: sticky;
     top: 0;
     left: 0;
     z-index: 999;
     width: 100%;
-    background-color: rgba(17, 136, 17, 0.207);
+    background-image: radial-gradient(circle at bottom, hsl(264, 100%, 90%) 0%, rgba(242,248,255,1) 100%);
     backdrop-filter: blur(5px);
-    max-height: 15rem;
+    /* max-height: 15rem; */
     width: 100%;
+
+    & .container {
+        flex-flow: row;
+        align-items: center;
+        justify-content: space-between;
+    }
 
     & ul {
         display: flex;
@@ -42,7 +45,7 @@ header {
             & div {
                 width: 0;
                 transition: 500ms ease;
-                background-color: #181;
+                background-color: #cfb2ff;
                 height: 2px;
             }
 

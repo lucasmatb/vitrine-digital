@@ -5,53 +5,60 @@
 {% endblock %}
 
 {% block 'titulo' %}
-    Home | Vitrine Digital
+    Vitrine Digital | Home 
 {% endblock %}
 
 {% block 'conteudo'%}
 
     <header>
-        <img src="" alt="Logo da Vitrine Digital">
-
-        <ul>
-            <li><a href="{% url 'home' %}">Home</a><div></div></li>
-            <!-- <li><a href="">Sobre nós</a><div></div></li> -->
-            <li><a href="#">Contato</a><div></div></li>
-            <li><a href="#">Sou comerciante</a><div></div></li>
-            <li><a href="{% url 'login' %}">Entrar</a><div></div></li>
-        </ul>
+        <div class="container">
+            <img src="" alt="Logo da Vitrine Digital">
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a><div></div></li>
+                <li><a href="#">Sou comerciante</a><div></div></li>
+                <li><a href="#">Cadastrar-se</a><div></div></li>
+                <li><a class="botao-entrar" href="{% url 'login' %}">Entrar</a><div></div></li>
+            </ul>
+        </div>
     </header>
 
     <main>
         <section class="secao hero">
-            <div class="titulo-botoes">
-                <div class="titulo">
-                    <p>É consumidor?</p>
-                    <h1>Acesse o melhor da sua cidade com ...</h1>
+            <div class="container">
+                <div class="container-titulo-botoes">
+                    <div class="titulo-botoes">
+                        <div class="titulo">
+                            <p>É consumidor?</p>
+                            <h1>Veja o melhor da sua cidade com [NOME]</h1>
+                        </div>
+                        <div class="botoes">
+                            <a class="botao-entrar" href="{% url 'login' %}">Entrar</a>
+                            <a class="botao-cadastrar" href="{% url 'cadastro' %}">Cadastrar-se</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="botoes">
-                    <a href="{% url 'login' %}">Entrar</a>
-                    <a href="{% url 'cadastro' %}">Cadastrar-se</a>
+                <div class="ir-para-comerciante">
+                    <p>É comerciante? <a href="#comerciante">Cadastre sua loja</a></p>
+                    <img src="../static/images/seta-direita.svg" alt="Seta para a direita">
                 </div>
-            </div>
-
-            <div class="ir-para-lojista">
-                <p>É lojista? <a href="#lojista">Cadastre seu comércio</a></p>
-                <img src="../static/images/seta-direita.svg" alt="Seta para a direita">
-            </div>
-            
+            </div>  
         </section>
 
-        <section class="secao" id="lojista">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis tempora sapiente repellendus dicta at enim ut officia nulla odit nisi incidunt, corrupti atque et ipsam exercitationem in sed excepturi maxime.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis tempora sapiente repellendus dicta at enim ut officia nulla odit nisi incidunt, corrupti atque et ipsam exercitationem in sed excepturi maxime.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis tempora sapiente repellendus dicta at enim ut officia nulla odit nisi incidunt, corrupti atque et ipsam exercitationem in sed excepturi maxime.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis tempora sapiente repellendus dicta at enim ut officia nulla odit nisi incidunt, corrupti atque et ipsam exercitationem in sed excepturi maxime.</p>
+        <section class="secao" id="comerciante">
+            <div class="container">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid eveniet perspiciatis, non quos id debitis distinctio impedit laudantium quam sed omnis quia porro consectetur et maxime dicta voluptatem assumenda! Cupiditate.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid eveniet perspiciatis, non quos id debitis distinctio impedit laudantium quam sed omnis quia porro consectetur et maxime dicta voluptatem assumenda! Cupiditate.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid eveniet perspiciatis, non quos id debitis distinctio impedit laudantium quam sed omnis quia porro consectetur et maxime dicta voluptatem assumenda! Cupiditate.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid eveniet perspiciatis, non quos id debitis distinctio impedit laudantium quam sed omnis quia porro consectetur et maxime dicta voluptatem assumenda! Cupiditate.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid eveniet perspiciatis, non quos id debitis distinctio impedit laudantium quam sed omnis quia porro consectetur et maxime dicta voluptatem assumenda! Cupiditate.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid eveniet perspiciatis, non quos id debitis distinctio impedit laudantium quam sed omnis quia porro consectetur et maxime dicta voluptatem assumenda! Cupiditate.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid eveniet perspiciatis, non quos id debitis distinctio impedit laudantium quam sed omnis quia porro consectetur et maxime dicta voluptatem assumenda! Cupiditate.</p>
+            </div>
         </section>
     </main>
 
     <script>
-        document.querySelectorAll('a[href^="#lojista"]').forEach(anchor => {
+        document.querySelectorAll('a[href^="#comerciante"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
 

@@ -1,2 +1,100 @@
 @import url("../../../vitrine_digital/static/css/global.css");
 @import url("../../../vitrine_digital/static/css/sidebar.css");
+@import url("../../../vitrine_digital/static/css/card.css");
+@import url("../../../vitrine_digital/static/css/body-main.css");
+
+.dados {
+    & .cabecalho {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--spc-400);
+
+        & button {
+            all: unset;
+            display: flex;
+            gap: var(--spc-60);
+            align-items: center;
+            cursor: pointer;
+            /* background-color: hsl(212, 66%, 85%); */
+            background-color: rgba(255,255,255,0.35);
+            /* border: solid 1px rgba(255,255,255,0.75); */
+            border: solid 1px;
+            border-color: rgba(255,255,255,0.75);
+            border-radius: 0.5rem;
+            padding: var(--spc-90) var(--spc-200);
+            width: max-content;
+            transition: background-color .3s ease;
+            
+            &:hover {
+                /* background-color: hsl(212, 66%, 80%); */
+                background-color: hsl(267, 100%, 90%);
+                border-color:hsl(264, 100%, 85%);
+            }
+        }
+    }
+
+    & .img-perfil {
+        max-width: 6rem;
+        aspect-ratio: 1;
+        object-fit: cover;
+        object-position: 50% 50%;
+        border-radius: 100vh;
+    }
+}
+
+.avaliacoes {
+    max-width: 80rem;
+    display: flex;
+    flex-flow: column;
+    gap: var(--spc-800);
+
+    & .avaliacao {
+        display: flex;
+        flex-flow: column;
+        gap: var(--spc-500);
+
+        & .cabecalho-avaliacao {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--spc-200);
+
+            & .usuario {
+                display: flex;
+                align-items: center;
+                gap: var(--spc-100);
+
+                & .foto-usuario {
+                    width: 3.5rem;
+                    aspect-ratio: 1;
+                    background-image: url(../images/img-perfil-exemplo.jpeg);
+                    border-radius: 100vw;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+
+                & .nome-usuario {
+
+                }
+            }
+
+            & .estrelas {
+                & img {
+                }
+            }
+        }
+
+        & .corpo-avaliacao {
+
+        }
+    }
+
+    & hr {
+        border: solid 1px rgba(0, 0, 0, 0.073);
+        border-radius: 100vw;
+    }
+}
+
+        
+    

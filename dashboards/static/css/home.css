@@ -1,36 +1,68 @@
-@import 'header.css';
+@import url('header.css');
 
-.hero {
-    padding-top: calc(15rem + 4rem);
-    height: 100dvh;
+.secao {
+    padding: var(--spc-700) var(--spc-600);
+}
+
+.botao-entrar {
+    background-color: #E3D2FF;
+    padding: var(--spc-100) var(--spc-500);
+    border-radius: 0.5rem;
+}
+
+.hero {    
     display: flex;
     flex-flow: column;
-    justify-content: space-between;
-
-    & .titulo-botoes {
-        display: flex;
-        flex-flow: column;
-        gap: 3rem;
-
-        & .titulo {
+    
+    & .container {
+        height: 70vh;
+        justify-content: space-between;
+        align-items: center;
+    
+        & .container-titulo-botoes {
+            flex-grow: 1;
             display: flex;
-            flex-flow: column;
-            gap: 2rem;
-        }
-        
-        & h1 {
-            font-size: 3rem;
+            align-items: center;
+            
+            & .titulo-botoes {
+                display: flex;
+                flex-flow: column;
+                gap: var(--spc-800); 
+
+                & .titulo {
+                    display: flex;
+                    flex-flow: column;
+                    gap: var(--spc-100);
+                }
+            
+                & h1 {
+                    font-size: 3rem;
+                }
+                
+                & .botoes {
+                    display: flex;
+                    gap: var(--spc-400);
+                    align-items: center;
+                    
+                    /* & .botao-entrar {
+                        background-color: #E3D2FF;
+                        padding: var(--spc-100) var(--spc-500);
+                        border-radius: 0.5rem;
+                    } */
+                    
+                    & .botao-cadastrar {
+                        background-color: #f1f1f1;
+                        padding: var(--spc-100) var(--spc-500);
+                        border-radius: 0.5rem;
+
+                    }
+                }
+            }
         }
 
-        & .botoes {
+        & .ir-para-comerciante {
             display: flex;
-            gap: 1.5rem;
-
+            gap: 1rem;
         }
-    }
-
-    & .ir-para-lojista {
-        display: flex;
-        gap: 1rem;
     }
 }

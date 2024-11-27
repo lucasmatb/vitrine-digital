@@ -143,13 +143,19 @@
                     gap: var(--spc-100);
 
                     & .foto-usuario {
-                        width: 3.5rem;
+                        /* width: 3.5rem;
                         aspect-ratio: 1;
                         background-image: url(../images/img-perfil-exemplo.jpeg);
                         border-radius: 100vw;
                         background-position: center;
                         background-repeat: no-repeat;
-                        background-size: cover;
+                        background-size: cover; */
+
+                        max-width: 3.5rem;
+                        aspect-ratio: 1;
+                        border-radius: 100vw;
+                        object-fit: cover;
+                        object-position: 25% 25%;
                     }
 
                     & .nome-usuario {
