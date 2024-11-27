@@ -14,7 +14,7 @@ def login(request):
             return redirect('home-area-cliente')
     data = {}
     data['form'] = UsuarioLoginForm()
-    return render(request, 'login-cliente.html', data)
+    return render(request, 'login-usuario.html', data)
 
 def valida_login(request):
     form = UsuarioLoginForm(request.POST or None)
@@ -39,7 +39,7 @@ def valida_login(request):
             else: 
                 messages.error(request, 'Senha incorreta')
 
-    return render(request, 'login-cliente.html', {'form': form})
+    return render(request, 'login-usuario.html', {'form': form})
 
 def buscar_usuario_por_email(email: str, ativo: bool = False):
     usuarioEncontrado = None
@@ -64,7 +64,7 @@ def cadastro(request):
             return redirect('home-area-cliente')
     data = {}
     data['form'] = UsuarioRegistrationForm()
-    return render(request, 'cadastro-cliente.html', data)
+    return render(request, 'cadastro-usuario.html', data)
 
 def valida_cadastro(request):
     form = UsuarioRegistrationForm(request.POST or None)
@@ -86,4 +86,4 @@ def valida_cadastro(request):
         messages.success(request, 'Cadastro realizado com sucesso!')
         return redirect('/auth/login/')
     
-    return render(request, 'cadastro-cliente.html', {'form': form})
+    return render(request, 'cadastro-usuario.html', {'form': form})
