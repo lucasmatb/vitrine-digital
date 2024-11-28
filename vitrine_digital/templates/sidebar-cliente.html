@@ -1,5 +1,9 @@
 {% load static %}
 
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+{% endblock %}
+
 <aside id="sidebar">
     <input type="checkbox" id="toggler">
     <label for="toggler" class="toggle-btn">
@@ -16,19 +20,19 @@
      <ul class="sidebar-nav">
         <div class="sidebar-nav-items">
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
+                <a href="{% url 'dashboard_usuario' %}" class="sidebar-link">
                     <img src="{% static 'images/icone-casa.svg' %}" alt="Ícone de casa">
                     <span>Início</span>
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
+                <a href="{% url 'lojas_favoritas_usuario' %}" class="sidebar-link">
                     <img src="{% static 'images/icone-coracao.svg' %}" alt="Ícone de coração">
                     <span>Lojas favoritas</span>
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
+                <a href="{% url 'produtos_salvos_usuario' %}" class="sidebar-link">
                     <img src="{% static 'images/icone-salvar.svg' %}" alt="Ícone de marcador">
                     <span>Produtos salvos</span>
                 </a>
@@ -55,14 +59,10 @@
      </ul>
     <div class="sidebar-footer">
         <div class="sidebar-footer-items">
-            <a href="#" class="sidebar-link profile-btn">
+            <a href="{% url 'meus_dados_usuario' %}" class="sidebar-link profile-btn">
                 <!-- <div class="sidebar-profile-pic"></div> -->
                 <img class="sidebar-profile-pic" src="{% static 'images/img-perfil-exemplo.jpeg' %}" alt="Sua imagem de perfil">
                 <span>Minha conta</span>
-            </a>
-            <a href="#" class="sidebar-link my-companies-btn">
-                <img src="{% static 'images/icone-maleta.svg' %}" alt="Ícone de maleta">
-                <span>Minhas empresas</span>
             </a>
         </div>
     </div>

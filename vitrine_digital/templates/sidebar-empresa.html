@@ -1,5 +1,9 @@
 {% load static %}
 
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+{% endblock %}
+
 <aside id="sidebar">
     <input type="checkbox" id="toggler">
     <label for="toggler" class="toggle-btn">
@@ -40,7 +44,7 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
+                <a href="{% url 'dashboard_usuario' %}" class="sidebar-link">
                     <img src="{% static 'images/icone-pessoa.svg' %}" alt="Ícone de pessoa">
                     <span>Área do cliente</span>
                 </a>
@@ -59,7 +63,7 @@
                 <img class="sidebar-profile-pic" src="{% static 'images/perfil-empresa-1.jpg' %}" alt="Imagem de perfil da loja">
                 <span>Perfil da loja</span>
             </a>
-            <a href="#" class="sidebar-link my-companies-btn">
+            <a href="{% url 'minhas_empresas_lojista' %}" class="sidebar-link my-companies-btn">
                 <img src="{% static 'images/icone-maleta.svg' %}" alt="Ícone de maleta">
                 <span>Minhas empresas</span>
             </a>

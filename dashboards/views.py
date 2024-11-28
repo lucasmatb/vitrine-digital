@@ -5,6 +5,3 @@ from django.http import HttpResponse
 
 def home(request):
     return render(request, 'home.html')
-
-def indexLogadoAreaCliente(request):
-    return HttpResponse('Página inicial área do cliente logado')

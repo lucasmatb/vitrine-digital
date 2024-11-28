@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
-# Create your views here.
+def retorna_cadastro_empresa(request):
+    return render(request, 'cadastro-empresas.html')
 
-def index(request):
-    return HttpResponse('Teste Empresas')
+def retorna_visualizar_empresa_lojista(request):
+    return render(request, 'visualizar-empresa-lojista.html')

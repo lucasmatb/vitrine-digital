@@ -23,7 +23,7 @@ admin.site.login = valida_login
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('auth/', include('usuarios.urls')),
+    path('usuarios/', include('usuarios.urls')),
     path('produtos/', include('produtos.urls')),
     path('empresas/', include('empresas.urls')),
     path('', include('dashboards.urls')),

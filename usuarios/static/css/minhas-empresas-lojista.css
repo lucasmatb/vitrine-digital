@@ -1,0 +1,13 @@
+.secao-minhas-empresas {
+    padding: var(--spc-1300) var(--spc-400);
+
+    & .minhas-empresas-lojista {
+        display: grid;
+        grid-template-columns: repeat(3, 25rem);
+        gap: var(--spc-700);
+    }
+
+}
+
+
+

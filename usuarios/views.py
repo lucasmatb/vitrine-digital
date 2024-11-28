@@ -11,7 +11,7 @@ def login(request):
         if request.user.is_superuser:
             return redirect('admin:index')
         else:
-            return redirect('home-area-cliente')
+            return redirect('dashboard_usuario')
     data = {}
     data['form'] = UsuarioLoginForm()
     return render(request, 'login-usuario.html', data)
@@ -35,7 +35,7 @@ def valida_login(request):
                     if usuario.is_superuser:
                         return redirect('admin:index')
                     else:
-                        return redirect('home-area-cliente')
+                        return redirect('dashboard_usuario')
             else: 
                 messages.error(request, 'Senha incorreta')
 
@@ -61,7 +61,7 @@ def cadastro(request):
         if request.user.is_superuser:
             return redirect('admin:index')
         else:
-            return redirect('home-area-cliente')
+            return redirect('dashboard_usuario')
     data = {}
     data['form'] = UsuarioRegistrationForm()
     return render(request, 'cadastro-usuario.html', data)
@@ -87,3 +87,28 @@ def valida_cadastro(request):
         return redirect('/auth/login/')
     
     return render(request, 'cadastro-usuario.html', {'form': form})
+
+def retorna_dashboard_usuario(request):
+    #data = {}
+    #data['form'] = UsuarioRegistrationForm()
+    return render(request, 'dashboard-usuario.html')#, data)
+
+def retorna_lojas_favoritas_usuario(request):
+    #data = {}
+    #data['form'] = UsuarioRegistrationForm()
+    return render(request, 'lojas-favoritas-usuario.html')#, data)
+
+def retorna_meus_dados_usuario(request):
+    #data = {}
+    #data['form'] = UsuarioRegistrationForm()
+    return render(request, 'meus-dados-usuario.html')#, data)
+
+def retorna_minhas_lojas_lojista(request):
+    #data = {}
+    #data['form'] = UsuarioRegistrationForm()
+    return render(request, 'minhas-empresas-lojista.html')#, data)
+
+def retorna_produtos_salvos_usuario(request):
+    #data = {}
+    #data['form'] = UsuarioRegistrationForm()
+    return render(request, 'produtos-salvos-usuario.html')#, data)
