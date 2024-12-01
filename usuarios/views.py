@@ -84,7 +84,7 @@ def valida_cadastro(request):
         usuario.groups.add(grupo)
 
         messages.success(request, 'Cadastro realizado com sucesso!')
-        return redirect('/auth/login/')
+        return redirect('login')
     
     return render(request, 'cadastro-usuario.html', {'form': form})
 
