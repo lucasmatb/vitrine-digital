@@ -10,9 +10,15 @@ class Imagem_Produto(models.Model):
         variations={'thumb': {'width': 480, 'height': 480, 'crop': True}},
     )
 
+    def __str__(self):
+        return self.descricao
+
 class Categoria_Produto(models.Model):
     descricao = models.CharField(max_length=254)
     ativo = models.BooleanField()
+
+    def __str__(self):
+        return self.descricao
 
 class Produto(models.Model):
     descricao = models.CharField(
@@ -36,3 +42,6 @@ class Produto(models.Model):
     )
     categoria_produto = models.ManyToManyField(Categoria_Produto)
     imagem_produto = models.ManyToManyField(Imagem_Produto)
+    
+    def __str__(self):
+        return self.descricao

@@ -6,12 +6,18 @@ class Estado(models.Model):
     descricao = models.CharField(max_length=254)
     uf = models.CharField(max_length=2)
 
+    def __str__(self):
+        return self.descricao
+
 class Cidade(models.Model):
     descricao = models.CharField(max_length=254)
     id_estado = models.ForeignKey(
         Estado,
         on_delete=models.PROTECT
     )
+
+    def __str__(self):
+        return self.descricao
 
 class Endereco(models.Model):
     logradouro = models.CharField(max_length=254)
@@ -24,10 +30,16 @@ class Endereco(models.Model):
     )
     ativo = models.BooleanField()
 
+    def __str__(self):
+        return self.logradouro
+
 class Categoria_Empresa(models.Model):
     descricao = models.CharField(max_length=254)
     cor = models.CharField(max_length=254)
     ativo = models.BooleanField()
+
+    def __str__(self):
+        return self.descricao
 
 class Empresa(models.Model):
     cnpj = models.CharField(max_length=14)
@@ -55,3 +67,6 @@ class Empresa(models.Model):
     )
     categoria_produto = models.ManyToManyField(Categoria_Empresa)
     empresa_endereco = models.ManyToManyField(Endereco)
+
+    def __str__(self):
+        return self.nome_fantasia
