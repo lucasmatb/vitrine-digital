@@ -28,7 +28,10 @@ class Endereco(models.Model):
         Cidade,
         on_delete=models.PROTECT
     )
-    ativo = models.BooleanField()
+    ativo = models.BooleanField(
+        default=True,
+        verbose_name="Ativo"
+    )
 
     def __str__(self):
         return self.logradouro
@@ -36,7 +39,10 @@ class Endereco(models.Model):
 class Categoria_Empresa(models.Model):
     descricao = models.CharField(max_length=254)
     cor = models.CharField(max_length=254)
-    ativo = models.BooleanField()
+    ativo = models.BooleanField(
+        default=True,
+        verbose_name="Ativo"
+    )
 
     def __str__(self):
         return self.descricao
@@ -45,7 +51,10 @@ class Empresa(models.Model):
     cnpj = models.CharField(max_length=14)
     nome_fantasia = models.CharField(max_length=254)
     razao_social = models.CharField(max_length=254)
-    ativo = models.BooleanField()
+    ativo = models.BooleanField(
+        default=True,
+        verbose_name="Ativo"
+    )
     situacao = models.CharField(max_length=30)
     email = models.EmailField(max_length=254)
     telefone = models.CharField(max_length=30)
@@ -54,13 +63,13 @@ class Empresa(models.Model):
         on_delete=models.RESTRICT
     )
     imagem_capa = StdImageField(
-        'imagem',
+        'imagem_capa',
         default='default_capa_empresa.jpg',
         upload_to=retornaCaminhoImagemAleatorio,
         variations={'mid': {'width': 480, 'height': 480, 'crop': True}},
     )
     imagem_perfil = StdImageField(
-        'imagem',
+        'imagem_perfil',
         default='default_perfil_empresa.jpg',
         upload_to=retornaCaminhoImagemAleatorio,
         variations={'thumb': {'width': 480, 'height': 480, 'crop': True}},

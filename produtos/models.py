@@ -15,7 +15,10 @@ class Imagem_Produto(models.Model):
 
 class Categoria_Produto(models.Model):
     descricao = models.CharField(max_length=254)
-    ativo = models.BooleanField()
+    ativo = models.BooleanField(
+        default=True,
+        verbose_name="Ativo"
+    )
 
     def __str__(self):
         return self.descricao
@@ -34,7 +37,10 @@ class Produto(models.Model):
         'Quantidade em estoque',
         default=0
     )
-    ativo = models.BooleanField()
+    ativo = models.BooleanField(
+        default=True,
+        verbose_name="Ativo"
+    )
     destaque = models.BooleanField()
     id_empresa = models.ForeignKey(
         'empresas.Empresa',
