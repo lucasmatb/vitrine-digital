@@ -49,53 +49,53 @@ class UserManager(BaseUserManager):
 class Usuario(AbstractBaseUser, PermissionsMixin):
 
     email = models.CharField(
-        _('email'),
         max_length=254,
         unique=True,
-        blank=False
+        blank=False,
+        verbose_name="E-mail"
     )
 
     first_name = models.CharField(
-        _('first name'),
         max_length=254,
-        blank=False
+        blank=False,
+        verbose_name="Primeiro nome"
     )
 
     last_name = models.CharField(
-        _('last name'),
         max_length=254,
-        blank=False
+        blank=False,
+        verbose_name="Último nome"
     )
 
     is_staff = models.BooleanField(
-        _('staff status'),
         default=False,
         help_text=_(
             'Designates whether the user can log into '
             'this admin site.'
-        )
+        ),
+        verbose_name="É staff?"
     )
 
     is_active = models.BooleanField(
-        _('active'),
         default=True,
         help_text=_(
             'Designates whether this user should be '
             'treated as active. Unselect this instead '
             'of deleting accounts.'
-        )
+        ),
+        verbose_name="Ativo"
     )
     
     date_joined = models.DateTimeField(
-        _('date joined'),
-        default=timezone.now
+        default=timezone.now,
+        verbose_name="Data de criação"
     )
 
     cpf = models.CharField(
-        _('cpf'),
         max_length=254,
         unique=True,
-        blank=False
+        blank=False,
+        verbose_name="CPF"
     )
 
     imagem = StdImageField(

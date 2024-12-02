@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'dashboards',
     'produtos',
     'empresas',
+    'templates',
     'django_seed',
 ]
 
@@ -67,7 +68,7 @@ ROOT_URLCONF = 'vitrine_digital.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
