@@ -8,3 +8,13 @@ def home(request):
         return redirect('dashboard_usuario')
     
     return render(request, 'home.html')
+
+def retorna_dashboard_usuario(request):
+    #data = {}
+    #data['form'] = UsuarioRegistrationForm()
+    return render(request, 'dashboard-usuario.html')#, data)
+
+def retorna_dashboard_lojista(request):
+    #data = {}
+    #data['form'] = UsuarioRegistrationForm()
+    return render(request, 'dashboard-lojista.html')#, data)

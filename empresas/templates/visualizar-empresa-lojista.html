@@ -2,9 +2,6 @@
 {% load static %}
 
 {% block 'head' %}
-    <link rel="stylesheet" href="{% static 'css/card.css' %}">
-    <link rel="stylesheet" href="{% static 'css/swiper.css' %}">
-    <link rel="stylesheet" href="{% static 'css/body-main.css' %}">
     <link rel="stylesheet" href="{% static 'css/visualizar-empresa-lojista.css' %}">
 {% endblock %}
 
@@ -13,116 +10,114 @@
 {% endblock %}
 
 {% block 'conteudo'%}
-    <div class="container-inicio">
-        <main>
-            <div class="main-scrollable">
-                <div class="item-dashboard item-dashboard-1">
-                    <h2>Favoritos e acessos no último mês</h2>
-                    <div>gráfico</div>
-                </div>
-                <div class="item-dashboard item-dashboard-2">
-                    <span>12/11/2024</span>
-                    <h2>12.7k favoritos</h2>
-                    <span>43.2k acessos</span>
-                </div>
-                <div class="item-dashboard item-dashboard-3 secao-swiper">
-                    <h2>Produtos em alta</h2>
-                    <div class="container-swiper swiper">
-                        <div class="card-wrapper">
-                            <ul class="card-list swiper-wrapper">
-                                <li class="card-item swiper-slide">
-                                    <a href="#" class="card-link card card-produto">
-                                        <div class="img-capa"></div>
-                                        <div class="textos">
-                                            <p class="nome">Nome do produto</p>
-                                            <div class="preco-disponibilidade">
-                                                <!-- <div class="categoria">Categoria</div> -->
-                                                <div class="preco">R$ 299,90</div>
-                                                <div class="disponibilidade">
-                                                    <span>Indisponível</span>
-                                                </div>
+    <main>
+        <div class="main-scrollable">
+            <div class="item-dashboard item-dashboard-1">
+                <h2>Favoritos e acessos no último mês</h2>
+                <div>gráfico</div>
+            </div>
+            <div class="item-dashboard item-dashboard-2">
+                <span>12/11/2024</span>
+                <h2>12.7k favoritos</h2>
+                <span>43.2k acessos</span>
+            </div>
+            <div class="item-dashboard item-dashboard-3 secao-swiper">
+                <h2>Produtos em alta</h2>
+                <div class="container-swiper swiper">
+                    <div class="card-wrapper">
+                        <ul class="card-list swiper-wrapper">
+                            <li class="card-item swiper-slide">
+                                <a href="#" class="card-link card card-produto">
+                                    <div class="img-capa"></div>
+                                    <div class="textos">
+                                        <p class="nome">Nome do produto</p>
+                                        <div class="preco-disponibilidade">
+                                            <!-- <div class="categoria">Categoria</div> -->
+                                            <div class="preco">R$ 299,90</div>
+                                            <div class="disponibilidade">
+                                                <span>Indisponível</span>
                                             </div>
                                         </div>
-                                    </a>
-                                </li>
+                                    </div>
+                                </a>
+                            </li>
 
-                                <li class="card-item swiper-slide">
-                                    <a href="#" class="card-link card card-produto">
-                                        <div class="img-capa"></div>
-                                        <div class="textos">
-                                            <p class="nome">Nome do produto</p>
-                                            <div class="preco-disponibilidade">
-                                                <!-- <div class="categoria">Categoria</div> -->
-                                                <div class="preco">R$ 299,90</div>
-                                                <div class="disponibilidade">
-                                                    <span>Indisponível</span>
-                                                </div>
+                            <li class="card-item swiper-slide">
+                                <a href="#" class="card-link card card-produto">
+                                    <div class="img-capa"></div>
+                                    <div class="textos">
+                                        <p class="nome">Nome do produto</p>
+                                        <div class="preco-disponibilidade">
+                                            <!-- <div class="categoria">Categoria</div> -->
+                                            <div class="preco">R$ 299,90</div>
+                                            <div class="disponibilidade">
+                                                <span>Indisponível</span>
                                             </div>
                                         </div>
-                                    </a>
-                                </li>
+                                    </div>
+                                </a>
+                            </li>
 
-                                <li class="card-item swiper-slide">
-                                    <a href="#" class="card-link card card-produto">
-                                        <div class="img-capa"></div>
-                                        <div class="textos">
-                                            <p class="nome">Nome do produto</p>
-                                            <div class="preco-disponibilidade">
-                                                <!-- <div class="categoria">Categoria</div> -->
-                                                <div class="preco">R$ 299,90</div>
-                                                <div class="disponibilidade">
-                                                    <span>Indisponível</span>
-                                                </div>
+                            <li class="card-item swiper-slide">
+                                <a href="#" class="card-link card card-produto">
+                                    <div class="img-capa"></div>
+                                    <div class="textos">
+                                        <p class="nome">Nome do produto</p>
+                                        <div class="preco-disponibilidade">
+                                            <!-- <div class="categoria">Categoria</div> -->
+                                            <div class="preco">R$ 299,90</div>
+                                            <div class="disponibilidade">
+                                                <span>Indisponível</span>
                                             </div>
                                         </div>
-                                    </a>
-                                </li>
+                                    </div>
+                                </a>
+                            </li>
 
-                                <li class="card-item swiper-slide">
-                                    <a href="#" class="card-link card card-produto">
-                                        <div class="img-capa"></div>
-                                        <div class="textos">
-                                            <p class="nome">Nome do produto</p>
-                                            <div class="preco-disponibilidade">
-                                                <!-- <div class="categoria">Categoria</div> -->
-                                                <div class="preco">R$ 299,90</div>
-                                                <div class="disponibilidade">
-                                                    <span>Indisponível</span>
-                                                </div>
+                            <li class="card-item swiper-slide">
+                                <a href="#" class="card-link card card-produto">
+                                    <div class="img-capa"></div>
+                                    <div class="textos">
+                                        <p class="nome">Nome do produto</p>
+                                        <div class="preco-disponibilidade">
+                                            <!-- <div class="categoria">Categoria</div> -->
+                                            <div class="preco">R$ 299,90</div>
+                                            <div class="disponibilidade">
+                                                <span>Indisponível</span>
                                             </div>
                                         </div>
-                                    </a>
-                                </li>
+                                    </div>
+                                </a>
+                            </li>
 
-                                <li class="card-item swiper-slide">
-                                    <a href="#" class="card-link card card-produto">
-                                        <div class="img-capa"></div>
-                                        <div class="textos">
-                                            <p class="nome">Nome do produto</p>
-                                            <div class="preco-disponibilidade">
-                                                <!-- <div class="categoria">Categoria</div> -->
-                                                <div class="preco">R$ 299,90</div>
-                                                <div class="disponibilidade">
-                                                    <span>Indisponível</span>
-                                                </div>
+                            <li class="card-item swiper-slide">
+                                <a href="#" class="card-link card card-produto">
+                                    <div class="img-capa"></div>
+                                    <div class="textos">
+                                        <p class="nome">Nome do produto</p>
+                                        <div class="preco-disponibilidade">
+                                            <!-- <div class="categoria">Categoria</div> -->
+                                            <div class="preco">R$ 299,90</div>
+                                            <div class="disponibilidade">
+                                                <span>Indisponível</span>
                                             </div>
                                         </div>
-                                    </a>
-                                </li>
-                            </ul>
-                
-                            <!-- If we need pagination -->
-                            <div class="swiper-pagination"></div>
-                
-                            <!-- If we need navigation buttons -->
-                            <div class="swiper-slide-button swiper-button-prev"></div>
-                            <div class="swiper-slide-button swiper-button-next"></div>
-                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+            
+                        <!-- If we need pagination -->
+                        <div class="swiper-pagination"></div>
+            
+                        <!-- If we need navigation buttons -->
+                        <div class="swiper-slide-button swiper-button-prev"></div>
+                        <div class="swiper-slide-button swiper-button-next"></div>
                     </div>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 

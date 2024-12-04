@@ -18,11 +18,10 @@ urlpatterns = [
 
     #rotas de usuários
 
-    path('dashboard-usuario/', login_required(views.retorna_dashboard_usuario), name='dashboard_usuario'),
-    path('lojas-favoritas-usuario/', login_required(views.retorna_lojas_favoritas_usuario), name='lojas_favoritas_usuario'),
-    path('meus-dados-usuario/', login_required(views.retorna_meus_dados_usuario), name='meus_dados_usuario'),
+    path('empresas-favoritas-usuario/', login_required(views.retorna_empresas_favoritas_usuario), name='empresas_favoritas_usuario'),
     path('produtos-salvos-usuario/', login_required(views.retorna_produtos_salvos_usuario), name='produtos_salvos_usuario'),
-    path('minhas-empresas-lojista/', views.retorna_minhas_lojas_lojista, name='minhas_empresas_lojista'),
+    path('pesquisar-empresas-usuario/', login_required(views.retorna_pesquisar_empresas_usuario), name='pesquisar_empresas_usuario'),
+    path('meus-dados-usuario/', login_required(views.retorna_meus_dados_usuario), name='meus_dados_usuario')
 
     #login_required(views.indexLogadoAreaCliente)
 

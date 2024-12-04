@@ -25,7 +25,7 @@ class EmpresaAdmin(admin.ModelAdmin):
             'imagem_perfil',
         )}),
         ('Categorias', {'fields': (
-            'categoria_produto',
+            'empresa_categoria',
         )}),
         ('Endereços', {'fields': (
             'empresa_endereco',
@@ -50,7 +50,7 @@ class EmpresaAdmin(admin.ModelAdmin):
             'imagem_perfil',
         )}),
         ('Categorias', {'fields': (
-            'categoria_produto',
+            'empresa_categoria',
         )}),
         ('Endereços', {'fields': (
             'empresa_endereco',

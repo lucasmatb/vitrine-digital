@@ -82,27 +82,22 @@ def valida_cadastro(request):
     
     return render(request, 'cadastro-usuario.html', {'form': form})
 
-def retorna_dashboard_usuario(request):
+def retorna_empresas_favoritas_usuario(request):
     #data = {}
     #data['form'] = UsuarioRegistrationForm()
-    return render(request, 'dashboard-usuario.html')#, data)
-
-def retorna_lojas_favoritas_usuario(request):
-    #data = {}
-    #data['form'] = UsuarioRegistrationForm()
-    return render(request, 'lojas-favoritas-usuario.html')#, data)
+    return render(request, 'empresas-favoritas-usuario.html')#, data)
 
 def retorna_meus_dados_usuario(request):
     #data = {}
     #data['form'] = UsuarioRegistrationForm()
     return render(request, 'meus-dados-usuario.html')#, data)
 
-def retorna_minhas_lojas_lojista(request):
-    #data = {}
-    #data['form'] = UsuarioRegistrationForm()
-    return render(request, 'minhas-empresas-lojista.html')#, data)
-
 def retorna_produtos_salvos_usuario(request):
     #data = {}
     #data['form'] = UsuarioRegistrationForm()
     return render(request, 'produtos-salvos-usuario.html')#, data)
+
+def retorna_pesquisar_empresas_usuario(request):
+    #data = {}
+    #data['form'] = UsuarioRegistrationForm()
+    return render(request, 'pesquisar-empresas-usuario.html')#, data)

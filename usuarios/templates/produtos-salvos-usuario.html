@@ -10,81 +10,78 @@
 {% endblock %}
 
 {% block 'conteudo'%}
-    <div class="container-inicio">
-        <main>
-            <div class="main-scrollable">
-                <div class="modal-confirmacao">
-                    <div class="fundo-modal-confirmacao">
-                    </div>
-                    <div class="conteudo-modal-confirmacao">
-                        <p>Tem certeza de que deseja excluir NOME DO PRODUTO !!!!!!!!!!!!!1 da sua lista de salvos?</p>
-                        <div class="botoes-confirmacao">
-                            <button class="botao-sim">Sim</button>
-                            <button class="botao-cancelar">Cancelar</button>
-                        </div>
+    <main>
+        <div class="main-scrollable">
+            <div class="modal-confirmacao">
+                <div class="fundo-modal-confirmacao">
+                </div>
+                <div class="conteudo-modal-confirmacao">
+                    <p>Tem certeza de que deseja excluir NOME DO PRODUTO !!!!!!!!!!!!!1 da sua lista de salvos?</p>
+                    <div class="botoes-confirmacao">
+                        <button class="botao-sim">Sim</button>
+                        <button class="botao-cancelar">Cancelar</button>
                     </div>
                 </div>
-
-                <section>
-                    <div class="cabecalho">
-                        <h1>Seus produtos salvos</h1>
-                        <button class="botao-editar">Editar</button>
-                    </div>
-                
-                    <div class="todos-cards">
-
-
-                        <!-- se não tiver nenhum salvo: -->
-                        <!-- <p>Seus produtos salvos aparecerão aqui</p>
-                        <a href="../../dashboards/templates/pesquisar-empresas.html">Explorar lojas</a> -->
-
-                        <div class="card-botao">
-                            <button class="botao-excluir"><img src="{% static 'images/icone-x.svg' %}" alt=""></button>
-                            <div class="card card-produto">
-                                <div class="img-capa"></div>
-                                <div class="textos">
-                                    <p class="nome">Nome do produto</p>
-                                    <div class="loja">
-                                        <div class="img-loja"></div>
-                                        <span class="nome-loja">Nome da loja</span>
-                                    </div>
-                                    <div class="preco-disponibilidade">
-                                         <div class="preco">R$ 299,90</div>
-                                        <div class="disponibilidade">
-                                            <span>Indisponível</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card-botao">
-                            <button class="botao-excluir"><img src="{% static 'images/icone-x.svg' %}" alt=""></button>
-                            <div class="card card-produto">
-                                <div class="img-capa"></div>
-                                <div class="textos">
-                                    <p class="nome">Nome do produto</p>
-                                    <div class="loja">
-                                        <div class="img-loja"></div>
-                                        <span class="nome-loja">Nome da loja</span>
-                                    </div>
-                                    <div class="preco-disponibilidade">
-                                         <div class="preco">R$ 299,90</div>
-                                        <div class="disponibilidade">
-                                            <span>Indisponível</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                
-                </section>
             </div>
-            
-        </ma>
-    </div>
 
-    <script src="../static/js/remover-favs-salvos.js"></script>
+            <section>
+                <div class="cabecalho">
+                    <h1>Seus produtos salvos</h1>
+                    <button class="botao-editar">Editar</button>
+                </div>
+            
+                <div class="todos-cards">
+
+
+                    <!-- se não tiver nenhum salvo: -->
+                    <!-- <p>Seus produtos salvos aparecerão aqui</p>
+                    <a href="../../dashboards/templates/pesquisar-empresas.html">Explorar lojas</a> -->
+
+                    <div class="card-botao">
+                        <button class="botao-excluir"><img src="{% static 'images/icone-x.svg' %}" alt=""></button>
+                        <div class="card card-produto">
+                            <div class="img-capa"></div>
+                            <div class="textos">
+                                <p class="nome">Nome do produto</p>
+                                <div class="loja">
+                                    <div class="img-loja"></div>
+                                    <span class="nome-loja">Nome da loja</span>
+                                </div>
+                                <div class="preco-disponibilidade">
+                                        <div class="preco">R$ 299,90</div>
+                                    <div class="disponibilidade">
+                                        <span>Indisponível</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-botao">
+                        <button class="botao-excluir"><img src="{% static 'images/icone-x.svg' %}" alt=""></button>
+                        <div class="card card-produto">
+                            <div class="img-capa"></div>
+                            <div class="textos">
+                                <p class="nome">Nome do produto</p>
+                                <div class="loja">
+                                    <div class="img-loja"></div>
+                                    <span class="nome-loja">Nome da loja</span>
+                                </div>
+                                <div class="preco-disponibilidade">
+                                        <div class="preco">R$ 299,90</div>
+                                    <div class="disponibilidade">
+                                        <span>Indisponível</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            
+            </section>
+        </div>
+    </main>
+
+    <script src="{% static 'js/remover-favs-salvos.js' %}"></script>
 {% endblock %}

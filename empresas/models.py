@@ -3,30 +3,62 @@ from vitrine_digital.helper import retornaCaminhoImagemAleatorio
 from stdimage.models import StdImageField
 
 class Estado(models.Model):
-    descricao = models.CharField(max_length=254)
-    uf = models.CharField(max_length=2)
+    descricao = models.CharField(
+        max_length=254,
+        blank=False,
+        verbose_name="Descrição"
+    )
+    uf = models.CharField(
+        max_length=2,
+        blank=False,
+        verbose_name="UF"
+    )
 
     def __str__(self):
         return self.descricao
 
 class Cidade(models.Model):
-    descricao = models.CharField(max_length=254)
+    descricao = models.CharField(
+        max_length=254,
+        blank=False,
+        verbose_name="Descrição"
+    )
     id_estado = models.ForeignKey(
         Estado,
-        on_delete=models.PROTECT
+        on_delete=models.PROTECT,
+        blank=False,
+        verbose_name="Estado"
     )
 
     def __str__(self):
         return self.descricao
 
 class Endereco(models.Model):
-    logradouro = models.CharField(max_length=254)
-    numero = models.CharField(max_length=254)
-    complemento = models.CharField(max_length=254)
-    bairro = models.CharField(max_length=254)
+    logradouro = models.CharField(
+        max_length=254,
+        blank=False,
+        verbose_name="Logradouro"
+    )
+    numero = models.CharField(
+        max_length=254,
+        blank=False,
+        verbose_name="Número"
+    )
+    complemento = models.CharField(
+        max_length=254,
+        blank=True,
+        verbose_name="Complemento"
+    )
+    bairro = models.CharField(
+        max_length=254,
+        blank=False,
+        verbose_name="Bairro"
+    )
     id_cidade = models.ForeignKey(
         Cidade,
-        on_delete=models.PROTECT
+        on_delete=models.PROTECT,
+        blank=False,
+        verbose_name="Cidade"
     )
     ativo = models.BooleanField(
         default=True,
@@ -37,8 +69,16 @@ class Endereco(models.Model):
         return self.logradouro
 
 class Categoria_Empresa(models.Model):
-    descricao = models.CharField(max_length=254)
-    cor = models.CharField(max_length=254)
+    descricao = models.CharField(
+        max_length=254,
+        blank=False,
+        verbose_name="Descrição"
+    )
+    cor = models.CharField(
+        max_length=254,
+        blank=False,
+        verbose_name="Cor"
+    )
     ativo = models.BooleanField(
         default=True,
         verbose_name="Ativo"
@@ -48,30 +88,54 @@ class Categoria_Empresa(models.Model):
         return self.descricao
 
 class Empresa(models.Model):
-    cnpj = models.CharField(max_length=14)
-    nome_fantasia = models.CharField(max_length=254)
-    razao_social = models.CharField(max_length=254)
+    cnpj = models.CharField(
+        max_length=14,
+        unique=True,
+        blank=False,
+        verbose_name="CNPJ"
+    )
+    nome_fantasia = models.CharField(
+        max_length=254,
+        blank=False,
+        verbose_name="Nome fantasia"
+    )
+    razao_social = models.CharField(
+        max_length=254,
+        blank=False,
+        verbose_name="Razão social"
+    )
     ativo = models.BooleanField(
         default=True,
         verbose_name="Ativo"
     )
-    email = models.EmailField(max_length=254)
-    telefone = models.CharField(max_length=30)
+    email = models.EmailField(
+        max_length=254,
+        blank=False,
+        verbose_name="E-mail"
+    )
+    telefone = models.CharField(
+        max_length=30,
+        blank=False,
+        verbose_name="Telefone"
+    )
     id_usuario = models.ForeignKey(
         'usuarios.Usuario',
-        on_delete=models.RESTRICT
+        on_delete=models.RESTRICT,
+        blank=False
     )
     imagem_capa = StdImageField(
-        'imagem_capa',
         default='default_capa_empresa.jpg',
         upload_to=retornaCaminhoImagemAleatorio,
         variations={'mid': {'width': 480, 'height': 480, 'crop': True}},
+        blank=False,
+        verbose_name="Imagem capa"
     )
     imagem_perfil = StdImageField(
-        'imagem_perfil',
         default='default_perfil_empresa.jpg',
         upload_to=retornaCaminhoImagemAleatorio,
         variations={'thumb': {'width': 480, 'height': 480, 'crop': True}},
+        blank=False,
+        verbose_name="Imagem perfil"
     )
     empresa_categoria = models.ManyToManyField(Categoria_Empresa)
     empresa_endereco = models.ManyToManyField(Endereco)

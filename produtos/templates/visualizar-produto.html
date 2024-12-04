@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block 'head' %}
-    <link rel="stylesheet" href="{% static 'css/body-main.css' %}">
     <link rel="stylesheet" href="{% static 'css/produto.css' %}">
 {% endblock %}
 
@@ -11,133 +10,131 @@
 {% endblock %}
 
 {% block 'conteudo'%}
-    <div class="container-inicio">
-        <main>
-            <div class="main-scrollable">
-                
-                <div class="apresentacao-produto">
-                    <div class="imagens">
-                        <div class="previas">
-                            <!-- <div class="previa"></div>
-                            <div class="previa"></div>
-                            <div class="previa"></div> -->
-                            
-                            <img src="{% static 'images/img-1-produto.jpg' %}" alt="">
-                            <img src="{% static 'images/img-2-produto.jpg' %}" alt="">
-                            <img src="{% static 'images/img-3-produto.jpg' %}" alt="">
-                        </div>
-                        <img class="img-destaque" src="{% static 'images/img-1-produto.jpg' %}" alt="">
+    <main>
+        <div class="main-scrollable">
+            
+            <div class="apresentacao-produto">
+                <div class="imagens">
+                    <div class="previas">
+                        <!-- <div class="previa"></div>
+                        <div class="previa"></div>
+                        <div class="previa"></div> -->
+                        
+                        <img src="{% static 'images/img-1-produto.jpg' %}" alt="">
+                        <img src="{% static 'images/img-2-produto.jpg' %}" alt="">
+                        <img src="{% static 'images/img-3-produto.jpg' %}" alt="">
                     </div>
-                    <div class="especificacoes">
-                        <h1>Nome do produto</h1>
-                        <p>Descrição Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit nam quaerat nihil, quae esse laboriosam saepe animi officia a vero optio neque praesentium deleniti veniam reprehenderit totam consequatur possimus quo.</p>
-                        <div class="loja">
-                            <div class="img-loja"></div>
-                            <span class="nome-loja">Nome da loja</span>
-                        </div>
-                        <!-- adicionar preço dinamicamente -->
-                        <span class="preco">R$ 955,99</span>
-                        <!-- adicionar disponibilidade dinamicamente - true = disponível, false = indisponível -->
-                        <span class="disponibilidade">Disponível</span>
-                        <!-- se o produto já estiver salvo, o botão vem também com a classe "salvo" -->
-                        <button class="salvar">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bookmark"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
-                            <!-- adicionar quantidade de salvamentos dinamicamente -->
-                            <span>213</span>
-                        </button>
-                    </div>
+                    <img class="img-destaque" src="{% static 'images/img-1-produto.jpg' %}" alt="">
                 </div>
-
-                <div class="avaliacoes">
-                    <h2>Avaliações</h2>
-                    <div class="avaliacao">
-                        <div class="cabecalho-avaliacao">
-                            <div class="usuario">
-                                <img class="img-perfil" src="{% static 'images/img-perfil-exemplo.jpeg' %}" alt="">
-                                <span class="nome-usuario">Nome do usuário</span>
-                            </div>
-                            <div class="estrelas">
-                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
-                            </div>
-                        </div>
-                        <div class="corpo-avaliacao">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora veniam quo aspernatur, adipisci quaerat aut ipsa corrupti fugiat impedit quos, asperiores magnam cum accusantium ratione ipsam earum libero aperiam. Amet!</p>
-                        </div>
+                <div class="especificacoes">
+                    <h1>Nome do produto</h1>
+                    <p>Descrição Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit nam quaerat nihil, quae esse laboriosam saepe animi officia a vero optio neque praesentium deleniti veniam reprehenderit totam consequatur possimus quo.</p>
+                    <div class="loja">
+                        <div class="img-loja"></div>
+                        <span class="nome-loja">Nome da loja</span>
                     </div>
-
-                    <hr>
-                    
-                    <div class="avaliacao">
-                        <div class="cabecalho-avaliacao">
-                            <div class="usuario">
-                                <img class="img-perfil" src="{% static 'images/img-perfil-exemplo.jpeg' %}" alt="">
-                                <span class="nome-usuario">Nome do usuário</span>
-                            </div>
-                            <div class="estrelas">
-                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
-                            </div>
-                        </div>
-                        <div class="corpo-avaliacao">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora veniam quo aspernatur, adipisci quaerat aut ipsa corrupti fugiat impedit quos, asperiores magnam cum accusantium ratione ipsam earum libero aperiam. Amet!</p>
-                        </div>
-                    </div>
-
-                    <hr>
-                    <div class="avaliacao">
-                        <div class="cabecalho-avaliacao">
-                            <div class="usuario">
-                                <img class="img-perfil" src="{% static 'images/img-perfil-exemplo.jpeg' %}" alt="">
-                                <span class="nome-usuario">Nome do usuário</span>
-                            </div>
-                            <div class="estrelas">
-                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
-                            </div>
-                        </div>
-                        <div class="corpo-avaliacao">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora veniam quo aspernatur, adipisci quaerat aut ipsa corrupti fugiat impedit quos, asperiores magnam cum accusantium ratione ipsam earum libero aperiam. Amet!</p>
-                        </div>
-                    </div>
-
-                    <hr>
-                    <div class="avaliacao">
-                        <div class="cabecalho-avaliacao">
-                            <div class="usuario">
-                                <img class="img-perfil" src="{% static 'images/img-perfil-exemplo.jpeg' %}" alt="">
-                                <span class="nome-usuario">Nome do usuário</span>
-                            </div>
-                            <div class="estrelas">
-                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
-                            </div>
-                        </div>
-                        <div class="corpo-avaliacao">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora veniam quo aspernatur, adipisci quaerat aut ipsa corrupti fugiat impedit quos, asperiores magnam cum accusantium ratione ipsam earum libero aperiam. Amet!</p>
-                        </div>
-                    </div>
-
-                    <hr>
-
-
+                    <!-- adicionar preço dinamicamente -->
+                    <span class="preco">R$ 955,99</span>
+                    <!-- adicionar disponibilidade dinamicamente - true = disponível, false = indisponível -->
+                    <span class="disponibilidade">Disponível</span>
+                    <!-- se o produto já estiver salvo, o botão vem também com a classe "salvo" -->
+                    <button class="salvar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bookmark"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                        <!-- adicionar quantidade de salvamentos dinamicamente -->
+                        <span>213</span>
+                    </button>
                 </div>
             </div>
-        </main>
-    </div>
 
+            <div class="avaliacoes">
+                <h2>Avaliações</h2>
+                <div class="avaliacao">
+                    <div class="cabecalho-avaliacao">
+                        <div class="usuario">
+                            <img class="img-perfil" src="{% static 'images/img-perfil-exemplo.jpeg' %}" alt="">
+                            <span class="nome-usuario">Nome do usuário</span>
+                        </div>
+                        <div class="estrelas">
+                            <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
+                        </div>
+                    </div>
+                    <div class="corpo-avaliacao">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora veniam quo aspernatur, adipisci quaerat aut ipsa corrupti fugiat impedit quos, asperiores magnam cum accusantium ratione ipsam earum libero aperiam. Amet!</p>
+                    </div>
+                </div>
+
+                <hr>
+                
+                <div class="avaliacao">
+                    <div class="cabecalho-avaliacao">
+                        <div class="usuario">
+                            <img class="img-perfil" src="{% static 'images/img-perfil-exemplo.jpeg' %}" alt="">
+                            <span class="nome-usuario">Nome do usuário</span>
+                        </div>
+                        <div class="estrelas">
+                            <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
+                        </div>
+                    </div>
+                    <div class="corpo-avaliacao">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora veniam quo aspernatur, adipisci quaerat aut ipsa corrupti fugiat impedit quos, asperiores magnam cum accusantium ratione ipsam earum libero aperiam. Amet!</p>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="avaliacao">
+                    <div class="cabecalho-avaliacao">
+                        <div class="usuario">
+                            <img class="img-perfil" src="{% static 'images/img-perfil-exemplo.jpeg' %}" alt="">
+                            <span class="nome-usuario">Nome do usuário</span>
+                        </div>
+                        <div class="estrelas">
+                            <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
+                        </div>
+                    </div>
+                    <div class="corpo-avaliacao">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora veniam quo aspernatur, adipisci quaerat aut ipsa corrupti fugiat impedit quos, asperiores magnam cum accusantium ratione ipsam earum libero aperiam. Amet!</p>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="avaliacao">
+                    <div class="cabecalho-avaliacao">
+                        <div class="usuario">
+                            <img class="img-perfil" src="{% static 'images/img-perfil-exemplo.jpeg' %}" alt="">
+                            <span class="nome-usuario">Nome do usuário</span>
+                        </div>
+                        <div class="estrelas">
+                            <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
+                        </div>
+                    </div>
+                    <div class="corpo-avaliacao">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora veniam quo aspernatur, adipisci quaerat aut ipsa corrupti fugiat impedit quos, asperiores magnam cum accusantium ratione ipsam earum libero aperiam. Amet!</p>
+                    </div>
+                </div>
+
+                <hr>
+
+
+            </div>
+        </div>
+    </main>
+    
     <script>
         const botaoSalvar = document.querySelector('.salvar');
         const iconeSalvar = botaoSalvar.querySelector('svg');

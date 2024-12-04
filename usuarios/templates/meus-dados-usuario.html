@@ -2,8 +2,6 @@
 {% load static %}
 
 {% block 'head' %}
-    <link rel="stylesheet" href="{% static 'css/card.css' %}">
-    <link rel="stylesheet" href="{% static 'css/body-main.css' %}">
     <link rel="stylesheet" href="{% static 'css/meus-dados-usuario.css' %}">
 {% endblock %}
 
@@ -12,106 +10,104 @@
 {% endblock %}
 
 {% block 'conteudo'%}
-    <div class="container-inicio">
-        <main>
-            <div class="main-scrollable">
-                <section class="dados">
-                    <div class="cabecalho">
-                        <h2>Seus dados</h2>
-                        <button>Editar</button>
-                    </div>
+    <main>
+        <div class="main-scrollable">
+            <section class="dados">
+                <div class="cabecalho">
+                    <h2>Seus dados</h2>
+                    <button>Editar</button>
+                </div>
 
-                    <img class="img-perfil" src="{% static 'images/img-perfil-exemplo.jpeg' %}" alt="">
-                    <span class="nome">Nome</span>
-                    <span class="cpf">000.000.000-00</span>
-                    <span class="email">email@gmail.com</span>
-                    <span class="senha">***********</span>
-                </section>
+                <img class="img-perfil" src="{% static 'images/img-perfil-exemplo.jpeg' %}" alt="">
+                <span class="nome">Nome</span>
+                <span class="cpf">000.000.000-00</span>
+                <span class="email">email@gmail.com</span>
+                <span class="senha">***********</span>
+            </section>
 
-                <section class="avaliacoes">
-                    <h2>Suas avaliações</h2>
-                    <div class="avaliacao">
-                        <div class="cabecalho-avaliacao">
-                            <div class="usuario">
-                                <div class="foto-usuario"></div>
-                                <span class="nome-usuario">Nome do usuário</span>
-                            </div>
-                            <div class="estrelas">
-                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
-                            </div>
+            <section class="avaliacoes">
+                <h2>Suas avaliações</h2>
+                <div class="avaliacao">
+                    <div class="cabecalho-avaliacao">
+                        <div class="usuario">
+                            <div class="foto-usuario"></div>
+                            <span class="nome-usuario">Nome do usuário</span>
                         </div>
-                        <div class="corpo-avaliacao">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora veniam quo aspernatur, adipisci quaerat aut ipsa corrupti fugiat impedit quos, asperiores magnam cum accusantium ratione ipsam earum libero aperiam. Amet!</p>
+                        <div class="estrelas">
+                            <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
                         </div>
                     </div>
+                    <div class="corpo-avaliacao">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora veniam quo aspernatur, adipisci quaerat aut ipsa corrupti fugiat impedit quos, asperiores magnam cum accusantium ratione ipsam earum libero aperiam. Amet!</p>
+                    </div>
+                </div>
 
-                    <hr>
-                    
-                    <div class="avaliacao">
-                        <div class="cabecalho-avaliacao">
-                            <div class="usuario">
-                                <div class="foto-usuario"></div>
-                                <span class="nome-usuario">Nome do usuário</span>
-                            </div>
-                            <div class="estrelas">
-                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
-                            </div>
+                <hr>
+                
+                <div class="avaliacao">
+                    <div class="cabecalho-avaliacao">
+                        <div class="usuario">
+                            <div class="foto-usuario"></div>
+                            <span class="nome-usuario">Nome do usuário</span>
                         </div>
-                        <div class="corpo-avaliacao">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora veniam quo aspernatur, adipisci quaerat aut ipsa corrupti fugiat impedit quos, asperiores magnam cum accusantium ratione ipsam earum libero aperiam. Amet!</p>
+                        <div class="estrelas">
+                            <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
                         </div>
                     </div>
+                    <div class="corpo-avaliacao">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora veniam quo aspernatur, adipisci quaerat aut ipsa corrupti fugiat impedit quos, asperiores magnam cum accusantium ratione ipsam earum libero aperiam. Amet!</p>
+                    </div>
+                </div>
 
-                    <hr>
-                    <div class="avaliacao">
-                        <div class="cabecalho-avaliacao">
-                            <div class="usuario">
-                                <div class="foto-usuario"></div>
-                                <span class="nome-usuario">Nome do usuário</span>
-                            </div>
-                            <div class="estrelas">
-                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
-                            </div>
+                <hr>
+                <div class="avaliacao">
+                    <div class="cabecalho-avaliacao">
+                        <div class="usuario">
+                            <div class="foto-usuario"></div>
+                            <span class="nome-usuario">Nome do usuário</span>
                         </div>
-                        <div class="corpo-avaliacao">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora veniam quo aspernatur, adipisci quaerat aut ipsa corrupti fugiat impedit quos, asperiores magnam cum accusantium ratione ipsam earum libero aperiam. Amet!</p>
+                        <div class="estrelas">
+                            <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
                         </div>
                     </div>
+                    <div class="corpo-avaliacao">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora veniam quo aspernatur, adipisci quaerat aut ipsa corrupti fugiat impedit quos, asperiores magnam cum accusantium ratione ipsam earum libero aperiam. Amet!</p>
+                    </div>
+                </div>
 
-                    <hr>
-                    <div class="avaliacao">
-                        <div class="cabecalho-avaliacao">
-                            <div class="usuario">
-                                <div class="foto-usuario"></div>
-                                <span class="nome-usuario">Nome do usuário</span>
-                            </div>
-                            <div class="estrelas">
-                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
-                                <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
-                            </div>
+                <hr>
+                <div class="avaliacao">
+                    <div class="cabecalho-avaliacao">
+                        <div class="usuario">
+                            <div class="foto-usuario"></div>
+                            <span class="nome-usuario">Nome do usuário</span>
                         </div>
-                        <div class="corpo-avaliacao">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora veniam quo aspernatur, adipisci quaerat aut ipsa corrupti fugiat impedit quos, asperiores magnam cum accusantium ratione ipsam earum libero aperiam. Amet!</p>
+                        <div class="estrelas">
+                            <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-preenchida.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
+                            <img src="{% static 'images/estrela-vazada.svg' %}" alt="">
                         </div>
                     </div>
-                </section>
-            </div>
-        </main>
-    </div>
+                    <div class="corpo-avaliacao">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora veniam quo aspernatur, adipisci quaerat aut ipsa corrupti fugiat impedit quos, asperiores magnam cum accusantium ratione ipsam earum libero aperiam. Amet!</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
 
 {% endblock %}
