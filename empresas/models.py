@@ -55,7 +55,6 @@ class Empresa(models.Model):
         default=True,
         verbose_name="Ativo"
     )
-    situacao = models.CharField(max_length=30)
     email = models.EmailField(max_length=254)
     telefone = models.CharField(max_length=30)
     id_usuario = models.ForeignKey(
@@ -74,7 +73,7 @@ class Empresa(models.Model):
         upload_to=retornaCaminhoImagemAleatorio,
         variations={'thumb': {'width': 480, 'height': 480, 'crop': True}},
     )
-    categoria_produto = models.ManyToManyField(Categoria_Empresa)
+    empresa_categoria = models.ManyToManyField(Categoria_Empresa)
     empresa_endereco = models.ManyToManyField(Endereco)
 
     def __str__(self):
