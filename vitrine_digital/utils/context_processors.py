@@ -1,5 +1,5 @@
 def sidebar_template(request):
-    if request.user.has_perm('add_empresa'):
+    if request.user.has_perm('empresas.add_empresa'):
         return {'sidebar_template': 'sidebar-empresa.html'}
     else:
         return {'sidebar_template': 'sidebar-cliente.html'}

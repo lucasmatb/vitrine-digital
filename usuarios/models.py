@@ -116,3 +116,43 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     
     def __str__(self):
         return self.email
+    
+class Tipo_Assinatura(models.Model):
+    descricao = models.CharField(
+        max_length=254,
+        blank=False,
+        verbose_name="Descrição"
+    )
+    ativo = models.BooleanField(
+        default=True,
+        verbose_name="Ativo"
+    )
+
+    def __str__(self):
+        return self.descricao
+
+class Pedido_Lojista(models.Model):
+    status_pedido = models.CharField(
+        max_length=254,
+        blank=False,
+        verbose_name="Estado do pedido"
+    )
+    ultimo_pagamento = models.DateTimeField(
+        blank=False,
+        verbose_name="Data do último pagamento"
+    )
+    ativo = models.BooleanField(
+        default=True,
+        verbose_name="Ativo"
+    )
+    id_tipo_assinatura = models.ForeignKey(
+        Tipo_Assinatura,
+        on_delete=models.RESTRICT
+    )
+    id_usuario = models.ForeignKey(
+        Usuario,
+        on_delete=models.RESTRICT
+    )
+
+    def __str__(self):
+        return self.status_pedido

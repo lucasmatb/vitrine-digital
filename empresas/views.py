@@ -26,6 +26,9 @@ def valida_cadastro_empresa(request):
     
     return render(request, 'cadastro-empresa.html', {'form': form})
 
+def retorna_visualizar_empresa_usuario(request):
+    return render(request, 'visualizar-empresa-usuario.html')
+
 def retorna_visualizar_empresa_lojista(request):
     return render(request, 'visualizar-empresa-lojista.html')
 
