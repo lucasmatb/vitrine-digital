@@ -33,41 +33,6 @@ class Cidade(models.Model):
     def __str__(self):
         return self.descricao
 
-class Endereco(models.Model):
-    logradouro = models.CharField(
-        max_length=254,
-        blank=False,
-        verbose_name="Logradouro"
-    )
-    numero = models.CharField(
-        max_length=254,
-        blank=False,
-        verbose_name="Número"
-    )
-    complemento = models.CharField(
-        max_length=254,
-        blank=True,
-        verbose_name="Complemento"
-    )
-    bairro = models.CharField(
-        max_length=254,
-        blank=False,
-        verbose_name="Bairro"
-    )
-    id_cidade = models.ForeignKey(
-        Cidade,
-        on_delete=models.PROTECT,
-        blank=False,
-        verbose_name="Cidade"
-    )
-    ativo = models.BooleanField(
-        default=True,
-        verbose_name="Ativo"
-    )
-
-    def __str__(self):
-        return self.logradouro
-
 class Categoria_Empresa(models.Model):
     descricao = models.CharField(
         max_length=254,
@@ -138,7 +103,52 @@ class Empresa(models.Model):
         verbose_name="Imagem perfil"
     )
     empresa_categoria = models.ManyToManyField(Categoria_Empresa)
-    empresa_endereco = models.ManyToManyField(Endereco)
 
     def __str__(self):
         return self.nome_fantasia
+    
+class Endereco(models.Model):
+    cep = models.CharField(
+        max_length=254,
+        blank=False,
+        verbose_name="CEP"
+    )
+    logradouro = models.CharField(
+        max_length=254,
+        blank=False,
+        verbose_name="Logradouro"
+    )
+    numero = models.CharField(
+        max_length=254,
+        blank=False,
+        verbose_name="Número"
+    )
+    complemento = models.CharField(
+        max_length=254,
+        blank=True,
+        verbose_name="Complemento"
+    )
+    bairro = models.CharField(
+        max_length=254,
+        blank=False,
+        verbose_name="Bairro"
+    )
+    id_cidade = models.ForeignKey(
+        Cidade,
+        on_delete=models.PROTECT,
+        blank=False,
+        verbose_name="Cidade"
+    )
+    id_empresa = models.ForeignKey(
+        Empresa,
+        on_delete=models.PROTECT,
+        blank=False,
+        verbose_name="Empresa"
+    )
+    ativo = models.BooleanField(
+        default=True,
+        verbose_name="Ativo"
+    )
+
+    def __str__(self):
+        return self.logradouro

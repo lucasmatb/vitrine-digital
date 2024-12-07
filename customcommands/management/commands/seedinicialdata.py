@@ -8,7 +8,6 @@ class Command(BaseCommand):
     help = "Seed database with initial data"
 
     def handle(self, *args, **kwargs):
-        print("seed")
         seeder = Seed.seeder()
         seeder.add_entity(Endereco, 1, {
             'id_cidade': Cidade.objects.get(id=1)
@@ -18,9 +17,8 @@ class Command(BaseCommand):
         })
         seeder.add_entity(Empresa, 1, {
             'cnpj': '00.000.000/0001-00',
-            'situacao': 'Ativo',
             'telefone': '48999998888',
-            'id_usuario': Usuario.objects.get(id=1)
+            'id_usuario': Usuario.objects.order_by('id').first()
         })
         seeder.execute()
 

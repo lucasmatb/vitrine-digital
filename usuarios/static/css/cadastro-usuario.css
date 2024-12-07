@@ -8,10 +8,6 @@ main {
     left: 2rem;
 }
 
-section {
-    padding-top: 7rem;
-}
-
 .container-cadastro, .container-login {
     max-width: 70rem;
     gap: 2rem;

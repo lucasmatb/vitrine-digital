@@ -1,0 +1,12 @@
+<div>
+    {{ produto_form.as_p }}
+
+    <h3>Imagens</h3>
+    {{ formset.management_form }}
+
+    {% for customform in formset %}
+        <div>
+            {{ customform.as_p }}
+        </div>
+    {% endfor %}
+</div>

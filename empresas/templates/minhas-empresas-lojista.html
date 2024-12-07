@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/minhas-empresas-lojista.css' %}">
+{% endblock %}
+
+{% block 'titulo' %}
+    Vitrine Digital | Minhas lojas
+{% endblock %}
+
+{% block 'conteudo'%}
+    <main>
+        <div class="main-scrollable">
+            <section class="secao-minhas-empresas">
+                <div class="container">
+                    {% if messages %}
+                        {% for i in messages %}   
+                            <div class="alert {{i.tags}}" role="alert">
+                                {{i}} 
+                            </div>
+                
+                        {% endfor %}
+                    {% endif %}
+                    <h1>Minhas lojas</h1>
+                    <a href="{% url 'cadastro_empresa' %}">Cadastrar</a>
+                    <div class="minhas-empresas-lojista">
+                        
+                        {% for empresa in empresas %}
+                            <div class="card card-empresa">
+                                <div class="img-perfil">
+                                    <img
+                                        src="{{ empresa.imagem_perfil.url }}"
+                                        alt="Imagem da empresa de perfil"
+                                        class="img-responsive"
+                                    >
+                                </div>
+                                <div class="img-capa">
+                                    <img
+                                        src="{{ empresa.imagem_capa.url }}"
+                                        alt="Imagem da empresa de capa"
+                                        class="img-responsive"
+                                    >
+                                </div>
+                                <div class="textos">
+                                    <p class="nome">{{ empresa.nome_fantasia }}</p>
+                                    <p class="descricao">
+                                        {{ empresa.razao_social }}
+                                    </p>
+                                    <div class="categoria-favoritos">
+                                        {% for categoria in empresa.empresa_categoria.all %}
+                                            <div class="categoria">{{ categoria.descricao }}</div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+
+                        {% endfor %}
+                        
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+{% endblock %}

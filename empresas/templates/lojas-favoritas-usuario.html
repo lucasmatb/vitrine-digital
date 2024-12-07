@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/card.css' %}">
+    <link rel="stylesheet" href="{% static 'css/body-main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/favoritas-salvos.css' %}">
+{% endblock %}
+
+{% block 'titulo' %}
+    Vitrine Digital | Lojas favoritas
+{% endblock %}
+
+{% block 'conteudo'%}
+    <main>
+        <div class="main-scrollable">
+            <div class="modal-confirmacao">
+                <div class="fundo-modal-confirmacao">
+                </div>
+                <div class="conteudo-modal-confirmacao">
+                    <p>Tem certeza de que deseja excluir a NOME DA LOJA !!!!!!!!!!!!!1 da sua lista de favoritos?</p>
+                    <div class="botoes-confirmacao">
+                        <button class="botao-sim">Sim</button>
+                        <button class="botao-cancelar">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+
+            <section>
+                <div class="cabecalho">
+                    <h1>Suas lojas favoritas</h1>
+                    <button class="botao-editar">Editar</button>
+                </div>
+            
+                <div class="todos-cards">
+
+
+                    <!-- se não tiver nenhuma favoritada: -->
+                    <!-- <p>Suas lojas favoritas aparecerão aqui</p>
+                    <a href="../../dashboards/templates/pesquisar-empresas.html">Explorar lojas</a> -->
+
+                    <div class="card-botao">
+                        <button class="botao-excluir"><img src="{% static 'images/icone-x.svg' %}" alt=""></button>
+                        <div class="card card-empresa">
+                            <div class="img-perfil"></div>
+                            <div class="img-capa"></div>
+                            <div class="textos">
+                                <p class="nome">Nome da empresa</p>
+                                <p class="descricao">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
+                                </p>
+                                <div class="categoria-favoritos">
+                                    <div class="categoria">Categoria</div>
+                                    <div class="favoritos">
+                                        <img src="{% static 'images/icone-estrela.svg' %}" alt="Ícone estrela">
+                                        <span>1.3K</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-botao">
+                        <button class="botao-excluir"><img src="{% static 'images/icone-x.svg' %}" alt=""></button>
+                        <div class="card card-empresa">
+                            <div class="img-perfil"></div>
+                            <div class="img-capa"></div>
+                            <div class="textos">
+                                <p class="nome">Nome da empresa</p>
+                                <p class="descricao">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
+                                </p>
+                                <div class="categoria-favoritos">
+                                    <div class="categoria">Categoria</div>
+                                    <div class="favoritos">
+                                        <img src="{% static 'images/icone-estrela.svg' %}" alt="Ícone estrela">
+                                        <span>1.3K</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            
+            </section>
+        </div>
+        
+    </main>
+
+    <script src="{% static 'js/remover-favs-salvos.js' %}"></script>
+
+{% endblock %}

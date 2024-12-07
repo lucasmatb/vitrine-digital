@@ -2,17 +2,6 @@ from django.db import models
 from vitrine_digital.helper import retornaCaminhoImagemAleatorio
 from stdimage.models import StdImageField
 
-class Imagem_Produto(models.Model):
-    imagem = StdImageField(
-        'imagem',
-        default='default_produto.jpg',
-        upload_to=retornaCaminhoImagemAleatorio,
-        variations={'thumb': {'width': 480, 'height': 480, 'crop': True}},
-    )
-
-    def __str__(self):
-        return self.descricao
-
 class Categoria_Produto(models.Model):
     descricao = models.CharField(max_length=254)
     ativo = models.BooleanField(
@@ -47,7 +36,20 @@ class Produto(models.Model):
         on_delete=models.RESTRICT
     )
     categoria_produto = models.ManyToManyField(Categoria_Produto)
-    imagem_produto = models.ManyToManyField(Imagem_Produto)
     
     def __str__(self):
         return self.descricao
+    
+class Imagem_Produto(models.Model):
+    id_produto = models.ForeignKey(
+        Produto,
+        on_delete=models.CASCADE
+    )
+    imagem = StdImageField(
+        default='default_produto.jpg',
+        upload_to=retornaCaminhoImagemAleatorio,
+        variations={'thumb': {'width': 480, 'height': 480, 'crop': True}},
+        blank=False,
+        verbose_name="Imagem perfil"
+    )
+    uploaded_at = models.DateTimeField(auto_now_add=True)

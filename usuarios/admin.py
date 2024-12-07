@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Usuario
+from .models import Usuario, Tipo_Assinatura, Pedido_Lojista
 from .forms import UsuarioAdminRegistrationForm, UsuarioChangeForm
 from vitrine_digital.helper import descriptarAESGCM
 
@@ -64,3 +64,5 @@ class MyUserAdmin(UserAdmin):
     list_filter = ("is_superuser", "is_active", "groups")  # Filtros padrão e adicionais
 
 admin.site.register(Usuario, MyUserAdmin)
+admin.site.register(Tipo_Assinatura)
+admin.site.register(Pedido_Lojista)

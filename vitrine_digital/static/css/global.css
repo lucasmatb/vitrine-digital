@@ -23,11 +23,6 @@ b, h1, h2, h3 {
     font-weight: 500;
 }
 
-section {
-    /* padding: 4rem 3rem; */
-    padding: 4rem 0rem;
-}
-
 .container {
     margin: 0 auto;
     max-width: 100rem;

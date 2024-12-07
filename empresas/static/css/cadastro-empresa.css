@@ -108,7 +108,6 @@
     & .container {
         background-color: #ffffff6b;
         border-radius: 2rem;
-        padding: var(--spc-400) var(--spc-500);
 
         & form {
             display: flex;
@@ -117,6 +116,7 @@
             gap: var(--spc-700);
 
             & .titulo-campos {
+                padding-top: 10px;
                 width: 100%;
                 display: flex;
                 flex-flow: column;
@@ -152,6 +152,15 @@
                         gap: var(--spc-80);
 
                         & input {
+                            /* all: unset; */
+                            width: 100%;
+                            border: solid 1px #cdcdcd;
+                            border-radius: 0.5rem;
+                            padding: var(--spc-90) var(--spc-200);
+                            font-family: inherit;
+                        }
+
+                        & select {
                             /* all: unset; */
                             width: 100%;
                             border: solid 1px #cdcdcd;

@@ -1,32 +1,40 @@
 from django import forms
-from .models import Empresa, Endereco, Categoria_Empresa, Estado, Cidade
-from django.forms import inlineformset_factory
-from usuarios.models import Usuario
-from vitrine_digital.helper import descriptarAESGCM
+from .models import Empresa, Categoria_Empresa
+import re
 
 class EmpresaRegistrationForm(forms.ModelForm):
 
-    logradouro = forms.CharField(
+    cep = forms.CharField(
         max_length=254,
-        required=False,
+        required=True,
         widget=forms.TextInput(attrs={
-            'id': 'logradouro',
-            'name': 'logradouro',
-            'placeholder': 'Rua das couves'
+            'id': 'cep',
+            'name': 'cep',
+            'placeholder': '88888-000'
         })
     )
     numero = forms.CharField(
         max_length=254,
-        required=False,
+        required=True,
         widget=forms.TextInput(attrs={
             'id': 'numero',
             'name': 'numero',
             'placeholder': '1234'
         })
     )
-    complemento = forms.CharField(
+    logradouro = forms.CharField(
         max_length=254,
         required=True,
+        widget=forms.TextInput(attrs={
+            'id': 'logradouro',
+            'name': 'logradouro',
+            'placeholder': 'Rua das couves',
+            'readonly': 'readonly'
+        })
+    )
+    complemento = forms.CharField(
+        max_length=254,
+        required=False,
         widget=forms.TextInput(attrs={
             'id': 'complemento',
             'name': 'complemento',
@@ -35,58 +43,131 @@ class EmpresaRegistrationForm(forms.ModelForm):
     )
     bairro = forms.CharField(
         max_length=254,
-        required=False,
+        required=True,
         widget=forms.TextInput(attrs={
             'id': 'bairro',
             'name': 'bairro',
-            'placeholder': 'Humaitá'
+            'placeholder': 'Humaitá',
+            'readonly': 'readonly'
         })
     )
-    cep = forms.CharField(
+    cidade = forms.CharField(
         max_length=254,
-        required=False,
+        required=True,
         widget=forms.TextInput(attrs={
-            'id': 'cep',
-            'name': 'cep',
-            'placeholder': '88888-000'
+            'id': 'cidade',
+            'name': 'cidade',
+            'placeholder': 'Araranguá',
+            'readonly': 'readonly'
         })
     )
-    cidade = forms.ModelChoiceField(
-        queryset=Cidade.objects.none(),
-        empty_label="Selecione uma cidade",
-        widget=forms.Select(
-            attrs={
-                'id': 'cidade',
-                'name': 'cidade',
-                'placeholder': 'Araranguá'
-            }
-        )
+    estado = forms.CharField(
+        max_length=254,
+        required=True,
+        widget=forms.TextInput(attrs={
+            'id': 'estado',
+            'name': 'estado',
+            'placeholder': 'Santa catarina',
+            'readonly': 'readonly'
+        })
     )
-    estado = forms.ModelChoiceField(
-        queryset=Estado.objects.all(),
-        empty_label="Selecione um Estado",
-        widget=forms.Select(
-            attrs={
-                'id': 'estado',
-                'name': 'estado',
-                'placeholder': 'Santa Catarina'
-            }
-        )
-    )
-    categorias = forms.MultipleChoiceField(
-        choices=Categoria_Empresa.objects.all(),
-        widget=forms.Select(
+    categorias = forms.ModelMultipleChoiceField(
+        queryset=Categoria_Empresa.objects.all(),
+        widget=forms.SelectMultiple(
             attrs={
                 'id': 'categorias',
                 'name': 'categorias',
-                'placeholder': 'Roupas...'
+                'placeholder': 'Escolha uma categoria...',
+                'class':"form-control"
             }
-        )
+        ),
+        required=True
     )
+
+    imagem_capa = forms.ImageField(
+        required=False,
+        widget=forms.FileInput(attrs={
+            'id': 'imagem_capa',
+            'class': 'form-control',
+            'placeholder': 'Carregue uma imagem de capa',
+            'accept': 'image/png, image/jpg, image/jpeg'
+        })
+    )
+
+    imagem_perfil = forms.ImageField(
+        required=False,
+        widget=forms.FileInput(attrs={
+            'id': 'imagem_perfil',
+            'class': 'form-control',
+            'placeholder': 'Carregue uma imagem de perfil',
+            'accept': 'image/png, image/jpg, image/jpeg'
+        })
+    )
+
+    cnpj_alterado = forms.CharField(
+        label=("CNPJ"),
+        max_length=254,
+        required=True,
+        widget=forms.TextInput(attrs={
+            'id': 'cnpj',
+            'name': 'cnpj',
+            'placeholder': '00.000.000/0000-00'
+        })
+    )
+
+    telefone = forms.CharField(
+        label=("Telefone"),
+        max_length=15,
+        required=True,
+        widget=forms.TextInput(attrs={
+            'id': 'telefone',
+            'name': 'telefone',
+            'placeholder': '(48) 99999-9999'
+        })
+    )
+
+    def clean(self):
+        cleaned_data = super(EmpresaRegistrationForm, self).clean()
+
+        campos = [
+            'cnpj_alterado',
+            'nome_fantasia',
+            'razao_social',
+            'email',
+            'telefone',
+            'logradouro',
+            'numero',
+            'bairro',
+            'cep',
+            'cidade',
+            'estado',
+            'categorias',
+        ]
+
+        for field in campos:
+            if cleaned_data.get(field) is None:
+                return cleaned_data
+
+        if verifica_cnpj_valido(cleaned_data.get("cnpj_alterado")) is False:
+            self.add_error('cnpj_alterado', "CNPJ inválido")
+        else:
+            cnpjTratado = trata_cnpj_apenas_numeros(cleaned_data.get("cnpj_alterado"))
+            if verifica_cnpj_unico(cnpjTratado):
+                self.add_error('cnpj_alterado', "CNPJ já cadastrado")
+                
+            cleaned_data['cnpj_alterado'] = cnpjTratado
+
+            if cleaned_data['imagem_capa'] is None:
+                cleaned_data['imagem_capa'] = 'default_capa_empresa.jpg'
+            if cleaned_data['imagem_perfil'] is None:
+                cleaned_data['imagem_perfil'] = 'default_perfil_empresa.jpg'
+
+        return cleaned_data
+
     class Meta:
         model = Empresa
         fields = [
-            'cnpj',
+            'cnpj_alterado',
             'nome_fantasia',
             'razao_social',
             'email',
@@ -102,37 +183,35 @@ class EmpresaRegistrationForm(forms.ModelForm):
             'estado',
             'categorias',
         ]
+    
+def verifica_cnpj_valido(formCnpj: str) -> bool:
+    cnpj = ''.join(filter(str.isdigit, str(formCnpj)))
+    
+    if len(cnpj) != 14:
+        return False
+    
+    if cnpj == cnpj[0] * 14:
+        return False
 
-class EmpresaRegistrationAdminForm(forms.ModelForm):
+    def calcular_digito(cnpj, peso_inicial):
+        soma = 0
+        peso = peso_inicial
+        for i in range(len(cnpj)):
+            soma += int(cnpj[i]) * peso
+            peso -= 1
+            if peso < 2:
+                peso = 9
+        resto = soma % 11
+        return '0' if resto < 2 else str(11 - resto)
 
-    id_usuario_descriptografado = forms.MultipleChoiceField(
-        choices=[(email, email) for email in [descriptarAESGCM(e) for e in Usuario.objects.values_list('email', flat=True)]],
-        widget=forms.Select(attrs={'class': 'form-control'})
-    )
+    primeiro_dv = calcular_digito(cnpj[:12], 5)
 
-    class Meta:
-        model = Empresa
-        fields = '__all__'
-        exclude = ['id_usuario']
+    segundo_dv = calcular_digito(cnpj[:12] + primeiro_dv, 6)
 
-class EmpresaChangeAdminForm(forms.ModelForm):
+    return cnpj[-2:] == primeiro_dv + segundo_dv
 
-    id_usuario_descriptografado = forms.MultipleChoiceField(
-        choices=[(email, email) for email in [descriptarAESGCM(e) for e in Usuario.objects.values_list('email', flat=True)]],
-        widget=forms.Select(attrs={'class': 'form-control'})
-    )
+def verifica_cnpj_unico(cnpj: str) -> bool:
+    return Empresa.objects.filter(cnpj=cnpj).exists()
 
-    class Meta:
-        model = Empresa
-        fields = '__all__'
-        exclude = ['id_usuario']
-
-class CategoriaEmpresaForm(forms.ModelForm):
-    class Meta:
-        model = Categoria_Empresa
-        fields = ['descricao']  # Inclua os campos necessários
-
-class EnderecoForm(forms.ModelForm):
-    class Meta:
-        model = Endereco
-        fields = ['logradouro', 'numero', 'complemento', 'bairro', 'id_cidade']
+def trata_cnpj_apenas_numeros(cnpj: str) -> str:
+    return re.sub(r'\D', '', cnpj)
