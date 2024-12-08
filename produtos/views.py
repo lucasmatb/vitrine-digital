@@ -6,6 +6,9 @@ from .forms import ProdutoForm, ImagemProdutoFormSet
 def retorna_visualizar_produto(request):
     return render(request, 'visualizar-produto.html')
 
+def retorna_listagem_produtos_por_empresa(request, id_empresa):
+    return render(request, 'visualizar-produto.html')
+
 def criar_produto(request):
     if request.method == 'POST':
         produto_form = ProdutoForm(request.POST)

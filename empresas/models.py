@@ -25,7 +25,7 @@ class Cidade(models.Model):
     )
     id_estado = models.ForeignKey(
         Estado,
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         blank=False,
         verbose_name="Estado"
     )
@@ -85,7 +85,7 @@ class Empresa(models.Model):
     )
     id_usuario = models.ForeignKey(
         'usuarios.Usuario',
-        on_delete=models.RESTRICT,
+        on_delete=models.DO_NOTHING,
         blank=False
     )
     imagem_capa = StdImageField(
@@ -135,13 +135,13 @@ class Endereco(models.Model):
     )
     id_cidade = models.ForeignKey(
         Cidade,
-        on_delete=models.PROTECT,
+        on_delete=models.DO_NOTHING,
         blank=False,
         verbose_name="Cidade"
     )
     id_empresa = models.ForeignKey(
         Empresa,
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         blank=False,
         verbose_name="Empresa"
     )

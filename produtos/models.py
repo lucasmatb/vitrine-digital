@@ -33,7 +33,7 @@ class Produto(models.Model):
     destaque = models.BooleanField()
     id_empresa = models.ForeignKey(
         'empresas.Empresa',
-        on_delete=models.RESTRICT
+        on_delete=models.CASCADE
     )
     categoria_produto = models.ManyToManyField(Categoria_Produto)
     

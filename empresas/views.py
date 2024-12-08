@@ -4,6 +4,7 @@ from django.contrib import messages
 from .forms import EmpresaForm
 from .models import Empresa, Endereco, Estado, Cidade
 from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404
 import requests
 
 def retorna_cadastro_empresa(request):
@@ -12,6 +13,11 @@ def retorna_cadastro_empresa(request):
     return render(request, 'formulario-empresa.html', data)
 
 def valida_cadastro_empresa(request):
+    empresa_count = Empresa.objects.filter(id_usuario=request.user).count()
+    if empresa_count >= 10:
+        messages.error(request, 'Você chegou no limite de empresas para sua conta, o limite é 10.')
+        return redirect('minhas_empresas_lojista')
+
     form = EmpresaForm(request.POST, request.FILES or None)
     if form.is_valid():
         estado = retorna_model_estado_por_nome(form.cleaned_data['estado'])
@@ -58,6 +64,11 @@ def retorna_editar_empresa(request, pk):
     data = {}
     empresa = Empresa.objects.get(pk=pk)
     endereco = Endereco.objects.get(id_empresa=empresa)
+
+    if validacao_usuario_possui_empresa(request.user, pk) == False:
+        messages.error(request, 'Esta empresa não pertence ao usuário logado')
+        return redirect('minhas_empresas_lojista')
+
     data['form'] = EmpresaForm(instance=empresa)
     data['form'].fields['cnpj_alterado'].initial = empresa.cnpj
     data['form'].fields['cep'].initial = endereco.cep
@@ -77,6 +88,11 @@ def retorna_editar_empresa(request, pk):
 def valida_editar_empresa(request, pk):
     data = {}
     empresa = Empresa.objects.get(pk=pk)
+
+    if validacao_usuario_possui_empresa(request.user, pk) == False:
+        messages.error(request, 'Esta empresa não pertence ao usuário logado')
+        return redirect('minhas_empresas_lojista')
+
     data['id_empresa'] = empresa.id
     data['imagem_capa'] = empresa.imagem_capa
     data['imagem_perfil'] = empresa.imagem_perfil
@@ -123,36 +139,43 @@ def valida_editar_empresa(request, pk):
 def retorna_visualizar_empresa_usuario(request):
     return render(request, 'visualizar-empresa-usuario.html')
 
-def retorna_visualizar_empresa_lojista(request):
-    return render(request, 'visualizar-empresa-lojista.html')
-
 def retorna_minhas_empresas_lojista(request):
     data = {}
     data['empresas'] = Empresa.objects.filter(id_usuario=request.user).prefetch_related('empresa_categoria')
     return render(request, 'minhas-empresas-lojista.html', data)
 
 def verifica_cep(request, cep):
-    # Formatar o CEP removendo possíveis caracteres extras (se necessário)
     cep_formatado = cep.replace("-", "")
 
-    # URL da API ViaCEP
     url = f'https://viacep.com.br/ws/{cep_formatado}/json/'
 
     try:
-        # Fazer a requisição GET para a API externa
         response = requests.get(url)
-        response.raise_for_status()  # Levanta exceções para erros HTTP
+        response.raise_for_status()
 
-        # Converter a resposta para JSON
         dados = response.json()
 
-        # Verificar se houve erro na resposta da API
         if "erro" in dados:
             return JsonResponse({'erro': 'CEP não encontrado'}, status=404)
 
-        # Retornar os dados como JSON
         return JsonResponse(dados, content_type='application/json')
 
     except requests.RequestException as e:
-        # Em caso de erro na requisição externa, retornar erro
         return JsonResponse({'erro': 'Erro ao buscar CEP'}, status=500)
+    
+def excluir_empresa(request, pk):
+
+    if validacao_usuario_possui_empresa(request.user, pk) == False:
+        messages.error(request, 'Esta empresa não pertence ao usuário logado')
+        return redirect('minhas_empresas_lojista')
+
+    empresa = get_object_or_404(Empresa, pk=pk)
+    empresa.delete()
+    messages.success(request, 'Empresa excluída com sucesso')
+    return redirect('minhas_empresas_lojista')
+
+def validacao_usuario_possui_empresa(usuario, id_empresa):
+    empresa = Empresa.objects.get(pk=id_empresa)
+    if empresa.id_usuario != usuario:
+        return False
+    return True

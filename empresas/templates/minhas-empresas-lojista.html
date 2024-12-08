@@ -27,36 +27,52 @@
                     <div class="minhas-empresas-lojista">
                         
                         {% for empresa in empresas %}
-                            <a href="{% url 'editar_empresa' empresa.id %}" style="text-decoration: none; color: inherit;">
-                                <div class="card card-empresa">
-                                    <div class="img-perfil">
-                                        <img
-                                            src="{{ empresa.imagem_perfil.url }}"
-                                            alt="Imagem da empresa de perfil"
-                                            class="img-responsive"
-                                        >
-                                    </div>
-                                    <div class="img-capa">
-                                        <img
-                                            src="{{ empresa.imagem_capa.url }}"
-                                            alt="Imagem da empresa de capa"
-                                            class="img-responsive"
-                                        >
-                                    </div>
-                                    <div class="textos">
-                                        <p class="nome">{{ empresa.nome_fantasia }}</p>
-                                        <p class="descricao">
-                                            {{ empresa.razao_social }}
-                                        </p>
-                                        <div class="categoria-favoritos">
-                                            {% for categoria in empresa.empresa_categoria.all %}
-                                                <div class="categoria">{{ categoria.descricao }}</div>
-                                            {% endfor %}
-                                        </div>
+                            <div class="card card-empresa">
+                                <div class="img-perfil">
+                                    <img
+                                        src="{{ empresa.imagem_perfil.url }}"
+                                        alt="Imagem da empresa de perfil"
+                                        class="img-responsive"
+                                    >
+                                </div>
+                                <div class="img-capa">
+                                    <img
+                                        src="{{ empresa.imagem_capa.url }}"
+                                        alt="Imagem da empresa de capa"
+                                        class="img-responsive"
+                                    >
+                                </div>
+                                <div class="textos">
+                                    <p class="nome">{{ empresa.nome_fantasia }}</p>
+                                    <p class="descricao">
+                                        {{ empresa.razao_social }}
+                                    </p>
+                                    Categorias:
+                                    <div class="categoria-favoritos">
+                                        {% for categoria in empresa.empresa_categoria.all %}
+                                            <div class="categoria">{{ categoria.descricao }}</div>
+                                        {% endfor %}
                                     </div>
                                 </div>
-                            </a>
-
+                                <a
+                                    href="{% url 'editar_empresa' empresa.id %}"
+                                    class="btn"
+                                >
+                                    Editar
+                                </a>
+                                <a
+                                    href="{% url 'listagem_produto_por_empresa' empresa.id %}"
+                                    class="btn"
+                                >
+                                    Produtos
+                                </a>
+                                <a
+                                    href="{% url 'excluir_empresa' empresa.id %}"
+                                    class="btn"
+                                >
+                                    Excluir
+                                </a>
+                            </div>
                         {% endfor %}
                         
                     </div>

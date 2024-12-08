@@ -147,11 +147,11 @@ class Pedido_Lojista(models.Model):
     )
     id_tipo_assinatura = models.ForeignKey(
         Tipo_Assinatura,
-        on_delete=models.RESTRICT
+        on_delete=models.DO_NOTHING
     )
     id_usuario = models.ForeignKey(
         Usuario,
-        on_delete=models.RESTRICT
+        on_delete=models.DO_NOTHING
     )
 
     def __str__(self):
