@@ -223,6 +223,19 @@
                                         {% endfor %}
                                     </div>
                                 {% endif %}
+                                <span id="label-imagem-capa">
+                                    {% if imagem_capa %}
+                                        Prévia da imagem
+                                    {% endif %}
+                                </span>
+                                <div id="imagem-capa" class="mt-2">
+                                    {% if imagem_capa %}
+                                        <img
+                                            src="{{ imagem_capa.url }}"
+                                            alt="Imagem da empresa de capa"
+                                        >
+                                    {% endif %}
+                                </div>
                             </div>
                             <div class="input-wrapper">
                                 <label for="">Imagem de perfil</label>
@@ -235,6 +248,19 @@
                                             </div>
                                         {% endfor %}
                                     </div>
+                                {% endif %}
+                            </div>
+                            <span id="label-imagem-perfil">
+                                {% if imagem_perfil %}
+                                    Prévia da imagem
+                                {% endif %}
+                            </span>
+                            <div id="imagem-perfil" class="mt-2">
+                                {% if imagem_perfil %}
+                                    <img
+                                        src="{{ imagem_perfil.url }}"
+                                        alt="Imagem da empresa de perfil"
+                                    >
                                 {% endif %}
                             </div>
                         </div>
@@ -263,6 +289,27 @@
     </main>
     
     <script>
+
+        function exibirImagem(event, idContainerImagem) {
+            const arquivo = event.target.files[0];
+            
+            if (arquivo) {
+                const urlImagem = URL.createObjectURL(arquivo);
+    
+                const imagem = document.createElement('img');
+                imagem.src = urlImagem;
+                imagem.alt = "Imagem selecionada";
+                imagem.style.maxWidth = "300px";
+                imagem.style.marginTop = "10px";
+    
+                const divImagem = document.getElementById(idContainerImagem);
+                const labelDivImagem = document.getElementById('label-'+idContainerImagem);
+                labelDivImagem.innerText = "Prévia da imagem";
+                divImagem.innerHTML = '';
+                divImagem.appendChild(imagem);
+            }
+        }
+
         $(document).ready(function(){
             $('#cnpj').mask('00.000.000/0000-00');
             $('#telefone').mask('(00) 00000-0000');

@@ -14,7 +14,6 @@ def retorna_cadastro_empresa(request):
 def valida_cadastro_empresa(request):
     form = EmpresaRegistrationForm(request.POST, request.FILES or None)
     if form.is_valid():
-        print(form.cleaned_data)
         estado = retorna_model_estado_por_nome(form.cleaned_data['estado'])
         cidade = retorna_model_cidade(estado, form.cleaned_data['cidade'])
 
@@ -55,9 +54,23 @@ def retorna_model_estado_por_nome(nomeEstado):
 def retorna_model_cidade(estado, nomeCidade):
     return Cidade.objects.get(descricao=nomeCidade, id_estado=estado)
 
-def retorna_editar_empresa(request):
+def retorna_editar_empresa(request, pk):
     data = {}
-    data['form'] = EmpresaRegistrationForm()
+    empresa = Empresa.objects.get(pk=pk)
+    endereco = Endereco.objects.get(id_empresa=empresa)
+    data['form'] = EmpresaRegistrationForm(instance=empresa)
+    data['form'].fields['cnpj_alterado'].initial = empresa.cnpj
+    data['form'].fields['cep'].initial = endereco.cep
+    data['form'].fields['logradouro'].initial = endereco.logradouro
+    data['form'].fields['numero'].initial = endereco.numero
+    data['form'].fields['complemento'].initial = endereco.complemento
+    data['form'].fields['bairro'].initial = endereco.bairro
+    data['form'].fields['cidade'].initial = endereco.id_cidade
+    data['form'].fields['estado'].initial = endereco.id_cidade.id_estado
+    data['form'].fields['categorias'].initial = empresa.empresa_categoria.all()
+    data['imagem_capa'] = empresa.imagem_capa
+    data['imagem_perfil'] = empresa.imagem_perfil
+
     return render(request, 'cadastro-empresa.html', data)
 
 def valida_editar_empresa(request):

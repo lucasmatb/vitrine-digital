@@ -88,9 +88,10 @@ class EmpresaRegistrationForm(forms.ModelForm):
         required=False,
         widget=forms.FileInput(attrs={
             'id': 'imagem_capa',
-            'class': 'form-control',
+            'class': 'form-control mb-4',
             'placeholder': 'Carregue uma imagem de capa',
-            'accept': 'image/png, image/jpg, image/jpeg'
+            'accept': 'image/png, image/jpg, image/jpeg',
+            'onchange': 'exibirImagem(event, "imagem-capa")'
         })
     )
 
@@ -98,9 +99,10 @@ class EmpresaRegistrationForm(forms.ModelForm):
         required=False,
         widget=forms.FileInput(attrs={
             'id': 'imagem_perfil',
-            'class': 'form-control',
+            'class': 'form-control mb-4',
             'placeholder': 'Carregue uma imagem de perfil',
-            'accept': 'image/png, image/jpg, image/jpeg'
+            'accept': 'image/png, image/jpg, image/jpeg',
+            'onchange': 'exibirImagem(event, "imagem-perfil")'
         })
     )
 
