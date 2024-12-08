@@ -2,8 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('cadastro-empresa/', views.retorna_cadastro_empresa, name='cadastro_empresa'),
-    path('valida-cadastro-empresa/', views.valida_cadastro_empresa, name='valida_cadastro_empresa'),
+    path('cadastro-empresa/', views.retorna_cadastro_empresa, name='cadastrar_empresa'),
+    path('valida-cadastro-empresa/', views.valida_cadastro_empresa, name='valida_cadastrar_empresa'),
     path('editar-empresa/<int:pk>/', views.retorna_editar_empresa, name='editar_empresa'),
     path('valida-editar-empresa/<int:pk>/', views.valida_editar_empresa, name='valida_editar_empresa'),
     path('visualizar-empresa/', views.retorna_visualizar_empresa_usuario, name='visualizar_empresa'),

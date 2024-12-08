@@ -1,18 +1,18 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.contrib import messages
-from .forms import EmpresaRegistrationForm
+from .forms import EmpresaForm
 from .models import Empresa, Endereco, Estado, Cidade
 from django.shortcuts import redirect
 import requests
 
 def retorna_cadastro_empresa(request):
     data = {}
-    data['form'] = EmpresaRegistrationForm()
-    return render(request, 'cadastro-empresa.html', data)
+    data['form'] = EmpresaForm()
+    return render(request, 'formulario-empresa.html', data)
 
 def valida_cadastro_empresa(request):
-    form = EmpresaRegistrationForm(request.POST, request.FILES or None)
+    form = EmpresaForm(request.POST, request.FILES or None)
     if form.is_valid():
         estado = retorna_model_estado_por_nome(form.cleaned_data['estado'])
         cidade = retorna_model_cidade(estado, form.cleaned_data['cidade'])
@@ -46,7 +46,7 @@ def valida_cadastro_empresa(request):
             messages.success(request, 'Cadastro realizado com sucesso!')
             return redirect('minhas_empresas_lojista')
 
-    return render(request, 'cadastro-empresa.html', {'form': form})
+    return render(request, 'formulario-empresa.html', {'form': form})
 
 def retorna_model_estado_por_nome(nomeEstado):
     return Estado.objects.get(descricao=nomeEstado)
@@ -58,7 +58,7 @@ def retorna_editar_empresa(request, pk):
     data = {}
     empresa = Empresa.objects.get(pk=pk)
     endereco = Endereco.objects.get(id_empresa=empresa)
-    data['form'] = EmpresaRegistrationForm(instance=empresa)
+    data['form'] = EmpresaForm(instance=empresa)
     data['form'].fields['cnpj_alterado'].initial = empresa.cnpj
     data['form'].fields['cep'].initial = endereco.cep
     data['form'].fields['logradouro'].initial = endereco.logradouro
@@ -70,28 +70,55 @@ def retorna_editar_empresa(request, pk):
     data['form'].fields['categorias'].initial = empresa.empresa_categoria.all()
     data['imagem_capa'] = empresa.imagem_capa
     data['imagem_perfil'] = empresa.imagem_perfil
+    data['id_empresa'] = empresa.id
 
-    return render(request, 'cadastro-empresa.html', data)
+    return render(request, 'formulario-empresa.html', data)
 
-def valida_editar_empresa(request):
-    form = EmpresaRegistrationForm(request.POST or None)
-#    if form.is_valid():
-#        usuario = Usuario.objects.create_user(
-#            email       =  encriptarAESGCM(form.cleaned_data['email']),
-#            password    =  form.cleaned_data['password'],
-#            first_name  =  encriptarAESGCM(form.cleaned_data['first_name']),
-#            last_name   =  encriptarAESGCM(form.cleaned_data['last_name']),
-#            cpf         =  encriptarAESGCM(form.cleaned_data['cpf'])
-#        )
+def valida_editar_empresa(request, pk):
+    data = {}
+    empresa = Empresa.objects.get(pk=pk)
+    data['id_empresa'] = empresa.id
+    data['imagem_capa'] = empresa.imagem_capa
+    data['imagem_perfil'] = empresa.imagem_perfil
+    endereco = Endereco.objects.get(id_empresa=empresa)
+    form = EmpresaForm(request.POST, request.FILES or None, instance=empresa)
+    if form.is_valid():
+        estado = retorna_model_estado_por_nome(form.cleaned_data['estado'])
+        cidade = retorna_model_cidade(estado, form.cleaned_data['cidade'])
 
-#        grupo = Group.objects.get(name='Usuário')
+        if estado is None or cidade is None:
+            messages.error(request, 'Problema na resolução do endereço, tente novamente mais tarde')
+        else:
 
-#        usuario.groups.add(grupo)
+            if form.cleaned_data['imagem_capa'] is None:
+                form.cleaned_data['imagem_capa'] = empresa.imagem_capa
+            if form.cleaned_data['imagem_perfil'] is None:
+                form.cleaned_data['imagem_perfil'] = empresa.imagem_perfil
 
-#        messages.success(request, 'Cadastro realizado com sucesso!')
-#        return redirect('login')
-    
-    return render(request, 'cadastro-empresa.html', {'form': form})
+            empresa.nome_fantasia   =  form.cleaned_data['nome_fantasia']
+            empresa.razao_social    =  form.cleaned_data['razao_social']
+            empresa.cnpj            =  form.cleaned_data['cnpj_alterado']
+            empresa.telefone        =  form.cleaned_data['telefone']
+            empresa.email           =  form.cleaned_data['email']
+            empresa.imagem_capa     =  form.cleaned_data['imagem_capa']
+            empresa.imagem_perfil   =  form.cleaned_data['imagem_perfil']
+            empresa.save()
+            
+            empresa.empresa_categoria.set(form.cleaned_data['categorias'])
+
+            endereco.cep         =  form.cleaned_data['cep']
+            endereco.logradouro  =  form.cleaned_data['logradouro']
+            endereco.numero      =  form.cleaned_data['numero']
+            endereco.complemento =  form.cleaned_data['complemento']
+            endereco.bairro      =  form.cleaned_data['bairro']
+            endereco.id_cidade   =  cidade
+            endereco.save()
+
+            messages.success(request, 'Edição realizada com sucesso!')
+            return redirect('minhas_empresas_lojista')
+
+    data['form'] = form
+    return render(request, 'formulario-empresa.html', data)
 
 def retorna_visualizar_empresa_usuario(request):
     return render(request, 'visualizar-empresa-usuario.html')

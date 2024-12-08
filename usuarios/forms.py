@@ -225,7 +225,6 @@ class UsuarioChangeForm(UserChangeForm):
 
         for field in fields:
             if cleaned_data.get(field) is None:
-                print("aqui")
                 return cleaned_data
 
         cleaned_data['groups']          =   clean_groups(self, cleaned_data['groups'])

@@ -2,7 +2,7 @@ from django import forms
 from .models import Empresa, Categoria_Empresa
 import re
 
-class EmpresaRegistrationForm(forms.ModelForm):
+class EmpresaForm(forms.ModelForm):
 
     cep = forms.CharField(
         max_length=254,
@@ -129,7 +129,7 @@ class EmpresaRegistrationForm(forms.ModelForm):
     )
 
     def clean(self):
-        cleaned_data = super(EmpresaRegistrationForm, self).clean()
+        cleaned_data = super(EmpresaForm, self).clean()
 
         campos = [
             'cnpj_alterado',
@@ -154,7 +154,7 @@ class EmpresaRegistrationForm(forms.ModelForm):
             self.add_error('cnpj_alterado', "CNPJ inválido")
         else:
             cnpjTratado = trata_cnpj_apenas_numeros(cleaned_data.get("cnpj_alterado"))
-            if verifica_cnpj_unico(cnpjTratado):
+            if not self.instance.pk and verifica_cnpj_unico(cnpjTratado):
                 self.add_error('cnpj_alterado', "CNPJ já cadastrado")
                 
             cleaned_data['cnpj_alterado'] = cnpjTratado

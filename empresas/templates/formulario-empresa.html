@@ -6,7 +6,11 @@
 {% endblock %}
 
 {% block 'titulo' %}
-    Vitrine Digital | Cadastrar minha empresa
+    {% if id_empresa %}
+        Vitrine Digital | Editar minha empresa
+    {% else %}
+        Vitrine Digital | Cadastrar minha empresa
+    {% endif %}
 {% endblock %}
 
 {% block 'conteudo'%}
@@ -24,11 +28,19 @@
 
             <section id="form-cadastro">
                 <div class="container">
-                    <form
-                        method="POST"
-                        action="{% url 'valida_cadastro_empresa' %}"
-                        enctype="multipart/form-data"
-                    >
+                    {% if id_empresa %}
+                        <form
+                            method="POST"
+                            action="{% url 'valida_editar_empresa' id_empresa %}"
+                            enctype="multipart/form-data"
+                        >
+                    {% else %}
+                        <form
+                            method="POST"
+                            action="{% url 'valida_cadastrar_empresa' %}"
+                            enctype="multipart/form-data"
+                        >
+                    {% endif %}
                         {% csrf_token %}
 
                         <div class="titulo-campos">
