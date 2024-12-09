@@ -56,8 +56,8 @@
             <a href="{% url 'meus_dados_usuario' %}" class="sidebar-link profile-btn">
                 <!-- <div class="sidebar-profile-pic"></div> -->
                 <img
-                    class="sidebar-profile-pic"
-                    src="{% static 'images/img-perfil-exemplo.jpeg' %}"
+                    class="sidebar-profile-pic rounded-circle"
+                    src="{{ user.imagem.url }}"
                     alt="Sua imagem de perfil"
                     height="24px"
                     width="24px"

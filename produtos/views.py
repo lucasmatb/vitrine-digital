@@ -9,7 +9,7 @@ from empresas.views import validacao_usuario_possui_empresa
 from empresas.models import Empresa
 
 def retorna_visualizar_produto(request):
-    return render(request, 'visualizar-produto.html')
+    return render(request, 'visualizar-produto-usuario.html')
 
 def retorna_listagem_produtos_por_empresa(request, id_empresa):
     data = {}
