@@ -55,16 +55,16 @@
                                     </div>
                                 </div>
                                 <a
-                                    href="{% url 'editar_empresa' empresa.id %}"
-                                    class="btn"
-                                >
-                                    Editar
-                                </a>
-                                <a
                                     href="{% url 'listagem_produto_por_empresa' empresa.id %}"
                                     class="btn"
                                 >
                                     Produtos
+                                </a>
+                                <a
+                                    href="{% url 'editar_empresa' empresa.id %}"
+                                    class="btn"
+                                >
+                                    Editar
                                 </a>
                                 <a
                                     href="{% url 'excluir_empresa' empresa.id %}"

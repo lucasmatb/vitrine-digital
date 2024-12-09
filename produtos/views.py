@@ -2,52 +2,115 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from .models import Produto, Imagem_Produto
-from .forms import ProdutoForm, ImagemProdutoFormSet
+from .forms import ProdutoForm
+from django.shortcuts import redirect
+from django.contrib import messages
+from empresas.views import validacao_usuario_possui_empresa
+from empresas.models import Empresa
+
 def retorna_visualizar_produto(request):
     return render(request, 'visualizar-produto.html')
 
 def retorna_listagem_produtos_por_empresa(request, id_empresa):
-    return render(request, 'visualizar-produto.html')
+    data = {}
+    data['produtos'] = Produto.objects.filter(id_empresa=id_empresa).prefetch_related('categoria_produto')
+    for produto in data['produtos']:
+        produto.imagens = Imagem_Produto.objects.filter(id_produto=produto.id)
+    data['id_empresa'] = id_empresa
+    return render(request, 'listagem-produtos-lojista.html', data)
 
-def criar_produto(request):
-    if request.method == 'POST':
-        produto_form = ProdutoForm(request.POST)
-        formset = ImagemProdutoFormSet(request.POST, request.FILES)
+def criar_produto(request, id_empresa):
+    data = {}
+    data['id_empresa'] = id_empresa
+    if validacao_usuario_possui_empresa(request.user, id_empresa) == False:
+        messages.error(request, 'Esta empresa não pertence ao usuário logado')
+        return redirect('minhas_empresas_lojista')
 
-        if produto_form.is_valid() and formset.is_valid():
-            produto = produto_form.save()
-
-            for form in formset:
-                imagem = form.save(commit=False)
-                imagem.produto = produto
-                imagem.save()
-
-            return JsonResponse({'success': True, 'id': produto.id, 'nome': produto.nome})
-        return JsonResponse({'success': False, 'errors': form.errors})
-    return JsonResponse({'success': False, 'errors': 'Método não permitido'})
-
-def editar_produto(request, produto_id):
-    produto = get_object_or_404(Produto, id=produto_id)
+    produto_count = Produto.objects.filter(id_empresa=id_empresa).count()
+    if produto_count >= 50:
+        messages.error(request, 'Você chegou no limite de produtos para sua conta, o limite é 50.')
+        return redirect('minhas_empresas_lojista')
 
     if request.method == 'POST':
+        form = ProdutoForm(request.POST, request.FILES)
+        if form.is_valid():
+            empresa = Empresa.objects.get(pk=id_empresa)
+            produto = Produto.objects.create(
+                descricao   =  form.cleaned_data['descricao'],
+                preco       =  form.cleaned_data['preco'],
+                qtd         =  form.cleaned_data['qtd'],
+                ativo       =  form.cleaned_data['ativo'],
+                destaque    =  form.cleaned_data['destaque'],
+                id_empresa  =  empresa
+            )
 
-        produto_form = ProdutoForm(request.POST, instance=produto)
-        formset = ImagemProdutoFormSet(request.POST, request.FILES, queryset=Imagem_Produto.objects.filter(produto=produto))
+            produto.categoria_produto.add(*form.cleaned_data['categorias'])
 
-        if produto_form.is_valid() and formset.is_valid():
-            produto = produto_form.save()
+            imagens = request.FILES.getlist('imagens')  # Obtém todas as imagens enviadas
 
-            for form in formset:
-                imagem = form.save(commit=False)
-                imagem.produto = produto
-                if imagem.imagem:  # Se houver uma nova imagem, ela será salva
-                    imagem.save()
-            return JsonResponse({'success': True, 'id': produto.id, 'nome': produto.nome})
-        return JsonResponse({'success': False, 'errors': form.errors})
+            for imagem in imagens:
+                Imagem_Produto.objects.create(
+                    id_produto=produto,
+                    imagem=imagem
+                )
+                
+            messages.success(request, 'Produto criado com sucesso!')
+            return redirect('listagem_produto_por_empresa', id_empresa=id_empresa)
+    else:
+        data['form'] = ProdutoForm()
 
-    return JsonResponse({'success': False, 'errors': 'Método não permitido'})
+    return render(request, 'produto-form.html', data)
 
-def excluir_produto(request, produto_id):
-    produto = get_object_or_404(Produto, id=produto_id)
+def editar_produto(request, id_empresa, pk):
+    data = {}
+    data['id_empresa'] = id_empresa
+    data['id_produto'] = pk
+    if validacao_usuario_possui_empresa(request.user, id_empresa) == False:
+        messages.error(request, 'Este produto não pertence ao usuário logado')
+        return redirect('listagem_produto_por_empresa', id_empresa)
+
+    produto = get_object_or_404(Produto, id=pk, id_empresa=id_empresa)
+
+    if request.method == 'POST':
+        form = ProdutoForm(request.POST, request.FILES, instance=produto)
+        if form.is_valid():
+            produto.descricao   =  form.cleaned_data['descricao']
+            produto.preco       =  form.cleaned_data['preco']
+            produto.qtd         =  form.cleaned_data['qtd']
+            produto.ativo       =  form.cleaned_data['ativo']
+            produto.destaque    =  form.cleaned_data['destaque']
+            produto.save()
+
+            produto.categoria_produto.set(form.cleaned_data['categorias'])
+
+            imagens_antigas = Imagem_Produto.objects.filter(id_produto=produto)
+
+            if imagens_antigas:
+                imagens_antigas.delete()
+
+            imagens = request.FILES.getlist('imagens')
+
+            for imagem in imagens:
+                Imagem_Produto.objects.create(
+                    id_produto=produto,
+                    imagem=imagem
+                )
+
+            messages.success(request, 'Produto atualizado com sucesso!')
+            return redirect('listagem_produto_por_empresa', id_empresa=id_empresa)
+    else:
+        form = ProdutoForm(instance=produto)
+        form.fields['categorias'].initial = produto.categoria_produto.all()
+        data['imagens_existentes'] = Imagem_Produto.objects.filter(id_produto=produto)
+
+    data['form'] = form
+    return render(request, 'produto-form.html', data)
+
+def excluir_produto(request, id_empresa, pk):
+    produto = get_object_or_404(Produto, id=pk)
+    if validacao_usuario_possui_empresa(request.user, id_empresa) == False:
+        messages.error(request, 'Este produto não pertence ao usuário logado')
+        return redirect('listagem_produto_por_empresa', id_empresa)
+
     produto.delete()
-    return JsonResponse({'success': True})
+    return redirect('listagem_produto_por_empresa', id_empresa)

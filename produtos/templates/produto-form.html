@@ -1,12 +1,200 @@
-<div>
-    {{ produto_form.as_p }}
+{% extends 'base.html' %}
+{% load static %}
 
-    <h3>Imagens</h3>
-    {{ formset.management_form }}
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/cadastro-produto.css' %}">
+{% endblock %}
 
-    {% for customform in formset %}
-        <div>
-            {{ customform.as_p }}
+{% block 'titulo' %}
+    {% if id_produto %}
+        Vitrine Digital | Editar produto
+    {% else %}
+        Vitrine Digital | Cadastrar produto
+    {% endif %}
+{% endblock %}
+
+{% block 'conteudo'%}
+
+    <main>
+        <div class="main-scrollable">
+            {% if messages %}
+                {% for i in messages %}   
+                    <div class="alert {{i.tags}}" role="alert">
+                        {{i}} 
+                    </div>
+        
+                {% endfor %}
+            {% endif %}
+
+            {% if id_produto %}
+                <form
+                    method="POST"
+                    action="{% url 'editar_produto' id_empresa id_produto %}"
+                    enctype="multipart/form-data"
+                >
+            {% else %}
+                <form
+                    method="POST"
+                    action="{% url 'criar_produto' id_empresa %}"
+                    enctype="multipart/form-data"
+                >
+            {% endif %}
+                {% csrf_token %}
+            
+                <div>
+                    <h2 class="mb-5">Dados do Produto</h2>
+                    <div class="input-wrapper">
+                        <label for="">Descricao <span>*</span></label>
+                        {{ form.descricao }}
+                        {% if form.descricao.errors %}
+                            <div>
+                                {% for error in form.descricao.errors %}
+                                    <div>
+                                        <strong>{{ error }}</strong>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="">Preço <span>*</span></label>
+                        {{ form.preco }}
+                        {% if form.preco.errors %}
+                            <div>
+                                {% for error in form.preco.errors %}
+                                    <div>
+                                        <strong>{{ error }}</strong>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="">Quantidade <span>*</span></label>
+                        {{ form.qtd }}
+                        {% if form.qtd.errors %}
+                            <div>
+                                {% for error in form.qtd.errors %}
+                                    <div>
+                                        <strong>{{ error }}</strong>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="">Ativo</label>
+                        {{ form.ativo }}
+                        {% if form.ativo.errors %}
+                            <div>
+                                {% for error in form.ativo.errors %}
+                                    <div>
+                                        <strong>{{ error }}</strong>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="">Destaque</label>
+                        {{ form.destaque }}
+                        {% if form.destaque.errors %}
+                            <div>
+                                {% for error in form.destaque.errors %}
+                                    <div>
+                                        <strong>{{ error }}</strong>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="">Categoria(s) da empresa <span>(mínimo 1, máximo 10) <span>*</span></label>
+                        {{ form.categorias }}
+                        {% if form.categorias.errors %}
+                            <div>
+                                {% for error in form.categorias.errors %}
+                                    <div>
+                                        <strong>{{ error }}</strong>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="">Imagens</label>
+                        {{ form.imagens }}
+                        {% if form.imagens.errors %}
+                            <div>
+                                {% for error in form.imagens.errors %}
+                                    <div>
+                                        <strong>{{ error }}</strong>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Área para exibir prévias das imagens -->
+                <div id="image-preview-container" class="mt-3" style="display:none;">
+                    <label for="imagens">Imagens Selecionadas:</label>
+                    <div id="image-preview" class="d-flex flex-wrap">
+                    </div>
+                </div>
+
+                {% if imagens_existentes %}
+                    <div id="imagens-existentes" class="mt-2"> 
+                        {% for imagem in imagens_existentes %}
+                            <img
+                                src="{{ imagem.imagem.url }}"
+                                alt="Imagem da empresa de capa"
+                            >
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <button class="btn btn-success btn-lg mt-5" type="submit">Salvar Produto</button>
+            </form>
         </div>
-    {% endfor %}
-</div>
+    </main>
+
+    <script>
+        document.getElementById('imagens').addEventListener('click', function(event) {
+            let previewImagensExistentes = document.getElementById('imagens-existentes');
+
+            if (previewImagensExistentes) {
+                previewImagensExistentes.style.display = 'none';
+            }
+        })
+
+        document.getElementById('imagens').addEventListener('change', function(event) {
+            let previewContainer = document.getElementById('image-preview');
+            let previewContainerWrapper = document.getElementById('image-preview-container');
+            
+            if (event.target.files.length === 0) {
+                previewContainerWrapper.style.display = 'none';
+                return;
+            }
+
+            previewContainerWrapper.style.display = 'block';
+    
+            previewContainer.innerHTML = '';
+
+            Array.from(event.target.files).forEach(file => {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    let img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.height = '100px';
+                    img.style.margin = '5px';
+                    img.style.objectFit = 'cover';
+                    img.classList.add('img-thumbnail');
+                    previewContainer.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            });
+        });
+    </script>
+
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/listagem-produtos-lojista.css' %}">
+{% endblock %}
+
+{% block 'titulo' %}
+    Vitrine Digital | Meus produtos
+{% endblock %}
+
+{% block 'conteudo'%}
+    <main>
+        <div class="main-scrollable">
+            <section class="secao-meus-produtos">
+                <div class="container">
+                    {% if messages %}
+                        {% for i in messages %}   
+                            <div class="alert {{i.tags}}" role="alert">
+                                {{i}} 
+                            </div>
+                
+                        {% endfor %}
+                    {% endif %}
+                    <h1>Meus produtos</h1>
+                    <a href="{% url 'criar_produto' id_empresa %}">Cadastrar</a>
+                    <div class="meus-produtos-lojista">
+                        
+                        {% for produto in produtos %}
+                            <div class="card card-empresa">
+                                <div>
+                                    {% for imagem in produto.imagens %}
+                                        <img
+                                            src="{{ imagem.imagem.url }}"
+                                            alt="Imagem do produto"
+                                            class="img-responsive"
+                                        >
+                                    {% endfor %}
+                                </div>
+                                <div class="textos">
+                                    <p class="descricao">{{ produto.descricao }}</p>
+                                    <p class="preco">
+                                        {{ produto.preco }}
+                                    </p>
+                                    <p class="qtd">{{ produto.qtd }}</p>
+                                    <p class="ativo">
+                                        {% if produto.ativo %}
+                                            Ativo
+                                        {% else %}
+                                            Inativo
+                                        {% endif %}
+                                    </p>
+                                    <p class="destaque">
+                                        {% if produto.destaque %}
+                                            Destacado
+                                        {% else %}
+                                            Não destacado
+                                        {% endif %}
+                                    </p>
+                                    Categorias:
+                                    <div class="categoria-favoritos">
+                                        {% for categoria in produto.categoria_produto.all %}
+                                            <div class="categoria">{{ categoria.descricao }}</div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <a
+                                    href="{% url 'editar_produto' id_empresa produto.id %}"
+                                    class="btn"
+                                >
+                                    Editar
+                                </a>
+                                <a
+                                    href="{% url 'excluir_produto' id_empresa produto.id %}"
+                                    class="btn"
+                                >
+                                    Excluir
+                                </a>
+                            </div>
+                        {% endfor %}
+                        
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+{% endblock %}

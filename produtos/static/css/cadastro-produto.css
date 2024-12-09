@@ -1,0 +1,248 @@
+/* #FF6B6B
+#FFD93D
+#6BCB77
+#4D96FF
+#A0E7E5
+#FFAEBC
+#FDFD96
+#A9DEF9
+#FFC6FF
+#FF9CEE
+#B5EAEA
+#FFADAD
+#FFC3A0
+#FF9A8B
+#FFD1DC
+#FFDAA5
+#FAFFB0
+#B5E48C
+#C1FBA4
+#99DDCC
+#B8FFF9
+#FFABAB
+#FFD5CD
+#CAF7E3
+#F3D1F4
+#A0C4FF
+#FFA1E3
+#B28DFF
+#EDE7B1
+#D4A5A5
+#FF7171
+#FF85A1
+#BFCDE0
+#92A9BD
+#FFD4A3
+#FFAAA5
+#FFD3BA
+#A9E5BB
+#EADFFD
+#CDB4DB
+#FFC8DD
+#FFDFD3
+#FEC8D8
+#FF9C71
+#FF8787
+#B8A9C9
+#E8A87C
+#B0E57C
+#C3B1E1
+#6E85B7 */
+
+.detalhes {
+    & .container {
+
+        & .preco-funcionamento {
+            display: flex;
+            flex-flow: row;
+            gap: var(--spc-500);
+
+            @media all and (max-width: 767px){
+                flex-flow: column;
+            }
+            
+            & .preco {
+                flex: 1;
+                display: flex;
+                flex-flow: column;
+                gap: var(--spc-100);
+                justify-content: start;
+                
+                @media all and (max-width: 767px){
+                    flex-flow: row;
+                }
+
+                & > div {  
+                    flex: 1;
+                    display: flex;
+                    flex-flow: column;
+                    gap: var(--spc-50);
+                    
+                    & .preco-mensal {
+                        font-size: var(--fs-500);
+                    }
+                    
+                    & .preco-anual {
+                        font-size: var(--fs-100);
+                    }
+                }
+
+                & ul {
+                    list-style: none;
+                    font-size: var(--fs-100);
+                }
+            }
+            
+            & .como-funciona {
+                flex: 2;
+                background-color: #ffffff6b;
+                border-radius: 2rem;
+                padding: var(--spc-400) var(--spc-500);
+            }
+        }
+    }
+}
+
+
+#form-cadastro {
+    & .container {
+        background-color: #ffffff6b;
+        border-radius: 2rem;
+
+        & form {
+            display: flex;
+            flex-flow: column;
+            align-items: start;
+            gap: var(--spc-700);
+
+            & .titulo-campos {
+                padding-top: 10px;
+                width: 100%;
+                display: flex;
+                flex-flow: column;
+                align-items: start;
+                gap: var(--spc-500);
+
+                & p {
+                    font-size: var(--spc-500);
+                    font-weight: 500;
+
+                    & > span {
+                        font-size: var(--fs-100) !important;
+                    }
+                }
+
+                & p > span, & label > span {
+                    color: red;
+                }
+
+                & .conjuntos-campos {
+                    display: flex;
+                    flex-flow: row wrap;
+                    gap: var(--spc-300);
+                    width: 100%;
+
+                    & .input-wrapper {
+                        flex: 32%;
+                        min-width: 25rem;
+                        max-width: 32%;
+                        display: flex;
+                        flex-flow: column;
+                        align-items: start;
+                        gap: var(--spc-80);
+
+                        & input {
+                            /* all: unset; */
+                            width: 100%;
+                            border: solid 1px #cdcdcd;
+                            border-radius: 0.5rem;
+                            padding: var(--spc-90) var(--spc-200);
+                            font-family: inherit;
+                        }
+
+                        & select {
+                            /* all: unset; */
+                            width: 100%;
+                            border: solid 1px #cdcdcd;
+                            border-radius: 0.5rem;
+                            padding: var(--spc-90) var(--spc-200);
+                            font-family: inherit;
+                        }
+                    }
+                }
+
+                .categorias {
+                    display: flex;
+                    flex-flow: column;
+                    gap: var(--spc-400);
+                
+                    & .categorias-itens {
+                        display: flex;
+                        flex-flow: row wrap;
+                        gap: var(--spc-200);
+                
+                        & .categoria {
+                            display: flex;
+                            flex-flow: row;
+                            gap: var(--spc-90);
+                            /* background-color: #ECEAFF; */
+                            border-radius: 100vw;
+                            padding: var(--spc-80) var(--spc-400);
+                            /* border: solid 2px #e8e8e8; */
+                            border: solid 1.5px black;
+                            cursor: pointer;
+                            
+                
+                            &.selecionado {
+                                border-color: rgb(138, 205, 138);
+                                background-color: rgb(195, 235, 195);
+                                /* border-color: rgb(115, 190, 115); */
+                                
+                
+                                & .img-nao-selecionado {
+                                    display: none;
+                                }
+                
+                                & .img-selecionado {
+                                    display: block;
+                                }
+                            }
+                
+                            &:not(.selecionado) {
+                
+                                & .img-nao-selecionado {
+                                    display: block;
+                                }
+                    
+                                & .img-selecionado {
+                                    display: none;
+                                }
+                            }
+                
+                            & img {
+                                max-width: 1.5rem;
+                
+                            }
+                
+                            & span {
+                                font-size: var(--fs-100);
+                            }
+                        }
+                    }
+                }
+            }
+            
+            & .form-botao {
+                all: unset;
+                cursor: pointer;
+                border-radius: 0.5rem;
+                background-color: #E9E0FF;
+                /* background-color: #f0f0f0; */
+                padding: var(--spc-100) var(--spc-300);
+                align-self: end;
+                min-width: 15rem;
+                text-align: center;
+            }
+        }
+    }
+}

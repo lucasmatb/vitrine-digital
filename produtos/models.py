@@ -50,6 +50,6 @@ class Imagem_Produto(models.Model):
         upload_to=retornaCaminhoImagemAleatorio,
         variations={'thumb': {'width': 480, 'height': 480, 'crop': True}},
         blank=False,
-        verbose_name="Imagem perfil"
+        verbose_name="Imagem produto"
     )
     uploaded_at = models.DateTimeField(auto_now_add=True)

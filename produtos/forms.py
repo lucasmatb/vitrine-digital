@@ -1,11 +1,5 @@
 from django import forms
-from produtos.models import Produto, Categoria_Produto, Imagem_Produto
-from django.forms import modelformset_factory
-
-class ImagemProdutoForm(forms.ModelForm):
-    class Meta:
-        model = Imagem_Produto
-        fields = ['imagem']
+from produtos.models import Produto, Categoria_Produto
 
 class ProdutoForm(forms.ModelForm):
     categorias = forms.ModelMultipleChoiceField(
@@ -19,13 +13,22 @@ class ProdutoForm(forms.ModelForm):
         ),
         required=True
     )
+    imagens = forms.ImageField(
+        widget=forms.ClearableFileInput(
+            attrs={
+                'id': 'imagens',
+                'name': 'imagens',
+                'multiple': True
+            }
+        ),
+        required=False
+    )
 
     class Meta:
         model = Produto
-        fields = ['descricao', 'preco', 'qtd', 'ativo', 'destaque', 'id_empresa', 'categorias']
+        fields = ['descricao', 'preco', 'qtd', 'ativo', 'destaque', 'categorias', 'imagens']
 
-ImagemProdutoFormSet = modelformset_factory(
-    Imagem_Produto,
-    form=ImagemProdutoForm,
-    extra=1
-)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
