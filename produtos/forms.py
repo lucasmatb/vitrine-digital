@@ -18,7 +18,9 @@ class ProdutoForm(forms.ModelForm):
             attrs={
                 'id': 'imagens',
                 'name': 'imagens',
-                'multiple': True
+                'allow_multiple_selected': True,
+                'multiple': True,
+                'accept': 'image/png, image/jpg, image/jpeg'
             }
         ),
         required=False
