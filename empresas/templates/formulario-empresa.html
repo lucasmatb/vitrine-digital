@@ -302,9 +302,18 @@
     
     <script>
 
+        function verificaExistenciaImagem(event, idContainerImagem) {
+            const arquivo = event.target.files[0];
+
+            if (!arquivo) {
+                document.getElementById(idContainerImagem).innerHTML = '';
+                document.getElementById('label-'+idContainerImagem).innerText = ''
+            }
+
+        }
+
         function exibirImagem(event, idContainerImagem) {
             const arquivo = event.target.files[0];
-            
             if (arquivo) {
                 const urlImagem = URL.createObjectURL(arquivo);
     
@@ -313,9 +322,10 @@
                 imagem.alt = "Imagem selecionada";
                 imagem.style.maxWidth = "300px";
                 imagem.style.marginTop = "10px";
-    
+
                 const divImagem = document.getElementById(idContainerImagem);
                 const labelDivImagem = document.getElementById('label-'+idContainerImagem);
+    
                 labelDivImagem.innerText = "Prévia da imagem";
                 divImagem.innerHTML = '';
                 divImagem.appendChild(imagem);

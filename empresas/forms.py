@@ -85,24 +85,27 @@ class EmpresaForm(forms.ModelForm):
     )
 
     imagem_capa = forms.ImageField(
-        required=False,
+        required=True,
         widget=forms.FileInput(attrs={
             'id': 'imagem_capa',
             'class': 'form-control mb-4',
             'placeholder': 'Carregue uma imagem de capa',
             'accept': 'image/png, image/jpg, image/jpeg',
-            'onchange': 'exibirImagem(event, "imagem-capa")'
+            'onchange': 'exibirImagem(event, "imagem-capa")',
+            'onclick': 'verificaExistenciaImagem(event, "imagem-capa")',
+            'required': 'required'
         })
     )
 
     imagem_perfil = forms.ImageField(
-        required=False,
         widget=forms.FileInput(attrs={
             'id': 'imagem_perfil',
             'class': 'form-control mb-4',
             'placeholder': 'Carregue uma imagem de perfil',
             'accept': 'image/png, image/jpg, image/jpeg',
-            'onchange': 'exibirImagem(event, "imagem-perfil")'
+            'onchange': 'exibirImagem(event, "imagem-perfil")',
+            'onclick': 'verificaExistenciaImagem(event, "imagem-perfil")',
+            'required': 'required'
         })
     )
 

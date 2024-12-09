@@ -20,10 +20,10 @@ class ProdutoForm(forms.ModelForm):
                 'name': 'imagens',
                 'allow_multiple_selected': True,
                 'multiple': True,
-                'accept': 'image/png, image/jpg, image/jpeg'
+                'accept': 'image/png, image/jpg, image/jpeg',
+                'required': 'required'
             }
-        ),
-        required=False
+        )
     )
 
     class Meta:
