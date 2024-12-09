@@ -99,10 +99,11 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     )
 
     imagem = StdImageField(
-        'imagem',
+        verbose_name="imagem",
         default='default_profile.jpg',
         upload_to=retornaCaminhoImagemAleatorio,
         variations={'thumb': {'width': 480, 'height': 480, 'crop': True}},
+        blank=False
     )
 
     favorito_produto = models.ManyToManyField(Produto)

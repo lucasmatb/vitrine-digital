@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib import messages, auth
-from .forms import UsuarioLoginForm, UsuarioRegistrationForm
+from .forms import UsuarioLoginForm, UsuarioRegistrationForm, UsuarioEditForm
 from vitrine_digital.helper import encriptarAESGCM, descriptarAESGCM
 from .models import Usuario
 from django.contrib.auth.models import Group
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth import update_session_auth_hash
 
 def login(request):
     if request.user.is_authenticated:
@@ -88,9 +91,31 @@ def retorna_empresas_favoritas_usuario(request):
     return render(request, 'empresas-favoritas-usuario.html')#, data)
 
 def retorna_meus_dados_usuario(request):
-    #data = {}
-    #data['form'] = UsuarioRegistrationForm()
-    return render(request, 'meus-dados-usuario.html')#, data)
+    data = {}
+
+    usuario = get_object_or_404(Usuario, id=request.user.id)
+
+    if request.method == 'POST':
+        form = UsuarioEditForm(request.POST, request.FILES or None)
+        if form.is_valid():
+            if form.cleaned_data['imagem'] is not None and form.cleaned_data['imagem'] != '':
+                usuario.imagem = form.cleaned_data['imagem']
+            if form.cleaned_data['password'] is not None and form.cleaned_data['password'] != '':
+                usuario.password = make_password(form.cleaned_data['password'])
+                update_session_auth_hash(request, usuario)
+            usuario.save()
+            messages.success(request, 'Usuário atualizado com sucesso!')
+            return redirect('meus_dados_usuario')
+    else:
+        form = UsuarioEditForm(instance=usuario)
+
+    data['form'] = form
+    data['email'] = descriptarAESGCM(usuario.email)
+    data['cpf'] = descriptarAESGCM(usuario.cpf)
+    data['first_name'] = descriptarAESGCM(usuario.first_name)
+    data['last_name'] = descriptarAESGCM(usuario.last_name)
+
+    return render(request, 'meus-dados-usuario.html', data)
 
 def retorna_produtos_salvos_usuario(request):
     #data = {}

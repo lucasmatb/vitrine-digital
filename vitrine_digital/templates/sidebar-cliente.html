@@ -54,8 +54,6 @@
     <div class="sidebar-footer">
         <div class="sidebar-footer-items">
             <a href="{% url 'meus_dados_usuario' %}" class="sidebar-link profile-btn">
-                <!-- <div class="sidebar-profile-pic"></div> -->
-                 {{user}}
                 <img
                     class="sidebar-profile-pic rounded-circle"
                     src="{{ user.imagem.url }}"

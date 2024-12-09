@@ -14,7 +14,11 @@ class UsuarioLoginForm(forms.ModelForm):
             'password'
         ]
         widgets = {
-            'password': forms.PasswordInput()
+            'password': forms.PasswordInput(attrs={
+            'id': 'password',
+            'name': 'password',
+            'autocomplete': 'on'
+        })
         }
 
 class UsuarioRegistrationForm(forms.ModelForm):
@@ -60,13 +64,21 @@ class UsuarioRegistrationForm(forms.ModelForm):
     )
     password= forms.CharField(
         label=("Senha"),
-        widget=forms.PasswordInput(),
+        widget=forms.PasswordInput(attrs={
+            'id': 'password',
+            'name': 'password',
+            'autocomplete': 'on'
+        }),
         max_length=254,
         required=True
     )
     confirm_password= forms.CharField(
         label=("Confirmar senha"),
-        widget=forms.PasswordInput(),
+        widget=forms.PasswordInput(attrs={
+            'id': 'confirm-password',
+            'name': 'confirm-password',
+            'autocomplete': 'on'
+        }),
         max_length=254,
         required=True
     )
@@ -237,7 +249,48 @@ class UsuarioChangeForm(UserChangeForm):
             cleaned_data['is_superuser'] = True
 
         return cleaned_data
+    
+class UsuarioEditForm(forms.ModelForm):
+    password= forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            'id': 'password',
+            'name': 'password',
+            'autocomplete': 'on'
+        }),
+        max_length=254,
+        required=False
+    )
+    confirm_password= forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            'id': 'confirm-password',
+            'name': 'confirm-password',
+            'autocomplete': 'on'
+        }),
+        max_length=254,
+        required=False
+    )
+    imagem = forms.ImageField(
+        widget=forms.FileInput(attrs={
+            'id': 'nova-imagem',
+            'name': 'nova-imagem',
+            'class': 'form-control mb-4',
+            'placeholder': 'Carregue uma imagem de perfil',
+            'accept': 'image/png, image/jpg, image/jpeg'
+        }),
+        required=False
+    )
 
+    class Meta:
+        model = Usuario
+        fields = ['imagem', 'password', 'confirm_password']
+    
+    def clean(self):
+        cleaned_data = super(UsuarioEditForm, self).clean()
+            
+        if cleaned_data.get("password") != cleaned_data.get("confirm_password"):
+            self.add_error('confirm_password', "As senhas não coincidem")
+
+        return cleaned_data
 
 def custom_clean(self, forms, campos, admin):
     cleaned_data = super(forms, self).clean()
