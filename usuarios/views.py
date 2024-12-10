@@ -9,6 +9,8 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import update_session_auth_hash
 from django.http import JsonResponse
+from empresas.models import Empresa, Categoria_Empresa
+from django.db.models import Count
 
 def login(request):
     if request.user.is_authenticated:
@@ -124,20 +126,53 @@ def retorna_produtos_salvos_usuario(request):
     return render(request, 'produtos-salvos-usuario.html')#, data)
 
 def retorna_pesquisar_empresas_usuario(request):
-    #data = {}
-    #data['form'] = UsuarioRegistrationForm()
-    return render(request, 'pesquisar-empresas-usuario.html')#, data)
+    data = {}
+
+    pesquisa = request.GET.get('pesquisa')
+
+    if not pesquisa:
+        empresas = Empresa.objects.all().order_by('nome_fantasia').annotate(
+            favoritos=Count('favoritos_empresas')
+        )
+    else:
+        empresas = Empresa.objects.filter(nome_fantasia__icontains=pesquisa).order_by('nome_fantasia').annotate(
+            favoritos=Count('favoritos_empresas')
+        )
+
+    empresas_com_favoritos = [
+        {
+            'id': empresa.id,
+            'nome_fantasia': empresa.nome_fantasia,
+            'cnpj': empresa.cnpj,
+            'imagem_perfil': empresa.imagem_perfil,
+            'imagem_capa': empresa.imagem_capa,
+            'categorias': empresa.empresa_categoria.all(),
+            'favorito_usuario': empresa.favoritos_empresas.filter(id=request.user.id).exists(),
+            'favoritos': empresa.favoritos
+        }
+        for empresa in empresas
+    ]
+
+    data['empresas'] = empresas_com_favoritos
+
+    return render(request, 'pesquisar-empresas-usuario.html', data)
 
 def cria_pedido_lojista_por_usuario(request):
     try:
-        Pedido_Lojista.objects.create(
+        if Pedido_Lojista.objects.filter(
             status_pedido='Aguardando avaliação',
-            ultimo_pagamento=None,
-            ativo=True,
-            id_tipo_assinatura=None,
             id_usuario=request.user
-        )
+        ).exists():
+            return JsonResponse({'status': 'error', 'message': 'Você já tem um pedido em aberto.'})
+        else:
+            Pedido_Lojista.objects.create(
+                status_pedido='Aguardando avaliação',
+                ultimo_pagamento=None,
+                ativo=True,
+                id_tipo_assinatura=None,
+                id_usuario=request.user
+            )
 
-        return JsonResponse({'status': 'success', 'message': 'Pedido criado com sucesso.'})
+            return JsonResponse({'status': 'success', 'message': 'Pedido criado com sucesso.'})
     except Exception as e:
         return JsonResponse({'status': 'error', 'message': str(e)})

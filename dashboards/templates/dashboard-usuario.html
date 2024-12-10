@@ -75,10 +75,9 @@
                                 </div>
                             </div>
                         </div>
+                        <hr>
+                    {% endfor %}
                 </section>
-
-                <hr>
-            {% endfor %}
             {% empty %}
                 <p>Não há empresas cadastradas em nenhuma categoria.</p>
             {% endfor %}
@@ -107,7 +106,6 @@
                 }
             })
             .catch(error => {
-                console.error('Erro:', error);
                 botao.disabled = false;
             });
         });
