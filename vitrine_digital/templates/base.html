@@ -30,14 +30,18 @@
         {% include sidebar_template %}
 
     {% else %}
-      <div class="container-scrollable">
+      <!-- <div class="container-main"> -->
+        
+      {% include 'sidebar-noauth.html' %}
+      <main>
 
-        {% include 'sidebar-noauth.html' %}
-      
-    {% endif %}
-
+        <!-- {% include 'sidebar-noauth.html' %} -->
+        
+        {% endif %}
+        
         {% block 'conteudo' %}{% endblock%}
-
-      </div>
+        
+      </main>
+      <!-- </div> -->
   </body>
 </html>

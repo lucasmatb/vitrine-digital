@@ -11,7 +11,7 @@
 
 {% block 'conteudo' %}
 
-<div class="container container-main">
+<section class="secao-login">
 
     {% if messages %}
         {% for i in messages %}   
@@ -50,6 +50,6 @@
             <a href="{% url 'cadastro' %}">Cadastre-se</a>
         </div>
     </div>
-</div>
+</section>
 
 {% endblock %}

@@ -1,6 +1,10 @@
 body {
+    overflow: auto;
+    overflow-x: hidden;
+    
     & main {
-        overflow-y: scroll !important;
+        all: unset;
+        /* overflow-y: scroll !important; */
         display: flex;
         flex-flow: column;
         gap: var(--spc-1300);

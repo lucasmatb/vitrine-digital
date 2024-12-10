@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/login-usuario.css' %}">
+{% endblock %}
 
 {% block 'titulo' %}
     Cadastro
@@ -6,8 +11,7 @@
 
 {% block 'conteudo'%}
 
-<div class="container">
-    <br>
+<section class="secao-cadastro">
 
     {% if messages %}
       {% for i in messages %}   
@@ -18,109 +22,115 @@
       {% endfor %}
     {% endif %}
 
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <h1>Cadastre-se</h1>
-            <hr>
-            <form
-                method="POST"
-                action="{% url 'valida_cadastro' %}"
-            >
-                {% csrf_token %}
+    <div class="container-cadastro">
+        <h1>Cadastre-se</h1>
+        <hr>
+        <form
+            method="POST"
+            action="{% url 'valida_cadastro' %}"
+        >
+            {% csrf_token %}
 
-                <label>Primeiro nome:</label>
-                <br>
+            <div class="input-wrapper">
+                <label>Primeiro nome</label>
                 {{ form.first_name }}
-                <br>
-                {% if form.first_name.errors %}
-                    <div>
-                        {% for error in form.first_name.errors %}
-                            <div>
-                                <strong>{{ error }}</strong>
-                            </div>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-                <br>
-                <label>Último nome:</label>
-                <br>
+            </div>
+
+            {% if form.first_name.errors %}
+                <div>
+                    {% for error in form.first_name.errors %}
+                        <div>
+                            <strong>{{ error }}</strong>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="input-wrapper">
+                <label>Último nome</label>
                 {{ form.last_name }}
-                <br>
-                {% if form.last_name.errors %}
-                    <div>
-                        {% for error in form.last_name.errors %}
-                            <div>
-                                <strong>{{ error }}</strong>
-                            </div>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-                <br>
-                <label>CPF:</label>
-                <br>
+            </div>
+
+            {% if form.last_name.errors %}
+                <div>
+                    {% for error in form.last_name.errors %}
+                        <div>
+                            <strong>{{ error }}</strong>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="input-wrapper">
+                <label>CPF</label>
                 {{ form.cpf }}
-                <br>
-                {% if form.cpf.errors %}
-                    <div>
-                        {% for error in form.cpf.errors %}
-                            <div>
-                                <strong>{{ error }}</strong>
-                            </div>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-                <br>
-                <label>Email:</label>
-                <br>
+            </div>
+
+            {% if form.cpf.errors %}
+                <div>
+                    {% for error in form.cpf.errors %}
+                        <div>
+                            <strong>{{ error }}</strong>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="input-wrapper">
+                <label>Email</label>
                 {{ form.email }}
-                <br>
-                {% if form.email.errors %}
-                    <div>
-                        {% for error in form.email.errors %}
-                            <div>
-                                <strong>{{ error }}</strong>
-                            </div>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-                <br>
-                <label>Senha:</label>
-                <br>
+            </div>
+
+            {% if form.email.errors %}
+                <div>
+                    {% for error in form.email.errors %}
+                        <div>
+                            <strong>{{ error }}</strong>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="input-wrapper">
+                <label>Senha</label>
                 {{ form.password }}
-                <br>
-                {% if form.password.errors %}
-                    <div>
-                        {% for error in form.password.errors %}
-                            <div>
-                                <strong>{{ error }}</strong>
-                            </div>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-                <br>
+            </div>
+
+            {% if form.password.errors %}
+                <div>
+                    {% for error in form.password.errors %}
+                        <div>
+                            <strong>{{ error }}</strong>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="input-wrapper">
                 <label>Confirmar senha:</label>
-                <br>
                 {{ form.confirm_password }}
-                <br>
-                {% if form.confirm_password.errors %}
-                    <div>
-                        {% for error in form.confirm_password.errors %}
-                            <div>
-                                <strong>{{ error }}</strong>
-                            </div>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-                <br>
-                <br>
-                <button class="btn btn-success btn-lg" type="submit">Enviar</button>
-                <br>
-                <br>
-                <a href="{% url 'login' %}" class="btn btn-info btn-lg">Voltar pro Login</a>
-            </form>
+            </div>
+
+            {% if form.confirm_password.errors %}
+                <div>
+                    {% for error in form.confirm_password.errors %}
+                        <div>
+                            <strong>{{ error }}</strong>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <button class="btn btn-success btn-lg" type="submit">Enviar</button>
+
+        </form>
+        
+        <div class="trocar-login-cadastro">
+            <span>Já tem uma conta?</span>
+            <a href="{% url 'login' %}">Faça login</a>
         </div>
     </div>
-</div>
+</section>
 
 <script>
     $(document).ready(function(){

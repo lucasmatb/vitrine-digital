@@ -1,14 +1,17 @@
-.container-scrollable {
-    height: 100%;
-
+body {
+    overflow: auto;
+    
+    & main {
+        all: unset;
+    }
 }
 
-.container-main {
+.secao-cadastro, .secao-login {
     margin: 0 auto;
     width: max-content;
     gap: var(--spc-400);
-    overflow-y: auto;
-
+    padding: var(--spc-700) var(--spc-300);
+    
     & .alert {
         color: red;
         padding: 0;
@@ -16,13 +19,14 @@
         font-size: var(--fs-100);
     }
     
-    & .container-login {
+    & .container-login, & .container-cadastro {
         max-width: 60rem;
         min-width: 60rem;
         display: flex;
         flex-flow: column;
         gap: var(--spc-600);
-
+        overflow-y: auto;
+        
         & form {
             display: flex;
             flex-flow: column;
