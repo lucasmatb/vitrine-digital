@@ -21,7 +21,12 @@
         
                 {% endfor %}
             {% endif %}
-            <button id="botao-pedido-lojista" name="botao-pedido-lojista">Solicitar perfil lojista</button>
+
+            {% if pedido_aguardo == 'usuario' %}
+                <button id="botao-pedido-lojista" name="botao-pedido-lojista">Solicitar perfil lojista</button>
+            {% elif pedido_aguardo == 'aguardando' %}
+                Seu pedido para perfil lojista está em análise!
+            {% endif %}
 
             {% for categoria, empresas in data.items %}
                 <section>
@@ -86,29 +91,31 @@
 
     <script>
         const botao = document.querySelector("#botao-pedido-lojista");
-        botao.addEventListener("click", (e)=>{
-            e.preventDefault();
-            botao.disabled = true;
-            const url = "/usuarios/pedido-lojista/"
-            fetch(url, {
-                method: "POST",
-                headers: {
-                    'X-CSRFToken': '{{ csrf_token }}',
-                    'Content-Type': 'application/json'
-                },
-            })
-            .then(response => response.json())
-            .then(data => {
-                if(data.status === 'success'){
-                    botao.outerHTML = "<div><p>Seu pedido foi enviado para avaliação.</p></div><div><p>Você receberá um email com informações em breve.</p></div>";
-                }else{
-                    botao.outerHTML = "<div><p>Ocorreu um erro.</p></div><div><p>Tente novamente mais tarde.</p></div>";
-                }
-            })
-            .catch(error => {
-                botao.disabled = false;
-            });
-        });
+        if (botao) {
+            botao.addEventListener("click", (e)=>{
+                e.preventDefault();
+                botao.disabled = true;
+                const url = "/usuarios/pedido-lojista/"
+                fetch(url, {
+                    method: "POST",
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',
+                        'Content-Type': 'application/json'
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if(data.status === 'success'){
+                        botao.outerHTML = "<div><p>Seu pedido foi enviado para avaliação.</p></div><div><p>Você receberá um email com informações em breve.</p></div>";
+                    }else{
+                        botao.outerHTML = "<div><p>Ocorreu um erro.</p></div><div><p>Tente novamente mais tarde.</p></div>";
+                    }
+                })
+                .catch(error => {
+                    botao.disabled = false;
+                });
+            });    
+        }
 
         function favnotfav(id_icone, numero_favoritos, id_empresa) {
             const url = "/empresas/favorita-nao-favorita-empresa/" + id_empresa + "/"

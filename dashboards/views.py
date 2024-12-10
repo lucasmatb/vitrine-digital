@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 from empresas.models import Empresa, Categoria_Empresa
+from usuarios.models import Pedido_Lojista
 from django.db.models import Count
-
-# Create your views here.
 
 def home(request):
     if request.user.is_authenticated:
@@ -13,7 +12,6 @@ def home(request):
 def retorna_dashboard_usuario(request):
     data = {}
 
-    # Filtrar categorias que têm pelo menos uma empresa associada
     categorias = Categoria_Empresa.objects.annotate(
         num_empresas=Count('empresa')
     ).filter(num_empresas__gt=0)
@@ -39,7 +37,20 @@ def retorna_dashboard_usuario(request):
 
         data[categoria.descricao] = empresas_com_favoritos
 
-    return render(request, 'dashboard-usuario.html', {'data': data})
+    if request.user.has_perm('empresas.add_empresa'):
+        usuario_tem_pedido_em_aguardo = 'lojista'
+    elif Pedido_Lojista.objects.filter(
+            id_usuario=request.user,
+            status_pedido='Aguardando avaliação'
+        ).exists():
+
+        usuario_tem_pedido_em_aguardo = 'aguardando'
+    else:
+        usuario_tem_pedido_em_aguardo = 'usuario'
+
+    data['usuario_tem_pedido_em_aguardo'] = usuario_tem_pedido_em_aguardo
+
+    return render(request, 'dashboard-usuario.html', {'data': data, 'pedido_aguardo': usuario_tem_pedido_em_aguardo})
 
 def retorna_dashboard_lojista(request):
 
