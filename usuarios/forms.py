@@ -14,11 +14,13 @@ class UsuarioLoginForm(forms.ModelForm):
             'password'
         ]
         widgets = {
-            'password': forms.PasswordInput(attrs={
-            'id': 'password',
-            'name': 'password',
-            'autocomplete': 'on'
-        })
+            'password': forms.PasswordInput(
+                attrs={
+                    'id': 'password',
+                    'name': 'password',
+                    'autocomplete': 'on'
+                }
+            )
         }
 
 class UsuarioRegistrationForm(forms.ModelForm):
@@ -138,13 +140,21 @@ class UsuarioAdminRegistrationForm(forms.ModelForm):
     )
     password= forms.CharField(
         label=("Senha"),
-        widget=forms.PasswordInput(),
+        widget=forms.PasswordInput(attrs={
+            'id': 'password',
+            'name': 'password',
+            'autocomplete': 'on'
+        }),
         max_length=254,
         required=True
     )
     confirm_password= forms.CharField(
         label=("Confirmar senha"),
-        widget=forms.PasswordInput(),
+        widget=forms.PasswordInput(attrs={
+            'id': 'confirm-password',
+            'name': 'confirm-password',
+            'autocomplete': 'on'
+        }),
         max_length=254,
         required=True
     )

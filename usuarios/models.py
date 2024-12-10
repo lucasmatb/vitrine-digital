@@ -8,6 +8,7 @@ from empresas.models import Empresa
 from produtos.models import Produto
 from vitrine_digital.helper import retornaCaminhoImagemAleatorio
 from stdimage.models import StdImageField
+from vitrine_digital.helper import descriptarAESGCM
 
 class UserManager(BaseUserManager):
 
@@ -116,7 +117,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ['first_name', 'last_name', 'cpf']
     
     def __str__(self):
-        return self.email
+        return descriptarAESGCM(self.email)
     
 class Tipo_Assinatura(models.Model):
     descricao = models.CharField(
@@ -139,7 +140,8 @@ class Pedido_Lojista(models.Model):
         verbose_name="Estado do pedido"
     )
     ultimo_pagamento = models.DateTimeField(
-        blank=False,
+        blank=True,
+        null=True,
         verbose_name="Data do último pagamento"
     )
     ativo = models.BooleanField(
