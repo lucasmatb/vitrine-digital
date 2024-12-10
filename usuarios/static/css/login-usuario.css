@@ -1,6 +1,6 @@
 body {
     overflow: auto;
-    
+
     & main {
         all: unset;
     }
@@ -11,6 +11,8 @@ body {
     width: max-content;
     gap: var(--spc-400);
     padding: var(--spc-700) var(--spc-300);
+
+    width: 100%;
     
     & .alert {
         color: red;
@@ -20,14 +22,16 @@ body {
     }
     
     & .container-login, & .container-cadastro {
-        max-width: 60rem;
-        min-width: 60rem;
+        margin: 0 auto;
+        max-width: 75rem;
+        width: 100%;
         display: flex;
         flex-flow: column;
         gap: var(--spc-600);
         overflow-y: auto;
         
         & form {
+            width: 100%;
             display: flex;
             flex-flow: column;
             gap: var(--spc-200);

@@ -10,11 +10,14 @@ header {
     /* max-height: 15rem; */
     width: 100%;
 
-    & .container {
+    & .container-header {
         display: flex;
         flex-flow: row;
         align-items: center;
         justify-content: space-between;
+        margin: 0 auto;
+        max-width: 100rem;
+        gap: 3rem;
     }
 
     & .logo {

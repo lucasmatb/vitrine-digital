@@ -1,0 +1,25 @@
+.carrossel {
+    display: grid;
+    grid-auto-flow: column;
+    scroll-behavior: auto;
+    gap: var(--spc-300);
+    overflow-y: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    & .card {
+        scroll-snap-align: start;
+        /* border-radius: 30px; */
+        /* min-height: 200px; */
+        /* min-width: 300px; */
+        /* display: flex; */
+        /* align-items: center; */
+        /* justify-content: center; */
+        /* background-color: #eeaeca; */
+    }
+}
