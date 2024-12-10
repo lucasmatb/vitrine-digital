@@ -52,9 +52,11 @@
         background-color: rgba(255,255,255,.075);
 
         & span {
-            font-size: 1rem;
             margin: 0 auto;
-            font-size: 600;
+            color: black;
+            font-size: var(--spc-400);
+            text-transform: uppercase;
+            font-weight: 600;
         }
     }
     

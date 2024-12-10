@@ -23,7 +23,7 @@ body {
             overflow-x: hidden;
             max-height: 100vh;
             width: 100%;
-            padding: 15px 15px;
+            padding: var(--spc-700);
             display: flex;
             flex-flow: column;
             gap: var(--spc-700);

@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{% static 'css/card.css' %}">
     <link rel="stylesheet" href="{% static 'css/swiper.css' %}">
     <link rel="stylesheet" href="{% static 'css/body-main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/carrossel.css' %}">
 {% endblock %}
 
 {% block 'titulo' %}
@@ -14,35 +15,43 @@
 {% block 'conteudo'%}
     <main>
         <div class="main-scrollable">
+
+            <!-- pra cada categoria: (lojas e produtos dela em alta) -->
+
             <section>
                 <h2>Lojas em alta na categoria [tal]</h2>
 
-                <div class="card card-empresa">
-                    <div class="img-perfil"></div>
-                    <div class="img-capa"></div>
-                    <div class="textos">
-                        <p class="nome">Nome da empresa</p>
-                        <p class="descricao">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
-                        </p>
-                        <div class="categoria-favoritos">
-                            <div class="categoria">Categoria</div>
-                            <div class="favoritos">
-                                
-                                <img src="{% static 'images/icone-estrela.svg' %}" alt="Ícone estrela">
-                                <span>1.3K</span>
+                
+                <div class="carrossel">
+                    <div class="card card-empresa">
+                        <div class="img-perfil"></div>
+                        <div class="img-capa"></div>
+                        <div class="informacoes">
+                            <div class="textos">
+                                <p class="nome">Nome da empresa</p>
+                                <p class="descricao">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
+                                </p>
+                            </div>
+                            <div class="categoria-favoritos">
+                                <div class="categoria">Categoria</div>
+                                <div class="favoritos">
+                            
+                                    <img src="{% static 'images/icone-estrela.svg' %}" alt="Ícone estrela">
+                                    <span>1.3K</span>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </section>
 
             <hr>
 
             <section>
-                <h2>
-
-                </h2>
+                <h2>Produtos em alta na categoria [tal]</h2>
+                
                 <div class="carrossel">
                     <div class="card card-produto">
                         <div class="img-capa"></div>
