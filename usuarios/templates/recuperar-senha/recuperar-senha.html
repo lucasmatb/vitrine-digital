@@ -1,28 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../static/css/recuperacao-senha.css">
-</head>
-<body>
-    <header></header>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/recuperacao-senha.css' %}">
+{% endblock %}
+
+{% block 'titulo' %}
+    Vitrisse | Recuperar senha
+{% endblock %}
+
+{% block 'conteudo' %}
     <main>
         <div class="titulo-texto">
             <h2>Recuperar senha</h2>
             <p>Esqueceu sua senha? Forneça seu endereço de e-mail abaixo, e nós te enviaremos um e-mail com instruções para configurar uma nova.</p>
         </div>
 
-        <form action="">
-
+        <form method="post">
+            {% csrf_token %}
             <div class="input-wrapper">
+                {{ form.email.errors }}
                 <label>E-mail</label>
-                <input type="password">
+                {{ form.email }}
             </div>
 
             <button type="submit">Recuperar minha senha</button>
         </form>
     </main>
-</body>
-</html>
+{% endblock %}

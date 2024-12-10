@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/recuperacao-senha.css' %}">
+{% endblock %}
+
+{% block 'titulo' %}
+    Vitrisse | Senha alterada
+{% endblock %}
+
+{% block 'conteudo' %}
+    <main>
+        <div class="titulo-texto">
+            <h2>Senha alterada com sucesso!</h2>
+            <p>Realize o login com a sua nova senha.</p>
+            <a href="{% url 'login' %}">Voltar para o login</a>
+        </div>
+    </main>
+{% endblock %}

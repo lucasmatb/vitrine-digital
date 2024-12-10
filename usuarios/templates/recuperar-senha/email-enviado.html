@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../static/css/recuperacao-senha.css">
-</head>
-<body>
-    <header></header>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/recuperacao-senha.css' %}">
+{% endblock %}
+
+{% block 'titulo' %}
+    Vitrisse | Recuperação de senha enviada
+{% endblock %}
+
+{% block 'conteudo' %}
     <main>
         <div class="titulo-texto">
             <h2>Recuperação de senha enviada</h2>
@@ -15,5 +17,4 @@
             <p>Se não receber um e-mail, certifique-se de que você forneceu um endereço já cadastrado, e verifique sua pasta de spam.</p>
         </div>
     </main>
-</body>
-</html>
+{% endblock %}
