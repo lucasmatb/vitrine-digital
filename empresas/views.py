@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from django.contrib import messages
 from .forms import EmpresaForm
 from .models import Empresa, Endereco, Estado, Cidade
+from produtos.models import Produto
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
 import requests
@@ -179,3 +180,28 @@ def validacao_usuario_possui_empresa(usuario, id_empresa):
     if empresa.id_usuario != usuario:
         return False
     return True
+
+def favorita_nao_favorita_empresa(request, id_empresa):
+    try:
+        if request.user.favorito_empresa.filter(id=id_empresa).exists():
+            request.user.favorito_empresa.remove(Empresa.objects.get(pk=id_empresa))
+            like_string = 'unlike'
+        else:
+            like_string = 'like'
+            request.user.favorito_empresa.add(Empresa.objects.get(pk=id_empresa))
+        return JsonResponse({'status': 'success', 'message': like_string})
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)})
+
+def salva_nao_salva_produto(request, id_produto):
+    try:
+        if request.user.favorito_produto.filter(id=id_produto).exists():
+            request.user.favorito_produto.remove(Produto.objects.get(pk=id_produto))
+            like_string = 'unlike'
+        else:
+            like_string = 'like'
+            request.user.favorito_produto.add(Produto.objects.get(pk=id_produto))
+
+        return JsonResponse({'status': 'success', 'message': like_string})
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)})

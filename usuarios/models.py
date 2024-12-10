@@ -107,8 +107,14 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
         blank=False
     )
 
-    favorito_produto = models.ManyToManyField(Produto)
-    favorito_empresa = models.ManyToManyField(Empresa)
+    favorito_produto = models.ManyToManyField(
+        Produto,
+        related_name='favoritos_produtos'
+    )
+    favorito_empresa = models.ManyToManyField(
+        Empresa,
+        related_name='favoritos_empresas'
+    )
 
     objects = UserManager()
 
@@ -150,6 +156,7 @@ class Pedido_Lojista(models.Model):
     )
     id_tipo_assinatura = models.ForeignKey(
         Tipo_Assinatura,
+        null=True,
         on_delete=models.DO_NOTHING
     )
     id_usuario = models.ForeignKey(

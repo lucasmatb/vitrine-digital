@@ -3,11 +3,12 @@ from django.shortcuts import redirect
 from django.contrib import messages, auth
 from .forms import UsuarioLoginForm, UsuarioRegistrationForm, UsuarioEditForm
 from vitrine_digital.helper import encriptarAESGCM, descriptarAESGCM
-from .models import Usuario
+from .models import Usuario, Pedido_Lojista
 from django.contrib.auth.models import Group
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import update_session_auth_hash
+from django.http import JsonResponse
 
 def login(request):
     if request.user.is_authenticated:
@@ -126,3 +127,17 @@ def retorna_pesquisar_empresas_usuario(request):
     #data = {}
     #data['form'] = UsuarioRegistrationForm()
     return render(request, 'pesquisar-empresas-usuario.html')#, data)
+
+def cria_pedido_lojista_por_usuario(request):
+    try:
+        Pedido_Lojista.objects.create(
+            status_pedido='Aguardando avaliação',
+            ultimo_pagamento=None,
+            ativo=True,
+            id_tipo_assinatura=None,
+            id_usuario=request.user
+        )
+
+        return JsonResponse({'status': 'success', 'message': 'Pedido criado com sucesso.'})
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)})
