@@ -1,0 +1,34 @@
+main {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+
+    & .container-erro {
+        width: max-content;
+        gap: var(-spc-400);
+        align-items: center;
+
+        & .textos {
+            align-items: center;
+            
+            & h1 {
+                font-size: 6rem;
+                text-align: center;
+            }
+            
+        }
+
+        & a, & button {
+            all: unset;
+            align-self: center;
+            padding: var(--spc-100) var(--spc-200);
+            background-color: #ccc;
+            border-radius: 0.8rem;
+            width: 100%;
+            text-align: center;
+        }
+    }
+}
+
+
+

@@ -2,8 +2,8 @@
 {% load static %}
 
 {% block 'head' %}
-    <link rel="stylesheet" href="{% static 'css/swiper.css' %}">
     <link rel="stylesheet" href="{% static 'css/carrossel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard-usuario.css' %}">
 {% endblock %}
 
 {% block 'titulo' %}
@@ -21,7 +21,7 @@
         
                 {% endfor %}
             {% endif %}
-            <button id="botao-pedido-lojista" name="botao-pedido-lojista" class="btn btn-success btn-lg">Solicitar perfil lojista</button>
+            <button id="botao-pedido-lojista" name="botao-pedido-lojista">Solicitar perfil lojista</button>
 
             {% for categoria, empresas in data.items %}
                 <section>

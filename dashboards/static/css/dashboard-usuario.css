@@ -1,0 +1,11 @@
+#botao-pedido-lojista {
+    all: unset;
+    width: max-content;
+    align-self: flex-end;
+    padding: var(--spc-100) var(--spc-200);
+    background-color: #ccc;
+    border-radius: 0.8rem;
+    text-align: center;
+    cursor: pointer;
+    font-size: var(--fs-100);
+}
