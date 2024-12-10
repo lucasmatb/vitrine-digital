@@ -101,6 +101,7 @@
     }
 
     & .img-perfil {
+        background-image: url(../images/perfil-empresa-1.jpg);
         background-position: 50%;
         background-repeat: no-repeat;
         background-size: cover; 

@@ -1,3 +1,16 @@
+body {
+    & main {
+        overflow-y: scroll !important;
+        display: flex;
+        flex-flow: column;
+        gap: var(--spc-1300);
+        background-image: url(../../../vitrine_digital/static/images/background.png) !important;
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+}
+
 .secao {
     padding: var(--spc-700) var(--spc-600);
 }
@@ -11,49 +24,44 @@
 .hero {    
     display: flex;
     flex-flow: column;
+    padding-top: 8.1rem;
     
     & .container {
-        height: 70vh;
+        height: 80vh;
         justify-content: space-between;
         align-items: center;
     
-        & .container-titulo-botoes {
+        & .container-texto-botoes {
             flex-grow: 1;
             display: flex;
             align-items: center;
+            text-align: center;
             
-            & .titulo-botoes {
+            & .texto-botoes {
                 display: flex;
                 flex-flow: column;
                 gap: var(--spc-800); 
+                align-items: center;
 
-                & .titulo {
+                & .texto {
                     display: flex;
                     flex-flow: column;
-                    gap: var(--spc-100);
-                }
-            
-                & h1 {
-                    font-size: 3rem;
-                }
-                
-                & .botoes {
-                    display: flex;
-                    gap: var(--spc-400);
-                    align-items: center;
+                    gap: var(--spc-300);
                     
-                    /* & .botao-entrar {
-                        background-color: #E3D2FF;
-                        padding: var(--spc-100) var(--spc-500);
-                        border-radius: 0.5rem;
-                    } */
-                    
-                    & .botao-cadastrar {
-                        background-color: #f1f1f1;
-                        padding: var(--spc-100) var(--spc-500);
-                        border-radius: 0.5rem;
+                    & .titulo {
+                        display: flex;
+                        flex-flow: column;
+                        gap: var(--spc-100);
+
+                        & h1 {
+                            font-size: 3rem;
+                        }
+                    }
+
+                    & > p {
 
                     }
+                    
                 }
             }
         }
@@ -61,6 +69,83 @@
         & .ir-para-comerciante {
             display: flex;
             gap: 1rem;
+            align-self: start;
+            align-items: center;
+
+            & p {
+                margin: 0;
+            }
         }
     }
+}
+
+.preview-texto {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    gap: var(--spc-100);
+    align-items: center;
+    
+    & .preview {
+        /* width: 50%; */
+        min-width: 60rem;
+        max-width: 60rem;
+        aspect-ratio: 3/2;
+        overflow: hidden;
+        border-radius: 1rem;
+        
+        & img {
+            width: 100%;
+        }
+        
+        &.preview-consumidor {
+            transform: translateX(-30%);
+        }
+        
+        &.preview-comerciante {
+            transform: translateX(30%);
+            
+        }
+    }
+    
+    & .texto {
+        /* width: 50%; */
+        width: 70%;
+        display: flex;
+        flex-flow: column;
+        gap: var(--spc-300);
+    }
+}
+
+.call-to-action {
+    max-width: 50rem;
+    align-self: center;
+    display: flex;
+    flex-flow: column;
+    gap: var(--spc-500);
+
+}
+
+.botoes {
+    display: flex;
+    gap: var(--spc-400);
+    align-items: center;
+    align-self: center;
+
+    & .botao-cadastrar {
+        background-color: #f1f1f1;
+        padding: var(--spc-100) var(--spc-500);
+        border-radius: 0.5rem;
+    }
+}
+.container {
+    display: flex;
+    flex-flow: column;
+    gap: var(--spc-1100);
+}
+
+.textos-comerciante {
+    max-width: 50rem;
+    align-self: center;
+    text-align: center;
 }

@@ -2,6 +2,10 @@ main {
     position: relative;
 }
 
+.container {
+    overflow-y: scroll !important;
+}
+
 .icone-voltar {
     position: fixed;
     top: 2rem;

@@ -6,18 +6,21 @@
 {% endblock %}
 
 {% block 'titulo' %}
-    Vitrine Digital | Home 
+    Vitrisse | Home 
 {% endblock %}
 
 {% block 'conteudo'%}
     <main>
         <section class="secao hero">
             <div class="container">
-                <div class="container-titulo-botoes">
-                    <div class="titulo-botoes">
-                        <div class="titulo">
-                            <p>É consumidor?</p>
-                            <h1>Veja o melhor da sua cidade com [NOME]</h1>
+                <div class="container-texto-botoes">
+                    <div class="texto-botoes">
+                        <div class="texto">
+                            <div class="titulo">
+                                <p>É consumidor?</p>
+                                <h1>Veja o melhor da sua cidade com o VITRISSE</h1>
+                            </div>
+                            <p>Entre para encontrar lojas do seu interesse</p>
                         </div>
                         <div class="botoes">
                             <a class="botao-entrar" href="{% url 'login' %}">Entrar</a>
@@ -26,25 +29,69 @@
                     </div>
                 </div>
                 <div class="ir-para-comerciante">
-                    <p>É comerciante? <a href="#comerciante">Cadastre sua loja</a></p>
+                    <p>É comerciante? <a href="#comerciante">Veja o que temos para empresas</a></p>
                     <img src="{% static 'images/seta-direita.svg' %}"  alt="Seta para a direita">
                 </div>
             </div>  
         </section>
 
-        <section class="secao" id="comerciante">
+        <section class="secao consumidor">
             <div class="container">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid eveniet perspiciatis, non quos id debitis distinctio impedit laudantium quam sed omnis quia porro consectetur et maxime dicta voluptatem assumenda! Cupiditate.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid eveniet perspiciatis, non quos id debitis distinctio impedit laudantium quam sed omnis quia porro consectetur et maxime dicta voluptatem assumenda! Cupiditate.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid eveniet perspiciatis, non quos id debitis distinctio impedit laudantium quam sed omnis quia porro consectetur et maxime dicta voluptatem assumenda! Cupiditate.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid eveniet perspiciatis, non quos id debitis distinctio impedit laudantium quam sed omnis quia porro consectetur et maxime dicta voluptatem assumenda! Cupiditate.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid eveniet perspiciatis, non quos id debitis distinctio impedit laudantium quam sed omnis quia porro consectetur et maxime dicta voluptatem assumenda! Cupiditate.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid eveniet perspiciatis, non quos id debitis distinctio impedit laudantium quam sed omnis quia porro consectetur et maxime dicta voluptatem assumenda! Cupiditate.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid eveniet perspiciatis, non quos id debitis distinctio impedit laudantium quam sed omnis quia porro consectetur et maxime dicta voluptatem assumenda! Cupiditate.</p>
+
+                <div class="preview-texto">
+                    <div class="preview preview-consumidor">
+                        <img src="{% static 'images/capa-empresa-1.jpg' %}" alt="">
+                    </div>
+                    <div class="texto">
+                        <strong>Quer conhecer de antemão os produtos à venda na sua cidade, de qualquer categoria, antes de sair de casa?</strong>
+                        <p>No VITRISSE, você encontra tudo o que precisa e ainda guarda as suas lojas e produtos favoritos!</p>
+                    </div>
+                </div>
+                
+                <div class="call-to-action">
+                    <p>Cadastre-se já para começar a explorar</p>
+                    <div class="botoes">
+                        <a class="botao-entrar" href="{% url 'login' %}">Entrar</a>
+                        <a class="botao-cadastrar" href="{% url 'cadastro' %}">Cadastrar-se</a>
+                    </div>
+                </div>
+                
             </div>
         </section>
-    </main>
-
+        
+        <section class="secao comerciante" id="comerciante">
+            <div class="container">
+    
+                <div class="textos-comerciante">
+                    <p>Comerciante,</p>
+                    
+                    <div>
+                        <p>Já pensou em expor a sua loja e seus produtos para milhares de compradores na sua cidade em um só lugar?</p>
+                        <p>Com o VITRISSE, você cria um perfil da empresa e cadastra produtos com informações completas, mantendo os clientes atualizados e atentos.</p>
+                    </div>
+                </div>
+                
+                <div class="preview-texto">
+                    <div class="texto">
+                        <strong>Não deixe seu negócio ficar para trás</strong>
+                        <p>Faça sua loja ser vista e se destacar dentre muitas outras já cadastradas.</p>
+                        </div>
+                        <div class="preview preview-comerciante">
+                            <img src="{% static 'images/capa-empresa-1.jpg' %}" alt="">
+                        </div>
+                    </div>
+                    
+                    <div class="call-to-action">
+                        <p>Conheça nossa oferta para empresas</p>
+                        <div class="botoes">
+                            <a class="botao-cadastrar" href="">Cadastrar minha empresa</a>
+                        </div>
+                    </div>
+                </div>
+                
+            </section>
+        </main>
+        
     <script>
         document.querySelectorAll('a[href^="#comerciante"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {

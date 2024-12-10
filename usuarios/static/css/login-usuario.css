@@ -1,0 +1,89 @@
+.container-scrollable {
+    height: 100%;
+
+}
+
+.container-main {
+    margin: 0 auto;
+    width: max-content;
+    gap: var(--spc-400);
+    overflow-y: auto;
+
+    & .alert {
+        color: red;
+        padding: 0;
+        margin: 0;
+        font-size: var(--fs-100);
+    }
+    
+    & .container-login {
+        max-width: 60rem;
+        min-width: 60rem;
+        display: flex;
+        flex-flow: column;
+        gap: var(--spc-600);
+
+        & form {
+            display: flex;
+            flex-flow: column;
+            gap: var(--spc-200);
+            
+            & .input-wrapper {
+                border-radius: 0.8rem;
+                border: solid 1px #ccc;
+                padding: var(--spc-80) var(--spc-100);
+                display: flex;
+                flex-flow: column;
+                gap: var(--spc-50);
+                
+                & label {
+                    margin: 0;
+                    font-size: var(--spc-200);
+                }
+                
+                & input {
+                    all: unset;
+                }
+            }
+
+            & .esqueceu-senha {
+                align-self: flex-end;
+                font-size: var(--fs-100);
+                font-weight: 400;
+            }
+
+            & button {
+                all: unset;
+                align-self: center;
+                padding: var(--spc-100) var(--spc-200);
+                background-color: #ccc;
+                border-radius: 0.8rem;
+                max-width: 15rem;
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        & .trocar-login-cadastro {
+            display: flex;
+            flex-flow: column;
+            gap: var(--spc-200);
+            align-self: center;
+            align-items: center;
+
+            & span {
+                font-size: var(--fs-100);
+            }
+
+            & a {
+                padding: var(--spc-100) var(--spc-200);
+                background-color: #ccc;
+                border-radius: 0.8rem;
+                font-weight: 400;
+                max-width: 15rem;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    }
+}

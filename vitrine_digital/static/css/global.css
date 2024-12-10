@@ -32,9 +32,11 @@ b, h1, h2, h3 {
 }
 
 a {
-    text-decoration: none;
-    font-weight: 500;
-    color: inherit;
+    &:link, &:visited, &:hover, &:active {
+        text-decoration: none;
+        font-weight: 500;
+        color: inherit;
+    }
 }
 
 .img-perfil {
