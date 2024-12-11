@@ -35,13 +35,19 @@
                 {% for produto in produtos %}
                     <div class="card card-empresa">
                         <div>
-                            {% for imagem in produto.imagens %}
+                            {% if produto.primeira_imagem %}
                                 <img
-                                    src="{{ imagem.imagem.url }}"
+                                    src="{{ produto.primeira_imagem.url }}"
                                     alt="Imagem do produto"
                                     class="img-responsive"
                                 >
-                            {% endfor %}
+                            {% else %}
+                                <img
+                                    src="{{ produto.primeira_imagem_default }}"
+                                    alt="Imagem do produto"
+                                    class="img-responsive"
+                                >
+                            {% endif %}
                         </div>
                         <div class="textos">
                             <h5>{{ produto.nome }}</h5>

@@ -32,11 +32,19 @@
                     style="cursor: pointer;"
                 >
                     <div>
-                        <img
-                            class="img-capa"
-                            src="{{ produto.primeira_imagem.url }}"
-                            alt="imagem capa produto {{ produto.descricao }}"
-                        >
+                        {% if produto.primeira_imagem %}
+                            <img
+                                src="{{ produto.primeira_imagem.url }}"
+                                alt="imagem capa produto {{ produto.descricao }}"
+                                class="img-capa"
+                            >
+                        {% else %}
+                            <img
+                                src="{{ produto.primeira_imagem_default }}"
+                                alt="imagem capa produto {{ produto.descricao }}"
+                                class="img-capa"
+                            >
+                        {% endif %}
                     </div>
                     <div class="textos">
                         <p>{{ produto.nome }}</p>

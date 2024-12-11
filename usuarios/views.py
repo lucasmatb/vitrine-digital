@@ -12,6 +12,7 @@ from django.http import JsonResponse
 from empresas.models import Empresa, Cidade
 from django.db.models import Count
 from produtos.models import Imagem_Produto
+from django.conf import settings
 
 def login(request):
     if request.user.is_authenticated:
@@ -168,7 +169,8 @@ def retorna_produtos_salvos_usuario(request):
             'descricao': produto.descricao,
             'id_empresa': produto.id_empresa.id,
             'preco': produto.preco,
-            'primeira_imagem': Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first().imagem if Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first() else 'default_produto.jpg',
+            'primeira_imagem_default': settings.MEDIA_URL + 'default_produto.jpg',
+            'primeira_imagem': Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first().imagem if Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first() else None,
             'nome_empresa': produto.id_empresa.nome_fantasia,
             'empresa_imagem': produto.id_empresa.imagem_perfil,
             'categorias': produto.categoria_produto.all(),

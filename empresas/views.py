@@ -8,6 +8,7 @@ from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
 import requests
 from django.db.models import Count
+from django.conf import settings
 
 def retorna_cadastro_empresa(request):
     data = {}
@@ -159,7 +160,8 @@ def retorna_visualizar_empresa_usuario(request, id_empresa):
             'nome': produto.nome,
             'descricao': produto.descricao,
             'preco': produto.preco,
-            'imagem': Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first().imagem if Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first() else 'default_produto.jpg',
+            'primeira_imagem_default': settings.MEDIA_URL + 'default_produto.jpg',
+            'primeira_imagem': Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first().imagem if Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first() else None,
             'categorias': produto.categoria_produto.all(),
             'favorito_usuario': produto.favoritos_produtos.filter(id=request.user.id).exists()
         }
@@ -174,7 +176,8 @@ def retorna_visualizar_empresa_usuario(request, id_empresa):
             'nome': produto.nome,
             'descricao': produto.descricao,
             'preco': produto.preco,
-            'imagem': Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first().imagem if Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first() else 'default_produto.jpg',
+            'primeira_imagem_default': settings.MEDIA_URL + 'default_produto.jpg',
+            'primeira_imagem': Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first().imagem if Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first() else None,
             'categorias': produto.categoria_produto.all(),
             'favorito_usuario': produto.favoritos_produtos.filter(id=request.user.id).exists()
         }

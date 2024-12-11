@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from empresas.views import validacao_usuario_possui_empresa
 from empresas.models import Empresa
+from django.conf import settings
 
 def retorna_visualizar_produto(request, id_empresa, pk):
     data = {}
@@ -22,7 +23,11 @@ def retorna_listagem_produtos_por_empresa(request, id_empresa):
     data = {}
     data['produtos'] = Produto.objects.filter(id_empresa=id_empresa).prefetch_related('categoria_produto')
     for produto in data['produtos']:
-        produto.imagens = Imagem_Produto.objects.filter(id_produto=produto.id)
+        produto.primeira_imagem_default = settings.MEDIA_URL + 'default_produto.jpg'
+        try:
+            produto.primeira_imagem = Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first().imagem
+        except AttributeError:
+            produto.primeira_imagem = None
     data['id_empresa'] = id_empresa
     return render(request, 'listagem-produtos-lojista.html', data)
 
