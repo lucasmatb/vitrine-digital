@@ -48,8 +48,6 @@ def retorna_dashboard_usuario(request):
     else:
         usuario_tem_pedido_em_aguardo = 'usuario'
 
-    data['usuario_tem_pedido_em_aguardo'] = usuario_tem_pedido_em_aguardo
-
     return render(request, 'dashboard-usuario.html', {'data': data, 'pedido_aguardo': usuario_tem_pedido_em_aguardo})
 
 def retorna_dashboard_lojista(request):
