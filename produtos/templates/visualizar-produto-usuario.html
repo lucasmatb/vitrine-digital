@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block 'head' %}
-    <link rel="stylesheet" href="{% static 'css/produto.css' %}">
+    <link rel="stylesheet" href="{% static 'css/visualizar-produto.css' %}">
 {% endblock %}
 
 {% block 'titulo' %}
@@ -16,47 +16,76 @@
             <div class="apresentacao-produto">
                 <div class="imagens">
                     <div class="previas">
-                        <!-- <div class="previa"></div>
-                        <div class="previa"></div>
-                        <div class="previa"></div> -->
-                        
-                        <img src="{% static 'images/img-1-produto.jpg' %}" height="50px" width="50px" alt="">
-                        <img src="{% static 'images/img-2-produto.jpg' %}" height="50px" width="50px" alt="">
-                        <img src="{% static 'images/img-3-produto.jpg' %}" height="50px" width="50px" alt="">
+                        {% for imagem in imagens %}
+                            <img
+                                src="{{ imagem.imagem.url }}"
+                                alt="Imagem do produto"
+                            >
+                        {% endfor %}
                     </div>
-                    <img class="img-destaque" src="{% static 'images/img-1-produto.jpg' %}" height="50px" width="50px" alt="">
                 </div>
                 <div class="especificacoes">
-                    <h1>Nome do produto</h1>
-                    <p>Descrição Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit nam quaerat nihil, quae esse laboriosam saepe animi officia a vero optio neque praesentium deleniti veniam reprehenderit totam consequatur possimus quo.</p>
-                    <div class="loja">
-                        <div class="img-loja"></div>
-                        <span class="nome-loja">Nome da loja</span>
+                    <h1>{{ produto.descricao }}</h1>
+                    <p>{{ produto.descricao }}</p>
+                    <span class="preco">R$ {{ produto.preco }}</span>
+                    {% if produto.quantidade == 0 %}
+                        <span class="disponibilidade">Indisponível</span>
+                    {% else %}
+                        <span class="disponibilidade">Disponível</span>
+                    {% endif %}
+                    <div class="favoritos">
+                        <img
+                            class="fav-{{produto.id}}"
+                            onclick="favnotfav(
+                                event,
+                                'fav-{{produto.id}}',
+                                'fav-number-{{produto.id}}',
+                                {{produto.id}}
+                            )"
+                            {% if favorito_usuario %}
+                                src="{% static 'images/icone-salvar-fill.svg' %}"
+                            {% else %}
+                                src="{% static 'images/icone-salvar.svg' %}"
+                            {% endif %}
+                            alt="Ícone estrela"
+                            style="cursor: pointer;"
+                        >
                     </div>
-                    <!-- adicionar preço dinamicamente -->
-                    <span class="preco">R$ 955,99</span>
-                    <!-- adicionar disponibilidade dinamicamente - true = disponível, false = indisponível -->
-                    <span class="disponibilidade">Disponível</span>
-                    <!-- se o produto já estiver salvo, o botão vem também com a classe "salvo" -->
-                    <button class="salvar">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bookmark"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
-                        <!-- adicionar quantidade de salvamentos dinamicamente -->
-                        <span>213</span>
-                    </button>
                 </div>
             </div>
         </div>
     </main>
     
     <script>
-        const botaoSalvar = document.querySelector('.salvar');
-        const iconeSalvar = botaoSalvar.querySelector('svg');
-        const qtdeSalvos = botaoSalvar.querySelector('span');
-
-        botaoSalvar.addEventListener('click', ()=>{
-            botaoSalvar.classList.add('salvo');
-        })
-
+        function favnotfav(event, id_icone, numero_salvos, id_produto) {
+            event.stopPropagation();
+            const url = "/empresas/salva-nao-salva-produto/" + id_produto + "/"
+            const icones = document.getElementsByClassName(id_icone);
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status === 'success'){
+                    for (let i = 0; i < icones.length; i++) {
+                        if(data.message === 'like'){
+                            icones[i].src = "{% static 'images/icone-salvar-fill.svg' %}";
+                        } else {
+                            icones[i].src = "{% static 'images/icone-salvar.svg' %}";
+                        }
+                    }
+                }else{
+                    alert('Não foi possível favoritar esse produto, tente novamente mais tarde.');
+                }
+            })
+            .catch(error => {
+                alert('Não foi possível favoritar esse produto, tente novamente mais tarde.');
+            });
+        }
     </script>
     
 {% endblock %}

@@ -26,7 +26,11 @@
         </div>
         <div class="todos-cards">
             {% for produto in produtos %}
-                <div class="card card-produto">
+                <div
+                    class="card card-produto"
+                    onclick="window.location.href='{% url 'visualizar_produto' produto.id_empresa produto.id %}'"
+                    style="cursor: pointer;"
+                >
                     <div>
                         <img
                             class="img-capa"

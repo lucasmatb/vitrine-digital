@@ -7,8 +7,16 @@ from django.contrib import messages
 from empresas.views import validacao_usuario_possui_empresa
 from empresas.models import Empresa
 
-def retorna_visualizar_produto(request):
-    return render(request, 'visualizar-produto-usuario.html')
+def retorna_visualizar_produto(request, id_empresa, pk):
+    data = {}
+    produto = get_object_or_404(Produto, id=pk)
+    imagens = Imagem_Produto.objects.filter(id_produto=produto.id)
+    
+    data['produto'] = produto
+    data['imagens'] = imagens
+    data['favorito_usuario'] = produto.favoritos_produtos.filter(id=request.user.id).exists()
+
+    return render(request, 'visualizar-produto-usuario.html', data)
 
 def retorna_listagem_produtos_por_empresa(request, id_empresa):
     data = {}

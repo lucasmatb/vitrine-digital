@@ -101,7 +101,11 @@
                     <h2>Destaques</h2>
                     <div class="carrossel">
                         {% for produto in produtos_destaque %}
-                            <div class="card card-produto">
+                            <div
+                                class="card card-produto"
+                                onclick="window.location.href='{% url 'visualizar_produto' empresa.id produto.id %}'"
+                                style="cursor: pointer;"
+                            >
                                 <div>
                                     <img
                                         class="img-capa"
@@ -149,7 +153,11 @@
                     <h2>Todos os produtos</h2>
                     <div class="todos-produtos">
                         {% for produto in produtos %}
-                            <div class="card card-produto">
+                            <div
+                                class="card card-produto"
+                                onclick="window.location.href='{% url 'visualizar_produto' empresa.id produto.id %}'"
+                                style="cursor: pointer;"
+                            >
                                 <div>
                                     <img
                                         class="img-capa"
