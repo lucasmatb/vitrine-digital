@@ -16,7 +16,7 @@ urlpatterns = [
 
     path('minhas-empresas-lojista/', permission_required('empresas.view_empresa')(views.retorna_minhas_empresas_lojista), name='minhas_empresas_lojista'),
 
-    path('visualizar-empresa/', login_required(views.retorna_visualizar_empresa_usuario), name='visualizar_empresa'),
+    path('visualizar-empresa/<int:id_empresa>/', login_required(views.retorna_visualizar_empresa_usuario), name='visualizar_empresa'),
 
     path('favorita-nao-favorita-empresa/<int:id_empresa>/', login_required(views.favorita_nao_favorita_empresa), name='favorita_nao_favorita_empresa'),
     path('salva-nao-salva-produto/<int:id_produto>/', login_required(views.salva_nao_salva_produto), name='salva_nao_salva_produto')

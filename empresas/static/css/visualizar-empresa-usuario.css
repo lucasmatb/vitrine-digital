@@ -10,18 +10,15 @@
         & .img-capa {
             height: 20rem;
             max-width: 100%;
-
-            background-image: url(../../../vitrine_digital/static/images/capa-empresa-1.jpg);
             background-position: 50%;
             background-repeat: no-repeat;
             background-size: cover;
         }
         
-        & .img-perfil {
+        & . {
             position: absolute;
             top: 15rem;
             left: 5rem;
-            background-image: url(../../../vitrine_digital/static/images/perfil-empresa-1.jpg);
             background-position: 50%;
             background-repeat: no-repeat;
             background-size: cover;

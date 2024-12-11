@@ -3,10 +3,11 @@ from django.http import JsonResponse
 from django.contrib import messages
 from .forms import EmpresaForm
 from .models import Empresa, Endereco, Estado, Cidade
-from produtos.models import Produto
+from produtos.models import Produto, Imagem_Produto
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
 import requests
+from django.db.models import Count
 
 def retorna_cadastro_empresa(request):
     data = {}
@@ -137,8 +138,74 @@ def valida_editar_empresa(request, pk):
     data['form'] = form
     return render(request, 'formulario-empresa.html', data)
 
-def retorna_visualizar_empresa_usuario(request):
+def retorna_visualizar_empresa_usuario(request, id_empresa):
     data = {}
+
+    get_object_or_404(Empresa, pk=id_empresa)
+
+    empresa = Empresa.objects.filter(pk=id_empresa).annotate(
+        favoritos=Count('favoritos_empresas')
+    ).first()
+
+    endereco = Endereco.objects.filter(id_empresa=empresa).first()
+
+    produtos_destaque = Produto.objects.filter(id_empresa=empresa.id, destaque=True).order_by('descricao')
+
+    produtos_destaque = [
+        {
+            'id': produto.id,
+            'descricao': produto.descricao,
+            'preco': produto.preco,
+            'imagem': Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first().imagem if Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first() else 'default_produto.jpg',
+            'categorias': produto.categoria_produto.all(),
+            'favorito_usuario': produto.favoritos_produtos.filter(id=request.user.id).exists()
+        }
+        for produto in produtos_destaque
+    ]
+
+    produtos = Produto.objects.filter(id_empresa=empresa.id).order_by('descricao')
+
+    produtos = [
+        {
+            'id': produto.id,
+            'descricao': produto.descricao,
+            'preco': produto.preco,
+            'imagem': Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first().imagem if Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first() else 'default_produto.jpg',
+            'categorias': produto.categoria_produto.all(),
+            'favorito_usuario': produto.favoritos_produtos.filter(id=request.user.id).exists()
+        }
+        for produto in produtos
+    ]
+
+
+    empresa = {
+        'id': empresa.id,
+        'nome_fantasia': empresa.nome_fantasia,
+        'email': empresa.email,
+        'telefone': empresa.telefone,
+        'imagem_perfil': empresa.imagem_perfil,
+        'imagem_capa': empresa.imagem_capa,
+        'categorias': empresa.empresa_categoria.all(),
+        'favorito_usuario': empresa.favoritos_empresas.filter(id=request.user.id).exists(),
+        'favoritos': empresa.favoritos
+    }
+    
+
+    endereco = {
+        'cep': endereco.cep,
+        'logradouro': endereco.logradouro,
+        'numero': endereco.numero,
+        'complemento': endereco.complemento,
+        'bairro': endereco.bairro,
+        'cidade': endereco.id_cidade,
+        'uf': endereco.id_cidade.id_estado.uf
+    }
+
+    data['empresa'] = empresa
+    data['endereco'] = endereco
+    data['produtos_destaque'] = produtos_destaque
+    data['produtos'] = produtos
+
     return render(request, 'visualizar-empresa-usuario.html', data)
 
 def retorna_minhas_empresas_lojista(request):

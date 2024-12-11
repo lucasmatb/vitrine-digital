@@ -26,7 +26,11 @@
             </div>
             <div class="todos-cards">
                 {% for empresa in empresas %}
-                    <div class="card card-empresa">
+                    <div
+                        class="card card-empresa"
+                        onclick="window.location.href='{% url 'visualizar_empresa' empresa.id %}'"
+                        style="cursor: pointer;"
+                    >
                         <div>
                             <img
                                 class="img-perfil"
@@ -51,6 +55,7 @@
                                     <img
                                         class="fav-{{empresa.id}}"
                                         onclick="favnotfav(
+                                            event,
                                             'fav-{{empresa.id}}',
                                             'fav-number-{{empresa.id}}',
                                             {{empresa.id}}
@@ -81,7 +86,8 @@
 
     <script>
 
-        function favnotfav(id_icone, numero_favoritos, id_empresa) {
+        function favnotfav(event, id_icone, numero_favoritos, id_empresa) {
+            event.stopPropagation(); 
             const url = "/empresas/favorita-nao-favorita-empresa/" + id_empresa + "/"
             const icones = document.getElementsByClassName(id_icone);
             const spans_numero = document.getElementsByClassName(numero_favoritos);

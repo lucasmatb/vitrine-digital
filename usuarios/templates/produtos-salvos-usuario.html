@@ -13,12 +13,12 @@
 <main>
     <div class="main-scrollable">
         {% if messages %}
-        {% for i in messages %}   
-            <div class="alert {{i.tags}}" role="alert">
-                {{i}} 
-            </div>
-        {% endfor %}
-    {% endif %}
+            {% for i in messages %}   
+                <div class="alert {{i.tags}}" role="alert">
+                    {{i}} 
+                </div>
+            {% endfor %}
+        {% endif %}
 
     <section>
         <div class="cabecalho">
@@ -57,6 +57,7 @@
                                 <img
                                     class="fav-{{produto.id}}"
                                     onclick="favnotfav(
+                                        event,
                                         'fav-{{produto.id}}',
                                         'fav-number-{{produto.id}}',
                                         {{produto.id}}
@@ -81,8 +82,8 @@
 </main>
 
 <script>
-
-    function favnotfav(id_icone, numero_salvos, id_produto) {
+    function favnotfav(event, id_icone, numero_salvos, id_produto) {
+        event.stopPropagation();
         const url = "/empresas/salva-nao-salva-produto/" + id_produto + "/"
         const icones = document.getElementsByClassName(id_icone);
         fetch(url, {

@@ -13,25 +13,84 @@
 
     <main>
         <div class="main-scrollable">
+            {% if messages %}
+                {% for i in messages %}   
+                    <div class="alert {{i.tags}}" role="alert">
+                        {{i}} 
+                    </div>
+                {% endfor %}
+            {% endif %}
+
             <section class="perfil">
-                <div class="img-capa"></div>
-                <div class="img-perfil"></div>
+                <div>
+                    <img
+                        class="img-capa"
+                        src="{{ empresa.imagem_capa.url }}"
+                        alt="imagem capa empresa {{ empresa.nome_fantasia }}"
+                    >
+                </div>
+                <div class="img-perfil">
+                    <img
+                        class="img-perfil"
+                        src="{{ empresa.imagem_perfil.url }}"
+                        alt="imagem perfil empresa {{ empresa.nome_fantasia }}"
+                    >
+                </div>
 
                 <div class="informacoes">
                     <div class="nome-categorias">
-                        <h1>Nome da loja</h1>
+                        <h1>{{ empresa.nome_fantasia }}</h1>
+                        <div class="favoritos">
+                            <img
+                                class="fav-{{empresa.id}}"
+                                onclick="favnotfavbusiness(
+                                    'fav-{{empresa.id}}',
+                                    'fav-number-{{empresa.id}}',
+                                    {{empresa.id}}
+                                )"
+                                {% if empresa.favorito_usuario %}
+                                    src="{% static 'images/icone-estrela-cheio.svg' %}"
+                                {% else %}
+                                    src="{% static 'images/icone-estrela.svg' %}"
+                                {% endif %}
+                                alt="Ícone estrela"
+                                style="cursor: pointer;"
+                            >
+                            <span
+                                class="fav-number-{{empresa.id}}"
+                            >
+                                {{ empresa.favoritos }}
+                            </span>
+                        </div>
                         <div class="categorias">
-                            <span>Nome da categoria</span>
-                            <span>Nome da categoria</span>
-                            <span>Nome da categoria</span>
-                            <span>Nome da categoria</span>
+                            {% for categoria in empresa.categorias %}
+                                <span>{{ categoria.descricao }}</span>
+                            {% endfor %}
                         </div>
                     </div>
-                    <div class="endereco"><span>Rua tal, 000, Bairro tal</span><span>Cidade - Estado</span></div>
-                    <div>Horário de funcionamento</div>
+                    <div class="endereco">
+                        <div>
+                            <span>{{ endereco.cep }}</span>
+                        </div>
+                        <div>
+                            <span>{{ endereco.logradouro }}</span>
+                            <span>-</span>
+                            <span>{{ endereco.numero }}</span>
+                        </div>
+                        <div>
+                            <span>{{ endereco.complemento }}</span>
+                        </div>
+                        <div>
+                            <span>{{ endereco.uf }}</span>
+                            <span>-</span>
+                            <span>{{ endereco.cidade }}</span>
+                            <span>-</span>
+                            <span>{{ endereco.bairro }}</span>
+                        </div>
+                    </div>
                     <div class="contato">
-                        <span class="email">empresa@empresa.com</span>
-                        <span class="numero">(51) 99999-9999</span>
+                        <span class="email">{{ empresa.email }}</span>
+                        <span class="telefone">{{ empresa.telefone }}</span>
                     </div>
                 </div>
                 
@@ -40,256 +99,166 @@
             <section class="produtos">
                 <div class="destaques">
                     <h2>Destaques</h2>
-                    <!-- <div class="conteudo"> -->
-                        <div class="carrossel">
+                    <div class="carrossel">
+                        {% for produto in produtos_destaque %}
                             <div class="card card-produto">
-                                <div class="img-capa"></div>
+                                <div>
+                                    <img
+                                        class="img-capa"
+                                        src="{{ produto.primeira_imagem.url }}"
+                                        alt="imagem capa produto {{ produto.descricao }}"
+                                    >
+                                </div>
                                 <div class="textos">
-                                    <p class="nome">Nome do produto</p>
+                                    <p class="nome">{{ produto.descricao }}</p>
                                     <div class="preco-disponibilidade">
-                                        <!-- <div class="categoria">Categoria</div> -->
-                                            <div class="preco">R$ 299,90</div>
-                                        <div class="disponibilidade">
-                                            <span>Indisponível</span>
+                                        <div class="preco">R$ {{ produto.preco }}</div>
+                                    </div>
+                                    <div class="categoria-favoritos">
+                                        {% for categoria in produto.categorias %}
+                                            <div class="categoria">{{ categoria.descricao }}</div>
+                                        {% endfor %}
+                                        <div class="favoritos">
+                                            <img
+                                                class="fav-{{produto.id}}"
+                                                onclick="favnotfavproduct(
+                                                    event,
+                                                    'fav-{{produto.id}}',
+                                                    'fav-number-{{produto.id}}',
+                                                    {{produto.id}}
+                                                )"
+                                                {% if produto.favorito_usuario %}
+                                                    src="{% static 'images/icone-salvar-fill.svg' %}"
+                                                {% else %}
+                                                    src="{% static 'images/icone-salvar.svg' %}"
+                                                {% endif %}
+                                                alt="Ícone estrela"
+                                                style="cursor: pointer;"
+                                            >
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="card card-produto">
-                                <div class="img-capa"></div>
-                                <div class="textos">
-                                    <p class="nome">Nome do produto</p>
-                                    <div class="preco-disponibilidade">
-                                        <!-- <div class="categoria">Categoria</div> -->
-                                            <div class="preco">R$ 299,90</div>
-                                        <div class="disponibilidade">
-                                            <span>Indisponível</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="card card-produto">
-                                <div class="img-capa"></div>
-                                <div class="textos">
-                                    <p class="nome">Nome do produto</p>
-                                    <div class="preco-disponibilidade">
-                                        <!-- <div class="categoria">Categoria</div> -->
-                                            <div class="preco">R$ 299,90</div>
-                                        <div class="disponibilidade">
-                                            <span>Indisponível</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="card card-produto">
-                                <div class="img-capa"></div>
-                                <div class="textos">
-                                    <p class="nome">Nome do produto</p>
-                                    <div class="preco-disponibilidade">
-                                        <!-- <div class="categoria">Categoria</div> -->
-                                            <div class="preco">R$ 299,90</div>
-                                        <div class="disponibilidade">
-                                            <span>Indisponível</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="card card-produto">
-                                <div class="img-capa"></div>
-                                <div class="textos">
-                                    <p class="nome">Nome do produto</p>
-                                    <div class="preco-disponibilidade">
-                                        <!-- <div class="categoria">Categoria</div> -->
-                                            <div class="preco">R$ 299,90</div>
-                                        <div class="disponibilidade">
-                                            <span>Indisponível</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="card card-produto">
-                                <div class="img-capa"></div>
-                                <div class="textos">
-                                    <p class="nome">Nome do produto</p>
-                                    <div class="preco-disponibilidade">
-                                        <!-- <div class="categoria">Categoria</div> -->
-                                            <div class="preco">R$ 299,90</div>
-                                        <div class="disponibilidade">
-                                            <span>Indisponível</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    <!-- </div> -->
+                        {% empty %}
+                            <p>Não tem produtos em destaque.</p>
+                        {% endfor %}
+                    </div>
                 </div>
 
                 <div class="todos">
                     <h2>Todos os produtos</h2>
                     <div class="todos-produtos">
-                        <div class="card card-produto">
-                            <div class="img-capa"></div>
-                            <div class="textos">
-                                <p class="nome">Nome do produto</p>
-                                <div class="preco-disponibilidade">
-                                    <!-- <div class="categoria">Categoria</div> -->
-                                        <div class="preco">R$ 299,90</div>
-                                    <div class="disponibilidade">
-                                        <span>Indisponível</span>
+                        {% for produto in produtos %}
+                            <div class="card card-produto">
+                                <div>
+                                    <img
+                                        class="img-capa"
+                                        src="{{ produto.primeira_imagem.url }}"
+                                        alt="imagem capa produto {{ produto.descricao }}"
+                                    >
+                                </div>
+                                <div class="textos">
+                                    <p class="nome">{{ produto.descricao }}</p>
+                                    <div class="preco-disponibilidade">
+                                        <div class="preco">R$ {{ produto.preco }}</div>
+                                    </div>
+                                    <div class="categoria-favoritos">
+                                        {% for categoria in produto.categorias %}
+                                            <div class="categoria">{{ categoria.descricao }}</div>
+                                        {% endfor %}
+                                        <div class="favoritos">
+                                            <img
+                                                class="fav-{{produto.id}}"
+                                                onclick="favnotfavproduct(
+                                                    event,
+                                                    'fav-{{produto.id}}',
+                                                    'fav-number-{{produto.id}}',
+                                                    {{produto.id}}
+                                                )"
+                                                {% if produto.favorito_usuario %}
+                                                    src="{% static 'images/icone-salvar-fill.svg' %}"
+                                                {% else %}
+                                                    src="{% static 'images/icone-salvar.svg' %}"
+                                                {% endif %}
+                                                alt="Ícone estrela"
+                                                style="cursor: pointer;"
+                                            >
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="card card-produto">
-                            <div class="img-capa"></div>
-                            <div class="textos">
-                                <p class="nome">Nome do produto</p>
-                                <div class="preco-disponibilidade">
-                                    <!-- <div class="categoria">Categoria</div> -->
-                                        <div class="preco">R$ 299,90</div>
-                                    <div class="disponibilidade">
-                                        <span>Indisponível</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card card-produto">
-                            <div class="img-capa"></div>
-                            <div class="textos">
-                                <p class="nome">Nome do produto</p>
-                                <div class="preco-disponibilidade">
-                                    <!-- <div class="categoria">Categoria</div> -->
-                                        <div class="preco">R$ 299,90</div>
-                                    <div class="disponibilidade">
-                                        <span>Indisponível</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card card-produto">
-                            <div class="img-capa"></div>
-                            <div class="textos">
-                                <p class="nome">Nome do produto</p>
-                                <div class="preco-disponibilidade">
-                                    <!-- <div class="categoria">Categoria</div> -->
-                                        <div class="preco">R$ 299,90</div>
-                                    <div class="disponibilidade">
-                                        <span>Indisponível</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card card-produto">
-                            <div class="img-capa"></div>
-                            <div class="textos">
-                                <p class="nome">Nome do produto</p>
-                                <div class="preco-disponibilidade">
-                                    <!-- <div class="categoria">Categoria</div> -->
-                                        <div class="preco">R$ 299,90</div>
-                                    <div class="disponibilidade">
-                                        <span>Indisponível</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card card-produto">
-                            <div class="img-capa"></div>
-                            <div class="textos">
-                                <p class="nome">Nome do produto</p>
-                                <div class="preco-disponibilidade">
-                                    <!-- <div class="categoria">Categoria</div> -->
-                                        <div class="preco">R$ 299,90</div>
-                                    <div class="disponibilidade">
-                                        <span>Indisponível</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card card-produto">
-                            <div class="img-capa"></div>
-                            <div class="textos">
-                                <p class="nome">Nome do produto</p>
-                                <div class="preco-disponibilidade">
-                                    <!-- <div class="categoria">Categoria</div> -->
-                                        <div class="preco">R$ 299,90</div>
-                                    <div class="disponibilidade">
-                                        <span>Indisponível</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card card-produto">
-                            <div class="img-capa"></div>
-                            <div class="textos">
-                                <p class="nome">Nome do produto</p>
-                                <div class="preco-disponibilidade">
-                                    <!-- <div class="categoria">Categoria</div> -->
-                                        <div class="preco">R$ 299,90</div>
-                                    <div class="disponibilidade">
-                                        <span>Indisponível</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card card-produto">
-                            <div class="img-capa"></div>
-                            <div class="textos">
-                                <p class="nome">Nome do produto</p>
-                                <div class="preco-disponibilidade">
-                                    <!-- <div class="categoria">Categoria</div> -->
-                                        <div class="preco">R$ 299,90</div>
-                                    <div class="disponibilidade">
-                                        <span>Indisponível</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card card-produto">
-                            <div class="img-capa"></div>
-                            <div class="textos">
-                                <p class="nome">Nome do produto</p>
-                                <div class="preco-disponibilidade">
-                                    <!-- <div class="categoria">Categoria</div> -->
-                                        <div class="preco">R$ 299,90</div>
-                                    <div class="disponibilidade">
-                                        <span>Indisponível</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card card-produto">
-                            <div class="img-capa"></div>
-                            <div class="textos">
-                                <p class="nome">Nome do produto</p>
-                                <div class="preco-disponibilidade">
-                                    <!-- <div class="categoria">Categoria</div> -->
-                                        <div class="preco">R$ 299,90</div>
-                                    <div class="disponibilidade">
-                                        <span>Indisponível</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {% empty %}
+                            <p>Não tem produtos cadastrados.</p>
+                        {% endfor %}
                     </div>
                 </div>
             </section>
         </div>
     </main>
+
+    <script>
+
+        function favnotfavbusiness(id_icone, numero_favoritos, id_empresa) {
+            const url = "/empresas/favorita-nao-favorita-empresa/" + id_empresa + "/"
+            const icones = document.getElementsByClassName(id_icone);
+            const spans_numero = document.getElementsByClassName(numero_favoritos);
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status === 'success'){
+                    for (let i = 0; i < icones.length; i++) {
+                        if(data.message === 'like'){
+                            icones[i].src = "{% static 'images/icone-estrela-cheio.svg' %}";
+                            spans_numero[i].innerHTML = parseInt(spans_numero[i].innerHTML) + 1
+                        } else {
+                            icones[i].src = "{% static 'images/icone-estrela.svg' %}";
+                            spans_numero[i].innerHTML = parseInt(spans_numero[i].innerHTML) - 1
+                        }
+                    }
+                }else{
+                    alert('Não foi possível favoritar essa empresa, tente novamente mais tarde.');
+                }
+            })
+            .catch(error => {
+                alert('Não foi possível favoritar essa empresa, tente novamente mais tarde.');
+            });
+        }
+
+        function favnotfavproduct(event, id_icone, numero_salvos, id_produto) {
+            event.stopPropagation();
+            const url = "/empresas/salva-nao-salva-produto/" + id_produto + "/"
+            const icones = document.getElementsByClassName(id_icone);
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status === 'success'){
+                    for (let i = 0; i < icones.length; i++) {
+                        if(data.message === 'like'){
+                            icones[i].src = "{% static 'images/icone-salvar-fill.svg' %}";
+                        } else {
+                            icones[i].src = "{% static 'images/icone-salvar.svg' %}";
+                        }
+                    }
+                }else{
+                    alert('Não foi possível favoritar esse produto, tente novamente mais tarde.');
+                }
+            })
+            .catch(error => {
+                alert('Não foi possível favoritar esse produto, tente novamente mais tarde.');
+            });
+        }
+    </script>
     
 {% endblock %}

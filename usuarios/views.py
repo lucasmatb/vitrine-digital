@@ -100,7 +100,6 @@ def retorna_empresas_favoritas_usuario(request):
         {
             'id': empresa.id,
             'nome_fantasia': empresa.nome_fantasia,
-            'cnpj': empresa.cnpj,
             'imagem_perfil': empresa.imagem_perfil,
             'imagem_capa': empresa.imagem_capa,
             'categorias': empresa.empresa_categoria.all(),
@@ -151,7 +150,7 @@ def retorna_produtos_salvos_usuario(request):
             'id': produto.id,
             'descricao': produto.descricao,
             'preco': produto.preco,
-            'primeira_imagem': Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first().imagem,
+            'primeira_imagem': Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first().imagem if Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first() else 'default_produto.jpg',
             'nome_empresa': produto.id_empresa.nome_fantasia,
             'empresa_imagem': produto.id_empresa.imagem_perfil,
             'categorias': produto.categoria_produto.all(),
@@ -182,7 +181,6 @@ def retorna_pesquisar_empresas_usuario(request):
         {
             'id': empresa.id,
             'nome_fantasia': empresa.nome_fantasia,
-            'cnpj': empresa.cnpj,
             'imagem_perfil': empresa.imagem_perfil,
             'imagem_capa': empresa.imagem_capa,
             'categorias': empresa.empresa_categoria.all(),
