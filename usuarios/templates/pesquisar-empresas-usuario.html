@@ -15,187 +15,117 @@
         <div class="main-scrollable">
             <section>
                 <div class="busca">
-                    <form action="" class="form-busca">
-                        <input type="text" placeholder="Nome da loja">
+                    <form
+                        class="form-busca"
+                        method="GET"
+                        action="{% url 'pesquisar_empresas_usuario' %}"
+                    >
+                        {% csrf_token %}
+                        <input id="pesquisa" name="pesquisa" type="text" placeholder="Nome da loja">
                         <button type="submit"><img src="{% static 'images/icone-lupa.svg' %}" alt="">
                         </button>
                     </form>
-                    <div class="categorias">
-                        <div class="wrapper-categoria">
-                            <input type="checkbox"class="checkbox-categoria">
-                            <label class="label-categoria">
-                                Categoria tal
-                            </label>
-                        </div>
-                        <div class="wrapper-categoria">
-                            <input type="checkbox"class="checkbox-categoria">
-                            <label class="label-categoria">
-                                Categoria tal
-                            </label>
-                        </div>
-                        <div class="wrapper-categoria">
-                            <input type="checkbox"class="checkbox-categoria">
-                            <label class="label-categoria">
-                                Categoria tal
-                            </label>
-                        </div>
-                    </div>
                 </div>
             </section>
 
+            {% if messages %}
+                {% for i in messages %}   
+                    <div class="alert {{i.tags}}" role="alert">
+                        {{i}} 
+                    </div>
+                {% endfor %}
+            {% endif %}
+
             <section>
                 <div class="todos-cards">
-                    <div class="card card-empresa">
-                        <div class="img-perfil"></div>
-                        <div class="img-capa"></div>
-                        <div class="textos">
-                            <p class="nome">Nome da empresa</p>
-                            <p class="descricao">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
-                            </p>
-                            <div class="categoria-favoritos">
-                                <div class="categoria">Categoria</div>
-                                <div class="favoritos">
-                                    <img src="{% static 'images/icone-coracao.svg' %}" alt="Ícone estrela">
-                                    <span>1.3K</span>
+                    {% for empresa in empresas %}
+                        <div class="card card-empresa">
+                            <div>
+                                <img
+                                    class="img-perfil"
+                                    src="{{ empresa.imagem_perfil.url }}"
+                                    alt="imagem perfil empresa {{ empresa.nome_fantasia }}"
+                                >
+                            </div>
+                            <div>
+                                <img
+                                    class="img-capa"
+                                    src="{{ empresa.imagem_capa.url }}"
+                                    alt="imagem capa empresa {{ empresa.nome_fantasia }}"
+                                >
+                            </div>
+                            <div class="textos">
+                                <p class="nome">{{ empresa.nome_fantasia }}</p>
+                                <div class="categoria-favoritos">
+                                    {% for categoria in empresa.categorias %}
+                                        <div class="categoria">{{ categoria.descricao }}</div>
+                                    {% endfor %}
+                                    <div class="favoritos">
+                                        <img
+                                            class="fav-{{empresa.id}}"
+                                            onclick="favnotfav(
+                                                'fav-{{empresa.id}}',
+                                                'fav-number-{{empresa.id}}',
+                                                {{empresa.id}}
+                                            )"
+                                            {% if empresa.favorito_usuario %}
+                                                src="{% static 'images/icone-estrela-cheio.svg' %}"
+                                            {% else %}
+                                                src="{% static 'images/icone-estrela.svg' %}"
+                                            {% endif %}
+                                            alt="Ícone estrela"
+                                            style="cursor: pointer;"
+                                        >
+                                        <span
+                                            class="fav-number-{{empresa.id}}"
+                                        >
+                                            {{ empresa.favoritos }}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card card-empresa">
-                        <div class="img-perfil"></div>
-                        <div class="img-capa"></div>
-                        <div class="textos">
-                            <p class="nome">Nome da empresa</p>
-                            <p class="descricao">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
-                            </p>
-                            <div class="categoria-favoritos">
-                                <div class="categoria">Categoria</div>
-                                <div class="favoritos">
-                                    <img src="{% static 'images/icone-coracao.svg' %}" alt="Ícone estrela">
-                                    <span>1.3K</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card card-empresa">
-                        <div class="img-perfil"></div>
-                        <div class="img-capa"></div>
-                        <div class="textos">
-                            <p class="nome">Nome da empresa</p>
-                            <p class="descricao">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
-                            </p>
-                            <div class="categoria-favoritos">
-                                <div class="categoria">Categoria</div>
-                                <div class="favoritos">
-                                    <img src="{% static 'images/icone-coracao.svg' %}" alt="Ícone estrela">
-                                    <span>1.3K</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card card-empresa">
-                        <div class="img-perfil"></div>
-                        <div class="img-capa"></div>
-                        <div class="textos">
-                            <p class="nome">Nome da empresa</p>
-                            <p class="descricao">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
-                            </p>
-                            <div class="categoria-favoritos">
-                                <div class="categoria">Categoria</div>
-                                <div class="favoritos">
-                                    <img src="{% static 'images/icone-coracao.svg' %}" alt="Ícone estrela">
-                                    <span>1.3K</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card card-empresa">
-                        <div class="img-perfil"></div>
-                        <div class="img-capa"></div>
-                        <div class="textos">
-                            <p class="nome">Nome da empresa</p>
-                            <p class="descricao">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
-                            </p>
-                            <div class="categoria-favoritos">
-                                <div class="categoria">Categoria</div>
-                                <div class="favoritos">
-                                    <img src="{% static 'images/icone-coracao.svg' %}" alt="Ícone estrela">
-                                    <span>1.3K</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card card-empresa">
-                        <div class="img-perfil"></div>
-                        <div class="img-capa"></div>
-                        <div class="textos">
-                            <p class="nome">Nome da empresa</p>
-                            <p class="descricao">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
-                            </p>
-                            <div class="categoria-favoritos">
-                                <div class="categoria">Categoria</div>
-                                <div class="favoritos">
-                                    <img src="{% static 'images/icone-coracao.svg' %}" alt="Ícone estrela">
-                                    <span>1.3K</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card card-empresa">
-                        <div class="img-perfil"></div>
-                        <div class="img-capa"></div>
-                        <div class="textos">
-                            <p class="nome">Nome da empresa</p>
-                            <p class="descricao">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
-                            </p>
-                            <div class="categoria-favoritos">
-                                <div class="categoria">Categoria</div>
-                                <div class="favoritos">
-                                    <img src="{% static 'images/icone-coracao.svg' %}" alt="Ícone estrela">
-                                    <span>1.3K</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% empty %}
+                        <p>Não há empresas cadastradas em nenhuma categoria.</p>
+                    {% endfor %}
                 </div>
             </section>
         </div>
     </main>
 
-    <script>        
-        // const checkboxCategorias = document.querySelectorAll('.checkbox-categoria');
+    <script>
 
-        // i = 1;
-
-        // checkboxCategorias.forEach(cc => {
-        //     cc.id = `checkbox-categoria-${i}`;
-        //     i++;
-        //     console.log(cc);
-        // })
-
-
-        const wrapperCategoria = document.querySelectorAll('.wrapper-categoria');
-        
-        let i = 1;
-        
-        wrapperCategoria.forEach(w => {
-            const checkbox = w.querySelector('.checkbox-categoria');
-            const label = w.querySelector('.label-categoria');
-            
-            const id = `checkbox-categoria-${i}`;
-
-            checkbox.id = id;
-            label.htmlFor = id;
-            console.log(checkbox, label);
-            i++;
-        })
+        function favnotfav(id_icone, numero_favoritos, id_empresa) {
+            const url = "/empresas/favorita-nao-favorita-empresa/" + id_empresa + "/"
+            const icones = document.getElementsByClassName(id_icone);
+            const spans_numero = document.getElementsByClassName(numero_favoritos);
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status === 'success'){
+                    for (let i = 0; i < icones.length; i++) {
+                        if(data.message === 'like'){
+                            icones[i].src = "{% static 'images/icone-estrela-cheio.svg' %}";
+                            spans_numero[i].innerHTML = parseInt(spans_numero[i].innerHTML) + 1
+                        } else {
+                            icones[i].src = "{% static 'images/icone-estrela.svg' %}";
+                            spans_numero[i].innerHTML = parseInt(spans_numero[i].innerHTML) - 1
+                        }
+                    }
+                }else{
+                    alert('Não foi possível favoritar essa empresa, tente novamente mais tarde.');
+                }
+            })
+            .catch(error => {
+                alert('Não foi possível favoritar essa empresa, tente novamente mais tarde.');
+            });
+        }
     </script>
 
 {% endblock %}

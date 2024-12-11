@@ -8,13 +8,11 @@ const botaoSim = document.querySelector(".botao-sim");
 const botaoCancelar = document.querySelector(".botao-cancelar");
 
 const todosCards = document.querySelector(".todos-cards");
-// console.log(modalConfirmacao);
 
 botaoEditar.addEventListener("click", () => {
     if (edicao === false) {
         edicao = true;
         body.classList.add("modo-edicao");
-        console.log(body.classList);
         botaoEditar.textContent = "Concluir";
 
         abrirModalConfirmacao();
@@ -38,7 +36,6 @@ function abrirModalConfirmacao() {
 
             botaoCancelar.addEventListener("click", () => {
                 modalConfirmacao.classList.remove("aberto");
-                console.log("foi");
             });
         });
     });
