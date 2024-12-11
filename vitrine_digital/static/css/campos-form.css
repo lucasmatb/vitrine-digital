@@ -17,11 +17,15 @@ form {
             font-size: var(--spc-200);
         }
         
+    }
+
+    & .input-wrapper:not(.input-wrapper-checkbox){
         & input {
             all: unset;
         }
     }
 
+    
     & .esqueceu-senha {
         align-self: flex-end;
         font-size: var(--fs-100);
