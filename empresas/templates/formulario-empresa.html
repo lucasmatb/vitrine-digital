@@ -47,184 +47,174 @@
                         <div class="titulo-campos">
                             <p>Informações básicas</p>
                             <div class="conjuntos-campos campos-basicos">
-                                <!-- <div> -->
-                                    <div class="input-wrapper">
-                                        <label for="">Nome fantasia <span>*</span></label>
-                                        {{ form.nome_fantasia }}
-                                        {% if form.nome_fantasia.errors %}
-                                            <div>
-                                                {% for error in form.nome_fantasia.errors %}
-                                                    <div>
-                                                        <strong>{{ error }}</strong>
-                                                    </div>
-                                                {% endfor %}
-                                            </div>
-                                        {% endif %}
-                                    </div>
-                                    <div class="input-wrapper">
-                                        <label for="">Razão social <span>*</span></label>
-                                        {{ form.razao_social }}
-                                        {% if form.razao_social.errors %}
-                                            <div>
-                                                {% for error in form.razao_social.errors %}
-                                                    <div>
-                                                        <strong>{{ error }}</strong>
-                                                    </div>
-                                                {% endfor %}
-                                            </div>
-                                        {% endif %}
-                                    </div>
-                                    <div class="input-wrapper">
-                                        <label for="">CNPJ <span>*</span></label>
-                                        {{ form.cnpj_alterado }}
-                                        {% if form.cnpj_alterado.errors %}
-                                            <div>
-                                                {% for error in form.cnpj_alterado.errors %}
-                                                    <div>
-                                                        <strong>{{ error }}</strong>
-                                                    </div>
-                                                {% endfor %}
-                                            </div>
-                                        {% endif %}
-                                    </div>
-                                <!-- </div> -->
-                                <!-- <div> -->
-                                    <div class="input-wrapper">
-                                        <label for="">Telefone de contato <span>*</span></label>
-                                        {{ form.telefone }}
-                                        {% if form.telefone.errors %}
-                                            <div>
-                                                {% for error in form.telefone.errors %}
-                                                    <div>
-                                                        <strong>{{ error }}</strong>
-                                                    </div>
-                                                {% endfor %}
-                                            </div>
-                                        {% endif %}
-                                    </div>
-                                    <div class="input-wrapper">
-                                        <label for="">E-mail de contato <span>*</span></label>
-                                        {{ form.email }}
-                                        {% if form.email.errors %}
-                                            <div>
-                                                {% for error in form.email.errors %}
-                                                    <div>
-                                                        <strong>{{ error }}</strong>
-                                                    </div>
-                                                {% endfor %}
-                                            </div>
-                                        {% endif %}
-                                    </div>
-                                    <div class="input-wrapper">
-                                    </div>
-                                <!-- </div> -->
+                                <div class="input-wrapper">
+                                    <label for="">Nome fantasia <span>*</span></label>
+                                    {{ form.nome_fantasia }}
+                                    {% if form.nome_fantasia.errors %}
+                                        <div>
+                                            {% for error in form.nome_fantasia.errors %}
+                                                <div>
+                                                    <strong>{{ error }}</strong>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="input-wrapper">
+                                    <label for="">Razão social <span>*</span></label>
+                                    {{ form.razao_social }}
+                                    {% if form.razao_social.errors %}
+                                        <div>
+                                            {% for error in form.razao_social.errors %}
+                                                <div>
+                                                    <strong>{{ error }}</strong>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="input-wrapper">
+                                    <label for="">CNPJ <span>*</span></label>
+                                    {{ form.cnpj_alterado }}
+                                    {% if form.cnpj_alterado.errors %}
+                                        <div>
+                                            {% for error in form.cnpj_alterado.errors %}
+                                                <div>
+                                                    <strong>{{ error }}</strong>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="input-wrapper">
+                                    <label for="">Telefone de contato <span>*</span></label>
+                                    {{ form.telefone }}
+                                    {% if form.telefone.errors %}
+                                        <div>
+                                            {% for error in form.telefone.errors %}
+                                                <div>
+                                                    <strong>{{ error }}</strong>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="input-wrapper">
+                                    <label for="">E-mail de contato <span>*</span></label>
+                                    {{ form.email }}
+                                    {% if form.email.errors %}
+                                        <div>
+                                            {% for error in form.email.errors %}
+                                                <div>
+                                                    <strong>{{ error }}</strong>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
 
                         <div class="titulo-campos">
                             <p>Endereço</p>
                             <div class="conjuntos-campos campos-endereco">
-                                <!-- <div> -->
-                                    <div class="input-wrapper">
-                                        <label for="">Cep <span>*</span></label>
-                                        {{ form.cep }}
-                                        {% if form.cep.errors %}
-                                            <div>
-                                                {% for error in form.cep.errors %}
-                                                    <div>
-                                                        <strong>{{ error }}</strong>
-                                                    </div>
-                                                {% endfor %}
-                                            </div>
-                                        {% endif %}
-                                    </div>
-                                    <div class="input-wrapper">
-                                        <label for="">Logradouro <span>*</span></label>
-                                        {{ form.logradouro }}
-                                        {% if form.logradouro.errors %}
-                                            <div>
-                                                {% for error in form.logradouro.errors %}
-                                                    <div>
-                                                        <strong>{{ error }}</strong>
-                                                    </div>
-                                                {% endfor %}
-                                            </div>
-                                        {% endif %}
-                                    </div>
-                                    <div class="input-wrapper">
-                                        <label for="">Número <span>*</span></label>
-                                        {{ form.numero }}
-                                        {% if form.numero.errors %}
-                                            <div>
-                                                {% for error in form.numero.errors %}
-                                                    <div>
-                                                        <strong>{{ error }}</strong>
-                                                    </div>
-                                                {% endfor %}
-                                            </div>
-                                        {% endif %}
-                                    </div>
-                                    <div class="input-wrapper">
-                                        <label for="">Complemento</label>
-                                        {{ form.complemento }}
-                                        {% if form.complemento.errors %}
-                                            <div>
-                                                {% for error in form.complemento.errors %}
-                                                    <div>
-                                                        <strong>{{ error }}</strong>
-                                                    </div>
-                                                {% endfor %}
-                                            </div>
-                                        {% endif %}
-                                    </div>
-                                <!-- </div> -->
-                                <!-- <div> -->
-                                    <div class="input-wrapper">
-                                        <label for="">Bairro <span>*</span></label>
-                                        {{ form.bairro }}
-                                        {% if form.bairro.errors %}
-                                            <div>
-                                                {% for error in form.bairro.errors %}
-                                                    <div>
-                                                        <strong>{{ error }}</strong>
-                                                    </div>
-                                                {% endfor %}
-                                            </div>
-                                        {% endif %}
-                                    </div>
-                                    <div class="input-wrapper">
-                                        <label for="">Cidade <span>*</span></label>
-                                        {{ form.cidade }}
-                                        {% if form.cidade.errors %}
-                                            <div>
-                                                {% for error in form.cidade.errors %}
-                                                    <div>
-                                                        <strong>{{ error }}</strong>
-                                                    </div>
-                                                {% endfor %}
-                                            </div>
-                                        {% endif %}
-                                    </div>
-                                    <div class="input-wrapper">
-                                        <label for="">Estado <span>*</span></label>
-                                        {{ form.estado }}
-                                        {% if form.estado.errors %}
-                                            <div>
-                                                {% for error in form.estado.errors %}
-                                                    <div>
-                                                        <strong>{{ error }}</strong>
-                                                    </div>
-                                                {% endfor %}
-                                            </div>
-                                        {% endif %}
-                                    </div>
-                                <!-- </div> -->
+                                <div class="input-wrapper">
+                                    <label for="">Cep <span>*</span></label>
+                                    {{ form.cep }}
+                                    {% if form.cep.errors %}
+                                        <div>
+                                            {% for error in form.cep.errors %}
+                                                <div>
+                                                    <strong>{{ error }}</strong>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="input-wrapper">
+                                    <label for="">Logradouro <span>*</span></label>
+                                    {{ form.logradouro }}
+                                    {% if form.logradouro.errors %}
+                                        <div>
+                                            {% for error in form.logradouro.errors %}
+                                                <div>
+                                                    <strong>{{ error }}</strong>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="input-wrapper">
+                                    <label for="">Número <span>*</span></label>
+                                    {{ form.numero }}
+                                    {% if form.numero.errors %}
+                                        <div>
+                                            {% for error in form.numero.errors %}
+                                                <div>
+                                                    <strong>{{ error }}</strong>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="input-wrapper">
+                                    <label for="">Complemento</label>
+                                    {{ form.complemento }}
+                                    {% if form.complemento.errors %}
+                                        <div>
+                                            {% for error in form.complemento.errors %}
+                                                <div>
+                                                    <strong>{{ error }}</strong>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="input-wrapper">
+                                    <label for="">Bairro <span>*</span></label>
+                                    {{ form.bairro }}
+                                    {% if form.bairro.errors %}
+                                        <div>
+                                            {% for error in form.bairro.errors %}
+                                                <div>
+                                                    <strong>{{ error }}</strong>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="input-wrapper">
+                                    <label for="">Cidade <span>*</span></label>
+                                    {{ form.cidade }}
+                                    {% if form.cidade.errors %}
+                                        <div>
+                                            {% for error in form.cidade.errors %}
+                                                <div>
+                                                    <strong>{{ error }}</strong>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="input-wrapper">
+                                    <label for="">Estado <span>*</span></label>
+                                    {{ form.estado }}
+                                    {% if form.estado.errors %}
+                                        <div>
+                                            {% for error in form.estado.errors %}
+                                                <div>
+                                                    <strong>{{ error }}</strong>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
 
                         <div class="titulo-campos">
                             <p>Imagens</p>
-                            <div class="input-wrapper">
+                            <div class="input-wrapper input-wrapper-imagem">
                                 <label for="">Imagem de capa</label>
                                 {{ form.imagem_capa }}
                                 {% if form.imagem_capa.errors %}
@@ -241,7 +231,7 @@
                                         Prévia da imagem
                                     {% endif %}
                                 </span>
-                                <div id="imagem-capa" class="mt-2">
+                                <div id="imagem-capa">
                                     {% if imagem_capa %}
                                         <img
                                             src="{{ imagem_capa.url }}"
@@ -250,7 +240,8 @@
                                     {% endif %}
                                 </div>
                             </div>
-                            <div class="input-wrapper">
+
+                            <div class="input-wrapper input-wrapper-imagem">
                                 <label for="">Imagem de perfil</label>
                                 {{ form.imagem_perfil }}
                                 {% if form.imagem_perfil.errors %}
@@ -268,7 +259,7 @@
                                     Prévia da imagem
                                 {% endif %}
                             </span>
-                            <div id="imagem-perfil" class="mt-2">
+                            <div id="imagem-perfil">
                                 {% if imagem_perfil %}
                                     <img
                                         src="{{ imagem_perfil.url }}"
@@ -280,7 +271,7 @@
 
                         <div class="titulo-campos">
                             <p>Categoria(s) da empresa <span>(mínimo 1, máximo 10)</span></p>
-                            <div class="input-wrapper">
+                            <div class="input-wrapper input-wrapper-categoria">
                                 {{ form.categorias }}
                                 {% if form.categorias.errors %}
                                     <div>
@@ -294,7 +285,7 @@
                             </div>
                         </div>
 
-                        <input class="form-botao" type="submit" value="Enviar">
+                        <input class="form-botao botao" type="submit" value="Enviar">
                     </form>
                 </div>
             </section>

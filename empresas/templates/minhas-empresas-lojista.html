@@ -27,7 +27,7 @@
                         <h1>Minhas lojas</h1>
                         <a href="{% url 'cadastrar_empresa' %}">Cadastrar</a>
                     </div>
-                    
+
                     <div class="minhas-empresas-lojista">
 
                         {% for empresa in empresas %}
@@ -70,19 +70,19 @@
                                     <div class="botoes">
                                         <a
                                             href="{% url 'listagem_produto_por_empresa' empresa.id %}"
-                                            class="btn"
+                                            class="botao"
                                         >
                                             Produtos
                                         </a>
                                         <a
                                             href="{% url 'editar_empresa' empresa.id %}"
-                                            class="btn"
+                                            class="botao"
                                         >
                                             Editar
                                         </a>
                                         <a
                                             href="{% url 'excluir_empresa' empresa.id %}"
-                                            class="btn"
+                                            class="botao"
                                         >
                                             Excluir
                                         </a>

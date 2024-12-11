@@ -82,17 +82,6 @@
                 & .botoes {
                     display: flex;
                     gap: var(--spc-100);
-
-                    a {
-                        all: unset;
-                        align-self: center;
-                        padding: var(--spc-100) var(--spc-200);
-                        background-color: #ccc;
-                        border-radius: 0.8rem;
-                        max-width: 15rem;
-                        width: 100%;
-                        text-align: center;
-                    }
                 }
             }
         }
