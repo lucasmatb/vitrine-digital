@@ -11,20 +11,22 @@
 
 {% block 'conteudo' %}
     <main>
-        <div class="titulo-texto">
-            <h2>Recuperar senha</h2>
-            <p>Esqueceu sua senha? Forneça seu endereço de e-mail abaixo, e nós te enviaremos um e-mail com instruções para configurar uma nova.</p>
-        </div>
-
-        <form method="post">
-            {% csrf_token %}
-            <div class="input-wrapper">
-                {{ form.email.errors }}
-                <label>E-mail</label>
-                {{ form.email }}
+        <section class="secao recuperar-senha">
+            <div class="container">
+                <div class="titulo-texto">
+                    <h2>Recuperar senha</h2>
+                    <p>Esqueceu sua senha? Forneça seu endereço de e-mail abaixo, e nós te enviaremos um e-mail com instruções para configurar uma nova.</p>
+                </div>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="input-wrapper">
+                        {{ form.email.errors }}
+                        <label>E-mail</label>
+                        {{ form.email }}
+                    </div>
+                    <button class="botao" type="submit">Recuperar minha senha</button>
+                </form>
             </div>
-
-            <button type="submit">Recuperar minha senha</button>
-        </form>
+        </section>
     </main>
 {% endblock %}

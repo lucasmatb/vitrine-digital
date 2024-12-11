@@ -1,0 +1,27 @@
+.recuperar-senha {
+    padding: var(--spc-600) var(--spc-300);
+
+    & .container {
+        max-width: 85rem;
+        padding: 0;
+
+        & .titulo-texto {
+            display: flex;
+            flex-flow: column;
+            gap: var(--spc-400);
+        }
+
+        & form {
+            display: flex;
+            flex-flow: column;
+            gap: var(--spc-400);
+
+            & .botao {
+                align-self: flex-start;
+                max-width: none;
+                width: max-content;
+            }
+        }
+    }
+
+}

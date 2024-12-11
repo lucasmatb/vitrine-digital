@@ -1,13 +1,34 @@
-.secao-meus-produtos {
-    padding: var(--spc-1300) var(--spc-400);
+.cabecalho {
+    display: flex;
+    gap: var(--spc-300);
+    justify-content: space-between;
 
-    & .meus-produtos-lojista {
-        display: grid;
-        grid-template-columns: repeat(3, 25rem);
-        gap: var(--spc-700);
+    @media all and (max-width: 500px){
+        flex-flow: column;
     }
-
 }
+
+.botao-voltar {
+    display: flex;
+    gap: var(--spc-200);
+    align-items: center;
+    background-color: #F8F9FA;
+    border-radius: 100vw;
+    padding: var(--spc-100) var(--spc-500);
+    width: max-content;
+    font-weight: 400;
+
+    & img {
+        max-width: 2rem;
+    }
+}
+
+.meus-produtos-lojista {
+    display: grid;
+    grid-template-columns: repeat(3, 25rem);
+    gap: var(--spc-700);
+}
+
 
 
 

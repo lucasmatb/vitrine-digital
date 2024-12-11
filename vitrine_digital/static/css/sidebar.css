@@ -1,8 +1,9 @@
 & #sidebar {
     display: flex;
     flex-direction: column;
-    background-color: rgba(246, 246, 246, 0.06);
+    /* background-color: rgba(246, 246, 246, 0.06); */
     max-height: 100vh;
+    background-color: #F8F9FA;
 
     & #toggler {
         display: none;
