@@ -9,8 +9,9 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import update_session_auth_hash
 from django.http import JsonResponse
-from empresas.models import Empresa, Categoria_Empresa
+from empresas.models import Empresa
 from django.db.models import Count
+from produtos.models import Imagem_Produto
 
 def login(request):
     if request.user.is_authenticated:
@@ -141,9 +142,27 @@ def retorna_meus_dados_usuario(request):
     return render(request, 'meus-dados-usuario.html', data)
 
 def retorna_produtos_salvos_usuario(request):
-    #data = {}
-    #data['form'] = UsuarioRegistrationForm()
-    return render(request, 'produtos-salvos-usuario.html')#, data)
+    data = {}
+    
+    produtos = request.user.favorito_produto.all()
+
+    produtos = [
+        {
+            'id': produto.id,
+            'descricao': produto.descricao,
+            'preco': produto.preco,
+            'primeira_imagem': Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first().imagem,
+            'nome_empresa': produto.id_empresa.nome_fantasia,
+            'empresa_imagem': produto.id_empresa.imagem_perfil,
+            'categorias': produto.categoria_produto.all(),
+            'favorito_usuario': produto.favoritos_produtos.filter(id=request.user.id).exists()
+        }
+        for produto in produtos
+    ]
+
+    data['produtos'] = produtos
+
+    return render(request, 'produtos-salvos-usuario.html', data)
 
 def retorna_pesquisar_empresas_usuario(request):
     data = {}
