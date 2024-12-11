@@ -214,3 +214,6 @@ def cria_pedido_lojista_por_usuario(request):
             return JsonResponse({'status': 'success', 'message': 'Pedido criado com sucesso.'})
     except Exception as e:
         return JsonResponse({'status': 'error', 'message': str(e)})
+    
+def explicacao_cadastro(request):
+    return render(request, 'explicacao-cadastro-empresa.html')

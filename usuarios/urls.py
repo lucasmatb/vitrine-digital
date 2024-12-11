@@ -12,6 +12,7 @@ urlpatterns = [
     path('auth/valida-cadastro/', views.valida_cadastro, name='valida_cadastro'),
     path('auth/valida-login/', views.valida_login, name='valida_login'),
     path('auth/logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('auth/explicacao-cadastro/', views.explicacao_cadastro, name='explicacao-cadastro'),
 
     #rotas de recuperação de senha
 
