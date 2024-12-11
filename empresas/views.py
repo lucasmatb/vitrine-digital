@@ -138,11 +138,28 @@ def valida_editar_empresa(request, pk):
     return render(request, 'formulario-empresa.html', data)
 
 def retorna_visualizar_empresa_usuario(request):
-    return render(request, 'visualizar-empresa-usuario.html')
+    data = {}
+    return render(request, 'visualizar-empresa-usuario.html', data)
 
 def retorna_minhas_empresas_lojista(request):
     data = {}
-    data['empresas'] = Empresa.objects.filter(id_usuario=request.user).prefetch_related('empresa_categoria')
+    empresas = Empresa.objects.filter(id_usuario=request.user).prefetch_related('empresa_categoria')
+    for empresa in empresas:
+        produtos = Produto.objects.filter(id_empresa=empresa.id)
+        if produtos.count() == 0:
+            empresa.contador_favoritos = 0
+            empresa.contador_produtos = 0
+            empresa.media_salvamento_produto = 0
+        else:
+            contador_fav_produtos = 0
+            for produto in produtos:
+                contador_fav_produtos += produto.favoritos_produtos.count()
+            empresa.contador_favoritos = empresa.favoritos_empresas.count()
+            empresa.contador_produtos = produtos.count()
+            empresa.media_salvamento_produto = contador_fav_produtos / produtos.count()
+
+    data['empresas'] = empresas
+
     return render(request, 'minhas-empresas-lojista.html', data)
 
 def verifica_cep(request, cep):
