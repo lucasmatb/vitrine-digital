@@ -62,9 +62,9 @@
                                         {{produto.id}}
                                     )"
                                     {% if produto.favorito_usuario %}
-                                        src="{% static 'images/icone-estrela-cheio.svg' %}"
+                                        src="{% static 'images/icone-salvar-fill.svg' %}"
                                     {% else %}
-                                        src="{% static 'images/icone-estrela.svg' %}"
+                                        src="{% static 'images/icone-salvar.svg' %}"
                                     {% endif %}
                                     alt="Ícone estrela"
                                     style="cursor: pointer;"
@@ -97,9 +97,9 @@
             if(data.status === 'success'){
                 for (let i = 0; i < icones.length; i++) {
                     if(data.message === 'like'){
-                        icones[i].src = "{% static 'images/icone-estrela-cheio.svg' %}";
+                        icones[i].src = "{% static 'images/icone-salvar-fill.svg' %}";
                     } else {
-                        icones[i].src = "{% static 'images/icone-estrela.svg' %}";
+                        icones[i].src = "{% static 'images/icone-salvar.svg' %}";
                     }
                 }
             }else{
