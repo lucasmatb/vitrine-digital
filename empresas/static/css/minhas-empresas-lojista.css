@@ -1,16 +1,20 @@
 .secao-minhas-empresas {
-    padding: var(--spc-1300) var(--spc-400);
+    padding-top: var(--spc-1000);
     
     & .cabecalho {
         display: flex;
         gap: var(--spc-300);
         justify-content: space-between;
+
+        @media all and (max-width: 500px){
+            flex-flow: column;
+        }
     }
 
     & .minhas-empresas-lojista {
         display: flex;
         flex-flow: column;
-        gap: var(--spc-200);
+        gap: var(--spc-500);
 
         & .card-empresa-faixa {
             width: 100%;
@@ -18,17 +22,44 @@
             box-shadow: 0rem 0rem 8rem rgba(0,0,0,0.05);
             border-radius: 0.8rem;
 
+            @media all and (max-width: 900px){
+                flex-flow: column;
+            }
+
             & .imagens {
                 position: relative;
 
                 & .img-capa {
-                    max-width: 20rem;
+                    /* max-width: 20rem; */
                     border-top-left-radius: 0.8rem;
                     border-bottom-left-radius: 0.8rem;
                     overflow: hidden;
+                    height: 30rem;
+                    aspect-ratio: 3/4;
                     
+                    @media all and (max-width: 900px){
+                        /* width: 100%;
+                        height: auto;
+                        aspect-ratio: 5/1; */
+
+                        height: 15rem;
+                        width: 100%;
+
+                        border-top-left-radius: 0.8rem;
+                        border-bottom-left-radius: 0;
+                        border-top-right-radius: 0.8rem;
+                    }
+
                     & img {
-                        max-width: 100%;
+                        /* max-width: 100%; */
+
+                        height: 100%;
+                        min-width: 100%;
+                        aspect-ratio: 15/20;
+                        object-fit: cover;
+                        object-position: 25% 25%;
+
+                        
                     }
                 }
                 
@@ -40,9 +71,16 @@
                     overflow: hidden;
                     border: solid 3px #fff;
                     position: absolute;
-                    top: 9rem;
+                    top: 0;
                     right: 0;
-                    transform: translateX(50%);
+                    transform: translate(50%, 50%);
+
+                    @media all and (max-width: 900px){
+                        transform: none;
+                        bottom: 0;
+                        left: 0;
+                        transform: translate(50%, 140%);
+                    }
                     
                     & img {
                         max-width: 100%;
@@ -59,13 +97,43 @@
                 padding: var(--spc-700);
                 padding-left: 10rem;
 
+                @media all and (max-width: 900px){
+                    padding: var(--spc-700);
+                    padding-top: 7rem;
+                    gap: var(--spc-500);
+                }
+
+                @media all and (max-width: 500px){
+                    padding: var(--spc-600);
+                    padding-top: 7rem;
+                }
+                
                 & .textos {
                     display: flex;
                     
+                    @media all and (max-width: 900px){
+                        justify-content: space-between;
+                    }
+
+                    @media all and (max-width: 600px){
+                        flex-flow: column;
+                        gap: var(--spc-300);
+                    }
                     
                     & .informacoes {
                         border-right: solid 2px #ccc;
                         padding-right: var(--spc-700);
+                        
+                        @media all and (max-width: 900px){
+                            flex: 1;
+                        }
+
+                        @media all and (max-width: 600px){
+                            border-right: 0;
+                            padding-right: 0;
+                            border-bottom: solid 2px #ccc;
+                            padding-bottom: var(--spc-200);
+                        }
 
                         & .nome {
                             font-size: var(--fs-300);
@@ -76,12 +144,29 @@
                     
                     & .dados {
                         padding-left: var(--spc-500);
+
+                        @media all and (max-width: 900px){
+                            flex: 1;
+                        }
+
+                        @media all and (max-width: 600px){
+                            padding-left: 0;
+                        }
                     }
                 }
 
                 & .botoes {
                     display: flex;
                     gap: var(--spc-100);
+
+                    @media all and (max-width: 500px){
+                        flex-flow: column;
+                        align-items: start;
+                    }
+
+                    & a {
+                        align-self: start;
+                    }
                 }
             }
         }

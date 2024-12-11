@@ -253,19 +253,19 @@
                                         {% endfor %}
                                     </div>
                                 {% endif %}
-                            </div>
-                            <span id="label-imagem-perfil">
-                                {% if imagem_perfil %}
-                                    Prévia da imagem
-                                {% endif %}
-                            </span>
-                            <div id="imagem-perfil">
-                                {% if imagem_perfil %}
-                                    <img
-                                        src="{{ imagem_perfil.url }}"
-                                        alt="Imagem da empresa de perfil"
-                                    >
-                                {% endif %}
+                                <span id="label-imagem-perfil">
+                                    {% if imagem_perfil %}
+                                        Prévia da imagem
+                                    {% endif %}
+                                </span>
+                                <div id="imagem-perfil">
+                                    {% if imagem_perfil %}
+                                        <img
+                                            src="{{ imagem_perfil.url }}"
+                                            alt="Imagem da empresa de perfil"
+                                        >
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
 

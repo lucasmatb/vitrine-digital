@@ -73,12 +73,21 @@
                 gap: var(--spc-500);
 
                 & .input-wrapper-imagem {
+                    width: max-content;
+                    max-width: 100%;
 
                     & input {
-
                         display: flex;
                         flex-flow: column;
                         gap: var(--spc-300);
+                        margin: 0;
+                        font-size: var(--fs-200);
+                    }
+
+                    & img {
+                        width: 100%;
+                        max-width: 20rem;
+                        border-radius: 0.4rem;
                     }
                 }
 
