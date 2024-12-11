@@ -13,16 +13,22 @@ section {
             max-width: 70rem;
             width: 90%;
             display: flex;
+            flex-flow: row;
             gap: var(--spc-400);
             justify-content: space-between;
             padding: var(--spc-100) var(--spc-400);
+            border: solid 1px #ccc;
             
             & input {
                 all: unset;
+                width: 100%;
+                
+            
             }
             
             & button {
                 all: unset;
+                width: max-content;
             }
         }
 

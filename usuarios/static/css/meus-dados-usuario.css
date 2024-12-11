@@ -4,6 +4,16 @@
         justify-content: space-between;
         gap: var(--spc-400);
 
+        & .input-wrapper-imagem {
+            & input {
+                display: flex;
+                flex-flow: column;
+                gap: var(--spc-300);
+                margin: 0;
+                font-size: var(--fs-200);
+            }
+        }
+
         & button {
             all: unset;
             display: flex;
@@ -37,59 +47,4 @@
     }
 }
 
-.avaliacoes {
-    max-width: 80rem;
-    display: flex;
-    flex-flow: column;
-    gap: var(--spc-800);
-
-    & .avaliacao {
-        display: flex;
-        flex-flow: column;
-        gap: var(--spc-500);
-
-        & .cabecalho-avaliacao {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: var(--spc-200);
-
-            & .usuario {
-                display: flex;
-                align-items: center;
-                gap: var(--spc-100);
-
-                & .foto-usuario {
-                    width: 3.5rem;
-                    aspect-ratio: 1;
-                    background-image: url(../images/img-perfil-exemplo.jpeg);
-                    border-radius: 100vw;
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    background-size: cover;
-                }
-
-                & .nome-usuario {
-
-                }
-            }
-
-            & .estrelas {
-                & img {
-                }
-            }
-        }
-
-        & .corpo-avaliacao {
-
-        }
-    }
-
-    & hr {
-        border: solid 1px rgba(0, 0, 0, 0.073);
-        border-radius: 100vw;
-    }
-}
-
-        
     

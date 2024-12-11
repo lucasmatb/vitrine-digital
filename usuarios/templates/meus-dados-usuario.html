@@ -10,92 +10,115 @@
 {% endblock %}
 
 {% block 'conteudo'%}
-    <main class="main-scrollable">
-        {% if messages %}
-            {% for i in messages %}   
-                <div class="alert {{i.tags}}" role="alert">
-                    {{i}} 
-                </div>
+    <main>
+        <div class="main-scrollable">
+            {% if messages %}
+                {% for i in messages %}   
+                    <div class="alert {{i.tags}}" role="alert">
+                        {{i}} 
+                    </div>
 
-            {% endfor %}
-        {% endif %}
-        <div>
-            <img
-                class="sidebar-profile-pic rounded-circle"
-                src="{{ user.imagem.url }}"
-                alt="Sua imagem de perfil"
-                height="124px"
-                width="124px"
-            >
-        </div>
-        <div class="dados">
-            <div class="cabecalho">
-                <h2>Seus dados</h2>
+                {% endfor %}
+            {% endif %}
+            <div>
+                <img
+                    class="sidebar-profile-pic rounded-circle"
+                    src="{{ user.imagem.url }}"
+                    alt="Sua imagem de perfil"
+                    height="124px"
+                    width="124px"
+                >
             </div>
-            <form
-                method="POST"
-                action="{% url 'meus_dados_usuario' %}"
-                enctype="multipart/form-data"
-            >
-                {% csrf_token %}
-                <label for="">Primeiro nome</label>
-                <div class="nome">
-                    <input disabled value="{{ first_name }}"/>
+            <div class="dados">
+                <div class="cabecalho">
+                    <h2>Seus dados</h2>
                 </div>
-                <label for="">Último nome</label>
-                <div class="nome">
-                    <input disabled value="{{ last_name }}"/>
-                </div>
-                <label for="">E-mail</label>
-                <div class="email">
-                    <input disabled value="{{ email }}"/>
-                </div>
-                <label for="">CPF</label>
-                <div class="cpf">
-                    <input disabled value="{{ cpf }}"/>
-                </div>
-                <label for="">Imagem de perfil</label>
-                <div>
-                    {{ form.imagem }}
-                    {% if form.imagem.errors %}
-                        <div>
-                            {% for error in form.imagem.errors %}
-                                <div>
-                                    <strong>{{ error }}</strong>
-                                </div>
-                            {% endfor %}
+                <form
+                    method="POST"
+                    action="{% url 'meus_dados_usuario' %}"
+                    enctype="multipart/form-data"
+                >
+                    {% csrf_token %}
+                    <div class="input-wrapper">
+                        <label for="">Primeiro nome</label>
+                        <div class="nome">
+                            <input disabled value="{{ first_name }}"/>
                         </div>
-                    {% endif %}
-                </div>
-                <label>Nova senha:</label>
-                <div class="senha">
-                    {{ form.password }}
-                    {% if form.password.errors %}
-                        <div>
-                            {% for error in form.password.errors %}
-                                <div>
-                                    <strong>{{ error }}</strong>
-                                </div>
-                            {% endfor %}
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label for="">Último nome</label>
+                        <div class="nome">
+                            <input disabled value="{{ last_name }}"/>
                         </div>
-                    {% endif %}
-                </div>
-                <label>Confirmar nova senha:</label>
-                <div class="senha">
-                    {{ form.confirm_password }}
-                    {% if form.confirm_password.errors %}
-                        <div>
-                            {% for error in form.confirm_password.errors %}
-                                <div>
-                                    <strong>{{ error }}</strong>
-                                </div>
-                            {% endfor %}
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label for="">E-mail</label>
+                        <div class="email">
+                            <input disabled value="{{ email }}"/>
                         </div>
-                    {% endif %}
-                </div>
-                <button class="btn btn-success btn-lg" type="submit">Enviar</button>
-            </form>
-        </div>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label for="">CPF</label>
+                        <div class="cpf">
+                            <input disabled value="{{ cpf }}"/>
+                        </div>
+                    </div>
+
+                    <div class="input-wrapper input-wrapper-imagem">
+                        <label for="">Imagem de perfil</label>
+                        <div>
+                            {{ form.imagem }}
+                            {% if form.imagem.errors %}
+                                <div>
+                                    {% for error in form.imagem.errors %}
+                                        <div>
+                                            <strong>{{ error }}</strong>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label>Nova senha:</label>
+                        <div class="senha">
+                            {{ form.password }}
+                            {% if form.password.errors %}
+                                <div>
+                                    {% for error in form.password.errors %}
+                                        <div>
+                                            <strong>{{ error }}</strong>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label>Confirmar nova senha:</label>
+                        <div class="senha">
+                            {{ form.confirm_password }}
+                            {% if form.confirm_password.errors %}
+                                <div>
+                                    {% for error in form.confirm_password.errors %}
+                                        <div>
+                                            <strong>{{ error }}</strong>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <button class="botao" type="submit">Enviar</button>
+                </form>
+            </div>
+        </div>  
     </main>
 
 {% endblock %}
