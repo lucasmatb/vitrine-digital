@@ -22,11 +22,76 @@
                 
                         {% endfor %}
                     {% endif %}
-                    <h1>Minhas lojas</h1>
-                    <a href="{% url 'cadastrar_empresa' %}">Cadastrar</a>
+
+                    <div class="cabecalho">
+                        <h1>Minhas lojas</h1>
+                        <a href="{% url 'cadastrar_empresa' %}">Cadastrar</a>
+                    </div>
+                    
                     <div class="minhas-empresas-lojista">
-                        
+
                         {% for empresa in empresas %}
+                            <div class="card-empresa-faixa">
+                                <div class="imagens">
+                                    <div class="img-capa">
+                                        <img
+                                            src="{{ empresa.imagem_capa.url }}"
+                                            alt="Imagem da empresa de capa"
+                                            class="img-responsive"
+                                        >
+                                    </div>
+                                    <div class="img-perfil">
+                                        <img
+                                            src="{{ empresa.imagem_perfil.url }}"
+                                            alt="Imagem da empresa de perfil"
+                                            class="img-responsive"
+                                        >
+                                    </div>
+                                </div>
+                                <div class="textos-botoes">
+                                    <div class="textos">
+                                        <div class="informacoes">
+                                            <p class="nome">{{ empresa.nome_fantasia }}</p>
+                                            <p class="descricao">
+                                                {{ empresa.razao_social }}
+                                            </p>
+                                            <div class="categorias">
+                                                {% for categoria in empresa.empresa_categoria.all %}
+                                                    <div class="categoria">{{ categoria.descricao }}</div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        <div class="dados">
+                                            <p>1.3k favoritos</p>
+                                            <p>15 produtos</p>
+                                            <p>3.2 salvamentos / produto</p>
+                                        </div>
+                                    </div>
+                                    <div class="botoes">
+                                        <a
+                                            href="{% url 'listagem_produto_por_empresa' empresa.id %}"
+                                            class="btn"
+                                        >
+                                            Produtos
+                                        </a>
+                                        <a
+                                            href="{% url 'editar_empresa' empresa.id %}"
+                                            class="btn"
+                                        >
+                                            Editar
+                                        </a>
+                                        <a
+                                            href="{% url 'excluir_empresa' empresa.id %}"
+                                            class="btn"
+                                        >
+                                            Excluir
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        <!-- {% for empresa in empresas %}
                             <div class="card card-empresa">
                                 <div class="img-perfil">
                                     <img
@@ -73,7 +138,7 @@
                                     Excluir
                                 </a>
                             </div>
-                        {% endfor %}
+                        {% endfor %} -->
                         
                     </div>
                 </div>

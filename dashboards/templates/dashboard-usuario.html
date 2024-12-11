@@ -43,7 +43,7 @@
                                         alt="imagem capa empresa {{ empresa.nome_fantasia }}"
                                     >
                                 </div>
-                                <div class="textos">
+                                <div class="informacoes">
                                     <p class="nome">{{ empresa.nome_fantasia }}</p>
                                     <div class="categoria-favoritos">
                                         {% for categoria in empresa.categorias %}
@@ -58,11 +58,11 @@
                                                     {{empresa.id}}
                                                 )"
                                                 {% if empresa.favorito_usuario %}
-                                                    src="{% static 'images/icone-estrela-cheio.svg' %}"
+                                                    src="{% static 'images/icone-coracao-preenchido.svg' %}"
                                                 {% else %}
-                                                    src="{% static 'images/icone-estrela.svg' %}"
+                                                    src="{% static 'images/icone-coracao.svg' %}"
                                                 {% endif %}
-                                                alt="Ícone estrela"
+                                                alt="Ícone coração"
                                                 style="cursor: pointer;"
                                             >
                                             <span
@@ -128,10 +128,10 @@
                 if(data.status === 'success'){
                     for (let i = 0; i < icones.length; i++) {
                         if(data.message === 'like'){
-                            icones[i].src = "{% static 'images/icone-estrela-cheio.svg' %}";
+                            icones[i].src = "{% static 'images/icone-coracao-preenchido.svg' %}";
                             spans_numero[i].innerHTML = parseInt(spans_numero[i].innerHTML) + 1
                         } else {
-                            icones[i].src = "{% static 'images/icone-estrela.svg' %}";
+                            icones[i].src = "{% static 'images/icone-coracao.svg' %}";
                             spans_numero[i].innerHTML = parseInt(spans_numero[i].innerHTML) - 1
                         }
                     }

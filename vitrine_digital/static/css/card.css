@@ -78,7 +78,7 @@
 
     & .informacoes {
         padding: var(--spc-300);
-        padding-top: var(--spc-100);
+        padding-top: var(--spc-800);
         display: flex;
         flex-flow: column;
         gap: var(--spc-400);
@@ -91,13 +91,6 @@
             display: flex;
             flex-flow: column;
             gap: var(--spc-100);
-        }
-    }
-
-
-    &.card-empresa {
-        & .textos {
-            padding-top: var(--spc-800);
         }
     }
 

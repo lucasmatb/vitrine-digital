@@ -1,10 +1,101 @@
 .secao-minhas-empresas {
     padding: var(--spc-1300) var(--spc-400);
+    
+    & .cabecalho {
+        display: flex;
+        gap: var(--spc-300);
+        justify-content: space-between;
+    }
 
     & .minhas-empresas-lojista {
-        display: grid;
-        grid-template-columns: repeat(3, 25rem);
-        gap: var(--spc-700);
+        display: flex;
+        flex-flow: column;
+        gap: var(--spc-200);
+
+        & .card-empresa-faixa {
+            width: 100%;
+            display: flex;
+            box-shadow: 0rem 0rem 8rem rgba(0,0,0,0.05);
+            border-radius: 0.8rem;
+
+            & .imagens {
+                position: relative;
+
+                & .img-capa {
+                    max-width: 20rem;
+                    border-top-left-radius: 0.8rem;
+                    border-bottom-left-radius: 0.8rem;
+                    overflow: hidden;
+                    
+                    & img {
+                        max-width: 100%;
+                    }
+                }
+                
+                & .img-perfil {
+                    max-width: 8rem !important;
+                    width: 100%;
+                    aspect-ratio: 1;
+                    border-radius: 100vw;
+                    overflow: hidden;
+                    border: solid 3px #fff;
+                    position: absolute;
+                    top: 9rem;
+                    right: 0;
+                    transform: translateX(50%);
+                    
+                    & img {
+                        max-width: 100%;
+                    }
+                }
+            }
+                
+            & .textos-botoes {
+                display: flex;
+                flex-flow: column;
+                height: 100%;
+                justify-content: space-between;
+                gap: var(--spc-200);
+                padding: var(--spc-700);
+                padding-left: 10rem;
+
+                & .textos {
+                    display: flex;
+                    
+                    
+                    & .informacoes {
+                        border-right: solid 2px #ccc;
+                        padding-right: var(--spc-700);
+
+                        & .nome {
+                            font-size: var(--fs-300);
+                            font-weight: 600;
+                        }
+                        
+                    }
+                    
+                    & .dados {
+                        padding-left: var(--spc-500);
+                    }
+                }
+
+                & .botoes {
+                    display: flex;
+                    gap: var(--spc-100);
+
+                    a {
+                        all: unset;
+                        align-self: center;
+                        padding: var(--spc-100) var(--spc-200);
+                        background-color: #ccc;
+                        border-radius: 0.8rem;
+                        max-width: 15rem;
+                        width: 100%;
+                        text-align: center;
+                    }
+                }
+            }
+        }
     }
 
 }
