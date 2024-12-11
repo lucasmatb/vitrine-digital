@@ -22,25 +22,28 @@
             {% endif %}
 
             <section class="perfil">
-                <div>
+                <div class="div-img-capa">
                     <img
                         class="img-capa"
                         src="{{ empresa.imagem_capa.url }}"
                         alt="imagem capa empresa {{ empresa.nome_fantasia }}"
                     >
                 </div>
-                <div class="img-perfil">
-                    <img
-                        class="img-perfil"
-                        src="{{ empresa.imagem_perfil.url }}"
-                        alt="imagem perfil empresa {{ empresa.nome_fantasia }}"
-                    >
-                </div>
+                <img
+                    class="img-perfil"
+                    src="{{ empresa.imagem_perfil.url }}"
+                    alt="imagem perfil empresa {{ empresa.nome_fantasia }}"
+                >
 
                 <div class="informacoes">
                     <div class="nome-categorias">
                         <h1>{{ empresa.nome_fantasia }}</h1>
                         <p>{{ empresa.descricao }}</p>
+                        <div class="categorias">
+                            {% for categoria in empresa.categorias %}
+                                <span>{{ categoria.descricao }}</span>
+                            {% endfor %}
+                        </div>
                         <div class="favoritos">
                             <img
                                 class="fav-{{empresa.id}}"
@@ -50,11 +53,11 @@
                                     {{empresa.id}}
                                 )"
                                 {% if empresa.favorito_usuario %}
-                                    src="{% static 'images/icone-estrela-cheio.svg' %}"
+                                    src="{% static 'images/icone-coracao-preenchido.svg' %}"
                                 {% else %}
-                                    src="{% static 'images/icone-estrela.svg' %}"
+                                    src="{% static 'images/icone-coracao.svg' %}"
                                 {% endif %}
-                                alt="Ícone estrela"
+                                alt="Ícone coração"
                                 style="cursor: pointer;"
                             >
                             <span
@@ -63,35 +66,32 @@
                                 {{ empresa.favoritos }}
                             </span>
                         </div>
-                        <div class="categorias">
-                            {% for categoria in empresa.categorias %}
-                                <span>{{ categoria.descricao }}</span>
-                            {% endfor %}
-                        </div>
                     </div>
-                    <div class="endereco">
-                        <div>
-                            <span>{{ endereco.cep }}</span>
+                    <div class="endereco-contato">
+                        <div class="endereco">
+                            <div>
+                                <span>{{ endereco.cep }}</span>
+                            </div>
+                            <div>
+                                <span>{{ endereco.logradouro }}</span>
+                                <span>-</span>
+                                <span>{{ endereco.numero }}</span>
+                            </div>
+                            <div>
+                                <span>{{ endereco.complemento }}</span>
+                            </div>
+                            <div>
+                                <span>{{ endereco.uf }}</span>
+                                <span>-</span>
+                                <span>{{ endereco.cidade }}</span>
+                                <span>-</span>
+                                <span>{{ endereco.bairro }}</span>
+                            </div>
                         </div>
-                        <div>
-                            <span>{{ endereco.logradouro }}</span>
-                            <span>-</span>
-                            <span>{{ endereco.numero }}</span>
+                        <div class="contato">
+                            <span class="email">{{ empresa.email }}</span>
+                            <span class="telefone">{{ empresa.telefone }}</span>
                         </div>
-                        <div>
-                            <span>{{ endereco.complemento }}</span>
-                        </div>
-                        <div>
-                            <span>{{ endereco.uf }}</span>
-                            <span>-</span>
-                            <span>{{ endereco.cidade }}</span>
-                            <span>-</span>
-                            <span>{{ endereco.bairro }}</span>
-                        </div>
-                    </div>
-                    <div class="contato">
-                        <span class="email">{{ empresa.email }}</span>
-                        <span class="telefone">{{ empresa.telefone }}</span>
                     </div>
                 </div>
                 
@@ -122,16 +122,18 @@
                                         >
                                     {% endif %}
                                 </div>
-                                <div class="textos">
+                                <div class="informacoes">
                                     <p class="nome">{{ produto.nome }}</p>
                                     <p>{{ produto.descricao }}</p>
                                     <div class="preco-disponibilidade">
                                         <div class="preco">R$ {{ produto.preco }}</div>
                                     </div>
                                     <div class="categoria-favoritos">
-                                        {% for categoria in produto.categorias %}
+                                        <div class="categorias">
+                                            {% for categoria in produto.categorias %}
                                             <div class="categoria">{{ categoria.descricao }}</div>
-                                        {% endfor %}
+                                            {% endfor %}
+                                        </div>
                                         <div class="favoritos">
                                             <img
                                                 class="fav-{{produto.id}}"
@@ -146,7 +148,7 @@
                                                 {% else %}
                                                     src="{% static 'images/icone-salvar.svg' %}"
                                                 {% endif %}
-                                                alt="Ícone estrela"
+                                                alt="Ícone salvar"
                                                 style="cursor: pointer;"
                                             >
                                         </div>
@@ -183,16 +185,18 @@
                                         >
                                     {% endif %}
                                 </div>
-                                <div class="textos">
+                                <div class="informacoes">
                                     <p class="nome">{{ produto.nome }}</p>
                                     <p>{{ produto.descricao }}</p>
                                     <div class="preco-disponibilidade">
                                         <div class="preco">R$ {{ produto.preco }}</div>
                                     </div>
                                     <div class="categoria-favoritos">
-                                        {% for categoria in produto.categorias %}
+                                        <div class="categorias">
+                                            {% for categoria in produto.categorias %}
                                             <div class="categoria">{{ categoria.descricao }}</div>
-                                        {% endfor %}
+                                            {% endfor %}
+                                        </div>
                                         <div class="favoritos">
                                             <img
                                                 class="fav-{{produto.id}}"
@@ -207,7 +211,7 @@
                                                 {% else %}
                                                     src="{% static 'images/icone-salvar.svg' %}"
                                                 {% endif %}
-                                                alt="Ícone estrela"
+                                                alt="Ícone salvar"
                                                 style="cursor: pointer;"
                                             >
                                         </div>
@@ -241,10 +245,10 @@
                 if(data.status === 'success'){
                     for (let i = 0; i < icones.length; i++) {
                         if(data.message === 'like'){
-                            icones[i].src = "{% static 'images/icone-estrela-cheio.svg' %}";
+                            icones[i].src = "{% static 'images/icone-coracao-preenchido.svg' %}";
                             spans_numero[i].innerHTML = parseInt(spans_numero[i].innerHTML) + 1
                         } else {
-                            icones[i].src = "{% static 'images/icone-estrela.svg' %}";
+                            icones[i].src = "{% static 'images/icone-coracao.svg' %}";
                             spans_numero[i].innerHTML = parseInt(spans_numero[i].innerHTML) - 1
                         }
                     }

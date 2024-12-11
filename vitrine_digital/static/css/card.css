@@ -7,56 +7,75 @@
     position: relative;
 
     &.card-empresa {
-            & .img-capa {
-                width: 100%;
-                aspect-ratio: 3/1.5;
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-position: 50%;
-            }
+        & .img-capa {
+            width: 100%;
+            aspect-ratio: 3/1.5;
+        }
     }
 
     &.card-produto {
         box-shadow: 0 1rem 1rem rgba(0,0,0,0.05);
+<<<<<<< Updated upstream
             & .img-capa {
                 width: 100%;
                 aspect-ratio: 3/1.5;
                 background-size: cover;
                 background-repeat: no-repeat;
                 background-position: 50%;
+=======
+
+        & .img-capa {
+            width: 100%;
+            aspect-ratio: 3/1.5;
+            
+        }
+
+        & .informacoes {
+            & .loja {
+                display: flex;
+                gap: var(--spc-100);
+                align-items: center;
+                
+                & .img-loja {
+                    width: 2.5rem;
+                    aspect-ratio: 1;
+                    border-radius: 100vw;
+                    background-image: url(../images/perfil-empresa-1.jpg);
+                    background-position: 50%;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+>>>>>>> Stashed changes
             }
 
-            & .textos {
-                & .loja {
+            & .preco-disponibilidade {
+                display: flex;
+                justify-content: space-between;
+                gap: var(--spc-200);
+
+                & .disponibilidade {
+                    font-size: var(--fs-100);
+                    padding: var(--spc-50) var(--spc-100);
+                    background-color: #e3e3e3;
+                    border-radius: 0.8rem;
+                    color: #767676;
+                }
+            }
+
+            & .categoria-favoritos {
+                
+                & .categorias {
                     display: flex;
-                    gap: var(--spc-100);
-                    align-items: center;
+                    flex-flow: row wrap;
+                    gap: var(--spc-80);
                     
-                    & .img-loja {
-                        width: 2.5rem;
-                        aspect-ratio: 1;
-                        border-radius: 100vw;
-                        background-image: url(../images/perfil-empresa-1.jpg);
-                        background-position: 50%;
-                        background-repeat: no-repeat;
-                        background-size: cover;
-                    }
                 }
 
-                & .preco-disponibilidade {
-                    display: flex;
-                    justify-content: space-between;
-                    gap: var(--spc-200);
-
-                    & .disponibilidade {
-                        font-size: var(--fs-100);
-                        padding: var(--spc-50) var(--spc-100);
-                        background-color: #e3e3e3;
-                        border-radius: 0.8rem;
-                        color: #767676;
-                    }
+                & .favoritos {
+                   
                 }
             }
+        }
     }
 
     & .img-perfil {

@@ -8,21 +8,6 @@
     }
 }
 
-.botao-voltar {
-    display: flex;
-    gap: var(--spc-200);
-    align-items: center;
-    background-color: #F8F9FA;
-    border-radius: 100vw;
-    padding: var(--spc-100) var(--spc-500);
-    width: max-content;
-    font-weight: 400;
-
-    & img {
-        max-width: 2rem;
-    }
-}
-
 .meus-produtos-lojista {
     display: grid;
     grid-template-columns: repeat(3, 25rem);

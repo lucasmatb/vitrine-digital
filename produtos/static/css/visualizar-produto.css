@@ -1,6 +1,21 @@
 .main-scrollable {
     gap: var(--spc-1000) !important;
 
+    .botao-voltar {
+        display: flex;
+        gap: var(--spc-200);
+        align-items: center;
+        background-color: #F8F9FA;
+        border-radius: 100vw;
+        padding: var(--spc-100) var(--spc-500);
+        width: max-content;
+        font-weight: 400;
+    
+        & img {
+            max-width: 2rem;
+        }
+    }
+
     & .apresentacao-produto {
         display: flex;
         flex-flow: row;
