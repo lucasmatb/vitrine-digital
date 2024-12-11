@@ -92,8 +92,7 @@ class EmpresaForm(forms.ModelForm):
             'placeholder': 'Carregue uma imagem de capa',
             'accept': 'image/png, image/jpg, image/jpeg',
             'onchange': 'exibirImagem(event, "imagem-capa")',
-            'onclick': 'verificaExistenciaImagem(event, "imagem-capa")',
-            'required': 'required'
+            'onclick': 'verificaExistenciaImagem(event, "imagem-capa")'
         })
     )
 
@@ -104,8 +103,7 @@ class EmpresaForm(forms.ModelForm):
             'placeholder': 'Carregue uma imagem de perfil',
             'accept': 'image/png, image/jpg, image/jpeg',
             'onchange': 'exibirImagem(event, "imagem-perfil")',
-            'onclick': 'verificaExistenciaImagem(event, "imagem-perfil")',
-            'required': 'required'
+            'onclick': 'verificaExistenciaImagem(event, "imagem-perfil")'
         })
     )
 
@@ -138,6 +136,7 @@ class EmpresaForm(forms.ModelForm):
             'cnpj_alterado',
             'nome_fantasia',
             'razao_social',
+            'descricao',
             'email',
             'telefone',
             'logradouro',
@@ -175,6 +174,7 @@ class EmpresaForm(forms.ModelForm):
             'cnpj_alterado',
             'nome_fantasia',
             'razao_social',
+            'descricao',
             'email',
             'telefone',
             'imagem_capa',

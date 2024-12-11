@@ -19,5 +19,7 @@ urlpatterns = [
     path('visualizar-empresa/<int:id_empresa>/', login_required(views.retorna_visualizar_empresa_usuario), name='visualizar_empresa'),
 
     path('favorita-nao-favorita-empresa/<int:id_empresa>/', login_required(views.favorita_nao_favorita_empresa), name='favorita_nao_favorita_empresa'),
-    path('salva-nao-salva-produto/<int:id_produto>/', login_required(views.salva_nao_salva_produto), name='salva_nao_salva_produto')
+    path('salva-nao-salva-produto/<int:id_produto>/', login_required(views.salva_nao_salva_produto), name='salva_nao_salva_produto'),
+
+    path('busca-cidades-por-estado/<int:id_estado>/', login_required(views.busca_cidades_por_estado), name='busca_cidades_por_estado'),
 ]

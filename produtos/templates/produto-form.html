@@ -44,6 +44,19 @@
                 <div>
                     <h2 class="mb-5">Dados do Produto</h2>
                     <div class="input-wrapper">
+                        <label for="">Nome <span>*</span></label>
+                        {{ form.nome }}
+                        {% if form.nome.errors %}
+                            <div>
+                                {% for error in form.nome.errors %}
+                                    <div>
+                                        <strong>{{ error }}</strong>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="input-wrapper">
                         <label for="">Descricao <span>*</span></label>
                         {{ form.descricao }}
                         {% if form.descricao.errors %}

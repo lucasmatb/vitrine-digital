@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import update_session_auth_hash
 from django.http import JsonResponse
-from empresas.models import Empresa
+from empresas.models import Empresa, Cidade
 from django.db.models import Count
 from produtos.models import Imagem_Produto
 
@@ -100,6 +100,7 @@ def retorna_empresas_favoritas_usuario(request):
         {
             'id': empresa.id,
             'nome_fantasia': empresa.nome_fantasia,
+            'descricao': empresa.descricao,
             'imagem_perfil': empresa.imagem_perfil,
             'imagem_capa': empresa.imagem_capa,
             'categorias': empresa.empresa_categoria.all(),
@@ -120,17 +121,32 @@ def retorna_meus_dados_usuario(request):
 
     if request.method == 'POST':
         form = UsuarioEditForm(request.POST, request.FILES or None)
+        estado = request.POST.get("estado")
+        if estado:
+            form.fields["cidade"].queryset = Cidade.objects.filter(id_estado=estado)
         if form.is_valid():
             if form.cleaned_data['imagem'] is not None and form.cleaned_data['imagem'] != '':
                 usuario.imagem = form.cleaned_data['imagem']
             if form.cleaned_data['password'] is not None and form.cleaned_data['password'] != '':
                 usuario.password = make_password(form.cleaned_data['password'])
                 update_session_auth_hash(request, usuario)
+            if form.cleaned_data['cidade'] is not None and form.cleaned_data['cidade'] != '':
+                usuario.id_cidade = Cidade.objects.filter(id_estado=estado, pk=form.cleaned_data['cidade'].id).first()
+            else:
+                usuario.id_cidade = None
             usuario.save()
             messages.success(request, 'Usuário atualizado com sucesso!')
             return redirect('meus_dados_usuario')
     else:
         form = UsuarioEditForm(instance=usuario)
+
+    if usuario.id_cidade is not None:
+        form.fields['cidade'].queryset = Cidade.objects.filter(id_estado=usuario.id_cidade.id_estado)
+        data['cidade_selecionada'] = usuario.id_cidade.id
+        data['estado_selecionado'] = usuario.id_cidade.id_estado.id
+    else:
+        data['cidade_selecionada'] = None
+        data['estado_selecionado'] = None
 
     data['form'] = form
     data['email'] = descriptarAESGCM(usuario.email)
@@ -148,6 +164,7 @@ def retorna_produtos_salvos_usuario(request):
     produtos = [
         {
             'id': produto.id,
+            'nome': produto.nome,
             'descricao': produto.descricao,
             'id_empresa': produto.id_empresa.id,
             'preco': produto.preco,
@@ -182,6 +199,7 @@ def retorna_pesquisar_empresas_usuario(request):
         {
             'id': empresa.id,
             'nome_fantasia': empresa.nome_fantasia,
+            'descricao': empresa.descricao,
             'imagem_perfil': empresa.imagem_perfil,
             'imagem_capa': empresa.imagem_capa,
             'categorias': empresa.empresa_categoria.all(),

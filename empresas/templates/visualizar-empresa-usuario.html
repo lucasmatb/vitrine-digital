@@ -40,6 +40,7 @@
                 <div class="informacoes">
                     <div class="nome-categorias">
                         <h1>{{ empresa.nome_fantasia }}</h1>
+                        <p>{{ empresa.descricao }}</p>
                         <div class="favoritos">
                             <img
                                 class="fav-{{empresa.id}}"
@@ -114,7 +115,8 @@
                                     >
                                 </div>
                                 <div class="textos">
-                                    <p class="nome">{{ produto.descricao }}</p>
+                                    <p class="nome">{{ produto.nome }}</p>
+                                    <p>{{ produto.descricao }}</p>
                                     <div class="preco-disponibilidade">
                                         <div class="preco">R$ {{ produto.preco }}</div>
                                     </div>
@@ -166,7 +168,8 @@
                                     >
                                 </div>
                                 <div class="textos">
-                                    <p class="nome">{{ produto.descricao }}</p>
+                                    <p class="nome">{{ produto.nome }}</p>
+                                    <p>{{ produto.descricao }}</p>
                                     <div class="preco-disponibilidade">
                                         <div class="preco">R$ {{ produto.preco }}</div>
                                     </div>

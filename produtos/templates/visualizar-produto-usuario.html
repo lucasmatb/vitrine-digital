@@ -25,11 +25,13 @@
                     </div>
                 </div>
                 <div class="especificacoes">
-                    <h1>{{ produto.descricao }}</h1>
+                    <h1>{{ produto.nome }}</h1>
                     <p>{{ produto.descricao }}</p>
                     <span class="preco">R$ {{ produto.preco }}</span>
-                    {% if produto.quantidade == 0 %}
+                    {% if produto.ativo == False  %}
                         <span class="disponibilidade">Indisponível</span>
+                    {% elif produto.qtd == 0 %}
+                        <span class="disponibilidade">Sem estoque</span>
                     {% else %}
                         <span class="disponibilidade">Disponível</span>
                     {% endif %}

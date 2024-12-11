@@ -3,7 +3,10 @@ from vitrine_digital.helper import retornaCaminhoImagemAleatorio
 from stdimage.models import StdImageField
 
 class Categoria_Produto(models.Model):
-    descricao = models.CharField(max_length=254)
+    descricao = models.CharField(
+        max_length=254,
+        verbose_name="Descrição",
+    )
     ativo = models.BooleanField(
         default=True,
         verbose_name="Ativo"
@@ -13,24 +16,32 @@ class Categoria_Produto(models.Model):
         return self.descricao
 
 class Produto(models.Model):
+    nome = models.CharField(
+        max_length=254,
+        blank=False,
+        verbose_name="Nome"
+    )
     descricao = models.CharField(
-        'Descrição do produto',
+        verbose_name='Descrição do produto',
         max_length=254
     )
     preco = models.DecimalField(
-        'Preço do produto',
+        verbose_name='Preço do produto',
         decimal_places=2,
         max_digits=8
     )
     qtd = models.IntegerField(
-        'Quantidade em estoque',
+        verbose_name='Quantidade em estoque',
         default=0
     )
     ativo = models.BooleanField(
         default=True,
         verbose_name="Ativo"
     )
-    destaque = models.BooleanField()
+    destaque = models.BooleanField(
+        verbose_name='Produto em destaque',
+        default=False
+    )
     id_empresa = models.ForeignKey(
         'empresas.Empresa',
         on_delete=models.CASCADE
@@ -43,7 +54,8 @@ class Produto(models.Model):
 class Imagem_Produto(models.Model):
     id_produto = models.ForeignKey(
         Produto,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        verbose_name="Produto"
     )
     imagem = StdImageField(
         default='default_produto.jpg',

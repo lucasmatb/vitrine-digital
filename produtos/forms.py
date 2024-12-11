@@ -20,15 +20,15 @@ class ProdutoForm(forms.ModelForm):
                 'name': 'imagens',
                 'allow_multiple_selected': True,
                 'multiple': True,
-                'accept': 'image/png, image/jpg, image/jpeg',
-                'required': 'required'
+                'accept': 'image/png, image/jpg, image/jpeg'
             }
-        )
+        ),
+        required=False
     )
 
     class Meta:
         model = Produto
-        fields = ['descricao', 'preco', 'qtd', 'ativo', 'destaque', 'categorias', 'imagens']
+        fields = ['nome', 'descricao', 'preco', 'qtd', 'ativo', 'destaque', 'categorias', 'imagens']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

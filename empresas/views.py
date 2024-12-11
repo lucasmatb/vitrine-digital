@@ -31,6 +31,7 @@ def valida_cadastro_empresa(request):
             empresa = Empresa.objects.create(
                 nome_fantasia   =  form.cleaned_data['nome_fantasia'],
                 razao_social    =  form.cleaned_data['razao_social'],
+                descricao       =  form.cleaned_data['descricao'],
                 cnpj            =  form.cleaned_data['cnpj_alterado'],
                 telefone        =  form.cleaned_data['telefone'],
                 email           =  form.cleaned_data['email'],
@@ -115,6 +116,7 @@ def valida_editar_empresa(request, pk):
 
             empresa.nome_fantasia   =  form.cleaned_data['nome_fantasia']
             empresa.razao_social    =  form.cleaned_data['razao_social']
+            empresa.descricao       =  form.cleaned_data['descricao']
             empresa.cnpj            =  form.cleaned_data['cnpj_alterado']
             empresa.telefone        =  form.cleaned_data['telefone']
             empresa.email           =  form.cleaned_data['email']
@@ -154,6 +156,7 @@ def retorna_visualizar_empresa_usuario(request, id_empresa):
     produtos_destaque = [
         {
             'id': produto.id,
+            'nome': produto.nome,
             'descricao': produto.descricao,
             'preco': produto.preco,
             'imagem': Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first().imagem if Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first() else 'default_produto.jpg',
@@ -168,6 +171,7 @@ def retorna_visualizar_empresa_usuario(request, id_empresa):
     produtos = [
         {
             'id': produto.id,
+            'nome': produto.nome,
             'descricao': produto.descricao,
             'preco': produto.preco,
             'imagem': Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first().imagem if Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first() else 'default_produto.jpg',
@@ -177,10 +181,10 @@ def retorna_visualizar_empresa_usuario(request, id_empresa):
         for produto in produtos
     ]
 
-
     empresa = {
         'id': empresa.id,
         'nome_fantasia': empresa.nome_fantasia,
+        'descricao': empresa.descricao,
         'email': empresa.email,
         'telefone': empresa.telefone,
         'imagem_perfil': empresa.imagem_perfil,
@@ -289,3 +293,16 @@ def salva_nao_salva_produto(request, id_produto):
         return JsonResponse({'status': 'success', 'message': like_string})
     except Exception as e:
         return JsonResponse({'status': 'error', 'message': str(e)})
+    
+def busca_cidades_por_estado(request, id_estado):
+
+    estado = get_object_or_404(Estado, pk=id_estado)
+    cidades = list(
+        Cidade.objects.filter(id_estado=estado).order_by('descricao').values('id', 'descricao')
+    )
+    return JsonResponse(
+        {
+            'status': 'success',
+            'message': cidades,
+        }
+    )

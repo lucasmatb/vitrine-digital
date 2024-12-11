@@ -4,6 +4,7 @@ from vitrine_digital.helper import encriptarAESGCM, descriptarAESGCM
 from django.contrib.auth.models import Group
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.forms import UserChangeForm
+from empresas.models import Estado, Cidade
 import re
 
 class UsuarioLoginForm(forms.ModelForm):
@@ -286,6 +287,27 @@ class UsuarioEditForm(forms.ModelForm):
             'class': 'form-control mb-4',
             'placeholder': 'Carregue uma imagem de perfil',
             'accept': 'image/png, image/jpg, image/jpeg'
+        }),
+        required=False
+    )
+    cidade = forms.ModelChoiceField(
+        queryset=Cidade.objects.none(),
+        empty_label="Escolha uma cidade...",
+        widget=forms.Select(attrs={
+            'id': 'cidade',
+            'name': 'cidade',
+            'class': 'form-control'
+        }),
+        required=False
+    )
+
+    estado = forms.ModelChoiceField(
+        queryset=Estado.objects.order_by('descricao'),
+        empty_label=None,
+        widget=forms.Select(attrs={
+            'id': 'estado',
+            'name': 'estado',
+            'class': 'form-control'
         }),
         required=False
     )

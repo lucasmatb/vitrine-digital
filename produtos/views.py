@@ -15,7 +15,7 @@ def retorna_visualizar_produto(request, id_empresa, pk):
     data['produto'] = produto
     data['imagens'] = imagens
     data['favorito_usuario'] = produto.favoritos_produtos.filter(id=request.user.id).exists()
-
+    
     return render(request, 'visualizar-produto-usuario.html', data)
 
 def retorna_listagem_produtos_por_empresa(request, id_empresa):
@@ -43,6 +43,7 @@ def criar_produto(request, id_empresa):
         if form.is_valid():
             empresa = Empresa.objects.get(pk=id_empresa)
             produto = Produto.objects.create(
+                nome        =  form.cleaned_data['nome'],
                 descricao   =  form.cleaned_data['descricao'],
                 preco       =  form.cleaned_data['preco'],
                 qtd         =  form.cleaned_data['qtd'],
@@ -53,7 +54,7 @@ def criar_produto(request, id_empresa):
 
             produto.categoria_produto.add(*form.cleaned_data['categorias'])
 
-            imagens = request.FILES.getlist('imagens')  # Obtém todas as imagens enviadas
+            imagens = request.FILES.getlist('imagens')
 
             for imagem in imagens:
                 Imagem_Produto.objects.create(
@@ -81,6 +82,7 @@ def editar_produto(request, id_empresa, pk):
     if request.method == 'POST':
         form = ProdutoForm(request.POST, request.FILES, instance=produto)
         if form.is_valid():
+            produto.nome        =  form.cleaned_data['nome']
             produto.descricao   =  form.cleaned_data['descricao']
             produto.preco       =  form.cleaned_data['preco']
             produto.qtd         =  form.cleaned_data['qtd']

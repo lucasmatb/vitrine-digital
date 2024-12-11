@@ -69,6 +69,11 @@ class Empresa(models.Model):
         blank=False,
         verbose_name="Razão social"
     )
+    descricao = models.CharField(
+        max_length=254,
+        blank=False,
+        verbose_name="Descrição"
+    )
     ativo = models.BooleanField(
         default=True,
         verbose_name="Ativo"

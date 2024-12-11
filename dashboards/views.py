@@ -21,6 +21,13 @@ def retorna_dashboard_usuario(request):
             favoritos=Count('favoritos_empresas')
         )
 
+        empresas = Empresa.objects.filter(
+            empresa_categoria=categoria,
+            endereco__id_cidade=request.user.id_cidade
+        ).annotate(
+            favoritos=Count('favoritos_empresas')
+        )
+
         empresas_com_favoritos = [
             {
                 'id': empresa.id,
@@ -35,7 +42,8 @@ def retorna_dashboard_usuario(request):
             for empresa in empresas
         ]
 
-        data[categoria.descricao] = empresas_com_favoritos
+        if len(empresas_com_favoritos) > 0:
+            data[categoria.descricao] = empresas_com_favoritos
 
     if request.user.has_perm('empresas.add_empresa'):
         usuario_tem_pedido_em_aguardo = 'lojista'

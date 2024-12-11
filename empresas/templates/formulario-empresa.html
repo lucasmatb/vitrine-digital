@@ -74,6 +74,19 @@
                                     {% endif %}
                                 </div>
                                 <div class="input-wrapper">
+                                    <label for="">Descrição <span>*</span></label>
+                                    {{ form.descricao }}
+                                    {% if form.descricao.errors %}
+                                        <div>
+                                            {% for error in form.descricao.errors %}
+                                                <div>
+                                                    <strong>{{ error }}</strong>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="input-wrapper">
                                     <label for="">CNPJ <span>*</span></label>
                                     {{ form.cnpj_alterado }}
                                     {% if form.cnpj_alterado.errors %}
@@ -228,7 +241,7 @@
                                 {% endif %}
                                 <span id="label-imagem-capa">
                                     {% if imagem_capa %}
-                                        Prévia da imagem
+                                        Prévia da imagem/Imagem salva
                                     {% endif %}
                                 </span>
                                 <div id="imagem-capa">
@@ -255,7 +268,7 @@
                                 {% endif %}
                                 <span id="label-imagem-perfil">
                                     {% if imagem_perfil %}
-                                        Prévia da imagem
+                                        Prévia da imagem/Imagem salva
                                     {% endif %}
                                 </span>
                                 <div id="imagem-perfil">
@@ -318,7 +331,7 @@
                 const divImagem = document.getElementById(idContainerImagem);
                 const labelDivImagem = document.getElementById('label-'+idContainerImagem);
     
-                labelDivImagem.innerText = "Prévia da imagem";
+                labelDivImagem.innerText = "Prévia da imagem/Imagem salva";
                 divImagem.innerHTML = '';
                 divImagem.appendChild(imagem);
             }

@@ -67,6 +67,9 @@
                                             <p>{{ empresa.media_salvamento_produto }} salvamentos / produto</p>
                                         </div>
                                     </div>
+                                    <div class="mt-2">
+                                        <p>{{ empresa.descricao }}</p>
+                                    </div>
                                     <div class="botoes">
                                         <a
                                             href="{% url 'listagem_produto_por_empresa' empresa.id %}"

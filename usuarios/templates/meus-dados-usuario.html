@@ -82,7 +82,9 @@
                             {% endif %}
                         </div>
                     </div>
-
+                    <div>
+                        <label>Quer alterar sua senha?</label>
+                    </div>
                     <div class="input-wrapper">
                         <label>Nova senha:</label>
                         <div class="senha">
@@ -115,10 +117,86 @@
                         </div>
                     </div>
 
+                    <label>Sua busca de empresas será baseada na cidade:</label>
+                    <div class="input-wrapper">
+                        <label>Estado</label>
+                        <div class="estado">
+                            {{ form.estado }}
+                            {% if form.estado.errors %}
+                                <div>
+                                    {% for error in form.estado.errors %}
+                                        <div>
+                                            <strong>{{ error }}</strong>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label>Cidade:</label>
+                        <div class="cidade">
+                            {{ form.cidade }}
+                            {% if form.cidade.errors %}
+                                <div>
+                                    {% for error in form.cidade.errors %}
+                                        <div>
+                                            <strong>{{ error }}</strong>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
                     <button class="botao" type="submit">Enviar</button>
                 </form>
             </div>
         </div>  
     </main>
+    <script>
+        
+        document.addEventListener("DOMContentLoaded", function () {
+            const idEstadoSelecionado = {{ estado_selecionado|default:"null" }};
+            const idCidadeSelecionada = {{ cidade_selecionada|default:"null" }};
+            const selectEstado = document.querySelector("#estado");
+            const selectCidade = document.querySelector("#cidade");
 
+            if (idEstadoSelecionado) {
+                selectEstado.value = idEstadoSelecionado;
+            }
+            
+            const url = `/empresas/busca-cidades-por-estado/${selectEstado.value}`;
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    selectCidade.innerHTML = '<option value="">Escolha uma cidade...</option>';
+                    for (const cidade of data.message) {
+                        const option = document.createElement("option");
+                        option.value = cidade.id;
+                        option.text = cidade.descricao;
+                        if (cidade.id == idCidadeSelecionada) {
+                            option.selected = true;
+                        }
+                        selectCidade.appendChild(option);
+                    }
+                });
+            
+        
+            selectEstado.addEventListener("change", function () {
+                const url = `/empresas/busca-cidades-por-estado/${this.value}`;
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        selectCidade.innerHTML = '<option value="">Escolha uma cidade...</option>';
+                        for (const cidade of data.message) {
+                            const option = document.createElement("option");
+                            option.value = cidade.id;
+                            option.text = cidade.descricao;
+                            selectCidade.appendChild(option);
+                        }
+                    });
+            });
+        });
+    </script>
 {% endblock %}

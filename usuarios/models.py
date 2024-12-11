@@ -9,6 +9,7 @@ from produtos.models import Produto
 from vitrine_digital.helper import retornaCaminhoImagemAleatorio
 from stdimage.models import StdImageField
 from vitrine_digital.helper import descriptarAESGCM
+from empresas.models import Cidade
 
 class UserManager(BaseUserManager):
 
@@ -114,6 +115,14 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     favorito_empresa = models.ManyToManyField(
         Empresa,
         related_name='favoritos_empresas'
+    )
+
+    id_cidade = models.ForeignKey(
+        Cidade,
+        on_delete=models.DO_NOTHING,
+        blank=False,
+        null=True,
+        verbose_name="Cidade para pesquisa"
     )
 
     objects = UserManager()
