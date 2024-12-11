@@ -89,9 +89,29 @@ def valida_cadastro(request):
     return render(request, 'cadastro-usuario.html', {'form': form})
 
 def retorna_empresas_favoritas_usuario(request):
-    #data = {}
-    #data['form'] = UsuarioRegistrationForm()
-    return render(request, 'empresas-favoritas-usuario.html')#, data)
+    data = {}
+    
+    empresas = request.user.favorito_empresa.all().annotate(
+        favoritos=Count('favoritos_empresas')
+    )
+
+    empresas_com_favoritos = [
+        {
+            'id': empresa.id,
+            'nome_fantasia': empresa.nome_fantasia,
+            'cnpj': empresa.cnpj,
+            'imagem_perfil': empresa.imagem_perfil,
+            'imagem_capa': empresa.imagem_capa,
+            'categorias': empresa.empresa_categoria.all(),
+            'favorito_usuario': empresa.favoritos_empresas.filter(id=request.user.id).exists(),
+            'favoritos': empresa.favoritos
+        }
+        for empresa in empresas
+    ]
+
+    data['empresas'] = empresas_com_favoritos
+
+    return render(request, 'empresas-favoritas-usuario.html', data)
 
 def retorna_meus_dados_usuario(request):
     data = {}

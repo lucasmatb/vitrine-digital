@@ -12,82 +12,106 @@
 {% block 'conteudo'%}
     <main>
         <div class="main-scrollable">
-            <div class="modal-confirmacao">
-                <div class="fundo-modal-confirmacao">
+            {% if messages %}
+            {% for i in messages %}   
+                <div class="alert {{i.tags}}" role="alert">
+                    {{i}} 
                 </div>
-                <div class="conteudo-modal-confirmacao">
-                    <p>Tem certeza de que deseja excluir a NOME DA LOJA !!!!!!!!!!!!!1 da sua lista de favoritos?</p>
-                    <div class="botoes-confirmacao">
-                        <button class="botao-sim">Sim</button>
-                        <button class="botao-cancelar">Cancelar</button>
-                    </div>
-                </div>
+            {% endfor %}
+        {% endif %}
+
+        <section>
+            <div class="cabecalho">
+                <h1>Suas lojas favoritas</h1>
             </div>
-
-            <section>
-                <div class="cabecalho">
-                    <h1>Suas lojas favoritas</h1>
-                    <button class="botao-editar">Editar</button>
-                </div>
-            
-                <div class="todos-cards">
-
-
-                    <!-- se não tiver nenhuma favoritada: -->
-                    <!-- <p>Suas lojas favoritas aparecerão aqui</p>
-                    <a href="../../dashboards/templates/pesquisar-empresas.html">Explorar lojas</a> -->
-
-                    <div class="card-botao">
-                        <button class="botao-excluir"><img src="{% static 'images/icone-x.svg' %}" alt=""></button>
-                        <div class="card card-empresa">
-                            <div class="img-perfil"></div>
-                            <div class="img-capa"></div>
-
-                            <!-- <img src="{% static 'images/perfil-empresa-1' %}" alt="">
-                            <img src="../../vitrine_digital/static/images/capa-empresa-1.jpg" alt=""> -->
-                            <div class="textos">
-                                <p class="nome">Nome da empresa</p>
-                                <p class="descricao">
-                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
-                                </p>
-                                <div class="categoria-favoritos">
-                                    <div class="categoria">Categoria</div>
-                                    <div class="favoritos">
-                                        <img src="{% static 'images/icone-estrela.svg' %}" alt="Ícone estrela">
-                                        <span>1.3K</span>
-                                    </div>
+            <div class="todos-cards">
+                {% for empresa in empresas %}
+                    <div class="card card-empresa">
+                        <div>
+                            <img
+                                class="img-perfil"
+                                src="{{ empresa.imagem_perfil.url }}"
+                                alt="imagem perfil empresa {{ empresa.nome_fantasia }}"
+                            >
+                        </div>
+                        <div>
+                            <img
+                                class="img-capa"
+                                src="{{ empresa.imagem_capa.url }}"
+                                alt="imagem capa empresa {{ empresa.nome_fantasia }}"
+                            >
+                        </div>
+                        <div class="textos">
+                            <p class="nome">{{ empresa.nome_fantasia }}</p>
+                            <div class="categoria-favoritos">
+                                {% for categoria in empresa.categorias %}
+                                    <div class="categoria">{{ categoria.descricao }}</div>
+                                {% endfor %}
+                                <div class="favoritos">
+                                    <img
+                                        class="fav-{{empresa.id}}"
+                                        onclick="favnotfav(
+                                            'fav-{{empresa.id}}',
+                                            'fav-number-{{empresa.id}}',
+                                            {{empresa.id}}
+                                        )"
+                                        {% if empresa.favorito_usuario %}
+                                            src="{% static 'images/icone-estrela-cheio.svg' %}"
+                                        {% else %}
+                                            src="{% static 'images/icone-estrela.svg' %}"
+                                        {% endif %}
+                                        alt="Ícone estrela"
+                                        style="cursor: pointer;"
+                                    >
+                                    <span
+                                        class="fav-number-{{empresa.id}}"
+                                    >
+                                        {{ empresa.favoritos }}
+                                    </span>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="card-botao">
-                        <button class="botao-excluir"><img src="{% static 'images/icone-x.svg' %}" alt=""></button>
-                        <div class="card card-empresa">
-                            <div class="img-perfil"></div>
-                            <div class="img-capa"></div>
-                            <div class="textos">
-                                <p class="nome">Nome da empresa</p>
-                                <p class="descricao">
-                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
-                                </p>
-                                <div class="categoria-favoritos">
-                                    <div class="categoria">Categoria</div>
-                                    <div class="favoritos">
-                                        <img src="{% static 'images/icone-estrela.svg' %}" alt="Ícone estrela">
-                                        <span>1.3K</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            
-            </section>
-        </div>
+                {% empty %}
+                    <p>Você não favoritou nenhum empresa.</p>
+                {% endfor %}
+            </div>
+        </section>
     </main>
 
-    <script src="{% static 'js/remover-favs-salvos.js' %}"></script>
+    <script>
+
+        function favnotfav(id_icone, numero_favoritos, id_empresa) {
+            const url = "/empresas/favorita-nao-favorita-empresa/" + id_empresa + "/"
+            const icones = document.getElementsByClassName(id_icone);
+            const spans_numero = document.getElementsByClassName(numero_favoritos);
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status === 'success'){
+                    for (let i = 0; i < icones.length; i++) {
+                        if(data.message === 'like'){
+                            icones[i].src = "{% static 'images/icone-estrela-cheio.svg' %}";
+                            spans_numero[i].innerHTML = parseInt(spans_numero[i].innerHTML) + 1
+                        } else {
+                            icones[i].src = "{% static 'images/icone-estrela.svg' %}";
+                            spans_numero[i].innerHTML = parseInt(spans_numero[i].innerHTML) - 1
+                        }
+                    }
+                }else{
+                    alert('Não foi possível favoritar essa empresa, tente novamente mais tarde.');
+                }
+            })
+            .catch(error => {
+                alert('Não foi possível favoritar essa empresa, tente novamente mais tarde.');
+            });
+        }
+    </script>
 
 {% endblock %}
