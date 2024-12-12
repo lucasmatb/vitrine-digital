@@ -1,23 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../static/css/404-500.css">
-    <link rel="stylesheet" href="../../vitrine_digital/static/css/variables.css">
-    <link rel="stylesheet" href="../../vitrine_digital/static/css/global.css">
-</head>
-<body>
-    <header></header>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/404-500.css' %}">
+{% endblock %}
+
+{% block 'titulo' %}
+    Vitrisse | Error 404
+{% endblock %}
+
+{% block 'conteudo'%}
     <main>
         <div class="container container-erro">
             <div class="textos">
                 <h1>404</h1>
                 <p>Página não encontrada</p>
             </div>
-            <a href="">Ir para o início</a>
+            <a href="{% url 'home' %}">Ir para o início</a>
         </div>
     </main>
-</body>
-</html>
+{% endblock %}

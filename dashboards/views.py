@@ -3,6 +3,10 @@ from empresas.models import Empresa, Categoria_Empresa
 from usuarios.models import Pedido_Lojista
 from django.db.models import Count
 
+#Teste para apresentação
+#return render(request, '404.html', status=404)
+#return render(request, '500.html', status=500)
+
 def home(request):
     if request.user.is_authenticated:
         return redirect('dashboard_usuario')
