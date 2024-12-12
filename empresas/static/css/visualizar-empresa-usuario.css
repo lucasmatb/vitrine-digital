@@ -113,9 +113,9 @@
                 overscroll-behavior-x: contain;
                 scroll-snap-type: x mandatory;
                 scrollbar-width: none;
-                grid-template-columns: repeat(auto-fit, minmax(25rem, 25rem));
+                /* grid-template-columns: repeat(auto-fit, minmax(25rem, 25rem)); */
                 justify-content: start;
-                width: max-content;
+                /* width: max-content; */
 
                 &::-webkit-scrollbar {
                     display: none;

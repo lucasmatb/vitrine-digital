@@ -100,8 +100,12 @@ section {
     }
     
     & .todos-cards {
-        display: flex;
+        /* display: flex;
         flex-flow: row wrap;
+        gap: var(--spc-600); */
+
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 25rem);
         gap: var(--spc-600);
 
         & .card-botao {

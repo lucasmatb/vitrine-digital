@@ -9,3 +9,11 @@
     cursor: pointer;
     font-size: var(--fs-100);
 }
+
+
+& .faixa-categoria {
+    display: flex;
+    flex-flow: column;
+    gap: var(--spc-400);
+    padding-block: var(--spc-500);
+}

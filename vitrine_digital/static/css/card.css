@@ -61,6 +61,8 @@
         display: flex;
         flex-flow: column;
         gap: var(--spc-400);
+        justify-content: space-between;
+        flex: 1;
 
         &  * {
             margin: 0 !important;
@@ -95,7 +97,7 @@
         & .informacoes-botoes {
             display: flex;
             flex-flow: column;
-            gap: var(--spc-100);
+            gap: var(--spc-400);
             justify-content: space-between;
             padding: var(--spc-300) !important;
 
@@ -105,21 +107,11 @@
                 padding: 0 !important;
                 gap: var(--spc-200);
 
-                /* & .loja {
+                & .tudo-menos-cat {
                     display: flex;
-                    gap: var(--spc-100);
-                    align-items: center;
-                    
-                    & .img-loja {
-                        width: 2.5rem;
-                        aspect-ratio: 1;
-                        border-radius: 100vw;
-                        background-image: url(../images/perfil-empresa-1.jpg);
-                        background-position: 50%;
-                        background-repeat: no-repeat;
-                        background-size: cover;
-                    }
-                } */
+                    flex-flow: column;
+                    gap: var(--spc-200);
+                }
 
                 & .preco-qtde {
                     display: flex;
@@ -231,7 +223,7 @@
     }
 
     & .descricao {
-        font-size: var(--fs-100);
+        font-size: var(--fs-200);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;

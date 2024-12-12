@@ -27,11 +27,11 @@
         <div class="todos-cards">
             {% for produto in produtos %}
                 <div
-                    class="card card-produto"
+                    class="card card-produto card-produto-usuario"
                     onclick="window.location.href='{% url 'visualizar_produto' produto.id_empresa produto.id %}'"
                     style="cursor: pointer;"
                 >
-                    <div>
+                    <div class="div-img-produto">
                         {% if produto.primeira_imagem %}
                             <img
                                 src="{{ produto.primeira_imagem.url }}"
@@ -46,43 +46,45 @@
                             >
                         {% endif %}
                     </div>
-                    <div class="textos">
-                        <p>{{ produto.nome }}</p>
-                        <p class="descricao">{{ produto.descricao }}</p>
-                        <div class="loja">
-                            <div>
-                                <img
-                                    class="img-loja"
-                                    src="{{ produto.empresa_imagem.url }}"
-                                    alt="imagem perfil empresa{{ produto.descricao }}"
-                                >
+                    <div class="informacoes-botoes">
+                        <div class="informacoes">
+                            <div class="tudo-menos-cat">
+                                <p class="nome">{{ produto.nome }}</p>
+                                <p class="descricao">{{ produto.descricao }}</p>
+                                {% if produto.ativo == False  %}
+                                    <span class="disponibilidade indisponivel">Indisponível</span>
+                                {% elif produto.qtd == 0 %}
+                                    <span class="disponibilidade sem-estoque">Sem estoque</span>
+                                {% else %}
+                                    <span class="disponibilidade disponivel">Disponível</span>
+                                {% endif %}
+                                <div class="preco-salvar">
+                                    <div class="preco">R$ {{ produto.preco }}</div>
+                                    <div class="favoritos">
+                                        <img
+                                            class="fav-{{produto.id}}"
+                                            onclick="favnotfavproduct(
+                                                event,
+                                                'fav-{{produto.id}}',
+                                                'fav-number-{{produto.id}}',
+                                                {{produto.id}}
+                                            )"
+                                            {% if produto.favorito_usuario %}
+                                                src="{% static 'images/icone-salvar-fill.svg' %}"
+                                            {% else %}
+                                                src="{% static 'images/icone-salvar.svg' %}"
+                                            {% endif %}
+                                            alt="Ícone salvar"
+                                            style="cursor: pointer;"
+                                        >
+                                    </div>
+                                </div>
                             </div>
-                            <span class="nome-loja">{{ produto.nome_empresa }}</span>
-                        </div>
-                        <div class="preco-disponibilidade">
-                            <div class="preco">R$ {{ produto.preco }}</div>
-                        </div>
-                        <div class="categoria-favoritos">
-                            {% for categoria in produto.categorias %}
+
+                            <div class="categorias">
+                                {% for categoria in produto.categorias %}
                                 <div class="categoria">{{ categoria.descricao }}</div>
-                            {% endfor %}
-                            <div class="favoritos">
-                                <img
-                                    class="fav-{{produto.id}}"
-                                    onclick="favnotfav(
-                                        event,
-                                        'fav-{{produto.id}}',
-                                        'fav-number-{{produto.id}}',
-                                        {{produto.id}}
-                                    )"
-                                    {% if produto.favorito_usuario %}
-                                        src="{% static 'images/icone-salvar-fill.svg' %}"
-                                    {% else %}
-                                        src="{% static 'images/icone-salvar.svg' %}"
-                                    {% endif %}
-                                    alt="Ícone estrela"
-                                    style="cursor: pointer;"
-                                >
+                                {% endfor %}
                             </div>
                         </div>
                     </div>

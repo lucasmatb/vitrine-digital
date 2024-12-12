@@ -1,43 +1,26 @@
+.dados-usuario {
+    max-width: 85rem;
+    margin: 0 auto;
+}
+
 .dados {
     & .cabecalho {
         display: flex;
         justify-content: space-between;
         gap: var(--spc-400);
+    }
 
-        & .input-wrapper-imagem {
-            & input {
-                display: flex;
-                flex-flow: column;
-                gap: var(--spc-300);
-                margin: 0;
-                font-size: var(--fs-200);
-            }
-        }
-
-        & button {
-            all: unset;
+    & .input-wrapper-imagem {
+        & input {
             display: flex;
-            gap: var(--spc-60);
-            align-items: center;
-            cursor: pointer;
-            /* background-color: hsl(212, 66%, 85%); */
-            background-color: rgba(255,255,255,0.35);
-            /* border: solid 1px rgba(255,255,255,0.75); */
-            border: solid 1px;
-            border-color: rgba(255,255,255,0.75);
-            border-radius: 0.5rem;
-            padding: var(--spc-90) var(--spc-200);
-            width: max-content;
-            transition: background-color .3s ease;
-            
-            &:hover {
-                /* background-color: hsl(212, 66%, 80%); */
-                background-color: hsl(267, 100%, 90%);
-                border-color:hsl(264, 100%, 85%);
-            }
+            flex-flow: column;
+            gap: var(--spc-300);
+            margin: 0;
+            font-size: var(--fs-200);
         }
     }
 
+    
     & .img-perfil {
         max-width: 6rem;
         aspect-ratio: 1;
@@ -45,6 +28,15 @@
         object-position: 50% 50%;
         border-radius: 100vh;
     }
+    
+    & .botao {
+        background-color: #FCEAED !important;
+        align-self: flex-end !important;
+    }
 }
 
     
+h3 {
+    font-size: var(--fs-200);
+    margin-top: var(--spc-500);
+}
