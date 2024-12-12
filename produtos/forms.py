@@ -1,5 +1,6 @@
 from django import forms
 from produtos.models import Produto, Categoria_Produto
+from django.core.exceptions import ValidationError
 
 class ProdutoForm(forms.ModelForm):
     categorias = forms.ModelMultipleChoiceField(
@@ -34,3 +35,9 @@ class ProdutoForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
+
+    def clean_imagens(self):
+        imagens = self.files.getlist('imagens')
+        if len(imagens) > 3:
+            raise ValidationError('Você pode enviar no máximo 3 imagens.')
+        return imagens
