@@ -1,6 +1,10 @@
 .main-scrollable {
     gap: var(--spc-1000) !important;
 
+    & .secao {
+        gap: var(--spc-1000);
+    }
+
     .botao-voltar {
         display: flex;
         gap: var(--spc-200);
@@ -32,13 +36,7 @@
                 grid-template-columns: 15rem;
                 grid-template-rows: repeat(3, 20rem);
                 gap: var(--spc-200);
-                /* height: 100%; */
-                
-
-                /* & .previa {
-                    background-color: white;
-                    aspect-ratio: 3/4;
-                } */
+                height: 100%;
 
                 img {
                     /* aspect-ratio: 3/4;
@@ -50,7 +48,8 @@
                 }
             }
 
-            & .img-destaque {
+            /* & .imagem-principal { */
+            & .img-produto {
                 background-color: white;
                 height: 100%;
                 aspect-ratio: 3/4;
