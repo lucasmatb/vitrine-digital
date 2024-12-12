@@ -1,6 +1,10 @@
 section {
     gap: var(--spc-700);
 
+    &.secao-busca {
+        padding-bottom: 0;
+    }
+
     & .busca {
         display: flex;
         flex-flow: column;

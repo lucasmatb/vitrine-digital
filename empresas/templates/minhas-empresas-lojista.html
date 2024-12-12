@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block 'titulo' %}
-    Vitrine Digital | Minhas lojas
+    Vitrisse | Minhas lojas
 {% endblock %}
 
 {% block 'conteudo'%}
@@ -53,7 +53,7 @@
                                         <div class="informacoes">
                                             <p class="nome">{{ empresa.nome_fantasia }}</p>
                                             <p class="descricao">
-                                                {{ empresa.razao_social }}
+                                                {{ empresa.descricao }}
                                             </p>
                                             <div class="categorias">
                                                 {% for categoria in empresa.empresa_categoria.all %}
@@ -67,25 +67,22 @@
                                             <p>{{ empresa.media_salvamento_produto }} salvamentos / produto</p>
                                         </div>
                                     </div>
-                                    <div class="mt-2">
-                                        <p>{{ empresa.descricao }}</p>
-                                    </div>
                                     <div class="botoes">
                                         <a
                                             href="{% url 'listagem_produto_por_empresa' empresa.id %}"
-                                            class="botao"
+                                            class="botao botao-produtos"
                                         >
                                             Produtos
                                         </a>
                                         <a
                                             href="{% url 'editar_empresa' empresa.id %}"
-                                            class="botao"
+                                            class="botao botao-editar"
                                         >
                                             Editar
                                         </a>
                                         <a
                                             href="{% url 'excluir_empresa' empresa.id %}"
-                                            class="botao"
+                                            class="botao botao-excluir"
                                         >
                                             Excluir
                                         </a>

@@ -65,6 +65,10 @@
             text-transform: uppercase;
             font-weight: 600;
         }
+
+        & .logo {
+            max-width: 7rem;
+        }
     }
     
     
@@ -106,7 +110,7 @@
         
         &:hover {
             background-color: rgba(255,255,255,.075);
-            border-left: 3px solid #3b7ddd;
+            border-left: 3px solid #CFB2FF;
         }
 
         

@@ -13,7 +13,7 @@
 
     <main>
         <div class="main-scrollable">
-            <section>
+            <section class="secao secao-busca">
                 <div class="busca">
                     <form
                         class="form-busca"
@@ -51,7 +51,7 @@
                                     alt="imagem perfil empresa {{ empresa.nome_fantasia }}"
                                 >
                             </div>
-                            <div>
+                            <div class="div-img-capa">
                                 <img
                                     class="img-capa"
                                     src="{{ empresa.imagem_capa.url }}"
@@ -59,12 +59,16 @@
                                 >
                             </div>
                             <div class="informacoes">
-                                <p class="nome">{{ empresa.nome_fantasia }}</p>
-                                <p>{{ empresa.descricao }}</p>
+                                <div class="nome-descricao">
+                                    <p class="nome">{{ empresa.nome_fantasia }}</p>
+                                    <p>{{ empresa.descricao }}</p>
+                                </div>
                                 <div class="categoria-favoritos">
-                                    {% for categoria in empresa.categorias %}
-                                        <div class="categoria">{{ categoria.descricao }}</div>
-                                    {% endfor %}
+                                    <div class="categorias">
+                                        {% for categoria in empresa.categorias %}
+                                            <div class="categoria">{{ categoria.descricao }}</div>
+                                        {% endfor %}
+                                    </div>
                                     <div class="favoritos">
                                         <img
                                             class="fav-{{empresa.id}}"

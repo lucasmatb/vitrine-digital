@@ -23,21 +23,22 @@
     {% endif %}
 
     <div class="container-login">
-        <h1>Logar</h1>
-        <hr>
+        <h1>Login</h1>
         <form
             method="POST"
             action="{% url 'valida_login' %}"
         >
             {% csrf_token %}
-            <div class="input-wrapper input-wrapper-email">
-                <label>E-mail</label>
-                {{ form.email }}
-            </div>
-            
-            <div class="input-wrapper input-wrapper-senha">
-                <label>Senha</label>
-                {{ form.password }}
+            <div class="input-wrappers">
+                <div class="input-wrapper input-wrapper-email">
+                    <label>E-mail</label>
+                    {{ form.email }}
+                </div>
+                
+                <div class="input-wrapper input-wrapper-senha">
+                    <label>Senha</label>
+                    {{ form.password }}
+                </div>
             </div>
             <a class="esqueceu-senha" href="{% url 'password_reset' %}">
                 Esqueceu sua senha?

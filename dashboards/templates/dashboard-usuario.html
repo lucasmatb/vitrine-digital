@@ -7,93 +7,90 @@
 {% endblock %}
 
 {% block 'titulo' %}
-    Vitrine Digital | Área do cliente
+    Vitrisse | Área do cliente
 {% endblock %}
 
 {% block 'conteudo'%}
     <main>
         <div class="main-scrollable">
-            {% if messages %}
-                {% for i in messages %}   
-                    <div class="alert {{i.tags}}" role="alert">
-                        {{i}} 
-                    </div>
-        
-                {% endfor %}
-            {% endif %}
-
-            {% if pedido_aguardo == 'usuario' %}
-                <button id="botao-pedido-lojista" name="botao-pedido-lojista">Solicitar perfil lojista</button>
-            {% elif pedido_aguardo == 'aguardando' %}
-                Seu pedido para perfil lojista está em análise!
-            {% endif %}
-
-            {% for categoria, empresas in data.items %}
-                <section>
-                    <h2>Lojas especializadas em {{ categoria }}</h2>
-                    <div class="carrossel">
-                    {% for empresa in empresas %}
-
-                        <div
-                            class="card card-empresa"
-                            onclick="window.location.href='{% url 'visualizar_empresa' empresa.id %}'"
-                            style="cursor: pointer;"
-                        >
-                            <div>
-                                <img
-                                    class="img-perfil"
-                                    src="{{ empresa.imagem_perfil.url }}"
-                                    alt="imagem perfil empresa {{ empresa.nome_fantasia }}"
-                                >
-                            </div>
-                            <div>
-                                <img
-                                    class="img-capa"
-                                    src="{{ empresa.imagem_capa.url }}"
-                                    alt="imagem capa empresa {{ empresa.nome_fantasia }}"
-                                >
-                            </div>
-                            <div class="informacoes">
-                                <p class="nome">{{ empresa.nome_fantasia }}</p>
-                                <p>{{ empresa.descricao }}</p>
-                                <div class="categoria-favoritos">
-                                    {% for categoria in empresa.categorias %}
-                                        <div class="categoria">{{ categoria.descricao }}</div>
-                                    {% endfor %}
-                                    <div class="favoritos">
-                                        <img
-                                            class="fav-{{empresa.id}}"
-                                            onclick="favnotfav(
-                                                event,
-                                                'fav-{{empresa.id}}',
-                                                'fav-number-{{empresa.id}}',
-                                                {{empresa.id}}
-                                            )"
-                                            {% if empresa.favorito_usuario %}
-                                                src="{% static 'images/icone-coracao-preenchido.svg' %}"
-                                            {% else %}
-                                                src="{% static 'images/icone-coracao.svg' %}"
-                                            {% endif %}
-                                            alt="Ícone coração"
-                                            style="cursor: pointer;"
-                                        >
-                                        <span
-                                            class="fav-number-{{empresa.id}}"
-                                        >
-                                            {{ empresa.favoritos }}
-                                        </span>
+            <section>
+                {% if messages %}
+                    {% for i in messages %}
+                        <div class="alert {{i.tags}}" role="alert">
+                            {{i}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% if pedido_aguardo == 'usuario' %}
+                    <button id="botao-pedido-lojista" name="botao-pedido-lojista">Solicitar perfil lojista</button>
+                {% elif pedido_aguardo == 'aguardando' %}
+                    Seu pedido para perfil lojista está em análise!
+                {% endif %}
+                {% for categoria, empresas in data.items %}
+                    <section>
+                        <h2>Lojas especializadas em {{ categoria }}</h2>
+                        <div class="carrossel">
+                        {% for empresa in empresas %}
+                            <div
+                                class="card card-empresa"
+                                onclick="window.location.href='{% url 'visualizar_empresa' empresa.id %}'"
+                                style="cursor: pointer;"
+                            >
+                                <div>
+                                    <img
+                                        class="img-perfil"
+                                        src="{{ empresa.imagem_perfil.url }}"
+                                        alt="imagem perfil empresa {{ empresa.nome_fantasia }}"
+                                    >
+                                </div>
+                                <div>
+                                    <img
+                                        class="img-capa"
+                                        src="{{ empresa.imagem_capa.url }}"
+                                        alt="imagem capa empresa {{ empresa.nome_fantasia }}"
+                                    >
+                                </div>
+                                <div class="informacoes">
+                                    <p class="nome">{{ empresa.nome_fantasia }}</p>
+                                    <p>{{ empresa.descricao }}</p>
+                                    <div class="categoria-favoritos">
+                                        {% for categoria in empresa.categorias %}
+                                            <div class="categoria">{{ categoria.descricao }}</div>
+                                        {% endfor %}
+                                        <div class="favoritos">
+                                            <img
+                                                class="fav-{{empresa.id}}"
+                                                onclick="favnotfav(
+                                                    event,
+                                                    'fav-{{empresa.id}}',
+                                                    'fav-number-{{empresa.id}}',
+                                                    {{empresa.id}}
+                                                )"
+                                                {% if empresa.favorito_usuario %}
+                                                    src="{% static 'images/icone-coracao-preenchido.svg' %}"
+                                                {% else %}
+                                                    src="{% static 'images/icone-coracao.svg' %}"
+                                                {% endif %}
+                                                alt="Ícone coração"
+                                                style="cursor: pointer;"
+                                            >
+                                            <span
+                                                class="fav-number-{{empresa.id}}"
+                                            >
+                                                {{ empresa.favoritos }}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <hr>
+                        {% endfor %}
                         </div>
-                        <hr>
-
-                    {% endfor %}
-                    </div>
-                </section>
-            {% empty %}
-                <p>Não há empresas cadastradas para sua cidade.</p>
-            {% endfor %}
+                    </section>
+                {% empty %}
+                    <p>Não há empresas cadastradas para sua cidade.</p>
+                {% endfor %}
+            </section>
         </div>
     </main>
 

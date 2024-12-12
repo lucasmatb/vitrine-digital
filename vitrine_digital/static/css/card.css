@@ -7,22 +7,22 @@
     position: relative;
 
     &.card-empresa {
-        & .img-capa {
+        & .div-img-capa {
+            overflow: hidden;
             width: 100%;
-            aspect-ratio: 3/1.5;
+            aspect-ratio: 2/1;
+
+            & .img-capa {   
+                width: 100%;
+                aspect-ratio: 15/20;
+                object-fit: cover;
+                object-position: 25% 25%;
+            }
         }
     }
 
     &.card-produto {
         box-shadow: 0 1rem 1rem rgba(0,0,0,0.05);
-<<<<<<< Updated upstream
-            & .img-capa {
-                width: 100%;
-                aspect-ratio: 3/1.5;
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-position: 50%;
-=======
 
         & .img-capa {
             width: 100%;
@@ -45,7 +45,6 @@
                     background-repeat: no-repeat;
                     background-size: cover;
                 }
->>>>>>> Stashed changes
             }
 
             & .preco-disponibilidade {
@@ -62,19 +61,23 @@
                 }
             }
 
-            & .categoria-favoritos {
-                
-                & .categorias {
-                    display: flex;
-                    flex-flow: row wrap;
-                    gap: var(--spc-80);
-                    
-                }
+        }
+    }
 
-                & .favoritos {
-                   
-                }
-            }
+    & .categoria-favoritos {
+        display: flex;
+        flex-flow: row;
+        justify-content: space-between;
+        gap: var(--spc-100);
+
+        & .categorias {
+            display: flex;
+            flex-flow: row wrap;
+            gap: var(--spc-80);
+        }
+
+        & .favoritos {
+
         }
     }
 
@@ -89,7 +92,7 @@
         overflow: hidden;
         border: solid 3px #fff;
         position: absolute;
-        top: 9rem;
+        top: 9.5rem;
         left: 1rem;
     }
 
@@ -110,6 +113,12 @@
             flex-flow: column;
             gap: var(--spc-100);
         }
+    }
+
+    & .nome-descricao {
+        display: flex;
+        flex-flow: column;
+        gap: var(--spc-80);
     }
 
     & .nome {
@@ -135,9 +144,14 @@
     & .categoria {
         padding: var(--spc-50) var(--spc-100);
         background-color: #f8e9ff;
-        border-radius: 0.8rem;
+        /* background-color: #F8F9FA; */
+        /* background-color: #e9e9e9; */
+        /* background-color: #fff6df; */
+        border-radius: 0.4rem;
         color: #c341ff;
+        /* color: #ffc823; */
         height: max-content;
+        font-size: var(--fs-50);
     }
 
     & .favoritos {
