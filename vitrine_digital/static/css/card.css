@@ -21,48 +21,6 @@
         }
     }
 
-    &.card-produto {
-        box-shadow: 0 1rem 1rem rgba(0,0,0,0.05);
-
-        & .img-capa {
-            width: 100%;
-            aspect-ratio: 3/1.5;
-            
-        }
-
-        & .informacoes {
-            & .loja {
-                display: flex;
-                gap: var(--spc-100);
-                align-items: center;
-                
-                & .img-loja {
-                    width: 2.5rem;
-                    aspect-ratio: 1;
-                    border-radius: 100vw;
-                    background-image: url(../images/perfil-empresa-1.jpg);
-                    background-position: 50%;
-                    background-repeat: no-repeat;
-                    background-size: cover;
-                }
-            }
-
-            & .preco-disponibilidade {
-                display: flex;
-                justify-content: space-between;
-                gap: var(--spc-200);
-
-                & .disponibilidade {
-                    font-size: var(--fs-100);
-                    padding: var(--spc-50) var(--spc-100);
-                    background-color: #e3e3e3;
-                    border-radius: 0.8rem;
-                    color: #767676;
-                }
-            }
-
-        }
-    }
 
     & .categoria-favoritos {
         display: flex;
@@ -115,6 +73,126 @@
         }
     }
 
+    &.card-produto {
+        box-shadow: 0 1rem 1rem rgba(0,0,0,0.05);
+        /* height: 100%; */
+        
+        
+        & .div-img-produto {
+            overflow: hidden;
+            width: 100%;
+            aspect-ratio: 3/2;
+    
+            & .img-produto {   
+                width: 100%;
+                aspect-ratio: 15/20;
+                object-fit: cover;
+                object-position: 75% 75%;
+            }
+
+        }
+
+        & .informacoes-botoes {
+            display: flex;
+            flex-flow: column;
+            gap: var(--spc-100);
+            justify-content: space-between;
+            padding: var(--spc-300) !important;
+
+            height: 100%;
+
+            & .informacoes {
+                padding: 0 !important;
+                gap: var(--spc-200);
+
+                & .loja {
+                    display: flex;
+                    gap: var(--spc-100);
+                    align-items: center;
+                    
+                    & .img-loja {
+                        width: 2.5rem;
+                        aspect-ratio: 1;
+                        border-radius: 100vw;
+                        background-image: url(../images/perfil-empresa-1.jpg);
+                        background-position: 50%;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                }
+
+                & .preco-qtde {
+                    display: flex;
+                    justify-content: space-between;
+                    gap: var(--spc-100);
+
+                    & .preco {
+                        font-weight: 500;
+                        font-size: var(--fs-200);
+                    }
+                }
+
+                & .ativo-destaque-categorias {
+                    display: flex;
+                    flex-flow: column;
+                    gap: var(--spc-500);
+                }
+
+                & .ativo-destaque {
+                    display: flex;
+                    /* justify-content: space-between; */
+                    justify-content: flex-start;
+                    gap: var(--spc-100);
+
+                    & .ativo, & .destacado {
+                        padding: var(--spc-50) var(--spc-100);
+                        background-color: rgb(207, 255, 207);
+                        border-radius: 0.4rem;
+                        color: rgb(63, 160, 63);
+                        height: max-content;
+                        font-size: var(--fs-50);
+                    }
+                    
+                    & .inativo, & .nao-destacado {
+                        padding: var(--spc-50) var(--spc-100);
+                        background-color: rgb(232, 232, 232);
+                        border-radius: 0.4rem;
+                        color: rgb(117, 117, 117);
+                        height: max-content;
+                        font-size: var(--fs-50);
+                    }
+                }
+
+                & .categorias {
+                    display: flex;
+                    flex-flow: row wrap;
+                    gap: var(--spc-100);
+                }
+
+            }
+
+            & .botoes {
+                display: flex;
+                flex-flow: row wrap;
+                gap: var(--spc-100);
+
+                
+                & .botao {
+                    font-weight: 400;
+                    width: max-content;
+                }
+
+                & .botao-editar {
+                    background-color: #FCEAED;
+                }
+
+                & .botao-excluir {
+                    background-color: #F8F9FA;
+                }
+            }
+        }
+    }
+
     & .nome-descricao {
         display: flex;
         flex-flow: column;
@@ -148,7 +226,7 @@
         /* background-color: #e9e9e9; */
         /* background-color: #fff6df; */
         border-radius: 0.4rem;
-        color: #c341ff;
+        color: hsl(281, 52%, 57%);
         /* color: #ffc823; */
         height: max-content;
         font-size: var(--fs-50);

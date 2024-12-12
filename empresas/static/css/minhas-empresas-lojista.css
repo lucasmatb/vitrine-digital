@@ -21,13 +21,17 @@
             display: flex;
             box-shadow: 0rem 0rem 8rem rgba(0,0,0,0.05);
             border-radius: 0.8rem;
+            max-height: 40rem;
+            height: max-content;
 
-            @media all and (max-width: 900px){
+            @media all and (max-width: 980px){
                 flex-flow: column;
+                max-height: 100%;
             }
 
             & .imagens {
                 position: relative;
+                height: 100%;
 
                 & .img-capa {
                     /* max-width: 20rem; */
@@ -36,8 +40,9 @@
                     overflow: hidden;
                     max-height: 30rem;
                     aspect-ratio: 3/4;
+                    min-height: 100%;
                     
-                    @media all and (max-width: 900px){
+                    @media all and (max-width: 980px){
                         /* width: 100%;
                         height: auto;
                         aspect-ratio: 5/1; */
@@ -76,7 +81,7 @@
                     /* transform: translate(50%, 50%); */
                     transform: translate(50%, -50%);
 
-                    @media all and (max-width: 900px){
+                    @media all and (max-width: 980px){
                         transform: none;
                         bottom: 0;
                         left: 0;
@@ -99,7 +104,7 @@
                 padding-left: 8rem;
                 width: 100%;
 
-                @media all and (max-width: 900px){
+                @media all and (max-width: 980px){
                     padding: var(--spc-700);
                     padding-top: 7rem;
                     gap: var(--spc-700);
@@ -114,7 +119,7 @@
                     display: flex;
                     width: 100%;
                     
-                    @media all and (max-width: 900px){
+                    @media all and (max-width: 980px){
                         justify-content: space-between;
                     }
 
@@ -129,7 +134,7 @@
 
                         width: 50%;
                         
-                        @media all and (max-width: 900px){
+                        @media all and (max-width: 980px){
                             flex: 1;
                             width: 100%;
                         }
@@ -168,7 +173,7 @@
 
                         width: 50%;
                         
-                        @media all and (max-width: 900px){
+                        @media all and (max-width: 980px){
                             flex: 1;
                             width: 100%;
                         }

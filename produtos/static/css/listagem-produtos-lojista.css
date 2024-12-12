@@ -10,8 +10,10 @@
 
 .meus-produtos-lojista {
     display: grid;
-    grid-template-columns: repeat(3, 25rem);
+    grid-template-columns: repeat(auto-fill, 25rem);
     gap: var(--spc-700);
+
+    /* @media all and (max-width: ) */
 }
 
 
