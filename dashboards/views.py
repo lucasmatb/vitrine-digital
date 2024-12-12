@@ -13,6 +13,21 @@ def home(request):
     
     return render(request, 'home.html')
 
+# def home(request):
+#     return render(request, '404.html', status=404)
+#     if request.user.is_authenticated:
+#         return redirect('dashboard_usuario')
+    
+#     return render(request, 'home.html')
+
+# def home(request):
+#     return render(request, '500.html', status=500)
+#     if request.user.is_authenticated:
+#         return redirect('dashboard_usuario')
+    
+#     return render(request, 'home.html')
+
+
 def retorna_dashboard_usuario(request):
     data = {}
 

@@ -26,35 +26,36 @@
                                 <img
                                     src="{{ imagem.imagem.url }}"
                                     alt="Imagem do produto"
+                                    class="img-previa"
                                 >
                             {% endfor %}
                         </div>
-                            {% if produto.primeira_imagem %}
-                                <img
-                                    src="{{ produto.primeira_imagem.url }}"
-                                    alt="Imagem do produto"
-                                    class="img-produto"
-                                >
-                            {% else %}
-                                <img
-                                    src="{{ produto.primeira_imagem_default }}"
-                                    alt="Imagem do produto"
-                                    class="img-produto"
-                                >
-                            {% endif %}
-
+                        <div class="div-img-destaque">
+                            <img class="img-destaque" src="" alt="Imagem do produto">
+                        </div>
                     </div>
                     <div class="especificacoes">
-                        <h1>{{ produto.nome }}</h1>
-                        <p>{{ produto.descricao }}</p>
-                        <span class="preco">R$ {{ produto.preco }}</span>
-                        {% if produto.ativo == False  %}
-                            <span class="disponibilidade">Indisponível</span>
-                        {% elif produto.qtd == 0 %}
-                            <span class="disponibilidade">Sem estoque</span>
-                        {% else %}
-                            <span class="disponibilidade">Disponível</span>
-                        {% endif %}
+                        <div class="nome-descricao">
+                            <h1 class="nome">{{ produto.nome }}</h1>
+                            <p class="descricao">{{ produto.descricao }}</p>
+                        </div>
+                        <div class="preco-disp-cat">
+                            <div class="preco-disponibilidade">
+                                <span class="preco">R$ {{ produto.preco }}</span>
+                                {% if produto.ativo == False  %}
+                                    <span class="disponibilidade">Indisponível</span>
+                                {% elif produto.qtd == 0 %}
+                                    <span class="disponibilidade">Sem estoque</span>
+                                {% else %}
+                                    <span class="disponibilidade">Disponível</span>
+                                {% endif %}
+                            </div>
+                            <div class="categorias">
+                                {% for categoria in produto.categoria_produto.all %}
+                                    <div class="categoria">{{ categoria.descricao }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
                         <div class="favoritos">
                             <img
                                 class="fav-{{produto.id}}"
@@ -109,6 +110,23 @@
                 alert('Não foi possível favoritar esse produto, tente novamente mais tarde.');
             });
         }
+    </script>
+
+
+    <script>
+        const previas = document.querySelectorAll('.img-previa');
+        const imgDestaque = document.querySelector('.img-destaque');
+
+        imgDestaque.src = previas[0].src;
+
+        previas.forEach(p => {
+            p.addEventListener('click', () => {
+                const srcImagem = p.src;
+                imgDestaque.src = srcImagem;
+            });
+        })
+
+
     </script>
     
 {% endblock %}

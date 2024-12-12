@@ -10,13 +10,18 @@
 {% endblock %}
 
 {% block 'conteudo'%}
-    <main>
+
+    <section class="secao">
         <div class="container container-erro">
-            <div class="textos">
-                <h1>500</h1>
-                <p>Erro interno do servidor</p>
+            <div class="camada-transparente"></div>
+            <div class="conteudos-erro">
+                <div class="textos">
+                    <h1>500</h1>
+                    <p>Erro interno do servidor</p>
+                </div>
+                <a href="{% url 'home' %}">Ir para o início</a>
             </div>
-            <a href="{% url 'home' %}">Ir para o início</a>
         </div>
-    </main>
+    </section>
+
 {% endblock %}

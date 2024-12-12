@@ -48,47 +48,67 @@
                 }
             }
 
-            /* & .imagem-principal { */
-            & .img-produto {
-                background-color: white;
-                height: 100%;
-                aspect-ratio: 3/4;
-                
+            & .div-img-destaque {
+                overflow: hidden;
+                aspect-ratio: 15/20;
+
+                & .img-destaque {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                    object-position: 25% 25%;
+                }
             }
         }
 
         & .especificacoes {
-            & .loja {
-                display: flex;
-                /* justify-content: space-between; */
-                gap: var(--spc-100);
-                align-items: center;
-                
-                & .img-loja {
-                    width: 2.5rem;
-                    aspect-ratio: 1;
-                    border-radius: 100vw;
-                    background-image: url(../images/perfil-empresa-1.jpg);
-                    background-position: 50%;
-                    background-repeat: no-repeat;
-                    background-size: cover;
+            flex: 1;
+
+            & .nome-descricao {
+                & .nome {
+                    font-size: var(--fs-600);
                 }
 
-                & .nome-loja {
-
+                & .descricao {
+                    font-size: var(--fs-400);
                 }
             }
 
-            & .preco {
-                font-size: var(--fs-400);
-            }
+            & .preco-disp-cat {
 
-            & .disponibilidade {
-                color:  rgb(111, 166, 111);
-                background-color: rgb(195, 235, 195);
-                padding: var(--spc-50) var(--spc-200);
-                border-radius: 0.5rem;
-                
+                & .preco-disponibilidade {
+                    display: flex;
+                    flex-flow: row wrap;
+                    justify-content: space-between;
+                    gap: var(--spc-200);
+                    align-items: center;
+
+                    & .preco {
+                        font-size: var(--fs-400);
+                    }
+        
+                    & .disponibilidade {
+                        color:  rgb(111, 166, 111);
+                        background-color: rgb(195, 235, 195);
+                        padding: var(--spc-50) var(--spc-200);
+                        border-radius: 0.5rem;
+                        
+                    }
+                }
+
+                & .categorias {
+                    display: flex;
+                    flex-flow: row wrap;
+                    gap: var(--spc-100);
+
+                    & .categoria {
+                        padding: var(--spc-50) var(--spc-100);
+                        background-color: #f8e9ff;
+                        border-radius: 0.4rem;
+                        color: hsl(281, 52%, 57%);
+                        height: max-content;
+                    }
+                }
             }
             
             & .salvar {

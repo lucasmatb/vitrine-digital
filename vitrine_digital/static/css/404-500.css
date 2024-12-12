@@ -1,32 +1,77 @@
+body {
+    overflow-y: auto;
+}
+
 main {
     display: grid;
     place-items: center;
     height: 100vh;
+    overflow-y: auto;
+
+    & .secao {
+        display: grid;
+        place-items: center;
+        height: 100vh;
+    }
 
     & .container-erro {
         width: max-content;
-        gap: var(-spc-400);
-        align-items: center;
+        display: grid;
+        place-items: center;
 
-        & .textos {
-            align-items: center;
-            
-            & h1 {
-                font-size: 6rem;
-                text-align: center;
-            }
-            
-        }
+        background-image: url("../images/background.png");
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        padding: var(--spc-500);
+        max-width: 40rem;
+        width: 100%;
+        max-height: 40rem;
+        height: 100%;
+        border-radius: 1rem;
 
-        & a, & button {
-            all: unset;
-            align-self: center;
-            padding: var(--spc-100) var(--spc-200);
-            background-color: #ccc;
-            border-radius: 0.8rem;
+        & .camada-transparente {
+            background-color: rgba(255, 255, 255, 0.4);
+            position:absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            text-align: center;
+            height: 100%;
         }
+
+        & .conteudos-erro {
+            display: flex;
+            flex-flow: column;
+            gap: var(-spc-400);
+            align-items: center;
+
+            & .textos {
+                align-items: center;
+                z-index: 3;
+                
+                & h1 {
+                    font-size: 6rem;
+                    text-align: center;
+                }
+                
+            }
+    
+            & a, & button {
+                all: unset;
+                align-self: center;
+                padding: var(--spc-100) var(--spc-200);
+                background-color: #FDEEDA;
+                border-radius: 0.8rem;
+                width: 100%;
+                text-align: center;
+                max-width: none;
+                max-width: max-content;
+    
+                z-index: 3;
+            }
+        }
+
     }
 }
 
