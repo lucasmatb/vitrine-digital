@@ -11,34 +11,30 @@
 
 {% block 'conteudo' %}
     <main>
-        {% if validlink %}
-
-            <div class="titulo-texto">
-                <h2>Alterar senha</h2>
-                <p>Preencha o campo abaixo com uma nova senha da sua escolha.</p>
+        <section class="secao recuperar-senha">
+            <div class="container">
+                {% if validlink %}
+                    <div class="titulo-texto">
+                        <h2>Alterar senha</h2>
+                        <p>Preencha o campo abaixo com uma nova senha da sua escolha.</p>
+                    </div>
+                    <form method="post">{% csrf_token %}
+                        <div class="input-wrapper">
+                            {{ form.new_password1.errors }}
+                            <label>Nova senha</label>
+                            {{ form.new_password1 }}
+                        </div>
+                        <div class="input-wrapper">
+                            {{ form.new_password2.errors }}
+                            <label>Confirmação de senha</label>
+                            {{ form.new_password2 }}
+                        </div>
+                        <button type="submit" class="botao">Alterar senha</button>
+                    </form>
+                {% else %}
+                <p>O link para redefinição de senha era inválido, possivelmente porque já foi utilizado. Por favor, solicite uma nova redefinição de senha.</p>
+                {% endif %}
             </div>
-
-            <form method="post">{% csrf_token %}
-
-                <div class="input-wrapper">
-                    {{ form.new_password1.errors }}
-                    <label>Nova senha</label>
-                    {{ form.new_password1 }}
-                </div>
-
-                <div class="input-wrapper">
-                    {{ form.new_password2.errors }}
-                    <label>Confirmação de senha</label>
-                    {{ form.new_password2 }}
-                </div>
-
-                <button type="submit">Alterar senha</button>
-            </form>
-
-        {% else %}
-
-        <p>O link para redefinição de senha era inválido, possivelmente porque já foi utilizado. Por favor, solicite uma nova redefinição de senha.</p>
-
-        {% endif %}
+        </section>
     </main>
 {% endblock %}
