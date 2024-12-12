@@ -13,16 +13,16 @@
 
 <section class="secao-cadastro">
 
-    {% if messages %}
-      {% for i in messages %}   
-          <div class="alert {{i.tags}}" role="alert">
-              {{i}} 
-          </div>
-
-      {% endfor %}
-    {% endif %}
-
+    
     <div class="container-cadastro">
+        {% if messages %}
+          {% for i in messages %}   
+              <div class="alert {{i.tags}}" role="alert">
+                  {{i}} 
+              </div>
+    
+          {% endfor %}
+        {% endif %}
         <h1>Cadastro</h1>
         <form
             method="POST"

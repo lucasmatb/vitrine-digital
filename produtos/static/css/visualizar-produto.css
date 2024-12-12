@@ -45,6 +45,8 @@
                     aspect-ratio: 15/20;
                     object-fit: cover;
                     object-position: 25% 25%;
+
+                    cursor: pointer;
                 }
             }
 
@@ -63,6 +65,10 @@
 
         & .especificacoes {
             flex: 1;
+            display: flex;
+            flex-flow: column;
+            gap: var(--spc-600);
+            align-items: flex-start;
 
             & .nome-descricao {
                 & .nome {
@@ -74,77 +80,77 @@
                 }
             }
 
-            & .preco-disp-cat {
-
-                & .preco-disponibilidade {
-                    display: flex;
-                    flex-flow: row wrap;
-                    justify-content: space-between;
-                    gap: var(--spc-200);
-                    align-items: center;
-
-                    & .preco {
-                        font-size: var(--fs-400);
-                    }
-        
-                    & .disponibilidade {
-                        color:  rgb(111, 166, 111);
-                        background-color: rgb(195, 235, 195);
-                        padding: var(--spc-50) var(--spc-200);
-                        border-radius: 0.5rem;
-                        
-                    }
-                }
-
-                & .categorias {
-                    display: flex;
-                    flex-flow: row wrap;
-                    gap: var(--spc-100);
-
-                    & .categoria {
-                        padding: var(--spc-50) var(--spc-100);
-                        background-color: #f8e9ff;
-                        border-radius: 0.4rem;
-                        color: hsl(281, 52%, 57%);
-                        height: max-content;
-                    }
-                }
-            }
-            
-            & .salvar {
-                all: unset;
-                display: flex;
-                gap: var(--spc-60);
-                align-items: center;
-                cursor: pointer;
-                /* background-color: hsl(212, 66%, 85%); */
-                background-color: rgba(255,255,255,0.35);
-                /* border: solid 1px rgba(255,255,255,0.75); */
-                border: solid 1px;
-                border-color: rgba(255,255,255,0.75);
+            & .disponibilidade {
+                color:  rgb(111, 166, 111);
+                background-color: rgb(195, 235, 195);
+                padding: var(--spc-50) var(--spc-200);
                 border-radius: 0.5rem;
-                padding: var(--spc-90) var(--spc-200);
-                width: max-content;
-                transition: background-color .3s ease;
                 
-                &:hover, &.salvo {
-                    /* background-color: hsl(212, 66%, 80%); */
-                    background-color: hsl(267, 100%, 90%);
-                    border-color:hsl(264, 100%, 85%);
-                }
+            }
 
-                &.salvo {
-                    & svg {
-                        fill: hsl(264, 100%, 75%);;
-                        stroke: hsl(264, 100%, 75%);;     
+            & .categorias {
+                display: flex;
+                flex-flow: row wrap;
+                gap: var(--spc-100);
 
-                    }
-                }
-
-                & svg {
-                    width: 1.8rem;
+                & .categoria {
+                    padding: var(--spc-50) var(--spc-100);
+                    background-color: #f8e9ff;
+                    border-radius: 0.4rem;
+                    color: hsl(281, 52%, 57%);
+                    height: max-content;
                 }
             }
+
+            & .preco-favoritos {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: space-between;
+                gap: var(--spc-200);
+                width: 80%;
+
+                & .preco {
+                    font-weight: 500;
+                    font-size: var(--fs-400);
+                }
+                
+                & .favoritos {
+                    all: unset;
+                    display: flex;
+                    gap: var(--spc-60);
+                    align-items: center;
+                    cursor: pointer;
+                    /* background-color: hsl(212, 66%, 85%); */
+                    background-color: rgba(255,255,255,0.35);
+                    /* border: solid 1px rgba(255,255,255,0.75); */
+                    border: solid 1px;
+                    border-color: rgba(255,255,255,0.75);
+                    border-radius: 0.5rem;
+                    padding: var(--spc-90) var(--spc-200);
+                    width: max-content;
+                    transition: background-color .3s ease;
+                    
+                    &:hover, &.salvo {
+                        /* background-color: hsl(212, 66%, 80%); */
+                        background-color: hsl(267, 100%, 90%);
+                        border-color:hsl(264, 100%, 85%);
+                    }
+    
+                    &.salvo {
+                        & svg {
+                            fill: hsl(264, 100%, 75%);;
+                            stroke: hsl(264, 100%, 75%);;     
+    
+                        }
+                    }
+    
+                    & svg {
+                        width: 1.8rem;
+                    }
+                }
+            }
+
+
         }
     }
 

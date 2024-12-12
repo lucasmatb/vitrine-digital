@@ -39,40 +39,41 @@
                             <h1 class="nome">{{ produto.nome }}</h1>
                             <p class="descricao">{{ produto.descricao }}</p>
                         </div>
-                        <div class="preco-disp-cat">
-                            <div class="preco-disponibilidade">
-                                <span class="preco">R$ {{ produto.preco }}</span>
-                                {% if produto.ativo == False  %}
-                                    <span class="disponibilidade">Indisponível</span>
-                                {% elif produto.qtd == 0 %}
-                                    <span class="disponibilidade">Sem estoque</span>
-                                {% else %}
-                                    <span class="disponibilidade">Disponível</span>
-                                {% endif %}
-                            </div>
-                            <div class="categorias">
-                                {% for categoria in produto.categoria_produto.all %}
-                                    <div class="categoria">{{ categoria.descricao }}</div>
-                                {% endfor %}
-                            </div>
+
+                        {% if produto.ativo == False  %}
+                            <span class="disponibilidade">Indisponível</span>
+                        {% elif produto.qtd == 0 %}
+                            <span class="disponibilidade">Sem estoque</span>
+                        {% else %}
+                            <span class="disponibilidade">Disponível</span>
+                        {% endif %}
+
+                        <div class="categorias">
+                            {% for categoria in produto.categoria_produto.all %}
+                                <div class="categoria">{{ categoria.descricao }}</div>
+                            {% endfor %}
                         </div>
-                        <div class="favoritos">
-                            <img
-                                class="fav-{{produto.id}}"
-                                onclick="favnotfav(
-                                    event,
-                                    'fav-{{produto.id}}',
-                                    'fav-number-{{produto.id}}',
-                                    {{produto.id}}
-                                )"
-                                {% if favorito_usuario %}
-                                    src="{% static 'images/icone-salvar-fill.svg' %}"
-                                {% else %}
-                                    src="{% static 'images/icone-salvar.svg' %}"
-                                {% endif %}
-                                alt="Ícone estrela"
-                                style="cursor: pointer;"
-                            >
+                        
+                        <div class="preco-favoritos">
+                            <span class="preco">R$ {{ produto.preco }}</span>
+                            <div class="favoritos">
+                                <img
+                                    class="fav-{{produto.id}}"
+                                    onclick="favnotfav(
+                                        event,
+                                        'fav-{{produto.id}}',
+                                        'fav-number-{{produto.id}}',
+                                        {{produto.id}}
+                                    )"
+                                    {% if favorito_usuario %}
+                                        src="{% static 'images/icone-salvar-fill.svg' %}"
+                                    {% else %}
+                                        src="{% static 'images/icone-salvar.svg' %}"
+                                    {% endif %}
+                                    alt="Ícone salvar"
+                                    style="cursor: pointer;"
+                                >
+                            </div>
                         </div>
                     </div>
                 </div>

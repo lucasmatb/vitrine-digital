@@ -7,6 +7,9 @@
     overscroll-behavior-x: contain;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 25rem));
+    justify-content: start;
+    width: max-content;
 
     &::-webkit-scrollbar {
         display: none;
@@ -14,12 +17,5 @@
 
     & .card {
         scroll-snap-align: start;
-        /* border-radius: 30px; */
-        /* min-height: 200px; */
-        /* min-width: 300px; */
-        /* display: flex; */
-        /* align-items: center; */
-        /* justify-content: center; */
-        /* background-color: #eeaeca; */
     }
 }
