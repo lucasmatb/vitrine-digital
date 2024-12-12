@@ -135,6 +135,12 @@
                                             <span class="disponibilidade disponivel">Disponível</span>
                                         {% endif %}
 
+                                        <div class="categorias">
+                                            {% for categoria in produto.categorias %}
+                                            <div class="categoria">{{ categoria.descricao }}</div>
+                                            {% endfor %}
+                                        </div>
+
                                         <div class="preco-salvar">
                                             <div class="preco">R$ {{ produto.preco }}</div>
                                             <div class="favoritos">
@@ -157,11 +163,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="categorias">
-                                            {% for categoria in produto.categorias %}
-                                            <div class="categoria">{{ categoria.descricao }}</div>
-                                            {% endfor %}
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -208,6 +210,12 @@
                                     <span class="disponibilidade disponivel">Disponível</span>
                                 {% endif %}
 
+                                <div class="categorias">
+                                    {% for categoria in produto.categorias %}
+                                    <div class="categoria">{{ categoria.descricao }}</div>
+                                    {% endfor %}
+                                </div>
+
                                 <div class="preco-salvar">
                                     <div class="preco">R$ {{ produto.preco }}</div>
                                     <div class="favoritos">
@@ -230,11 +238,7 @@
                                     </div>
                                 </div>
 
-                                <div class="categorias">
-                                    {% for categoria in produto.categorias %}
-                                    <div class="categoria">{{ categoria.descricao }}</div>
-                                    {% endfor %}
-                                </div>
+                               
                             </div>
                         </div>
                         </div>
