@@ -76,7 +76,7 @@
     }
 
     &.card-produto {
-        box-shadow: 0 1rem 1rem rgba(0,0,0,0.05);
+        /* box-shadow: 0 1rem 1rem rgba(0,0,0,0.05); */
         /* height: 100%; */
         
         
@@ -101,7 +101,7 @@
             justify-content: space-between;
             padding: var(--spc-300) !important;
 
-            height: 100%;
+            /* height: 100%; */
 
             & .informacoes {
                 padding: 0 !important;

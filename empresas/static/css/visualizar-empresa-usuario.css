@@ -35,6 +35,11 @@
             padding-bottom: var(--spc-600);
             padding-top: var(--spc-1000);
 
+            @media all and (max-width: 650px){
+                flex-flow: column;
+                align-items: flex-start;
+            }
+
             & .nome-categorias {
                 display: flex;
                 flex-flow: column;
@@ -70,6 +75,10 @@
                         display: flex;
                         justify-content: flex-end;
 
+                        @media all and (max-width: 650px){
+                            justify-content: flex-start;
+                        }
+
                         & span {
                             width: max-content;
                         }
@@ -83,9 +92,12 @@
                     align-items: flex-end;
                     padding-top: var(--spc-100);
 
+                    @media all and (max-width: 650px){
+                        align-items: flex-start;
+                    }
+
                     & span {
                         width: max-content;
-                        
                     }
                 }
             }

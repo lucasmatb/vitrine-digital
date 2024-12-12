@@ -25,11 +25,18 @@
         flex-flow: row;
         gap: var(--spc-700);
 
+        @media all and (max-width: 1000px) {
+            flex-flow: column;
+        }
+
         & .imagens {
             display: flex;
             gap: var(--spc-300);
             height: calc(60rem + 2*var(--spc-200));
 
+            @media all and (max-width: 650px) {
+                flex-flow: column;
+            }
 
             & .previas {
                 display: grid;
@@ -37,6 +44,11 @@
                 grid-template-rows: repeat(3, 20rem);
                 gap: var(--spc-200);
                 height: 100%;
+
+                @media all and (max-width: 650px) {
+                   display: flex;
+                   flex-flow: row wrap;
+                }
 
                 img {
                     /* aspect-ratio: 3/4;
@@ -53,6 +65,10 @@
             & .div-img-destaque {
                 overflow: hidden;
                 aspect-ratio: 15/20;
+
+                @media all and (max-width: 650px) {
+                    display: none;
+                 }
 
                 & .img-destaque {
                     height: 100%;
@@ -107,7 +123,8 @@
                 flex-flow: row wrap;
                 justify-content: space-between;
                 gap: var(--spc-200);
-                width: 80%;
+                max-width: 30rem;
+                width: 100%;
 
                 & .preco {
                     font-weight: 500;
