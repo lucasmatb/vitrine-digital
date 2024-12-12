@@ -1,0 +1,37 @@
+body {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
+
+main {
+    min-height: 100vh;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    max-width: 100%;
+}
+
+.como-funciona {
+    display: flex;
+    flex-flow: column;
+    gap: var(--spc-400);
+}
+
+.preco {
+    display: flex;
+    flex-flow: column;
+    gap: var(-spc-300);
+
+    & .preco-mes, & .preco-ano {
+        color: #a268ff;
+        font-size: var(--fs-400);
+    }
+
+    & .preco-ano {
+        font-size: var(--fs-300);
+    }
+}
+
+.botao {
+    background-color: #FCEAED;
+    align-self: flex-start;
+}

@@ -1,26 +1,36 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/explicacao-cadastro-empresa.css' %}">
+{% endblock %}
+
 {% block 'titulo' %}
     Vitrisse | Sobre o cadastro de empresas
 {% endblock %}
 
 {% block 'conteudo' %}
-    <div class="container-conteudo">
-        <main>
-            <div class="main-scrollable">
-                <h1>Cadastrar minha empresa</h1>
+    
+    <section class="secao">
+        <div class="container">
+            <h1>Cadastrar minha empresa</h1>
+            <div class="como-funciona">
+                <h2>Como funciona?</h2>
+                <p>Para cadastrar sua empresa no VITRISSE, é necessário primeiramente ter o seu próprio cadastro, que pode ser feito clicando <a href="{% url 'cadastro' %}">aqui</a>. Logo após, você poderá solicitar um perfil de comerciante e começar a cadastrar empresas.</p>
+                <p>O cadastro de até 10 empresas por usuário no VITRISSE pode ser feito mediante um único pagamento de:</p>
 
-                <div>
-                    <h2>Como funciona?</h2>
-                    <p>O cadastro de até 10 empresas por usuário no VITRISSE pode ser feito mediante um único pagamento de:</p>
-                    <div>R$ 19,90 <span>/mês</span></div>
-                    <div><span>ou</span>R$ 199,90 <span>/ano (economia de 38,90)</span></div>
-                    
-                    <p>Preenchendo o <a href="">formulário de cadastro</a> com informações da sua empresa, você vai receber um e-mail com informações de pagamento. Feito o pagamento, o perfil da sua loja estará disponível no VITRISSE em até 24 horas.</p>
+                <span class="preco">
+                    <span class="mes-ou"><span class="preco-mes">R$ 19,90 /mês</span> <span class="ou">ou</span> </span>
+                    <span class="ano-economia">
+                        <span class="preco-ano"> R$ 199,90 /ano </span>
+                        <span class="economia">(economia de 38,90)</span>
+                    </span>
+                </span>
 
-                    
-                </div>
+                <a href="{% url 'cadastro' %}" class="botao">Cadastrar-se</a>
             </div>
-        </main>
-    </div>
+        </div>
+    </section>
+           
 {% endblock %}
