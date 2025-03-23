@@ -3,13 +3,6 @@ body {
     overflow-y: auto !important;
 }
 
-main {
-    min-height: 100vh;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-    max-width: 100%;
-}
-
 .como-funciona {
     display: flex;
     flex-flow: column;
