@@ -24,10 +24,6 @@ body {
     padding: var(--spc-700) var(--spc-600);
 }
 
-.container {
-    padding: 0 !important;
-}
-
 .botao-entrar {
     background-color: #E3D2FF;
     padding: var(--spc-100) var(--spc-500);
@@ -55,10 +51,11 @@ body {
         height: 100%;
     }
     
-    & .container {
-        height: 80vh;
+    & .container-hero {
+        height: 75vh;
         justify-content: space-between;
         align-items: center;
+        
     
         & .container-texto-botoes {
             flex-grow: 1;
@@ -233,6 +230,7 @@ body {
     display: flex;
     flex-flow: column;
     gap: var(--spc-1100);
+    padding: 0 !important;
 }
 
 .comerciante-fundo {

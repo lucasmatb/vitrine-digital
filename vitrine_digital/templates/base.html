@@ -37,19 +37,13 @@
 
         {% include sidebar_template %}
 
-    {% else %}
-      <!-- <div class="container-main"> -->
-        
+    {% else %}        
       {% include 'sidebar-noauth.html' %}
-      <main>
-
-        <!-- {% include 'sidebar-noauth.html' %} -->
+      <div class="main-no-auth">
+    {% endif %}
         
-        {% endif %}
+      {% block 'conteudo' %}{% endblock%}
         
-        {% block 'conteudo' %}{% endblock%}
-        
-      </main>
-      <!-- </div> -->
+      </div>
   </body>
 </html>

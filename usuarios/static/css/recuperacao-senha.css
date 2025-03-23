@@ -1,7 +1,7 @@
 .recuperar-senha {
     padding: var(--spc-900) var(--spc-300);
 
-    & .container {
+    & .container-recuperar-senha {
         max-width: 85rem;
         padding: 0;
 
