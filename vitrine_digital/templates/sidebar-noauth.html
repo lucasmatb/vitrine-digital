@@ -6,7 +6,12 @@
 
 <header>
     <div class="container-header">
-        <a href="{% url 'home' %}"><img class="logo" src="{% static 'images/logo-nova.png' %}" alt="Logo do Vitrisse"></a>
+        <a
+            href="{% url 'home' %}"
+            class="logo-text logo-text-bold logo-text-color logo-text-size"
+        >
+            Vi²Mu
+        </a>
         <ul>
             <li><a href="{% url 'home' %}">Home</a><div></div></li>
             <li><a href="{% url 'explicacao-cadastro' %}">Sou comerciante</a><div></div></li>

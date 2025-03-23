@@ -5,7 +5,7 @@ from .forms import UsuarioAdminRegistrationForm, UsuarioChangeForm
 from vitrine_digital.helper import descriptarAESGCM
 
 # Personalize os textos do Admin0
-admin.site.site_title = "Vitrisse"  # Título da aba do navegador
+admin.site.site_title = "Vi²Mu"  # Título da aba do navegador
 admin.site.site_header = "Gerenciamento da plataforma"  # Cabeçalho principal
 admin.site.index_title = "Painel Administrativo"  # Subtítulo na página inicial
 

@@ -57,3 +57,20 @@ a {
     width: 100%;
     text-align: center;
 }
+
+.logo-text {
+    font-family: Impact;
+    letter-spacing: 2px;
+}
+
+.logo-text-bold {
+    font-weight: bold !important;
+}
+
+.logo-text-color {
+    color: #C1A4F7 !important;
+}
+
+.logo-text-size {
+    font-size: 40px;
+}
