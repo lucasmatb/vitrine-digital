@@ -26,15 +26,14 @@
                             </div>
                         {% endfor %}
                     {% endif %}
+                    <h2>Dados do Produto</h2>
                     {% if id_produto %}
-                        <h2>Dados do Produto</h2>
                         <form
-                        method="POST"
-                        action="{% url 'editar_produto' id_empresa id_produto %}"
-                        enctype="multipart/form-data"
+                            method="POST"
+                            action="{% url 'editar_produto' id_empresa id_produto %}"
+                            enctype="multipart/form-data"
                         >
                     {% else %}
-                        <h2>Dados do Produto</h2>
                         <form
                             method="POST"
                             action="{% url 'criar_produto' id_empresa %}"
@@ -135,7 +134,7 @@
                             {% endif %}
                         </div>
                         <div class="input-wrapper">
-                            <label for="">Imagens</label>
+                            <label for="">Imagens (até 3)</label>
                             {{ form.imagens }}
                             {% if form.imagens.errors %}
                                 <div>
@@ -149,7 +148,7 @@
                             <!-- Área para exibir prévias das imagens -->
                             <div id="image-preview-container" style="display:none;">
                                 <label for="imagens">Imagens Selecionadas:</label>
-                                <div id="image-preview">
+                                <div id="image-preview" class="text-center">
                                     {% if imagens_existentes %}
                                         <div id="imagens-existentes">
                                             {% for imagem in imagens_existentes %}

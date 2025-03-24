@@ -3,7 +3,6 @@
 
 {% block 'head' %}
     <link rel="stylesheet" href="{% static 'css/cadastro-empresa.css' %}">
-    <link rel="stylesheet" href="{% static 'css/campos-form.css' %}">
 {% endblock %}
 
 {% block 'titulo' %}
@@ -18,36 +17,47 @@
 
     <main>
         <div class="main-scrollable">
+            <div class="container">
+                {% if messages %}
+                    {% for i in messages %}   
+                        <div class="alert {{i.tags}}" role="alert">
+                            {{i}} 
+                        </div>
             
-            <section id="form-cadastro">
-                <div class="container">
-                    {% if messages %}
-                        {% for i in messages %}   
-                            <div class="alert {{i.tags}}" role="alert">
-                                {{i}} 
-                            </div>
-                
-                        {% endfor %}
-                    {% endif %}
-                    {% if id_empresa %}
-                        <form
-                            method="POST"
-                            action="{% url 'valida_editar_empresa' id_empresa %}"
-                            enctype="multipart/form-data"
-                        >
-                    {% else %}
-                        <form
-                            method="POST"
-                            action="{% url 'valida_cadastrar_empresa' %}"
-                            enctype="multipart/form-data"
-                        >
-                    {% endif %}
-                        {% csrf_token %}
+                    {% endfor %}
+                {% endif %}
+                {% if id_empresa %}
+                    <form
+                        method="POST"
+                        action="{% url 'valida_editar_empresa' id_empresa %}"
+                        enctype="multipart/form-data"
+                    >
+                {% else %}
+                    <form
+                        method="POST"
+                        action="{% url 'valida_cadastrar_empresa' %}"
+                        enctype="multipart/form-data"
+                    >
+                {% endif %}
+                    {% csrf_token %}
 
-                        <div class="titulo-campos">
-                            <p>Informações básicas</p>
-                            <div class="conjuntos-campos campos-basicos">
-                                <div class="input-wrapper">
+                    <div
+                        class="mt-5"
+                    >
+                        <h4
+                            class="mb-3"
+                        >
+                            Informações básicas
+                        </h4>
+                        <div
+                            class="d-flex flex-column"
+                        >
+                            <div
+                                class="d-flex flex-sm-row flex-column mb-4"
+                            >
+                                <div
+                                    class="input-wrapper flex-fill mb-4 mb-sm-0"
+                                >
                                     <label for="">Nome fantasia <span>*</span></label>
                                     {{ form.nome_fantasia }}
                                     {% if form.nome_fantasia.errors %}
@@ -60,7 +70,10 @@
                                         </div>
                                     {% endif %}
                                 </div>
-                                <div class="input-wrapper">
+                                <div class="px-2"></div>
+                                <div
+                                    class="input-wrapper flex-fill mb-4 mb-sm-0"
+                                >
                                     <label for="">Razão social <span>*</span></label>
                                     {{ form.razao_social }}
                                     {% if form.razao_social.errors %}
@@ -73,7 +86,13 @@
                                         </div>
                                     {% endif %}
                                 </div>
-                                <div class="input-wrapper">
+                            </div>
+                            <div
+                                class="d-flex flex-sm-row flex-column mb-4"
+                            >
+                                <div
+                                    class="input-wrapper flex-fill mb-4 mb-sm-0"
+                                >
                                     <label for="">Descrição <span>*</span></label>
                                     {{ form.descricao }}
                                     {% if form.descricao.errors %}
@@ -86,7 +105,10 @@
                                         </div>
                                     {% endif %}
                                 </div>
-                                <div class="input-wrapper">
+                                <div class="px-2"></div>
+                                <div
+                                    class="input-wrapper flex-fill mb-4 mb-sm-0"
+                                >
                                     <label for="">CNPJ <span>*</span></label>
                                     {{ form.cnpj_alterado }}
                                     {% if form.cnpj_alterado.errors %}
@@ -99,7 +121,13 @@
                                         </div>
                                     {% endif %}
                                 </div>
-                                <div class="input-wrapper">
+                            </div>
+                            <div
+                                class="d-flex flex-sm-row flex-column mb-4"
+                            >
+                                <div
+                                    class="input-wrapper flex-fill mb-4 mb-sm-0"
+                                >
                                     <label for="">Telefone de contato <span>*</span></label>
                                     {{ form.telefone }}
                                     {% if form.telefone.errors %}
@@ -112,7 +140,10 @@
                                         </div>
                                     {% endif %}
                                 </div>
-                                <div class="input-wrapper">
+                                <div class="px-2"></div>
+                                <div
+                                    class="input-wrapper flex-fill mb-4 mb-sm-0"
+                                >
                                     <label for="">E-mail de contato <span>*</span></label>
                                     {{ form.email }}
                                     {% if form.email.errors %}
@@ -127,11 +158,21 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="titulo-campos">
-                            <p>Endereço</p>
-                            <div class="conjuntos-campos campos-endereco">
-                                <div class="input-wrapper">
+                    <div
+                        class="mt-2"
+                    >
+                        <h4
+                            class="mb-3"
+                        >
+                            Endereço
+                        </h4>
+                        <div>
+                            <div
+                                class="d-flex flex-sm-row flex-column mb-4"
+                            >
+                                <div class="input-wrapper flex-fill mb-4 mb-sm-0">
                                     <label for="">Cep <span>*</span></label>
                                     {{ form.cep }}
                                     {% if form.cep.errors %}
@@ -144,7 +185,8 @@
                                         </div>
                                     {% endif %}
                                 </div>
-                                <div class="input-wrapper">
+                                <div class="px-2"></div>
+                                <div class="input-wrapper flex-fill mb-4 mb-sm-0">
                                     <label for="">Logradouro <span>*</span></label>
                                     {{ form.logradouro }}
                                     {% if form.logradouro.errors %}
@@ -157,7 +199,11 @@
                                         </div>
                                     {% endif %}
                                 </div>
-                                <div class="input-wrapper">
+                            </div>
+                            <div
+                                class="d-flex flex-sm-row flex-column mb-4"
+                            >
+                                <div class="input-wrapper flex-fill mb-4 mb-sm-0">
                                     <label for="">Número <span>*</span></label>
                                     {{ form.numero }}
                                     {% if form.numero.errors %}
@@ -170,7 +216,8 @@
                                         </div>
                                     {% endif %}
                                 </div>
-                                <div class="input-wrapper">
+                                <div class="px-2"></div>
+                                <div class="input-wrapper flex-fill mb-4 mb-sm-0">
                                     <label for="">Complemento</label>
                                     {{ form.complemento }}
                                     {% if form.complemento.errors %}
@@ -183,7 +230,11 @@
                                         </div>
                                     {% endif %}
                                 </div>
-                                <div class="input-wrapper">
+                            </div>
+                            <div
+                                class="d-flex flex-sm-row flex-column mb-4"
+                            >
+                                <div class="input-wrapper flex-fill mb-4 mb-sm-0">
                                     <label for="">Bairro <span>*</span></label>
                                     {{ form.bairro }}
                                     {% if form.bairro.errors %}
@@ -196,7 +247,8 @@
                                         </div>
                                     {% endif %}
                                 </div>
-                                <div class="input-wrapper">
+                                <div class="px-2"></div>
+                                <div class="input-wrapper flex-fill mb-4 mb-sm-0">
                                     <label for="">Cidade <span>*</span></label>
                                     {{ form.cidade }}
                                     {% if form.cidade.errors %}
@@ -209,7 +261,8 @@
                                         </div>
                                     {% endif %}
                                 </div>
-                                <div class="input-wrapper">
+                                <div class="px-2"></div>
+                                <div class="input-wrapper flex-fill mb-4 mb-sm-0">
                                     <label for="">Estado <span>*</span></label>
                                     {{ form.estado }}
                                     {% if form.estado.errors %}
@@ -224,84 +277,93 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="titulo-campos">
-                            <p>Imagens</p>
-                            <div class="input-wrapper input-wrapper-imagem">
-                                <label for="">Imagem de capa</label>
-                                {{ form.imagem_capa }}
-                                {% if form.imagem_capa.errors %}
-                                    <div>
-                                        {% for error in form.imagem_capa.errors %}
-                                            <div>
-                                                <strong>{{ error }}</strong>
-                                            </div>
-                                        {% endfor %}
-                                    </div>
-                                {% endif %}
+                    <div>
+                        <p>Imagens</p>
+                        <div class="input-wrapper input-wrapper-imagem mb-4">
+                            <label for="">Imagem de capa*</label>
+                            {{ form.imagem_capa }}
+                            {% if form.imagem_capa.errors %}
+                                <div>
+                                    {% for error in form.imagem_capa.errors %}
+                                        <div>
+                                            <strong>{{ error }}</strong>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <div class="text-center">
                                 <span id="label-imagem-capa">
                                     {% if imagem_capa %}
-                                        Prévia da imagem/Imagem salva
+                                        Prévia da imagem
                                     {% endif %}
                                 </span>
-                                <div id="imagem-capa">
+                                <div
+                                    id="imagem-capa"
+                                >
                                     {% if imagem_capa %}
                                         <img
                                             src="{{ imagem_capa.url }}"
-                                            alt="Imagem da empresa de capa"
+                                            alt="Imagem de capa da empresa"
                                         >
                                     {% endif %}
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="input-wrapper input-wrapper-imagem">
-                                <label for="">Imagem de perfil</label>
-                                {{ form.imagem_perfil }}
-                                {% if form.imagem_perfil.errors %}
-                                    <div>
-                                        {% for error in form.imagem_perfil.errors %}
-                                            <div>
-                                                <strong>{{ error }}</strong>
-                                            </div>
-                                        {% endfor %}
-                                    </div>
-                                {% endif %}
+                        <div class="input-wrapper input-wrapper-imagem">
+                            <label for="">Imagem de perfil*</label>
+                            {{ form.imagem_perfil }}
+                            {% if form.imagem_perfil.errors %}
+                                <div>
+                                    {% for error in form.imagem_perfil.errors %}
+                                        <div>
+                                            <strong>{{ error }}</strong>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <div class="text-center">
                                 <span id="label-imagem-perfil">
                                     {% if imagem_perfil %}
-                                        Prévia da imagem/Imagem salva
+                                </div>
+                                        Prévia da imagem
                                     {% endif %}
                                 </span>
-                                <div id="imagem-perfil">
+                                <div
+                                    id="imagem-perfil"
+                                >
                                     {% if imagem_perfil %}
                                         <img
                                             src="{{ imagem_perfil.url }}"
-                                            alt="Imagem da empresa de perfil"
+                                            alt="Imagem de perfil da empresa"
                                         >
                                     {% endif %}
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="titulo-campos">
-                            <p>Categoria(s) da empresa <span>(mínimo 1, máximo 10)</span></p>
-                            <div class="input-wrapper input-wrapper-categoria">
-                                {{ form.categorias }}
-                                {% if form.categorias.errors %}
-                                    <div>
-                                        {% for error in form.categorias.errors %}
-                                            <div>
-                                                <strong>{{ error }}</strong>
-                                            </div>
-                                        {% endfor %}
-                                    </div>
-                                {% endif %}
-                            </div>
+                    <div class="mt-2 mb-4">
+                        <p>Categoria(s) da empresa <span>(mínimo 1, máximo 10)</span></p>
+                        <div class="input-wrapper">
+                            {{ form.categorias }}
+                            {% if form.categorias.errors %}
+                                <div>
+                                    {% for error in form.categorias.errors %}
+                                        <div>
+                                            <strong>{{ error }}</strong>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
                         </div>
+                    </div>
 
-                        <input class="form-botao botao" type="submit" value="Enviar">
-                    </form>
-                </div>
-            </section>
+                    <input class="form-botao botao mb-4" type="submit" value="Enviar">
+                </form>
+            </div>
         </div>
     </main>
     
@@ -357,7 +419,6 @@
                         return response.json();
                     })
                     .then(data => {
-                        // Preenche os outros campos com os dados retornados
                         document.getElementById('logradouro').value = data.logradouro || '';
                         document.getElementById('bairro').value = data.bairro || '';
                         document.getElementById('cidade').value = data.localidade || '';

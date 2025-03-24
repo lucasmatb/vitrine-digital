@@ -10,7 +10,7 @@ class EmpresaForm(forms.ModelForm):
         widget=forms.TextInput(attrs={
             'id': 'cep',
             'name': 'cep',
-            'placeholder': '88888-000'
+            'placeholder': 'Busque por aqui primeiro!'
         })
     )
     numero = forms.CharField(
@@ -28,7 +28,6 @@ class EmpresaForm(forms.ModelForm):
         widget=forms.TextInput(attrs={
             'id': 'logradouro',
             'name': 'logradouro',
-            'placeholder': 'Rua das couves',
             'readonly': 'readonly'
         })
     )
@@ -47,7 +46,6 @@ class EmpresaForm(forms.ModelForm):
         widget=forms.TextInput(attrs={
             'id': 'bairro',
             'name': 'bairro',
-            'placeholder': 'Humaitá',
             'readonly': 'readonly'
         })
     )
@@ -57,7 +55,6 @@ class EmpresaForm(forms.ModelForm):
         widget=forms.TextInput(attrs={
             'id': 'cidade',
             'name': 'cidade',
-            'placeholder': 'Araranguá',
             'readonly': 'readonly'
         })
     )
@@ -67,7 +64,6 @@ class EmpresaForm(forms.ModelForm):
         widget=forms.TextInput(attrs={
             'id': 'estado',
             'name': 'estado',
-            'placeholder': 'Santa catarina',
             'readonly': 'readonly'
         })
     )
@@ -78,7 +74,8 @@ class EmpresaForm(forms.ModelForm):
                 'id': 'categorias',
                 'name': 'categorias',
                 'placeholder': 'Escolha uma categoria...',
-                'class':"form-control"
+                'class':"form-control",
+                'style':"font-size: 1.5rem;"
             }
         ),
         required=True
