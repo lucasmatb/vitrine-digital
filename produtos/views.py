@@ -8,13 +8,13 @@ from empresas.views import validacao_usuario_possui_empresa
 from empresas.models import Empresa
 from django.conf import settings
 
-def retorna_visualizar_produto(request, id_empresa, pk):
+def retorna_visualizar_produto(request, pk):
     data = {}
     produto = get_object_or_404(Produto, id=pk)
     imagens = Imagem_Produto.objects.filter(id_produto=produto.id)
     
     data['produto'] = produto
-    data['imagens'] = imagens
+    data['imagens_existentes'] = imagens
     data['favorito_usuario'] = produto.favoritos_produtos.filter(id=request.user.id).exists()
     
     return render(request, 'visualizar-produto-usuario.html', data)

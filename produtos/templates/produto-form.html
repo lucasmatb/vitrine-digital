@@ -94,31 +94,39 @@
                                 </div>
                             {% endif %}
                         </div>
-                        <div class="input-wrapper input-wrapper-checkbox">
-                            {{ form.ativo }}
-                            {% if form.ativo.errors %}
-                            <div>
-                                {% for error in form.ativo.errors %}
+                        <div
+                            class="d-flex justify-content-around"
+                        >
+                            <div
+                                class="input-wrapper input-wrapper-checkbox"
+                            >
+                                {{ form.ativo }}
+                                {% if form.ativo.errors %}
                                 <div>
-                                    <strong>{{ error }}</strong>
+                                    {% for error in form.ativo.errors %}
+                                    <div>
+                                        <strong>{{ error }}</strong>
+                                    </div>
+                                    {% endfor %}
                                 </div>
-                                {% endfor %}
+                                {% endif %}
+                                <label for="">Ativo</label>
                             </div>
-                            {% endif %}
-                            <label for="">Ativo</label>
-                        </div>
-                        <div class="input-wrapper input-wrapper-checkbox">
-                            {{ form.destaque }}
-                            {% if form.destaque.errors %}
-                            <div>
-                                {% for error in form.destaque.errors %}
+                            <div
+                                class="input-wrapper input-wrapper-checkbox"
+                            >
+                                {{ form.destaque }}
+                                {% if form.destaque.errors %}
                                 <div>
-                                    <strong>{{ error }}</strong>
+                                    {% for error in form.destaque.errors %}
+                                    <div>
+                                        <strong>{{ error }}</strong>
+                                    </div>
+                                    {% endfor %}
                                 </div>
-                                {% endfor %}
+                                {% endif %}
+                                <label for="">Destaque</label>
                             </div>
-                            {% endif %}
-                            <label for="">Destaque</label>
                         </div>
                         <div class="input-wrapper">
                             <label for="">Categoria(s) da empresa <span>(mínimo 1, máximo 10) <span>*</span></label>
@@ -145,16 +153,19 @@
                                     {% endfor %}
                                 </div>
                             {% endif %}
-                            <!-- Área para exibir prévias das imagens -->
-                            <div id="image-preview-container" style="display:none;">
+                            <div id="image-preview-container">
                                 <label for="imagens">Imagens Selecionadas:</label>
                                 <div id="image-preview" class="text-center">
                                     {% if imagens_existentes %}
                                         <div id="imagens-existentes">
-                                            {% for imagem in imagens_existentes %}
+                                            {% for vinculo_imagem in imagens_existentes %}
                                                 <img
-                                                    src="{{ imagem.imagem.url }}"
+                                                    src="{{ vinculo_imagem.imagem.url }}"
                                                     alt="Imagem do produto"
+                                                    style="
+                                                        max-height: 200px;
+                                                        max-width: 200px;
+                                                    "
                                                 >
                                             {% endfor %}
                                         </div>

@@ -312,7 +312,7 @@
                             </div>
                         </div>
 
-                        <div class="input-wrapper input-wrapper-imagem">
+                        <div class="input-wrapper">
                             <label for="">Imagem de perfil*</label>
                             {{ form.imagem_perfil }}
                             {% if form.imagem_perfil.errors %}
@@ -331,6 +331,7 @@
                                         Prévia da imagem
                                     {% endif %}
                                 </span>
+                                {{imagem_perfil}}
                                 <div
                                     id="imagem-perfil"
                                 >

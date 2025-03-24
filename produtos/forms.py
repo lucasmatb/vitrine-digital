@@ -9,7 +9,8 @@ class ProdutoForm(forms.ModelForm):
             attrs={
                 'id': 'categorias',
                 'name': 'categorias',
-                'placeholder': 'Escolha uma categoria...'
+                'placeholder': 'Escolha uma categoria...',
+                'style':"font-size: 1.5rem;"
             }
         ),
         required=True
