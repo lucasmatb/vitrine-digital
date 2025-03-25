@@ -40,9 +40,12 @@
                         <h1>{{ empresa.nome_fantasia }}</h1>
                         <p>{{ empresa.descricao }}</p>
                         <div class="categorias">
-                            {% for categoria in empresa.categorias %}
+                            {% for categoria in empresa.categorias|slice:":4" %}
                                 <span>{{ categoria.descricao }}</span>
                             {% endfor %}
+                            {% if empresa.categorias|length > 4  %}
+                                ... 
+                            {% endif %}
                         </div>
                         <div class="favoritos">
                             <img
@@ -104,21 +107,21 @@
                         {% for produto in produtos_destaque %}
                             <div
                                 class="card card-produto card-produto-usuario"
-                                onclick="window.location.href='{% url 'visualizar_produto' empresa.id produto.id %}'"
+                                onclick="window.location.href='{% url 'visualizar_produto' produto.id %}'"
                                 style="cursor: pointer;"
                             >
-                                <div class="div-img-produto">
+                                <div>
                                     {% if produto.primeira_imagem %}
                                         <img
                                             src="{{ produto.primeira_imagem.url }}"
                                             alt="imagem capa produto {{ produto.descricao }}"
-                                            class="img-capa"
+                                            class="div-img-produto"
                                         >
                                     {% else %}
                                         <img
                                             src="{{ produto.primeira_imagem_default }}"
                                             alt="imagem capa produto {{ produto.descricao }}"
-                                            class="img-capa"
+                                            class="div-img-produto"
                                         >
                                     {% endif %}
                                 </div>
@@ -136,9 +139,12 @@
                                         {% endif %}
 
                                         <div class="categorias">
-                                            {% for categoria in produto.categorias %}
-                                            <div class="categoria">{{ categoria.descricao }}</div>
+                                            {% for categoria in produto.categorias|slice:":4" %}
+                                                <div class="categoria">{{ categoria.descricao }}</div>
                                             {% endfor %}
+                                            {% if produto.categorias|length > 4  %}
+                                                ... 
+                                            {% endif %}
                                         </div>
 
                                         <div class="preco-salvar">
@@ -179,21 +185,21 @@
                         {% for produto in produtos %}
                         <div
                         class="card card-produto card-produto-usuario"
-                        onclick="window.location.href='{% url 'visualizar_produto' empresa.id produto.id %}'"
+                        onclick="window.location.href='{% url 'visualizar_produto' produto.id %}'"
                         style="cursor: pointer;"
                     >
-                        <div class="div-img-produto">
+                        <div>
                             {% if produto.primeira_imagem %}
                                 <img
                                     src="{{ produto.primeira_imagem.url }}"
                                     alt="imagem capa produto {{ produto.descricao }}"
-                                    class="img-capa"
+                                    class="div-img-produto"
                                 >
                             {% else %}
                                 <img
                                     src="{{ produto.primeira_imagem_default }}"
                                     alt="imagem capa produto {{ produto.descricao }}"
-                                    class="img-capa"
+                                    class="div-img-produto"
                                 >
                             {% endif %}
                         </div>
@@ -211,9 +217,12 @@
                                 {% endif %}
 
                                 <div class="categorias">
-                                    {% for categoria in produto.categorias %}
-                                    <div class="categoria">{{ categoria.descricao }}</div>
+                                    {% for categoria in produto.categorias|slice:":4" %}
+                                        <div class="categoria">{{ categoria.descricao }}</div>
                                     {% endfor %}
+                                    {% if produto.categorias|length > 4  %}
+                                        ... 
+                                    {% endif %}
                                 </div>
 
                                 <div class="preco-salvar">

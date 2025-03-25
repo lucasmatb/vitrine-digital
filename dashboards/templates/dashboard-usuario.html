@@ -60,9 +60,12 @@
                                 </div>
                                 <div class="categoria-favoritos">
                                     <div class="categorias">
-                                        {% for categoria in empresa.categorias %}
+                                        {% for categoria in empresa.categorias|slice:":3" %}
                                             <div class="categoria">{{ categoria.descricao }}</div>
                                         {% endfor %}
+                                        {% if empresa.categorias|length > 3  %}
+                                            ... 
+                                        {% endif %}    
                                     </div>
                                     <div class="favoritos">
                                         <img

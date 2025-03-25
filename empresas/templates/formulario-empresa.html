@@ -327,7 +327,6 @@
                             <div class="text-center">
                                 <span id="label-imagem-perfil">
                                     {% if imagem_perfil %}
-                                </div>
                                         Prévia da imagem
                                     {% endif %}
                                 </span>
@@ -345,22 +344,25 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="mt-2 mb-4">
-                        <p>Categoria(s) da empresa <span>(mínimo 1, máximo 10)</span></p>
-                        <div class="input-wrapper">
-                            {{ form.categorias }}
-                            {% if form.categorias.errors %}
-                                <div>
-                                    {% for error in form.categorias.errors %}
-                                        <div>
-                                            <strong>{{ error }}</strong>
-                                        </div>
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
+                    
+                    <div>
+                        <div class="mt-2 mb-4">
+                            <p>Categoria(s) da empresa <span>(mínimo 1, máximo 10)</span></p>
+                            <div class="input-wrapper">
+                                {{ form.categorias }}
+                                {% if form.categorias.errors %}
+                                    <div>
+                                        {% for error in form.categorias.errors %}
+                                            <div>
+                                                <strong>{{ error }}</strong>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
+
 
                     <input class="form-botao botao mb-4" type="submit" value="Enviar">
                 </form>

@@ -12,7 +12,8 @@ def retorna_visualizar_produto(request, pk):
     data = {}
     produto = get_object_or_404(Produto, id=pk)
     imagens = Imagem_Produto.objects.filter(id_produto=produto.id)
-    
+    produto.primeira_imagem_default = settings.MEDIA_URL + 'default_produto.jpg'
+
     data['produto'] = produto
     data['imagens_existentes'] = imagens
     data['favorito_usuario'] = produto.favoritos_produtos.filter(id=request.user.id).exists()

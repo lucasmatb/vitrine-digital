@@ -22,13 +22,23 @@
                 <div class="apresentacao-produto">
                     <div class="imagens">
                         <div class="previas">
-                            {% for imagem in imagens %}
-                                <img
-                                    src="{{ imagem.imagem.url }}"
-                                    alt="Imagem do produto"
-                                    class="img-previa"
-                                >
-                            {% endfor %}
+                            {% if imagens_existentes %}
+                                {% for vinculo_imagem in imagens_existentes %}
+                                    <img
+                                        src="{{ vinculo_imagem.imagem.url }}"
+                                        alt="Imagem do produto"
+                                        class="img-previa"
+                                    >
+                                {% endfor %}
+                            {% else %}
+                                {% for _ in "123" %}
+                                    <img
+                                        src="{{ produto.primeira_imagem_default }}"
+                                        alt="imagem default produto {{ forloop.counter }}"
+                                        class="img-previa"
+                                    >
+                                {% endfor %}
+                            {% endif %}
                         </div>
                         <div class="div-img-destaque">
                             <img class="img-destaque" src="" alt="Imagem do produto">
@@ -49,9 +59,12 @@
                         {% endif %}
 
                         <div class="categorias">
-                            {% for categoria in produto.categoria_produto.all %}
+                            {% for categoria in produto.categoria_produto.all|slice:":4" %}
                                 <div class="categoria">{{ categoria.descricao }}</div>
                             {% endfor %}
+                            {% if produto.categoria_produto.all|length > 4  %}
+                                ... 
+                            {% endif %}
                         </div>
                         
                         <div class="preco-favoritos">

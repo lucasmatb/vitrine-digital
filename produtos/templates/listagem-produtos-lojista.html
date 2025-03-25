@@ -30,18 +30,18 @@
                 <div class="meus-produtos-lojista">
                     {% for produto in produtos %}
                         <div class="card card-produto">
-                            <div class="div-img-produto">
+                            <div>
                                 {% if produto.primeira_imagem %}
                                     <img
                                         src="{{ produto.primeira_imagem.url }}"
                                         alt="Imagem do produto"
-                                        class="img-produto"
+                                        class="div-img-produto"
                                     >
                                 {% else %}
                                     <img
                                         src="{{ produto.primeira_imagem_default }}"
                                         alt="Imagem do produto"
-                                        class="img-produto"
+                                        class="div-img-produto"
                                     >
                                 {% endif %}
                             </div>
@@ -71,9 +71,12 @@
                                             {% endif %}
                                         </div>
                                         <div class="categorias">
-                                            {% for categoria in produto.categoria_produto.all %}
+                                            {% for categoria in produto.categoria_produto.all|slice:":4" %}
                                                 <div class="categoria">{{ categoria.descricao }}</div>
                                             {% endfor %}
+                                            {% if produto.categoria_produto.all|length > 4  %}
+                                                ... 
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>

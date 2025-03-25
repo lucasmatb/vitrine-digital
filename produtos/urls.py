@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import permission_required
 from . import views
 
 urlpatterns = [
-    path('empresa/<int:id_empresa>/visualizar-produto/<int:pk>/', login_required(views.retorna_visualizar_produto), name='visualizar_produto'),
+    path('empresa/visualizar-produto/<int:pk>/', login_required(views.retorna_visualizar_produto), name='visualizar_produto'),
     path('empresa/<int:id_empresa>/listagem-produtos/', permission_required('produtos.view_produto')(views.retorna_listagem_produtos_por_empresa), name='listagem_produto_por_empresa'),
     path('empresa/<int:id_empresa>/criar-produto/', permission_required('produtos.add_produto')(views.criar_produto), name='criar_produto'),
     path('empresa/<int:id_empresa>/editar-produto/<int:pk>/', permission_required('produtos.change_produto')(views.editar_produto), name='editar_produto'),

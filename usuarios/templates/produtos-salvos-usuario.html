@@ -28,21 +28,21 @@
             {% for produto in produtos %}
                 <div
                     class="card card-produto card-produto-usuario"
-                    onclick="window.location.href='{% url 'visualizar_produto' produto.id_empresa produto.id %}'"
+                    onclick="window.location.href='{% url 'visualizar_produto' produto.id %}'"
                     style="cursor: pointer;"
                 >
-                    <div class="div-img-produto">
+                    <div>
                         {% if produto.primeira_imagem %}
                             <img
                                 src="{{ produto.primeira_imagem.url }}"
                                 alt="imagem capa produto {{ produto.descricao }}"
-                                class="img-capa"
+                                class="div-img-produto"
                             >
                         {% else %}
                             <img
                                 src="{{ produto.primeira_imagem_default }}"
                                 alt="imagem capa produto {{ produto.descricao }}"
-                                class="img-capa"
+                                class="div-img-produto"
                             >
                         {% endif %}
                     </div>
@@ -82,9 +82,12 @@
                             </div>
 
                             <div class="categorias">
-                                {% for categoria in produto.categorias %}
-                                <div class="categoria">{{ categoria.descricao }}</div>
+                                {% for categoria in produto.categorias|slice:":4" %}
+                                    <div class="categoria">{{ categoria.descricao }}</div>
                                 {% endfor %}
+                                {% if produto.categorias|length > 4  %}
+                                    ... 
+                                {% endif %}
                             </div>
                         </div>
                     </div>

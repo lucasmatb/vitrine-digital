@@ -70,17 +70,21 @@
                 }
                 
                 & .img-perfil {
-                    max-width: 8rem !important;
+
+                    background-position: 50%;
+                    background-repeat: no-repeat;
+                    background-size: cover;
                     width: 100%;
                     aspect-ratio: 1;
                     border-radius: 100vw;
                     overflow: hidden;
                     border: solid 3px #fff;
                     position: absolute;
-                    top: 50%;
-                    right: 0;
-                    /* transform: translate(50%, 50%); */
-                    transform: translate(50%, -50%);
+                    top: 11rem;
+                    left: 18rem;
+                    width: 8rem;
+                    object-fit: cover;
+                    object-position: 48%;
 
                     @media all and (max-width: 980px){
                         transform: none;

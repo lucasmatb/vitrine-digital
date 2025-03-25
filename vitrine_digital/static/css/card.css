@@ -1,5 +1,5 @@
 .card {
-    width: 25rem;
+    width: 22.5rem;
     border-radius: 2rem;
     overflow: hidden;
     background-color: #fff;
@@ -42,9 +42,7 @@
     & .img-perfil {
         background-position: 50%;
         background-repeat: no-repeat;
-        background-size: cover; 
-        max-width: 6rem !important;
-        width: 100%;
+        background-size: cover;
         aspect-ratio: 1;
         border-radius: 100vw;
         overflow: hidden;
@@ -52,6 +50,9 @@
         position: absolute;
         top: 9.5rem;
         left: 1rem;
+        width: 6rem;
+        object-fit: cover;
+        object-position: 48%;
     }
 
 
@@ -76,22 +77,10 @@
     }
 
     &.card-produto {
-        /* box-shadow: 0 1rem 1rem rgba(0,0,0,0.05); */
-        /* height: 100%; */
-        
-        
-        & .div-img-produto {
-            overflow: hidden;
-            width: 100%;
-            aspect-ratio: 3/2;
-    
-            & .img-produto {   
-                width: 100%;
-                aspect-ratio: 15/20;
-                object-fit: cover;
-                object-position: 75% 75%;
-            }
 
+        & .div-img-produto {
+            width: 225px;
+            height: 225px;
         }
 
         & .informacoes-botoes {

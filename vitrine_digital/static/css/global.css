@@ -37,14 +37,6 @@ a {
     }
 }
 
-.img-perfil {
-    max-width: 3.5rem;
-    aspect-ratio: 1;
-    border-radius: 100vw;
-    object-fit: cover;
-    object-position: 25% 25%;
-}
-
 .botao {
     all: unset;
     align-self: center;
