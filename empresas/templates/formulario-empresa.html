@@ -306,6 +306,10 @@
                                         <img
                                             src="{{ imagem_capa.url }}"
                                             alt="Imagem de capa da empresa"
+                                            style="
+                                                max-height: 200px;
+                                                max-width: 200px;
+                                            "
                                         >
                                     {% endif %}
                                 </div>
@@ -330,7 +334,6 @@
                                         Prévia da imagem
                                     {% endif %}
                                 </span>
-                                {{imagem_perfil}}
                                 <div
                                     id="imagem-perfil"
                                 >
@@ -338,6 +341,10 @@
                                         <img
                                             src="{{ imagem_perfil.url }}"
                                             alt="Imagem de perfil da empresa"
+                                            style="
+                                                max-height: 200px;
+                                                max-width: 200px;
+                                            "
                                         >
                                     {% endif %}
                                 </div>
@@ -413,7 +420,6 @@
       
             if (cepInput.length === 9) {
                 const url = "/empresas/verifica-cep/"+cepInput
-                // Faz a chamada à API
                 fetch(url)
                     .then(response => {
                         if (!response.ok) {
