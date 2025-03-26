@@ -43,7 +43,7 @@
                         {% csrf_token %}
                     
                         <div class="input-wrapper">
-                            <label for="">Nome <span>*</span></label>
+                            <label>Nome <span>*</span></label>
                             {{ form.nome }}
                             {% if form.nome.errors %}
                                 <div>
@@ -56,7 +56,7 @@
                             {% endif %}
                         </div>
                         <div class="input-wrapper">
-                            <label for="">Descricao <span>*</span></label>
+                            <label>Descricao <span>*</span></label>
                             {{ form.descricao }}
                             {% if form.descricao.errors %}
                                 <div>
@@ -69,7 +69,7 @@
                             {% endif %}
                         </div>
                         <div class="input-wrapper">
-                            <label for="">Preço <span>*</span></label>
+                            <label>Preço <span>*</span> (R$)</label>
                             {{ form.preco }}
                             {% if form.preco.errors %}
                                 <div>
@@ -82,7 +82,32 @@
                             {% endif %}
                         </div>
                         <div class="input-wrapper">
-                            <label for="">Quantidade <span>*</span></label>
+                            <label>Preço com oferta (R$)</label>
+                            <label
+                                class="text-muted"
+                                style="font-size: 10px;"
+                            >
+                                Não é necessário preencher
+                            </label>
+                            {{ form.preco_oferta }}
+                            {% if form.preco_oferta.errors %}
+                                <div>
+                                    {% for error in form.preco_oferta.errors %}
+                                        <div>
+                                            <strong>{{ error }}</strong>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="input-wrapper">
+                            <label>Quantidade</label>
+                            <label
+                                class="text-muted"
+                                style="font-size: 10px;"
+                            >
+                                Não é necessário preencher
+                            </label>
                             {{ form.qtd }}
                             {% if form.qtd.errors %}
                                 <div>
@@ -110,7 +135,7 @@
                                     {% endfor %}
                                 </div>
                                 {% endif %}
-                                <label for="">Ativo</label>
+                                <label>Ativo</label>
                             </div>
                             <div
                                 class="input-wrapper input-wrapper-checkbox"
@@ -125,11 +150,11 @@
                                     {% endfor %}
                                 </div>
                                 {% endif %}
-                                <label for="">Destaque</label>
+                                <label>Destaque</label>
                             </div>
                         </div>
                         <div class="input-wrapper">
-                            <label for="">Categoria(s) da empresa <span>(mínimo 1, máximo 10) <span>*</span></label>
+                            <label>Categoria(s) da empresa <span>(mínimo 1, máximo 10) <span>*</span></label>
                             {{ form.categorias }}
                             {% if form.categorias.errors %}
                                 <div>
@@ -142,7 +167,7 @@
                             {% endif %}
                         </div>
                         <div class="input-wrapper">
-                            <label for="">Imagens (até 3)</label>
+                            <label>Imagens (até 3)</label>
                             {{ form.imagens }}
                             {% if form.imagens.errors %}
                                 <div>
@@ -183,6 +208,41 @@
     </main>
 
     <script>
+        $(document).ready(function(){
+
+            function aplicarMascara(id) {
+                $(id).mask('#.##0,00', { reverse: true });
+
+                function restaurarCentavos(input) {
+                    let valor = $(input).val();
+                    
+                    if (valor === '' || valor.indexOf(',') === -1) {
+                        $(input).val('0,00');
+                    }
+                }
+
+                $(id).on('focus', function () {
+                    restaurarCentavos(this);
+                    this.setSelectionRange(0, 0);
+                });
+
+                $(id).on('click', function () {
+                    this.setSelectionRange(0, 0);
+                });
+
+                $(id).on('input', function () {
+                    restaurarCentavos(this);
+                });
+
+                $(id).on('blur', function () {
+                    restaurarCentavos(this);
+                });
+            }
+
+            aplicarMascara('#preco');
+            aplicarMascara('#preco_oferta');
+        });
+
         document.getElementById('imagens').addEventListener('click', function(event) {
             let previewImagensExistentes = document.getElementById('imagens-existentes');
 

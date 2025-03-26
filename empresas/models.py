@@ -107,6 +107,25 @@ class Empresa(models.Model):
         blank=False,
         verbose_name="Imagem perfil"
     )
+    qtd_visualizacoes = models.IntegerField(
+        verbose_name='Quantidade de visualizações',
+        default=0
+    )
+    link_whatsapp = models.CharField(
+        verbose_name='Link para Whatsapp',
+        max_length=254,
+        null=True
+    )
+    link_facebook = models.CharField(
+        verbose_name='Link para Facebook',
+        max_length=254,
+        null=True
+    )
+    link_instagram = models.CharField(
+        verbose_name='Link para Instagram',
+        max_length=254,
+        null=True
+    )
     empresa_categoria = models.ManyToManyField(Categoria_Empresa)
 
     def __str__(self):

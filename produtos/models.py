@@ -30,8 +30,15 @@ class Produto(models.Model):
         decimal_places=2,
         max_digits=8
     )
+    preco_oferta = models.DecimalField(
+        verbose_name='Preço com desconto do produto',
+        null=True,
+        decimal_places=2,
+        max_digits=8
+    )
     qtd = models.IntegerField(
         verbose_name='Quantidade em estoque',
+        null=True,
         default=0
     )
     ativo = models.BooleanField(
@@ -41,6 +48,10 @@ class Produto(models.Model):
     destaque = models.BooleanField(
         verbose_name='Produto em destaque',
         default=False
+    )
+    qtd_visualizacoes = models.IntegerField(
+        verbose_name='Quantidade de visualizações',
+        default=0
     )
     id_empresa = models.ForeignKey(
         'empresas.Empresa',

@@ -33,10 +33,6 @@
             flex-flow: row wrap;
             gap: var(--spc-80);
         }
-
-        & .favoritos {
-
-        }
     }
 
     & .img-perfil {
@@ -80,7 +76,7 @@
 
         & .div-img-produto {
             width: 225px;
-            height: 225px;
+            min-height: 225px;
         }
 
         & .informacoes-botoes {
@@ -104,12 +100,11 @@
 
                 & .preco-qtde {
                     display: flex;
-                    justify-content: space-between;
                     gap: var(--spc-100);
 
                     & .preco {
                         font-weight: 500;
-                        font-size: var(--fs-200);
+                        font-size: 12px;
                     }
                 }
 
@@ -121,7 +116,6 @@
 
                 & .ativo-destaque {
                     display: flex;
-                    /* justify-content: space-between; */
                     justify-content: flex-start;
                     gap: var(--spc-100);
 
@@ -251,4 +245,8 @@
             font-weight: 500;
         }
     }
+}
+
+.preco-oferta {
+    font-weight: 800 !important;
 }

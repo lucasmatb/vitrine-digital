@@ -51,10 +51,24 @@
                                         <p class="nome">{{ produto.nome }}</p>
                                         <p class="descricao">{{ produto.descricao }}</p>
                                         <div class="preco-qtde">
-                                            <p class="preco">R$
-                                                {{ produto.preco }}
-                                            </p>
-                                            <p class="qtd">{{ produto.qtd }} un</p>
+                                            {% if produto.preco_oferta %}
+                                                <p class="preco">
+                                                    <s>
+                                                        R$
+                                                        {{ produto.preco }}
+                                                    </s>
+                                                </p>
+                                                <p class="preco preco-oferta">R$
+                                                    {{ produto.preco_oferta }}
+                                                </p>
+                                            {% else %}
+                                                <p class="preco">R$
+                                                    {{ produto.preco }}
+                                                </p>
+                                            {% endif %}
+                                            {% if produto.qtd %}
+                                                <p class="preco">{{ produto.qtd }} un</p>
+                                            {% endif %}
                                         </div>
                                     </div>
                                     <div class="ativo-destaque-categorias">

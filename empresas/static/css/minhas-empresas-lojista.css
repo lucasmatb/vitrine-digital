@@ -39,8 +39,8 @@
                     border-top-left-radius: 0.8rem;
                     border-bottom-left-radius: 0.8rem;
                     overflow: hidden;
-                    max-height: 30rem;
                     aspect-ratio: 3/4;
+                    max-height: 30rem;
                     min-height: 100%;
                     
                     @media all and (max-width: 980px){

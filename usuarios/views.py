@@ -169,6 +169,7 @@ def retorna_produtos_salvos_usuario(request):
             'descricao': produto.descricao,
             'id_empresa': produto.id_empresa.id,
             'preco': produto.preco,
+            'preco_oferta': produto.preco_oferta,
             'primeira_imagem_default': settings.MEDIA_URL + 'default_produto.jpg',
             'primeira_imagem': Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first().imagem if Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first() else None,
             'nome_empresa': produto.id_empresa.nome_fantasia,

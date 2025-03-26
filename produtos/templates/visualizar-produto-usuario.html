@@ -68,7 +68,21 @@
                         </div>
                         
                         <div class="preco-favoritos">
-                            <span class="preco">R$ {{ produto.preco }}</span>
+                            {% if produto.preco_oferta %}
+                                <span class="preco">
+                                    <s>
+                                        R$
+                                        {{ produto.preco }}
+                                    </s>
+                                </span>
+                                <span class="preco preco-oferta">R$
+                                    {{ produto.preco_oferta }}
+                                </span>
+                            {% else %}
+                                <span class="preco">R$
+                                    {{ produto.preco }}
+                                </span>
+                            {% endif %}
                             <div class="favoritos">
                                 <img
                                     class="fav-{{produto.id}}"

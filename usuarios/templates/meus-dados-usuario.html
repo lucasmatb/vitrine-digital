@@ -40,31 +40,31 @@
                     >
                         {% csrf_token %}
                         <div class="input-wrapper">
-                            <label for="">Primeiro nome</label>
+                            <label>Primeiro nome</label>
                             <div class="nome">
                                 <input disabled value="{{ first_name }}"/>
                             </div>
                         </div>
                         <div class="input-wrapper">
-                            <label for="">Último nome</label>
+                            <label>Último nome</label>
                             <div class="nome">
                                 <input disabled value="{{ last_name }}"/>
                             </div>
                         </div>
                         <div class="input-wrapper">
-                            <label for="">E-mail</label>
+                            <label>E-mail</label>
                             <div class="email">
                                 <input disabled value="{{ email }}"/>
                             </div>
                         </div>
                         <div class="input-wrapper">
-                            <label for="">CPF</label>
+                            <label>CPF</label>
                             <div class="cpf">
                                 <input disabled value="{{ cpf }}"/>
                             </div>
                         </div>
                         <div class="input-wrapper input-wrapper-imagem">
-                            <label for="">Imagem de perfil</label>
+                            <label>Imagem de perfil</label>
                             <div>
                                 {{ form.imagem }}
                                 {% if form.imagem.errors %}

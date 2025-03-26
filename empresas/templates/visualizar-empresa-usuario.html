@@ -40,12 +40,9 @@
                         <h1>{{ empresa.nome_fantasia }}</h1>
                         <p>{{ empresa.descricao }}</p>
                         <div class="categorias">
-                            {% for categoria in empresa.categorias|slice:":4" %}
+                            {% for categoria in empresa.categorias %}
                                 <span>{{ categoria.descricao }}</span>
                             {% endfor %}
-                            {% if empresa.categorias|length > 4  %}
-                                ... 
-                            {% endif %}
                         </div>
                         <div class="favoritos">
                             <img
@@ -148,7 +145,21 @@
                                         </div>
 
                                         <div class="preco-salvar">
-                                            <div class="preco">R$ {{ produto.preco }}</div>
+                                            {% if produto.preco_oferta %}
+                                                <p class="preco">
+                                                    <s>
+                                                        R$
+                                                        {{ produto.preco }}
+                                                    </s>
+                                                </p>
+                                                <p class="preco preco-oferta">R$
+                                                    {{ produto.preco_oferta }}
+                                                </p>
+                                            {% else %}
+                                                <p class="preco">R$
+                                                    {{ produto.preco }}
+                                                </p>
+                                            {% endif %}
                                             <div class="favoritos">
                                                 <img
                                                     class="fav-{{produto.id}}"
@@ -226,7 +237,21 @@
                                 </div>
 
                                 <div class="preco-salvar">
-                                    <div class="preco">R$ {{ produto.preco }}</div>
+                                    {% if produto.preco_oferta %}
+                                        <p class="preco">
+                                            <s>
+                                                R$
+                                                {{ produto.preco }}
+                                            </s>
+                                        </p>
+                                        <p class="preco preco-oferta">R$
+                                            {{ produto.preco_oferta }}
+                                        </p>
+                                    {% else %}
+                                        <p class="preco">R$
+                                            {{ produto.preco }}
+                                        </p>
+                                    {% endif %}
                                     <div class="favoritos">
                                         <img
                                             class="fav-{{produto.id}}"

@@ -45,17 +45,28 @@ def criar_produto(request, id_empresa):
         return redirect('minhas_empresas_lojista')
 
     if request.method == 'POST':
-        form = ProdutoForm(request.POST, request.FILES)
+
+        data_post = request.POST.copy()
+
+        if 'preco' in data_post:
+            data_post['preco'] = data_post['preco'].replace(",", ".")
+
+        if 'preco_oferta' in data_post:
+            data_post['preco_oferta'] = data_post['preco_oferta'].replace(",", ".")
+
+        form = ProdutoForm(data_post, request.FILES)
+        
         if form.is_valid():
             empresa = Empresa.objects.get(pk=id_empresa)
             produto = Produto.objects.create(
-                nome        =  form.cleaned_data['nome'],
-                descricao   =  form.cleaned_data['descricao'],
-                preco       =  form.cleaned_data['preco'],
-                qtd         =  form.cleaned_data['qtd'],
-                ativo       =  form.cleaned_data['ativo'],
-                destaque    =  form.cleaned_data['destaque'],
-                id_empresa  =  empresa
+                nome            =  form.cleaned_data['nome'],
+                descricao       =  form.cleaned_data['descricao'],
+                preco           =  form.cleaned_data['preco'],
+                preco_oferta    =  form.cleaned_data['preco_oferta'],
+                qtd             =  form.cleaned_data['qtd'],
+                ativo           =  form.cleaned_data['ativo'],
+                destaque        =  form.cleaned_data['destaque'],
+                id_empresa      =  empresa
             )
 
             produto.categoria_produto.add(*form.cleaned_data['categorias'])
@@ -86,14 +97,24 @@ def editar_produto(request, id_empresa, pk):
     produto = get_object_or_404(Produto, id=pk, id_empresa=id_empresa)
 
     if request.method == 'POST':
-        form = ProdutoForm(request.POST, request.FILES, instance=produto)
+        data_post = request.POST.copy()
+
+        if 'preco' in data_post:
+            data_post['preco'] = data_post['preco'].replace(",", ".")
+
+        if 'preco_oferta' in data_post:
+            data_post['preco_oferta'] = data_post['preco_oferta'].replace(",", ".")
+
+        form = ProdutoForm(data_post, request.FILES, instance=produto)
+
         if form.is_valid():
-            produto.nome        =  form.cleaned_data['nome']
-            produto.descricao   =  form.cleaned_data['descricao']
-            produto.preco       =  form.cleaned_data['preco']
-            produto.qtd         =  form.cleaned_data['qtd']
-            produto.ativo       =  form.cleaned_data['ativo']
-            produto.destaque    =  form.cleaned_data['destaque']
+            produto.nome            =  form.cleaned_data['nome']
+            produto.descricao       =  form.cleaned_data['descricao']
+            produto.preco           =  form.cleaned_data['preco']
+            produto.preco_oferta    =  form.cleaned_data['preco_oferta']
+            produto.qtd             =  form.cleaned_data['qtd']
+            produto.ativo           =  form.cleaned_data['ativo']
+            produto.destaque        =  form.cleaned_data['destaque']
             produto.save()
 
             produto.categoria_produto.set(form.cleaned_data['categorias'])
