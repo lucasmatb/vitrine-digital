@@ -1,5 +1,7 @@
 from django import forms
 from .models import Empresa, Categoria_Empresa
+from PIL import Image
+from django.core.exceptions import ValidationError
 import re
 
 class EmpresaForm(forms.ModelForm):
@@ -160,8 +162,12 @@ class EmpresaForm(forms.ModelForm):
 
             if cleaned_data['imagem_capa'] is None:
                 cleaned_data['imagem_capa'] = 'default_capa_empresa.jpg'
+            elif verifica_resolucao_imagem(cleaned_data['imagem_capa'], 600, 300):
+                self.add_error('imagem_capa', "As imagens devem ter uma resolução maior ou igual a 600x300")
             if cleaned_data['imagem_perfil'] is None:
                 cleaned_data['imagem_perfil'] = 'default_perfil_empresa.jpg'
+            elif verifica_resolucao_imagem(cleaned_data['imagem_perfil'], 300, 300):
+                self.add_error('imagem_perfil', "As imagens devem ter uma resolução maior ou igual a 300x300")
 
         return cleaned_data
 
@@ -217,3 +223,10 @@ def verifica_cnpj_unico(cnpj: str) -> bool:
 
 def trata_cnpj_apenas_numeros(cnpj: str) -> str:
     return re.sub(r'\D', '', cnpj)
+
+def verifica_resolucao_imagem(imagem, largura, altura) -> bool:
+    imagem = Image.open(imagem)
+    if imagem.width < largura or imagem.height < altura:
+        return True
+    
+    return False

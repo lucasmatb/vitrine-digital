@@ -1,7 +1,7 @@
 from django import forms
 from produtos.models import Produto, Categoria_Produto
 from django.core.exceptions import ValidationError
-from decimal import Decimal
+from PIL import Image
 
 class ProdutoForm(forms.ModelForm):
     categorias = forms.ModelMultipleChoiceField(
@@ -73,4 +73,9 @@ class ProdutoForm(forms.ModelForm):
         imagens = self.files.getlist('imagens')
         if len(imagens) > 3:
             raise ValidationError('Você pode enviar no máximo 3 imagens.')
+        for imagem in imagens:
+            image = Image.open(imagem)
+            if image.width < 300 or image.height < 300:
+                raise ValidationError('As imagens devem ter uma resolução maior ou igual a 300x300.')
+            
         return imagens

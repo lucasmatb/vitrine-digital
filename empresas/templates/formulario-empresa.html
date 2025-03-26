@@ -283,6 +283,12 @@
                         <p>Imagens</p>
                         <div class="input-wrapper input-wrapper-imagem mb-4">
                             <label>Imagem de capa*</label>
+                            <label
+                                class="text-muted"
+                                style="font-size: 10px;"
+                            >
+                                Resolução mínima de 600x300
+                            </label>
                             {{ form.imagem_capa }}
                             {% if form.imagem_capa.errors %}
                                 <div>
@@ -318,6 +324,12 @@
 
                         <div class="input-wrapper">
                             <label>Imagem de perfil*</label>
+                            <label
+                                class="text-muted"
+                                style="font-size: 10px;"
+                            >
+                                Resolução mínima de 300x300
+                            </label>
                             {{ form.imagem_perfil }}
                             {% if form.imagem_perfil.errors %}
                                 <div>

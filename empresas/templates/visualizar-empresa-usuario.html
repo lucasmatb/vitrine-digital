@@ -107,18 +107,18 @@
                                 onclick="window.location.href='{% url 'visualizar_produto' produto.id %}'"
                                 style="cursor: pointer;"
                             >
-                                <div>
+                                <div
+                                    class="moving-container"
+                                >
                                     {% if produto.primeira_imagem %}
                                         <img
                                             src="{{ produto.primeira_imagem.url }}"
                                             alt="imagem capa produto {{ produto.descricao }}"
-                                            class="div-img-produto"
                                         >
                                     {% else %}
                                         <img
                                             src="{{ produto.primeira_imagem_default }}"
                                             alt="imagem capa produto {{ produto.descricao }}"
-                                            class="div-img-produto"
                                         >
                                     {% endif %}
                                 </div>
@@ -199,18 +199,18 @@
                         onclick="window.location.href='{% url 'visualizar_produto' produto.id %}'"
                         style="cursor: pointer;"
                     >
-                        <div>
+                        <div
+                            class="moving-container"
+                        >
                             {% if produto.primeira_imagem %}
                                 <img
                                     src="{{ produto.primeira_imagem.url }}"
                                     alt="imagem capa produto {{ produto.descricao }}"
-                                    class="div-img-produto"
                                 >
                             {% else %}
                                 <img
                                     src="{{ produto.primeira_imagem_default }}"
                                     alt="imagem capa produto {{ produto.descricao }}"
-                                    class="div-img-produto"
                                 >
                             {% endif %}
                         </div>

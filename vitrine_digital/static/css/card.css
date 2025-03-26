@@ -44,11 +44,12 @@
         overflow: hidden;
         border: solid 3px #fff;
         position: absolute;
-        top: 9.5rem;
-        left: 1rem;
+        top: 20rem;
+        left: 8rem;
         width: 6rem;
         object-fit: cover;
         object-position: 48%;
+        z-index: 1;
     }
 
 
@@ -73,11 +74,6 @@
     }
 
     &.card-produto {
-
-        & .div-img-produto {
-            width: 225px;
-            min-height: 225px;
-        }
 
         & .informacoes-botoes {
             display: flex;
@@ -249,8 +245,40 @@
             font-weight: 500;
         }
     }
+
+    & .moving-container {
+        width: 225px;
+        height: 225px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .moving-container img {
+        position: absolute;
+        width: 125%;
+        height: 125%;
+        top: -15%;
+        left: -15%;
+        object-fit: cover;
+        transition: transform 0.2s ease-out;
+      }
+      
+      .moving-container:hover img {
+        animation: moveCamera 12s infinite linear;
+      }
 }
 
 .preco-oferta {
     font-weight: 800 !important;
 }
+
+@keyframes moveCamera {
+    0%   { transform: translate(0%, 0%); }
+    15%  { transform: translate(-9%, -9%); }
+    30%  { transform: translate(9%, -9%); }
+    45%  { transform: translate(-9%, 9%); }
+    60%  { transform: translate(9%, 9%); }
+    75%  { transform: translate(-9%, -9%); }
+    90%  { transform: translate(9%, 9%); }
+    100% { transform: translate(0%, 0%); }
+  }
