@@ -64,3 +64,8 @@ a {
 .logo-text-size {
     font-size: 40px;
 }
+
+.alert {
+    padding: 0;
+    font-weight:700;
+}

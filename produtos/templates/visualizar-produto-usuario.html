@@ -12,7 +12,14 @@
 {% block 'conteudo'%}
     <main>
         <div class="main-scrollable">
-
+            {% if messages %}
+                {% for i in messages %}   
+                    <div class="alert {{i.tags}}" role="alert">
+                        {{i}} 
+                    </div>
+        
+                {% endfor %}
+            {% endif %}
             <section class="secao">
                 <a href="{% url 'visualizar_empresa' produto.id_empresa.id %}" class="botao-voltar">
                     <img src="{% static 'images/seta-esquerda.svg' %}" alt="Seta para a esquerda">
