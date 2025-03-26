@@ -200,12 +200,16 @@
     }
 
     & .nome {
+        max-width: 20rem;
         font-weight: 500;
         font-size: var(--fs-300);
-
+        white-space: nowrap;                  
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     & .descricao {
+        max-width: 20rem;
         font-size: var(--fs-200);
         white-space: nowrap;
         overflow: hidden;

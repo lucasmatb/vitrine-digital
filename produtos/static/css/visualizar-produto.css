@@ -87,12 +87,21 @@
             align-items: flex-start;
 
             & .nome-descricao {
+
                 & .nome {
                     font-size: var(--fs-600);
+                    max-width: 20rem;
+                    white-space: nowrap;                  
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
 
                 & .descricao {
                     font-size: var(--fs-400);
+                    max-width: 20rem;
+                    white-space: nowrap;                  
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
             }
 
