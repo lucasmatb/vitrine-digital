@@ -2,6 +2,7 @@ from django import forms
 from produtos.models import Produto, Categoria_Produto
 from django.core.exceptions import ValidationError
 from PIL import Image
+from decimal import Decimal
 
 class ProdutoForm(forms.ModelForm):
     categorias = forms.ModelMultipleChoiceField(
@@ -77,5 +78,13 @@ class ProdutoForm(forms.ModelForm):
             image = Image.open(imagem)
             if image.width < 300 or image.height < 300:
                 raise ValidationError('As imagens devem ter uma resolução maior ou igual a 300x300.')
-            
+        
         return imagens
+    
+    def clean_preco_oferta(self):
+        preco = self.cleaned_data.get('preco')
+        preco_oferta = self.cleaned_data.get('preco_oferta')
+        if preco_oferta and preco < (preco_oferta * Decimal('1.01')):
+            raise ValidationError('O preço de oferta deve ser menor que o preço normal.')
+        
+        return preco_oferta
