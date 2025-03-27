@@ -119,26 +119,27 @@ def editar_produto(request, id_empresa, pk):
 
             produto.categoria_produto.set(form.cleaned_data['categorias'])
 
-            imagens_antigas = Imagem_Produto.objects.filter(id_produto=produto)
-
-            if imagens_antigas:
-                imagens_antigas.delete()
-
             imagens = request.FILES.getlist('imagens')
 
-            for imagem in imagens:
-                Imagem_Produto.objects.create(
-                    id_produto=produto,
-                    imagem=imagem
-                )
+            if imagens:
+                imagens_antigas = Imagem_Produto.objects.filter(id_produto=produto)
+
+                if imagens_antigas:
+                    imagens_antigas.delete()
+
+                for imagem in imagens:
+                    Imagem_Produto.objects.create(
+                        id_produto=produto,
+                        imagem=imagem
+                    )
 
             messages.success(request, 'Produto atualizado com sucesso!')
             return redirect('listagem_produto_por_empresa', id_empresa=id_empresa)
     else:
         form = ProdutoForm(instance=produto)
         form.fields['categorias'].initial = produto.categoria_produto.all()
-        data['imagens_existentes'] = Imagem_Produto.objects.filter(id_produto=produto)
 
+    data['imagens_existentes'] = Imagem_Produto.objects.filter(id_produto=produto)
     data['form'] = form
     return render(request, 'produto-form.html', data)
 
