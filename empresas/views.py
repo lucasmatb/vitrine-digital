@@ -190,6 +190,9 @@ def retorna_visualizar_empresa_usuario(request, id_empresa):
         for produto in produtos
     ]
 
+    empresa.qtd_visualizacoes = empresa.qtd_visualizacoes + 1
+    empresa.save()
+
     empresa = {
         'id': empresa.id,
         'nome_fantasia': empresa.nome_fantasia,

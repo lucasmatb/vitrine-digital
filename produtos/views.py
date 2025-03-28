@@ -11,6 +11,10 @@ from django.conf import settings
 def retorna_visualizar_produto(request, pk):
     data = {}
     produto = get_object_or_404(Produto, id=pk)
+
+    produto.qtd_visualizacoes = produto.qtd_visualizacoes + 1
+    produto.save()
+
     imagens = Imagem_Produto.objects.filter(id_produto=produto.id)
     produto.primeira_imagem_default = settings.MEDIA_URL + 'default_produto.jpg'
 
