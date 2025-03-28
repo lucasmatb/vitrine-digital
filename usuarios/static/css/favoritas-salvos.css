@@ -107,6 +107,7 @@ section {
         display: grid;
         grid-template-columns: repeat(auto-fill, 22.5rem);
         gap: var(--spc-600);
+        height: 470px;
 
         & .card-botao {
             position: relative;

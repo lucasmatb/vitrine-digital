@@ -168,6 +168,8 @@ def retorna_produtos_salvos_usuario(request):
             'nome': produto.nome,
             'descricao': produto.descricao,
             'id_empresa': produto.id_empresa.id,
+            'ativo': produto.ativo,
+            'qtd': produto.qtd,
             'preco': produto.preco,
             'preco_oferta': produto.preco_oferta,
             'primeira_imagem_default': settings.MEDIA_URL + 'default_produto.jpg',

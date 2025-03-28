@@ -81,65 +81,59 @@
             gap: var(--spc-400);
             justify-content: space-between;
             padding: var(--spc-300) !important;
+            height: 100%;
 
-            /* height: 100%; */
+            & .tudo-menos-cat {
+                display: flex;
+                flex-flow: column;
+                height: 100%;
+                gap: 5px;
+            }
 
-            & .informacoes {
-                padding: 0 !important;
-                gap: var(--spc-200);
+            & .preco-qtde {
+                display: flex;
+                gap: var(--spc-100);
 
-                & .tudo-menos-cat {
-                    display: flex;
-                    flex-flow: column;
-                    gap: var(--spc-200);
+                & .preco {
+                    font-weight: 500;
+                    font-size: 12px;
                 }
+            }
 
-                & .preco-qtde {
-                    display: flex;
-                    gap: var(--spc-100);
+            & .ativo-destaque-categorias {
+                display: flex;
+                flex-flow: column;
+                gap: var(--spc-500);
+            }
 
-                    & .preco {
-                        font-weight: 500;
-                        font-size: 12px;
-                    }
+            & .ativo-destaque {
+                display: flex;
+                justify-content: flex-start;
+                gap: var(--spc-100);
+
+                & .ativo, & .destacado {
+                    padding: var(--spc-50) var(--spc-100);
+                    background-color: rgb(207, 255, 207);
+                    border-radius: 0.4rem;
+                    color: rgb(63, 160, 63);
+                    height: max-content;
+                    font-size: var(--fs-50);
                 }
-
-                & .ativo-destaque-categorias {
-                    display: flex;
-                    flex-flow: column;
-                    gap: var(--spc-500);
+                
+                & .inativo, & .nao-destacado {
+                    padding: var(--spc-50) var(--spc-100);
+                    background-color: rgb(232, 232, 232);
+                    border-radius: 0.4rem;
+                    color: rgb(117, 117, 117);
+                    height: max-content;
+                    font-size: var(--fs-50);
                 }
+            }
 
-                & .ativo-destaque {
-                    display: flex;
-                    justify-content: flex-start;
-                    gap: var(--spc-100);
-
-                    & .ativo, & .destacado {
-                        padding: var(--spc-50) var(--spc-100);
-                        background-color: rgb(207, 255, 207);
-                        border-radius: 0.4rem;
-                        color: rgb(63, 160, 63);
-                        height: max-content;
-                        font-size: var(--fs-50);
-                    }
-                    
-                    & .inativo, & .nao-destacado {
-                        padding: var(--spc-50) var(--spc-100);
-                        background-color: rgb(232, 232, 232);
-                        border-radius: 0.4rem;
-                        color: rgb(117, 117, 117);
-                        height: max-content;
-                        font-size: var(--fs-50);
-                    }
-                }
-
-                & .categorias {
-                    display: flex;
-                    flex-flow: row wrap;
-                    gap: var(--spc-100);
-                }
-
+            & .categorias {
+                display: flex;
+                flex-flow: row wrap;
+                gap: var(--spc-100);
             }
 
             & .botoes {
@@ -165,27 +159,39 @@
     }
 
     &.card-produto-usuario {
+        height: 470px;
+
         & .preco-salvar {
             display: flex;
-            justify-content: space-between;
-            gap: var(--spc-100);
+            flex-flow: column;
+            margin-top: 10px;
         }
-
+    
         & .categorias {
             width: 100%;
         }
-
+    
         & .disponibilidade {
             padding: var(--spc-50) var(--spc-100);
             border-radius: 0.4rem;
             height: max-content;
             font-size: var(--fs-50);
             width: max-content;
-            
-            &.disponivel {
-                background-color: rgb(207, 255, 207);
-                color: rgb(63, 160, 63);
-            }
+        }
+    
+        & .disponibilidade.indisponivel {
+            background-color: #C39BD3;
+            color: white;
+        }
+    
+        & .disponibilidade.disponivel {
+            background-color: rgb(207, 255, 207);
+            color: rgb(63, 160, 63);
+        }
+    
+        & .disponibilidade.sem-estoque {
+            background-color: #777;
+            color: whitesmoke;
         }
     }
 
@@ -247,8 +253,8 @@
     }
 
     & .moving-container {
-        width: 225px;
-        height: 225px;
+        min-width: 225px;
+        min-height: 225px;
         overflow: hidden;
         position: relative;
     }

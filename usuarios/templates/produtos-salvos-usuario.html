@@ -45,33 +45,24 @@
                         {% endif %}
                     </div>
                     <div class="informacoes-botoes">
-                        <div class="informacoes">
-                            <div class="tudo-menos-cat">
-                                <p class="nome">{{ produto.nome }}</p>
-                                <p class="descricao">{{ produto.descricao }}</p>
-                                {% if produto.ativo == False  %}
-                                    <span class="disponibilidade indisponivel">Indisponível</span>
-                                {% elif produto.qtd == 0 %}
-                                    <span class="disponibilidade sem-estoque">Sem estoque</span>
-                                {% else %}
-                                    <span class="disponibilidade disponivel">Disponível</span>
-                                {% endif %}
-                                <div class="preco-salvar">
-                                    {% if produto.preco_oferta %}
-                                        <p class="preco">
-                                            <s>
-                                                R$
-                                                {{ produto.preco }}
-                                            </s>
-                                        </p>
-                                        <p class="preco preco-oferta">R$
-                                            {{ produto.preco_oferta }}
-                                        </p>
-                                    {% else %}
-                                        <p class="preco">R$
-                                            {{ produto.preco }}
-                                        </p>
-                                    {% endif %}
+                        <div class="tudo-menos-cat">
+                            <div>
+                                <div class="nome">{{ produto.nome }}</div>
+                                <div class="descricao">{{ produto.descricao }}</div>
+                                <div
+                                    class="d-flex justify-content-between"
+                                >
+                                    <div
+                                        class="mt-2 mb-3"
+                                    >
+                                        {% if produto.ativo == False  %}
+                                            <span class="disponibilidade indisponivel">Indisponível</span>
+                                        {% elif produto.qtd == 0 %}
+                                            <span class="disponibilidade sem-estoque">Sem estoque</span>
+                                        {% else %}
+                                            <span class="disponibilidade disponivel">Disponível</span>
+                                        {% endif %}
+                                    </div>
                                     <div class="favoritos">
                                         <img
                                             class="fav-{{produto.id}}"
@@ -91,15 +82,40 @@
                                         >
                                     </div>
                                 </div>
+                                <div class="categorias">
+                                    {% for categoria in produto.categorias|slice:":4" %}
+                                        <div class="categoria">{{ categoria.descricao }}</div>
+                                    {% endfor %}
+                                    {% if produto.categorias|length > 4  %}
+                                        ... 
+                                    {% endif %}
+                                </div>
                             </div>
-
-                            <div class="categorias">
-                                {% for categoria in produto.categorias|slice:":4" %}
-                                    <div class="categoria">{{ categoria.descricao }}</div>
-                                {% endfor %}
-                                {% if produto.categorias|length > 4  %}
-                                    ... 
-                                {% endif %}
+                            <div
+                                class="h-100 align-content-center"
+                            >
+                                <div class="preco-salvar">
+                                    {% if produto.preco_oferta %}
+                                        <div class="preco">
+                                            Valor: 
+                                            <s>
+                                                R$
+                                                {{ produto.preco }}
+                                            </s>
+                                        </div>
+                                        <div class="preco preco-oferta">
+                                            Promo: 
+                                            R$
+                                            {{ produto.preco_oferta }}
+                                        </div>
+                                    {% else %}
+                                        <div class="preco">
+                                            Valor: 
+                                            R$
+                                            {{ produto.preco }}
+                                        </div>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
                     </div>

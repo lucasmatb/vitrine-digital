@@ -59,10 +59,12 @@
 
                         {% if produto.ativo == False  %}
                             <span class="disponibilidade indisponivel">Indisponível</span>
+                        {% elif produto.qtd == None %}
+                            <span class="disponibilidade disponivel">Disponível</span>
                         {% elif produto.qtd == 0 %}
                             <span class="disponibilidade sem-estoque">Sem estoque</span>
                         {% else %}
-                            <span class="disponibilidade disponivel">Disponível</span>
+                            <span class="disponibilidade disponivel">Disponível - {{produto.qtd}} unidades</span>
                         {% endif %}
 
                         <div class="categorias">
