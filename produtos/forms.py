@@ -58,7 +58,9 @@ class ProdutoForm(forms.ModelForm):
         widget=forms.TextInput(attrs={
             'id': 'quantidade',
             'name': 'quantidade'
-        })
+        }),
+        min_value=1,
+        max_value=999
     )
 
     class Meta:

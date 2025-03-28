@@ -27,7 +27,7 @@
         <div class="todos-cards">
             {% for produto in produtos %}
                 <div
-                    class="card card-produto card-produto-usuario"
+                    class="card card-produto card-produto-usuario card-produto-usuario-visualizar"
                     onclick="window.location.href='{% url 'visualizar_produto' produto.id %}'"
                     style="cursor: pointer;"
                 >

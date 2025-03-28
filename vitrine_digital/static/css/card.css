@@ -159,8 +159,6 @@
     }
 
     &.card-produto-usuario {
-        height: 470px;
-
         & .preco-salvar {
             display: flex;
             flex-flow: column;
@@ -192,6 +190,14 @@
         & .disponibilidade.sem-estoque {
             background-color: #777;
             color: whitesmoke;
+        }
+
+        & .card-produto-usuario-visualizar{
+            height: 470px;
+        }
+
+        & .card-produto-usuario-edicao{
+            height: 510px;
         }
     }
 

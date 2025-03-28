@@ -30,9 +30,7 @@
                 <div class="meus-produtos-lojista">
                     {% for produto in produtos %}
                         <div
-                            class="card card-produto card-produto-usuario"
-                            onclick="window.location.href='{% url 'visualizar_produto' produto.id %}'"
-                            style="cursor: pointer;"
+                            class="card card-produto card-produto-usuario card-produto-usuario-edicao"
                         >
                             <div class="moving-container">
                                 {% if produto.primeira_imagem %}
@@ -65,24 +63,6 @@
                                                 {% else %}
                                                     <span class="disponibilidade disponivel">Disponível</span>
                                                 {% endif %}
-                                            </div>
-                                            <div class="favoritos">
-                                                <img
-                                                    class="fav-{{produto.id}}"
-                                                    onclick="favnotfavproduct(
-                                                        event,
-                                                        'fav-{{produto.id}}',
-                                                        'fav-number-{{produto.id}}',
-                                                        {{produto.id}}
-                                                    )"
-                                                    {% if produto.favorito_usuario %}
-                                                        src="{% static 'images/icone-salvar-fill.svg' %}"
-                                                    {% else %}
-                                                        src="{% static 'images/icone-salvar.svg' %}"
-                                                    {% endif %}
-                                                    alt="Ícone salvar"
-                                                    style="cursor: pointer;"
-                                                >
                                             </div>
                                         </div>
                                         <div class="categorias">
@@ -119,6 +99,22 @@
                                                 </div>
                                             {% endif %}
                                         </div>
+                                    </div>
+                                    <div class="botoes">
+                                        <a
+                                            href="{% url 'editar_produto' id_empresa produto.id %}"
+                                            class="botao botao-editar"
+                                            style="cursor: pointer;"
+                                        >
+                                            Editar
+                                        </a>
+                                        <a
+                                            href="{% url 'excluir_produto' id_empresa produto.id %}"
+                                            class="botao botao-excluir"
+                                            style="cursor: pointer;"
+                                        >
+                                            Excluir
+                                        </a>
                                     </div>
                                 </div>
                             </div>
