@@ -47,31 +47,49 @@
                             </div>
                             <div class="informacoes-botoes">
                                 <div class="tudo-menos-cat">
-                                    <div>
-                                        <div class="nome">{{ produto.nome }}</div>
-                                        <div class="descricao">{{ produto.descricao }}</div>
-                                        <div
-                                            class="d-flex justify-content-between"
-                                        >
-                                            <div
-                                                class="mt-2 mb-3"
-                                            >
-                                                {% if produto.ativo == False  %}
-                                                    <span class="disponibilidade indisponivel">Indisponível</span>
-                                                {% elif produto.qtd == 0 %}
-                                                    <span class="disponibilidade sem-estoque">Sem estoque</span>
-                                                {% else %}
-                                                    <span class="disponibilidade disponivel">Disponível</span>
-                                                {% endif %}
-                                            </div>
-                                        </div>
-                                        <div class="categorias">
-                                            {% for categoria in produto.categoria_produto.all|slice:":4" %}
-                                                <div class="categoria">{{ categoria.descricao }}</div>
-                                            {% endfor %}
-                                            {% if produto.categoria_produto.all|length > 4  %}
-                                                ... 
+                                    <div
+                                        class="
+                                            d-flex
+                                            justify-content-between
+                                            align-items-center
+                                            mt-2 mb-3
+                                        "
+                                    >
+                                        <div>
+                                            {% if produto.ativo == False  %}
+                                                <span class="disponibilidade indisponivel">Indisponível</span>
+                                            {% elif produto.qtd == 0 %}
+                                                <span class="disponibilidade sem-estoque">Sem estoque</span>
+                                            {% else %}
+                                                <span class="disponibilidade disponivel">Disponível</span>
                                             {% endif %}
+                                        </div>
+                                        <div>
+                                            {% if produto.porcentagem_desconto %}
+                                                <span
+                                                    class="disponibilidade tag-oferta"
+                                                >
+                                                    {{ produto.porcentagem_desconto }}% OFF
+                                                <span>
+                                            {% endif %}
+                                        </div>
+                                        <div class="favoritos">
+                                            <img
+                                                class="fav-{{produto.id}}"
+                                                onclick="favnotfavproduct(
+                                                    event,
+                                                    'fav-{{produto.id}}',
+                                                    'fav-number-{{produto.id}}',
+                                                    {{produto.id}}
+                                                )"
+                                                {% if produto.favorito_usuario %}
+                                                    src="{% static 'images/icone-salvar-fill.svg' %}"
+                                                {% else %}
+                                                    src="{% static 'images/icone-salvar.svg' %}"
+                                                {% endif %}
+                                                alt="Ícone salvar"
+                                                style="cursor: pointer;"
+                                            >
                                         </div>
                                     </div>
                                     <div

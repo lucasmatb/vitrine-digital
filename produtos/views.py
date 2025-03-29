@@ -28,6 +28,10 @@ def retorna_listagem_produtos_por_empresa(request, id_empresa):
     data = {}
     data['produtos'] = Produto.objects.filter(id_empresa=id_empresa).prefetch_related('categoria_produto')
     for produto in data['produtos']:
+        if produto.preco_oferta is not None:
+            produto.porcentagem_desconto = int(((produto.preco - produto.preco_oferta) / produto.preco) * 100)
+        else:
+            produto.porcentagem_desconto = None
         produto.primeira_imagem_default = settings.MEDIA_URL + 'default_produto.jpg'
         try:
             produto.primeira_imagem = Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first().imagem
