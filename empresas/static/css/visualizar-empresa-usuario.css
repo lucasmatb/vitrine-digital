@@ -92,7 +92,6 @@
                     gap: var(--spc-50);
                     align-items: flex-end;
                     padding-top: var(--spc-100);
-                    border-bottom: solid 2px #ccc;
                     padding-bottom: 1rem;
 
                     @media all and (max-width: 650px){
@@ -110,6 +109,7 @@
                     gap: var(--spc-50);
                     justify-content: space-evenly;
                     padding-top: 1rem;
+                    border-top: solid 2px #ccc;
                 }
             }
         }
@@ -120,12 +120,13 @@
         flex-flow: column;
         gap: var(--spc-900);
         padding: var(--spc-600) var(--spc-900);
+        padding-top: 0;
 
         & .destaques {
             width: 100%;
             display: flex;
             flex-flow: column;
-            gap: var(--spc-400);
+            gap: 1rem 3rem;
 
             & .carrossel {
                 display: grid;
@@ -157,7 +158,7 @@
             & .todos-produtos {
                 display: flex;
                 flex-flow: row wrap;
-                gap: var(--spc-300);
+                gap: 1rem 3rem;
             }
         }
     }

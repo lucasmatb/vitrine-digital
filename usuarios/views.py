@@ -187,38 +187,6 @@ def retorna_produtos_salvos_usuario(request):
 
     return render(request, 'produtos-salvos-usuario.html', data)
 
-def retorna_pesquisar_empresas_usuario(request):
-    data = {}
-
-    pesquisa = request.GET.get('pesquisa')
-
-    if not pesquisa:
-        empresas = Empresa.objects.all().order_by('nome_fantasia').annotate(
-            favoritos=Count('favoritos_empresas')
-        )
-    else:
-        empresas = Empresa.objects.filter(nome_fantasia__icontains=pesquisa).order_by('nome_fantasia').annotate(
-            favoritos=Count('favoritos_empresas')
-        )
-
-    empresas_com_favoritos = [
-        {
-            'id': empresa.id,
-            'nome_fantasia': empresa.nome_fantasia,
-            'descricao': empresa.descricao,
-            'imagem_perfil': empresa.imagem_perfil,
-            'imagem_capa': empresa.imagem_capa,
-            'categorias': empresa.empresa_categoria.all(),
-            'favorito_usuario': empresa.favoritos_empresas.filter(id=request.user.id).exists(),
-            'favoritos': empresa.favoritos
-        }
-        for empresa in empresas
-    ]
-
-    data['empresas'] = empresas_com_favoritos
-
-    return render(request, 'pesquisar-empresas-usuario.html', data)
-
 def cria_pedido_lojista_por_usuario(request):
     try:
         if Pedido_Lojista.objects.filter(

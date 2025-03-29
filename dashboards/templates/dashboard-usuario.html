@@ -2,38 +2,43 @@
 {% load static %}
 
 {% block 'head' %}
-    <link rel="stylesheet" href="{% static 'css/carrossel.css' %}">
-    <link rel="stylesheet" href="{% static 'css/dashboard-usuario.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pesquisar-empresas-usuario.css' %}">
 {% endblock %}
 
 {% block 'titulo' %}
-    Vi²Mu | Área do cliente
+    Vi²Mu | Pesquisar empresas
 {% endblock %}
 
 {% block 'conteudo'%}
+
     <main>
         <div class="main-scrollable">
+            <section class="secao secao-busca">
+                <div class="busca">
+                    <form
+                        class="form-busca"
+                        method="GET"
+                        action="{% url 'dashboard_usuario' %}"
+                    >
+                        {% csrf_token %}
+                        <input id="pesquisa" name="pesquisa" type="text" placeholder="Nome da loja">
+                        <button type="submit"><img src="{% static 'images/icone-lupa.svg' %}" alt="">
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            {% if messages %}
+                {% for i in messages %}   
+                    <div class="alert {{i.tags}}" role="alert">
+                        {{i}} 
+                    </div>
+                {% endfor %}
+            {% endif %}
+
             <section>
-                {% if messages %}
-                    {% for i in messages %}
-                        <div class="alert {{i.tags}}" role="alert">
-                            {{i}}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-
-
-                {% if pedido_aguardo == 'usuario' %}
-                    <button id="botao-pedido-lojista" name="botao-pedido-lojista">Solicitar perfil lojista</button>
-                {% elif pedido_aguardo == 'aguardando' %}
-                    Seu pedido para perfil lojista está em análise!
-                {% endif %}
-
-                {% for categoria, empresas in data.items %}
-                    <div class="faixa-categoria">
-                        <h2>Lojas especializadas em {{ categoria }}</h2>
-                        <div class="carrossel">
-                        {% for empresa in empresas %}
+                <div class="todos-cards">
+                    {% for empresa in empresas %}
                         <div
                             class="card card-empresa"
                             onclick="window.location.href='{% url 'visualizar_empresa' empresa.id %}'"
@@ -66,7 +71,7 @@
                                         {% endfor %}
                                         {% if empresa.categorias|length > 3  %}
                                             ... 
-                                        {% endif %}    
+                                        {% endif %}
                                     </div>
                                     <div class="favoritos">
                                         <img
@@ -82,7 +87,7 @@
                                             {% else %}
                                                 src="{% static 'images/icone-coracao.svg' %}"
                                             {% endif %}
-                                            alt="Ícone coração"
+                                            alt="Ícone coraçao"
                                             style="cursor: pointer;"
                                         >
                                         <span
@@ -94,48 +99,18 @@
                                 </div>
                             </div>
                         </div>
-                        {% endfor %}
-                    </div>
+                    {% empty %}
+                        <p>Não foram encontradas empresas com esse nome.</p>
+                    {% endfor %}
                 </div>
-
-                <hr>
-                {% empty %}
-                    <p>Não há empresas cadastradas para a sua cidade.</p>
-                {% endfor %}
             </section>
         </div>
     </main>
 
     <script>
-        const botao = document.querySelector("#botao-pedido-lojista");
-        if (botao) {
-            botao.addEventListener("click", (e)=>{
-                e.preventDefault();
-                botao.disabled = true;
-                const url = "/usuarios/criar-pedido-lojista/"
-                fetch(url, {
-                    method: "POST",
-                    headers: {
-                        'X-CSRFToken': '{{ csrf_token }}',
-                        'Content-Type': 'application/json'
-                    },
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if(data.status === 'success'){
-                        botao.outerHTML = "<div><p>Seu pedido foi enviado para avaliação.</p></div><div><p>Você receberá um email com informações em breve.</p></div>";
-                    }else{
-                        botao.outerHTML = "<div><p>Ocorreu um erro.</p></div><div><p>Tente novamente mais tarde.</p></div>";
-                    }
-                })
-                .catch(error => {
-                    botao.disabled = false;
-                });
-            });    
-        }
 
         function favnotfav(event, id_icone, numero_favoritos, id_empresa) {
-            event.stopPropagation();
+            event.stopPropagation(); 
             const url = "/empresas/favorita-nao-favorita-empresa/" + id_empresa + "/"
             const icones = document.getElementsByClassName(id_icone);
             const spans_numero = document.getElementsByClassName(numero_favoritos);
