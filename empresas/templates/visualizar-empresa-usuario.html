@@ -73,8 +73,7 @@
                                 <span>{{ endereco.cep }}</span>
                             </div>
                             <div>
-                                <span>{{ endereco.logradouro }}</span>
-                                <span>-</span>
+                                <span class="pr-2">{{ endereco.logradouro }}</span>
                                 <span>{{ endereco.numero }}</span>
                             </div>
                             <div>
@@ -83,8 +82,7 @@
                             <div>
                                 <span>{{ endereco.uf }}</span>
                                 <span>-</span>
-                                <span>{{ endereco.cidade }}</span>
-                                <span>-</span>
+                                <span class="pr-2">{{ endereco.cidade }}</span>
                                 <span>{{ endereco.bairro }}</span>
                             </div>
                         </div>
@@ -92,6 +90,60 @@
                             <span class="email">{{ empresa.email }}</span>
                             <span class="telefone">{{ empresa.telefone }}</span>
                         </div>
+                        {% if empresa.link_whatsapp or empresa.link_instagram or empresa.link_facebook %}
+                            <div
+                                class="redes-sociais"
+                            >
+                                {% if empresa.link_whatsapp  %}
+                                    <span>
+                                        <a
+                                            href="{{ empresa.link_whatsapp }}"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <img
+                                                src="{% static 'images/icone-whatsapp.png' %}"
+                                                alt="Ícone whatsapp"
+                                                width="24px"
+                                                height="24px"
+                                            >
+                                        </a>
+                                    </span>
+                                {% endif %}
+                                {% if empresa.link_instagram  %}
+                                    <span>
+                                        <a
+                                            href="{{ empresa.link_instagram }}"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <img
+                                                src="{% static 'images/icone-instagram.png' %}"
+                                                alt="Ícone instagram"
+                                                width="24px"
+                                                height="24px"
+                                            >
+                                        </a>
+                                    </span>
+                                {% endif %}
+                                {% if empresa.link_facebook  %}
+                                    <span>
+                                        <a
+                                            href="{{ empresa.link_facebook }}"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <img
+                                                src="{% static 'images/icone-facebook.png' %}"
+                                                alt="Ícone facebook"
+                                                width="24px"
+                                                height="24px"
+                                            >
+                                        </a>
+                                    </span>
+                                {% endif %}
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
                 

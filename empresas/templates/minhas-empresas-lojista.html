@@ -12,16 +12,16 @@
 {% block 'conteudo'%}
     <main>
         <div class="main-scrollable">
-            {% if messages %}
-                {% for i in messages %}   
-                    <div class="alert {{i.tags}}" role="alert">
-                        {{i}} 
-                    </div>
-        
-                {% endfor %}
-            {% endif %}
             <section class="secao-minhas-empresas">
                 <div class="container">
+                    {% if messages %}
+                        {% for i in messages %}   
+                            <div class="alert {{i.tags}}" role="alert">
+                                {{i}} 
+                            </div>
+                
+                        {% endfor %}
+                    {% endif %}
                     <div class="cabecalho">
                         <h1>Minhas lojas</h1>
                         <a href="{% url 'cadastrar_empresa' %}">Cadastrar</a>

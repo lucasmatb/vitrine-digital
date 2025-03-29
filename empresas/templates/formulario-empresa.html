@@ -382,6 +382,56 @@
                         </div>
                     </div>
 
+                    <div>
+                        <div class="mt-2 mb-4">
+                            <p>Redes Sociais</p>
+                            <div
+                                class="input-wrapper flex-fill mb-4"
+                            >
+                                <label>Link para WhatsApp</label>
+                                {{ form.link_whatsapp }}
+                                {% if form.link_whatsapp.errors %}
+                                    <div>
+                                        {% for error in form.link_whatsapp.errors %}
+                                            <div>
+                                                <strong>{{ error }}</strong>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div
+                                class="input-wrapper flex-fill mb-4"
+                            >
+                                <label>Link para Instagram</label>
+                                {{ form.link_instagram }}
+                                {% if form.link_instagram.errors %}
+                                    <div>
+                                        {% for error in form.link_instagram.errors %}
+                                            <div>
+                                                <strong>{{ error }}</strong>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div
+                                class="input-wrapper flex-fill mb-4"
+                            >
+                                <label>Link para Facebook</label>
+                                {{ form.link_facebook }}
+                                {% if form.link_facebook.errors %}
+                                    <div>
+                                        {% for error in form.link_facebook.errors %}
+                                            <div>
+                                                <strong>{{ error }}</strong>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
 
                     <input class="form-botao botao mb-4" type="submit" value="Enviar">
                 </form>

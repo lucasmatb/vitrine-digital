@@ -2,9 +2,17 @@ from django import forms
 from .models import Empresa, Categoria_Empresa
 from PIL import Image
 from django.core.exceptions import ValidationError
+from urllib.parse import urlparse
 import re
 
 class EmpresaForm(forms.ModelForm):
+    def validate_link(value):
+        try:
+            result = urlparse(value)
+            if not all([result.scheme, result.netloc]):
+                raise ValidationError("Link inválido")
+        except ValueError:
+            raise ValidationError("Link inválido")
 
     cep = forms.CharField(
         max_length=254,
@@ -128,6 +136,39 @@ class EmpresaForm(forms.ModelForm):
         })
     )
 
+    link_whatsapp = forms.CharField(
+        label=("Link WhatsApp"),
+        max_length=254,
+        required=False,
+        validators=[validate_link],
+        widget=forms.TextInput(attrs={
+            'id': 'link_whatsapp',
+            'name': 'link_whatsapp'
+        })
+    )
+
+    link_instagram = forms.CharField(
+        label=("Link Instagram"),
+        max_length=254,
+        required=False,
+        validators=[validate_link],
+        widget=forms.TextInput(attrs={
+            'id': 'link_instagram',
+            'name': 'link_instagram'
+        })
+    )
+
+    link_facebook = forms.CharField(
+        label=("Link Facebook"),
+        max_length=254,
+        required=False,
+        validators=[validate_link],
+        widget=forms.TextInput(attrs={
+            'id': 'link_facebook',
+            'name': 'link_facebook'
+        })
+    )
+
     def clean(self):
         cleaned_data = super(EmpresaForm, self).clean()
 
@@ -145,6 +186,9 @@ class EmpresaForm(forms.ModelForm):
             'cidade',
             'estado',
             'categorias',
+            'link_whatsapp',
+            'link_instagram',
+            'link_facebook'
         ]
 
         for field in campos:
@@ -190,6 +234,9 @@ class EmpresaForm(forms.ModelForm):
             'cidade',
             'estado',
             'categorias',
+            'link_whatsapp',
+            'link_instagram',
+            'link_facebook'
         ]
     
 def verifica_cnpj_valido(formCnpj: str) -> bool:

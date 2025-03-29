@@ -38,6 +38,9 @@ def valida_cadastro_empresa(request):
                 email           =  form.cleaned_data['email'],
                 imagem_capa     =  form.cleaned_data['imagem_capa'],
                 imagem_perfil   =  form.cleaned_data['imagem_perfil'],
+                link_whatsapp   =  form.cleaned_data['link_whatsapp'],
+                link_instagram  =  form.cleaned_data['link_instagram'],
+                link_facebook   =  form.cleaned_data['link_facebook'],
                 id_usuario      =  request.user
             )
 
@@ -123,6 +126,9 @@ def valida_editar_empresa(request, pk):
             empresa.email           =  form.cleaned_data['email']
             empresa.imagem_capa     =  form.cleaned_data['imagem_capa']
             empresa.imagem_perfil   =  form.cleaned_data['imagem_perfil']
+            empresa.link_whatsapp   =  form.cleaned_data['link_whatsapp']
+            empresa.link_instagram  =  form.cleaned_data['link_instagram']
+            empresa.link_facebook   =  form.cleaned_data['link_facebook']
             empresa.save()
             
             empresa.empresa_categoria.set(form.cleaned_data['categorias'])
@@ -203,6 +209,9 @@ def retorna_visualizar_empresa_usuario(request, id_empresa):
         'telefone': empresa.telefone,
         'imagem_perfil': empresa.imagem_perfil,
         'imagem_capa': empresa.imagem_capa,
+        'link_whatsapp': empresa.link_whatsapp,
+        'link_instagram': empresa.link_instagram,
+        'link_facebook': empresa.link_facebook,
         'categorias': empresa.empresa_categoria.all(),
         'favorito_usuario': empresa.favoritos_empresas.filter(id=request.user.id).exists(),
         'favoritos': empresa.favoritos
