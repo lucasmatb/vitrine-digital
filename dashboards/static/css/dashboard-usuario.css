@@ -1,19 +1,114 @@
-#botao-pedido-lojista {
-    all: unset;
-    width: max-content;
-    align-self: flex-end;
-    padding: var(--spc-100) var(--spc-200);
-    background-color: #ccc;
-    border-radius: 0.8rem;
-    text-align: center;
-    cursor: pointer;
-    font-size: var(--fs-100);
-}
+    section {
+        gap: var(--spc-700);
 
+        &.secao-busca {
+            padding-bottom: 0;
+        }
 
-& .faixa-categoria {
-    display: flex;
-    flex-flow: column;
-    gap: var(--spc-400);
-    padding-block: var(--spc-500);
-}
+        & .busca {
+            display: flex;
+            flex-flow: column;
+            gap: var(--spc-500);
+            align-items: center;
+            
+            & .form-busca {
+                background-color: white;
+                border-radius: 100vw;
+                max-width: 70rem;
+                width: 90%;
+                display: flex;
+                flex-flow: row;
+                gap: var(--spc-400);
+                justify-content: space-between;
+                padding: var(--spc-100) var(--spc-400);
+                border: solid 1px #ccc;
+                
+                & input {
+                    all: unset;
+                    width: 100%;
+                }
+                
+                & button {
+                    all: unset;
+                    width: max-content;
+                }
+            }
+        }
+    }
+
+    .cards-empresa-grid {
+        height: 260px;
+        padding: 0 6rem;
+    }
+
+    .card-empresa-horizontal {
+        display: flex;
+        flex-direction: row;
+        height: 210px;
+        border-radius: 5%;
+        border: 1px solid #ccc;
+    }
+
+    .agrupamento-imagens {
+        height: 208.5px;
+        width: 208.5px;
+        padding: 0.5px;
+    }
+
+    .img-perfil {
+        height: 100%;
+        width: 100%;
+        border-radius: 6%;
+    }
+
+    .agrupamento-informacoes{
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spc-200);
+        margin: 10px 10px 10px 0;
+    }
+
+    .nome-fantasia-empresa {
+        height: 30px;
+        max-height: 50px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .descricao-empresa {
+        height: 40px;
+        max-height: 50px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .categorias-empresa {
+        font-size: 12px;
+        height: 80px;
+
+        & div {
+            background-color: #FFF5B7;
+            color: #3A6073;
+            font-weight: 600;
+            padding: var(--spc-50) var(--spc-100);
+            border-radius: 0.5rem;
+            margin-bottom: 5px;
+            width: fit-content;
+        }
+    }
+
+    .like-empresa {
+        margin: auto 0;
+    }
+
+    .splide__pagination__page{
+        background: #ccc !important;
+    }
+
+    .ellipse {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 100%;
+    }

@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block 'head' %}
-    <link rel="stylesheet" href="{% static 'css/pesquisar-empresas-usuario.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard-usuario.css' %}">
 {% endblock %}
 
 {% block 'titulo' %}
@@ -36,44 +36,49 @@
                 {% endfor %}
             {% endif %}
 
-            <section>
-                <div class="todos-cards">
-                    {% for empresa in empresas %}
-                        <div
-                            class="card card-empresa"
-                            onclick="window.location.href='{% url 'visualizar_empresa' empresa.id %}'"
-                            style="cursor: pointer;"
-                        >
-                            <div>
-                                <img
-                                    class="img-perfil"
-                                    src="{{ empresa.imagem_perfil.url }}"
-                                    alt="imagem perfil empresa {{ empresa.nome_fantasia }}"
-                                >
-                            </div>
-                            <div
-                                class="moving-container"
+            <div
+                class="splide cards-empresa-grid"
+            >
+                <div
+                    class="splide__track"
+                >
+                    <ul
+                        class="splide__list"
+                    >
+                        {% for empresa in empresas %}
+                            <li
+                                class="
+                                    splide__slide
+                                    card-empresa-horizontal
+                                "
                             >
-                                <img
-                                    src="{{ empresa.imagem_capa.url }}"
-                                    alt="imagem capa empresa {{ empresa.nome_fantasia }}"
+                                <div
+                                    class="agrupamento-imagens mr-4"
                                 >
-                            </div>
-                            <div class="informacoes">
-                                <div class="nome-descricao">
-                                    <p class="nome">{{ empresa.nome_fantasia }}</p>
-                                    <p class="descricao">{{ empresa.descricao }}</p>
+                                    <img
+                                        src="{{ empresa.imagem_perfil.url }}"
+                                        alt="imagem perfil empresa {{ empresa.nome_fantasia }}"
+                                        class="img-perfil"
+                                    >
                                 </div>
-                                <div class="categoria-favoritos">
-                                    <div class="categorias">
-                                        {% for categoria in empresa.categorias|slice:":3" %}
-                                            <div class="categoria">{{ categoria.descricao }}</div>
-                                        {% endfor %}
-                                        {% if empresa.categorias|length > 3  %}
-                                            ... 
-                                        {% endif %}
+                                <div class="agrupamento-informacoes">
+                                    <div class="nome-fantasia-empresa ellipse">
+                                        {{ empresa.nome_fantasia }}
                                     </div>
-                                    <div class="favoritos">
+                                    <div class="descricao-empresa ellipse">
+                                        {{ empresa.descricao }}
+                                    </div>
+                                    <div class="categorias-empresa">
+                                        {% for categoria in empresa.categorias.all|slice:":2" %}
+                                            <div class="">{{ categoria.descricao }}</div>
+                                        {% endfor %}      
+                                        {% if empresa.categorias.all|length > 2  %}
+                                            <div>+</div>
+                                        {% endif %}                                             
+                                    </div>
+                                    <div
+                                        class="like-empresa"
+                                    >
                                         <img
                                             class="fav-{{empresa.id}}"
                                             onclick="favnotfav(
@@ -93,21 +98,40 @@
                                         <span
                                             class="fav-number-{{empresa.id}}"
                                         >
-                                            {{ empresa.favoritos }}
+                                            {% if empresa.favorito_usuario %}
+                                                Curtido
+                                            {% else %}
+                                                Curtir
+                                            {% endif %}
                                         </span>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    {% empty %}
-                        <p>Não foram encontradas empresas com esse nome.</p>
-                    {% endfor %}
+                            </li>
+                        {% empty %}
+                            <li>Não foram encontradas empresas com esse nome.</li>
+                        {% endfor %}
+                    </ul>
                 </div>
-            </section>
+            </div>
         </div>
     </main>
 
     <script>
+        var splide = new Splide( '.splide', {
+            perPage: 3,
+            rewind : true,
+            gap: 20,
+            breakpoints: {
+                1199: {
+                    perPage: 2,
+                },
+                765: {
+                    perPage: 1
+                },
+            }
+          } );
+          
+          splide.mount();
 
         function favnotfav(event, id_icone, numero_favoritos, id_empresa) {
             event.stopPropagation(); 
@@ -127,10 +151,10 @@
                     for (let i = 0; i < icones.length; i++) {
                         if(data.message === 'like'){
                             icones[i].src = "{% static 'images/icone-coracao-preenchido.svg' %}";
-                            spans_numero[i].innerHTML = parseInt(spans_numero[i].innerHTML) + 1
+                            spans_numero[i].innerHTML = 'Curtido'
                         } else {
                             icones[i].src = "{% static 'images/icone-coracao.svg' %}";
-                            spans_numero[i].innerHTML = parseInt(spans_numero[i].innerHTML) - 1
+                            spans_numero[i].innerHTML = 'Curtir'
                         }
                     }
                 }else{
