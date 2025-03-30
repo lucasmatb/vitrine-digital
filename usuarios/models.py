@@ -10,6 +10,7 @@ from vitrine_digital.helper import retornaCaminhoImagemAleatorio
 from stdimage.models import StdImageField
 from vitrine_digital.helper import descriptarAESGCM
 from empresas.models import Cidade
+from vitrine_digital.models import BaseModel
 
 class UserManager(BaseUserManager):
 
@@ -49,6 +50,10 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 class Usuario(AbstractBaseUser, PermissionsMixin):
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    updated_at = models.DateTimeField(auto_now=True)
 
     email = models.CharField(
         max_length=254,
@@ -134,7 +139,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return descriptarAESGCM(self.email)
     
-class Tipo_Assinatura(models.Model):
+class Tipo_Assinatura(BaseModel):
     descricao = models.CharField(
         max_length=254,
         blank=False,
@@ -148,7 +153,7 @@ class Tipo_Assinatura(models.Model):
     def __str__(self):
         return self.descricao
 
-class Pedido_Lojista(models.Model):
+class Pedido_Lojista(BaseModel):
     status_pedido = models.CharField(
         max_length=254,
         blank=False,

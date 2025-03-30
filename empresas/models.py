@@ -1,8 +1,9 @@
 from django.db import models
 from vitrine_digital.helper import retornaCaminhoImagemAleatorio
 from stdimage.models import StdImageField
+from vitrine_digital.models import BaseModel
 
-class Estado(models.Model):
+class Estado(BaseModel):
     descricao = models.CharField(
         max_length=254,
         blank=False,
@@ -17,7 +18,7 @@ class Estado(models.Model):
     def __str__(self):
         return self.descricao
 
-class Cidade(models.Model):
+class Cidade(BaseModel):
     descricao = models.CharField(
         max_length=254,
         blank=False,
@@ -33,7 +34,7 @@ class Cidade(models.Model):
     def __str__(self):
         return self.descricao
 
-class Categoria_Empresa(models.Model):
+class Categoria_Empresa(BaseModel):
     descricao = models.CharField(
         max_length=254,
         blank=False,
@@ -52,7 +53,7 @@ class Categoria_Empresa(models.Model):
     def __str__(self):
         return self.descricao
 
-class Empresa(models.Model):
+class Empresa(BaseModel):
     cnpj = models.CharField(
         max_length=14,
         unique=True,
@@ -131,7 +132,7 @@ class Empresa(models.Model):
     def __str__(self):
         return self.nome_fantasia
     
-class Endereco(models.Model):
+class Endereco(BaseModel):
     cep = models.CharField(
         max_length=254,
         blank=False,
