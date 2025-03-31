@@ -29,6 +29,10 @@ body {
             height: 100%;
             position: relative;
 
+            @media all and (max-width: 768px) {
+                padding-top: 35px;
+            }
+
             &::-webkit-scrollbar-track {
                 background-color: transparent;
             }
@@ -58,7 +62,7 @@ body {
             display: flex;
             flex-flow: column;
             gap: var(--spc-500);
-            padding: var(--spc-900) var(--spc-400);
+            padding: var(--spc-500) var(--spc-400);
         }
 
         & hr {

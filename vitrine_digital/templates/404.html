@@ -10,18 +10,18 @@
 {% endblock %}
 
 {% block 'conteudo'%}
-
-    <section class="secao">
-        <div class="container container-erro">
-            <div class="camada-transparente"></div>
-            <div class="conteudos-erro">
-                <div class="textos">
-                    <h1>404</h1>
-                    <p>Página não encontrada</p>
+    <main>
+        <section class="secao">
+            <div class="container container-erro">
+                <div class="camada-transparente"></div>
+                <div class="conteudos-erro">
+                    <div class="textos">
+                        <h1>404</h1>
+                        <p>Página não encontrada</p>
+                    </div>
+                    <a href="{% url 'home' %}">Ir para o início</a>
                 </div>
-                <a href="{% url 'home' %}">Ir para o início</a>
             </div>
-        </div>
-    </section>
-
+        </section>
+    </main>
 {% endblock %}

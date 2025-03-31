@@ -1,6 +1,4 @@
-.secao-minhas-empresas {
-    padding-top: var(--spc-1000);
-    
+.secao-minhas-empresas {    
     & .cabecalho {
         display: flex;
         gap: var(--spc-300);

@@ -10,47 +10,47 @@
 {% endblock %}
 
 {% block 'conteudo' %}
+    <main>
+        <section class="secao-login">
 
-<section class="secao-login">
+            
+            <div class="container-login">
+                {% if messages %}
+                    {% for i in messages %}   
+                        <div class="alert {{i.tags}}" role="alert">
+                            {{i}} 
+                        </div>
+            
+                    {% endfor %}
+                {% endif %}
+                <h1>Login</h1>
+                <form
+                    method="POST"
+                    action="{% url 'valida_login' %}"
+                >
+                    {% csrf_token %}
+                    <div class="input-wrappers">
+                        <div class="input-wrapper input-wrapper-email">
+                            <label>E-mail</label>
+                            {{ form.email }}
+                        </div>
+                        
+                        <div class="input-wrapper input-wrapper-senha">
+                            <label>Senha</label>
+                            {{ form.password }}
+                        </div>
+                    </div>
+                    <a class="esqueceu-senha" href="{% url 'password_reset' %}">
+                        Esqueceu sua senha?
+                    </a>
+                    <button type="submit">Entrar</button>
+                </form>
 
-    
-    <div class="container-login">
-        {% if messages %}
-            {% for i in messages %}   
-                <div class="alert {{i.tags}}" role="alert">
-                    {{i}} 
-                </div>
-    
-            {% endfor %}
-        {% endif %}
-        <h1>Login</h1>
-        <form
-            method="POST"
-            action="{% url 'valida_login' %}"
-        >
-            {% csrf_token %}
-            <div class="input-wrappers">
-                <div class="input-wrapper input-wrapper-email">
-                    <label>E-mail</label>
-                    {{ form.email }}
-                </div>
-                
-                <div class="input-wrapper input-wrapper-senha">
-                    <label>Senha</label>
-                    {{ form.password }}
+                <div class="trocar-login-cadastro">
+                    <span>Não tem uma conta?</span>
+                    <a href="{% url 'cadastro' %}">Cadastre-se</a>
                 </div>
             </div>
-            <a class="esqueceu-senha" href="{% url 'password_reset' %}">
-                Esqueceu sua senha?
-            </a>
-            <button type="submit">Entrar</button>
-        </form>
-
-        <div class="trocar-login-cadastro">
-            <span>Não tem uma conta?</span>
-            <a href="{% url 'cadastro' %}">Cadastre-se</a>
-        </div>
-    </div>
-</section>
-
+        </section>
+    </main>
 {% endblock %}
