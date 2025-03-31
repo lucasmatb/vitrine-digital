@@ -4,66 +4,186 @@
     <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
 {% endblock %}
 
-<aside id="sidebar">
-    <input type="checkbox" id="toggler">
-    <label for="toggler" class="toggle-btn">
-        <img src="{% static 'images/icone-grid.svg' %}" alt="">
-        <span>
-            <a
-                href="{% url 'home' %}"
-                class="logo-text logo-text-bold logo-text-color"
-            >
-                Vi²Mu
-            </a>
-        </span>
-    </label>
-    <form action="#" class="search-bar">
-        <span class="search-icon">
-            <img src="{% static 'images/icone-casa.svg' %}" alt="Ícone de casa">
-        </span>
-        <input type="text" class="search-query" placeholder="Search...">
-    </form>
+<div
+    id="full-mobile-sidebar"
+    onclick="callFullSidebar()"
+>
+    <div
+        class="logo-img"
+    >
+        <img
+            src="{% static 'images/icone-grid.svg' %}"
+            alt="toggler-hamburguer"
+        >
+    </div>
+</div>
 
-     <ul class="sidebar-nav">
-        <div class="sidebar-nav-items">
-            <li class="sidebar-item">
-                <a href="{% url 'dashboard_usuario' %}" class="sidebar-link">
-                    <img src="{% static 'images/icone-casa.svg' %}" alt="Ícone de casa">
-                    <span>Início</span>
-                </a>
-            </li>
-            <li class="sidebar-item">
-                <a href="{% url 'empresas_favoritas_usuario' %}" class="sidebar-link">
-                    <img src="{% static 'images/icone-coracao.svg' %}" alt="Ícone de coração">
-                    <span>Lojas favoritas</span>
-                </a>
-            </li>
-            <li class="sidebar-item">
-                <a href="{% url 'produtos_salvos_usuario' %}" class="sidebar-link">
-                    <img src="{% static 'images/icone-salvar.svg' %}" alt="Ícone de marcador">
-                    <span>Produtos salvos</span>
-                </a>
-            </li>
-            <li class="sidebar-item">
-                <a href="{% url 'logout' %}" class="sidebar-link">
-                    <img src="{% static 'images/icone-logout.svg' %}" alt="Ícone de logout">
-                    <span>Logout</span>
-                </a>
-            </li>
-        </div>
-     </ul>
-    <div class="sidebar-footer">
-        <div class="sidebar-footer-items">
-            <a href="{% url 'meus_dados_usuario' %}" class="sidebar-link profile-btn">
+<aside
+    id="full-sidebar"
+>
+    <div
+        class="div-toggler-brand"
+        onclick="callFullSidebarMobile()"
+    >
+        <div
+            class="toggle-btn"
+            for="toggler"
+        >
+            <div
+                class="logo-img"
+            >
                 <img
-                    class="sidebar-profile-pic rounded-circle"
-                    src="{{ user.imagem.url }}"
-                    alt="Sua imagem de perfil"
-                    height="24px"
-                    width="24px"
+                    src="{% static 'images/icone-grid.svg' %}"
+                    alt="toggler-hamburguer"
                 >
-                <span>Minha conta</span>
-            </a>
+            </div>
+            <div
+                class="logo-text"
+            >
+                <span
+                    class="logo-text logo-text-bold logo-text-color"
+                >
+                    Vi²Mu
+                </span>
+            </div>
         </div>
     </div>
+
+    <div
+        class="sidebar-middle"
+    >
+        <ul class="sidebar-nav">
+            <li class="sidebar-item">
+                <a
+                    href="{% url 'dashboard_usuario' %}"
+                    class="sidebar-link"
+                >
+                    <div
+                        class="div-img"
+                    >
+                        <img
+                            src="{% static 'images/icone-casa.svg' %}"
+                            alt="Ícone de casa"
+                        >
+                    </div>
+                    <div
+                        class="div-img-text"
+                    >
+                        <span>
+                            Início
+                        </span>
+                    </div>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a
+                    href="{% url 'empresas_favoritas_usuario' %}"
+                    class="sidebar-link"
+                >
+                    <div
+                        class="div-img"
+                    >
+                        <img
+                            src="{% static 'images/icone-coracao.svg' %}"
+                            alt="Ícone de coração"
+                        >
+                    </div>
+                    <div
+                        class="div-img-text"
+                    >
+                        <span>
+                            Lojas favoritas
+                        </span>
+                    </div>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a
+                    href="{% url 'produtos_salvos_usuario' %}"
+                    class="sidebar-link"
+                >
+                    <div
+                        class="div-img"
+                    >
+                        <img
+                            src="{% static 'images/icone-salvar.svg' %}"
+                            alt="Ícone de marcador"
+                        >
+                    </div>
+                    <div
+                        class="div-img-text"
+                    >
+                        <span>
+                            Produtos salvos
+                        </span>
+                    </div>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a
+                    href="{% url 'logout' %}"
+                    class="sidebar-link"
+                >
+                    <div
+                        class="div-img"
+                    >
+                        <img
+                            src="{% static 'images/icone-logout.svg' %}"
+                            alt="Ícone de logout"
+                        >
+                    </div>
+                    <div
+                        class="div-img-text"
+                    >
+                        <span>
+                            Logout
+                        </span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div
+        class="sidebar-footer"
+    >
+        <ul class="sidebar-nav">
+            <li class="sidebar-item">
+                <a
+                    class="sidebar-link"
+                    href="{% url 'meus_dados_usuario' %}"
+                >
+                    <div
+                        class="div-img"
+                    >
+                        <img
+                            src="{{ user.imagem.url }}"
+                            alt="Sua imagem de perfil"
+                            class="rounded-circle"
+                        >
+                    </div>
+                    <div
+                        class="div-img-text"
+                    >
+                        <span>
+                            Minha conta
+                        </span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
 </aside>
+
+<script>
+
+    function callFullSidebar() {
+        document.getElementById('full-mobile-sidebar').classList.add('inactive-display');
+        document.getElementById('full-sidebar').classList.add('active-display');
+    }
+
+    function callFullSidebarMobile() {
+        document.getElementById('full-sidebar').classList.remove('active-display');
+        document.getElementById('full-mobile-sidebar').classList.remove('inactive-display');
+    }
+
+</script>

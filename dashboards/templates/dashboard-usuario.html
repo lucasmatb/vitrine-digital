@@ -22,7 +22,13 @@
                     >
                         {% csrf_token %}
                         <input id="pesquisa" name="pesquisa" type="text" placeholder="Nome da loja">
-                        <button type="submit"><img src="{% static 'images/icone-lupa.svg' %}" alt="">
+                        <button
+                            type="submit"
+                        >
+                            <img
+                                src="{% static 'images/icone-lupa.svg' %}"
+                                alt="lupa pesquisa"
+                            >
                         </button>
                     </form>
                 </div>
