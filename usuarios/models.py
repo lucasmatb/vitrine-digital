@@ -122,6 +122,15 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
         related_name='favoritos_empresas'
     )
 
+    visualizacao_empresa = models.ManyToManyField(
+        Empresa,
+        related_name='visualizacoes_empresas'
+    )
+    visualizacao_produto = models.ManyToManyField(
+        Produto,
+        related_name='visualizacoes_produtos'
+    )
+
     id_cidade = models.ForeignKey(
         Cidade,
         on_delete=models.DO_NOTHING,
@@ -180,3 +189,24 @@ class Pedido_Lojista(BaseModel):
 
     def __str__(self):
         return self.status_pedido
+    
+class Visualizacao_Empresa(BaseModel):
+    id_empresa = models.ForeignKey(
+        Empresa,
+        on_delete=models.DO_NOTHING
+    )
+    id_usuario = models.ForeignKey(
+        Usuario,
+        on_delete=models.DO_NOTHING,
+        related_name='visualizacao_empresa_usuario'
+    )
+class Visualizacao_Produto(BaseModel):
+    id_produto = models.ForeignKey(
+        Produto,
+        on_delete=models.DO_NOTHING
+    )
+    id_usuario = models.ForeignKey(
+        Usuario,
+        on_delete=models.DO_NOTHING,
+        related_name='visualizacao_produto_usuario'
+    )

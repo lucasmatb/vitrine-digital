@@ -9,6 +9,8 @@ from django.shortcuts import get_object_or_404
 import requests
 from django.db.models import Count
 from django.conf import settings
+from usuarios.models import Visualizacao_Empresa
+from django.utils.timezone import now
 
 def retorna_cadastro_empresa(request):
     data = {}
@@ -200,6 +202,18 @@ def retorna_visualizar_empresa_usuario(request, id_empresa):
 
     empresa.qtd_visualizacoes = empresa.qtd_visualizacoes + 1
     empresa.save()
+
+    visualizacao_existente = Visualizacao_Empresa.objects.filter(
+        id_empresa=empresa,
+        id_usuario=request.user,
+        created_at__date=now().date()
+    ).exists()
+
+    if not visualizacao_existente:
+        Visualizacao_Empresa.objects.create(
+            id_empresa=empresa,
+            id_usuario=request.user
+        )
 
     empresa = {
         'id': empresa.id,
