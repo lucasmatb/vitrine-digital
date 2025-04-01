@@ -49,7 +49,7 @@ def retorna_dashboard_usuario(request):
         data['empresas_um_titulo']= 'Empresas encontradas'
         data['empresas_um'] = set_favoritos_empresa(request, empresas_um)
 
-        produtos_um = Produto.objects.filter(nome___icontains=pesquisa).order_by('nome').annotate(
+        produtos_um = Produto.objects.filter(nome__icontains=pesquisa).order_by('nome').annotate(
             favoritos=Count('favoritos_produtos')
         )
         data['produtos_um_titulo'] = 'Produtos encontrados'

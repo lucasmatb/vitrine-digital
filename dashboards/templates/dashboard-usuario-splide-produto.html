@@ -6,146 +6,153 @@
     {{ titulo }}
 </h1>
 
-<div
-    id="splide_id_{{splide_id}}"
-    class="splide cards-empresa-grid"
->
-    <div
-        class="splide__track"
+{% if not produtos %}
+    <h4
+        class="pl-5"
     >
-        <ul
-            class="splide__list"
+        Não foram encontrados produtos.
+    </h4>
+{% else %}
+
+    <div
+        id="splide_id_{{splide_id}}"
+        class="splide cards-empresa-grid"
+    >
+        <div
+            class="splide__track"
         >
-            {% for produto in produtos %}
-                <li
-                    class="
-                        splide__slide
-                        card-empresa-horizontal
-                    "
-                    onclick="window.location.href='{% url 'visualizar_produto' produto.id %}'"
-                >
-                    <div
-                        class="agrupamento-imagens mr-4"
+            <ul
+                class="splide__list"
+            >
+                {% for produto in produtos %}
+                    <li
+                        class="
+                            splide__slide
+                            card-empresa-horizontal
+                        "
+                        onclick="window.location.href='{% url 'visualizar_produto' produto.id %}'"
                     >
-                        <img
-                            src="{{ produto.primeira_imagem.url }}"
-                            alt="imagem perfil produto {{ produto.nome }}"
-                            class="img-perfil-dashboard-usuario"
-                        >
-                    </div>
-                    <div class="agrupamento-informacoes">
-                        <div class="nome-fantasia-empresa ellipse">
-                            {{ produto.nome }}
-                        </div>
-                        <div class="descricao-empresa ellipse">
-                            {{ produto.descricao }}
-                        </div>
                         <div
-                            class="
-                                d-flex
-                                flex-column
-                                h-100
-                                align-items-center
-                                align-items-sm-start
-                                justify-content-center
-                                justify-content-sm-start
-                            "
+                            class="agrupamento-imagens mr-4"
                         >
+                            <img
+                                src="{{ produto.primeira_imagem.url }}"
+                                alt="imagem perfil produto {{ produto.nome }}"
+                                class="img-perfil-dashboard-usuario"
+                            >
+                        </div>
+                        <div class="agrupamento-informacoes">
+                            <div class="nome-fantasia-empresa ellipse">
+                                {{ produto.nome }}
+                            </div>
+                            <div class="descricao-empresa ellipse">
+                                {{ produto.descricao }}
+                            </div>
                             <div
                                 class="
-                                    ellipse
+                                    d-flex
+                                    flex-column
+                                    h-100
+                                    align-items-center
+                                    align-items-sm-start
+                                    justify-content-center
+                                    justify-content-sm-start
                                 "
                             >
-                                {% if produto.ativo == False  %}
-                                    <span class="disponibilidade indisponivel">Indisponível</span>
-                                {% elif produto.qtd == 0 %}
-                                    <span class="disponibilidade sem-estoque">Sem estoque</span>
-                                {% else %}
-                                    <span class="disponibilidade disponivel">Disponível</span>
-                                {% endif %}
-                            </div>
-                            {% if produto.preco_oferta %}
                                 <div
                                     class="
                                         ellipse
                                     "
                                 >
-                                    Valor: 
-                                    <s>
+                                    {% if produto.ativo == False  %}
+                                        <span class="disponibilidade indisponivel">Indisponível</span>
+                                    {% elif produto.qtd == 0 %}
+                                        <span class="disponibilidade sem-estoque">Sem estoque</span>
+                                    {% else %}
+                                        <span class="disponibilidade disponivel">Disponível</span>
+                                    {% endif %}
+                                </div>
+                                {% if produto.preco_oferta %}
+                                    <div
+                                        class="
+                                            ellipse
+                                        "
+                                    >
+                                        Valor: 
+                                        <s>
+                                            R$
+                                            {{ produto.preco }}
+                                        </s>
+                                    </div>
+                                    <div
+                                        class="
+                                            ellipse
+                                            font-weight-bold
+                                        "
+                                    >
+                                        Promo: 
+                                        R$
+                                        {{ produto.preco_oferta }}
+                                    </div>
+                                {% else %}
+                                    <div
+                                        class="
+                                            ellipse
+                                        "
+                                    >
+                                        Valor: 
                                         R$
                                         {{ produto.preco }}
-                                    </s>
-                                </div>
-                                <div
-                                    class="
-                                        ellipse
-                                        font-weight-bold
-                                    "
-                                >
-                                    Promo: 
-                                    R$
-                                    {{ produto.preco_oferta }}
-                                </div>
-                            {% else %}
-                                <div
-                                    class="
-                                        ellipse
-                                    "
-                                >
-                                    Valor: 
-                                    R$
-                                    {{ produto.preco }}
-                                </div>
-                            {% endif %}
-                            <div
-                                class="
-                                    ellipse
-                                "
-                            >
-                                {% if produto.porcentagem_desconto %}
-                                    <span
-                                        class="disponibilidade tag-oferta"
-                                    >
-                                        {{ produto.porcentagem_desconto }}% OFF
-                                    <span>
+                                    </div>
                                 {% endif %}
-                            </div>
-                            <div class="like-empresa ml-n1 mt-2">
-                                <img
-                                    class="fav-{{produto.id}}"
-                                    onclick="favnotfavproduct(
-                                        event,
-                                        'fav-{{produto.id}}',
-                                        'fav-number-{{produto.id}}',
-                                        {{produto.id}}
-                                    )"
-                                    {% if produto.favorito_usuario %}
-                                        src="{% static 'images/icone-salvar-fill.svg' %}"
-                                    {% else %}
-                                        src="{% static 'images/icone-salvar.svg' %}"
-                                    {% endif %}
-                                    alt="Ícone salvar"
-                                    style="cursor: pointer;"
+                                <div
+                                    class="
+                                        ellipse
+                                    "
                                 >
-                                <span
-                                    class="fav-number-{{produto.id}}"
-                                >
-                                    {% if produto.favorito_usuario %}
-                                        Salvo
-                                    {% else %}
-                                        Salvar
+                                    {% if produto.porcentagem_desconto %}
+                                        <span
+                                            class="disponibilidade tag-oferta"
+                                        >
+                                            {{ produto.porcentagem_desconto }}% OFF
+                                        <span>
                                     {% endif %}
-                                </span>
+                                </div>
+                                <div class="like-empresa ml-n1 mt-2">
+                                    <img
+                                        class="fav-{{produto.id}}"
+                                        onclick="favnotfavproduct(
+                                            event,
+                                            'fav-{{produto.id}}',
+                                            'fav-number-{{produto.id}}',
+                                            {{produto.id}}
+                                        )"
+                                        {% if produto.favorito_usuario %}
+                                            src="{% static 'images/icone-salvar-fill.svg' %}"
+                                        {% else %}
+                                            src="{% static 'images/icone-salvar.svg' %}"
+                                        {% endif %}
+                                        alt="Ícone salvar"
+                                        style="cursor: pointer;"
+                                    >
+                                    <span
+                                        class="fav-number-{{produto.id}}"
+                                    >
+                                        {% if produto.favorito_usuario %}
+                                            Salvo
+                                        {% else %}
+                                            Salvar
+                                        {% endif %}
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </li>
-            {% empty %}
-                <li>Não foram encontrados produtos.</li>
-            {% endfor %}
-        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
-</div>
+{% endif %}
 
     <script>
         new Splide( '#splide_id_{{splide_id}}', {
