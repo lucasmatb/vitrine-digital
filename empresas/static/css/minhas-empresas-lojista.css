@@ -212,6 +212,7 @@
 
                     & a {
                         align-self: start;
+                        cursor: pointer;
 
                         @media all and (max-width: 500px){
                             max-width: 10rem;
@@ -225,7 +226,12 @@
                         &.botao-editar, &.botao-excluir {
                             background-color: #F8F9FA;
                         }
-    
+                        
+                        &.botao-visualizacao-avancada {
+                            padding: var(--spc-200) var(--spc-300);
+                            border-radius: 0.8rem;
+                            background-color: #ecf1f6;
+                        }
                     }
                 }
             }

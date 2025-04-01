@@ -122,15 +122,6 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
         related_name='favoritos_empresas'
     )
 
-    visualizacao_empresa = models.ManyToManyField(
-        Empresa,
-        related_name='visualizacoes_empresas'
-    )
-    visualizacao_produto = models.ManyToManyField(
-        Produto,
-        related_name='visualizacoes_produtos'
-    )
-
     id_cidade = models.ForeignKey(
         Cidade,
         on_delete=models.DO_NOTHING,

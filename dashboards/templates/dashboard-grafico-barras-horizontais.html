@@ -1,0 +1,62 @@
+<div>
+    <h1
+        class="pl-5 mb-5"
+    >
+        {{ dados.titulo }}
+    </h1>
+
+    {% if not dados %}
+        <h4
+            class="pl-5"
+        >
+            Não foram encontrados dados.
+        </h4>
+    {% else %}
+        <canvas
+            id="container_{{dados.id}}"
+            style="
+                width: 100%;
+                height: 400px;
+            ">
+        </canvas>
+    {% endif %}
+</div>
+<script>
+
+    function getRandomColor() {
+        let r = Math.floor(Math.random() * 256);
+        let g = Math.floor(Math.random() * 256);
+        let b = Math.floor(Math.random() * 256);
+        return `rgba(${r}, ${g}, ${b}, 0.2)`;
+    }
+
+    const ctx_{{dados.id}} = document.getElementById('container_{{dados.id}}');
+    const chartData_{{dados.id}} = {{ dados.data|safe }};
+    const subtitulo_{{dados.id}} = '{{ dados.subtitulo|safe }}';
+
+    if(
+        ctx_{{dados.id}} &&
+        chartData_{{dados.id}} &&
+        subtitulo_{{dados.id}}
+    ){
+        new Chart(ctx_{{dados.id}}, {
+            type: 'bar',
+            data: {
+              labels: chartData_{{dados.id}}.labels,
+              datasets: [{
+                label: subtitulo_{{dados.id}},
+                data: chartData_{{dados.id}}.data,
+                backgroundColor: chartData_{{dados.id}}.data.map(() => getRandomColor()),
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+        });
+    }
+  </script>

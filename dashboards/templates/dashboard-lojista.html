@@ -7,184 +7,19 @@
 
 {% block 'conteudo'%}
     <main>
-        <div class="main-scrollable">
-            <section>
-                <h2>Lojas favoritas</h2>
-                <p>Suas lojas favoritas aparecerão aqui</p>
-            </section>
+        <div class="
+            main-scrollable
+            p-5
+        ">
+            <h1>
+                Visualização avançada dos últimos 30 dias
+            </h1>
 
-            <hr>
+            {% include 'dashboard-grafico-tempo.html' with dados=grafico_um %}
+            {% include 'dashboard-grafico-barras-horizontais.html' with dados=grafico_dois %}
+            {% include 'dashboard-grafico-tempo.html' with dados=grafico_tres %}
+            {% include 'dashboard-grafico-barras-horizontais.html' with dados=grafico_quatro %}
 
-            <section>
-                <h2>Produtos salvos</h2>
-                <div class="card card-produto">
-                    <div class="img-capa"></div>
-                    <div class="textos">
-                        <p class="nome">Nome do produto</p>
-                        <div class="loja">
-                            <div class="img-loja"></div>
-                            <span class="nome-loja">Nome da loja</span>
-                        </div>
-                        <div class="preco-disponibilidade">
-                            <!-- <div class="categoria">Categoria</div> -->
-                                <div class="preco">R$ 299,90</div>
-                            <div class="disponibilidade">
-                                <span>Indisponível</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <hr>
-
-            <section>
-                <h2>Lojas em alta em [CIDADE]</h2>
-
-                <div class="card card-empresa">
-                    <div class="img-perfil"></div>
-                    <div class="img-capa"></div>
-                    <div class="textos">
-                        <p class="nome">Nome da empresa</p>
-                        <p class="descricao">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
-                        </p>
-                        <div class="categoria-favoritos">
-                            <div class="categoria">Categoria</div>
-                            <div class="favoritos">
-                                
-                                <img src="{% static 'images/icone-estrela.svg' %}" alt="Ícone estrela">
-                                <span>1.3K</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <hr>
-
-            <!-- pra cada categoria: -->
-            <section class="secao-swiper">
-                <h2>Em alta na categoria de [CATEGORIA]</h2>
-                <div class="container-swiper swiper">
-                    <div class="card-wrapper">
-                        <ul class="card-list swiper-wrapper">
-                            <li class="card-item swiper-slide">
-                                <a href="#" class="card-link card card-empresa">
-                                    <!-- <div class="card card-empresa"> -->
-                                        <div class="img-perfil"></div>
-                                        <div class="img-capa"></div>
-                                        <div class="textos">
-                                            <p class="nome">Nome da empresa</p>
-                                            <p class="descricao">
-                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
-                                            </p>
-                                            <div class="categoria-favoritos">
-                                                <div class="categoria">Categoria</div>
-                                                <div class="favoritos">
-                                                    <img src="{% static 'images/icone-estrela.svg' %}" alt="Ícone estrela">
-                                                    <span>1.3K</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <!-- </div> -->
-                                </a>
-                            </li>
-                            <li class="card-item swiper-slide">
-                                <a href="#" class="card-link card card-empresa">
-                                    <!-- <div class="card card-empresa"> -->
-                                        <div class="img-perfil"></div>
-                                        <div class="img-capa"></div>
-                                        <div class="textos">
-                                            <p class="nome">Nome da empresa</p>
-                                            <p class="descricao">
-                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
-                                            </p>
-                                            <div class="categoria-favoritos">
-                                                <div class="categoria">Categoria</div>
-                                                <div class="favoritos">
-                                                    <img src="{% static 'images/icone-estrela.svg' %}" alt="Ícone estrela">
-                                                    <span>1.3K</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <!-- </div> -->
-                                </a>
-                            </li>
-                            <li class="card-item swiper-slide">
-                                <a href="#" class="card-link card card-empresa">
-                                    <!-- <div class="card card-empresa"> -->
-                                        <div class="img-perfil"></div>
-                                        <div class="img-capa"></div>
-                                        <div class="textos">
-                                            <p class="nome">Nome da empresa</p>
-                                            <p class="descricao">
-                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
-                                            </p>
-                                            <div class="categoria-favoritos">
-                                                <div class="categoria">Categoria</div>
-                                                <div class="favoritos">
-                                                    <img src="{% static 'images/icone-estrela.svg' %}" alt="Ícone estrela">
-                                                    <span>1.3K</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <!-- </div> -->
-                                </a>
-                            </li>
-                            <li class="card-item swiper-slide">
-                                <a href="#" class="card-link card card-empresa">
-                                    <!-- <div class="card card-empresa"> -->
-                                        <div class="img-perfil"></div>
-                                        <div class="img-capa"></div>
-                                        <div class="textos">
-                                            <p class="nome">Nome da empresa</p>
-                                            <p class="descricao">
-                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
-                                            </p>
-                                            <div class="categoria-favoritos">
-                                                <div class="categoria">Categoria</div>
-                                                <div class="favoritos">
-                                                    <img src="{% static 'images/icone-estrela.svg' %}" alt="Ícone estrela">
-                                                    <span>1.3K</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <!-- </div> -->
-                                </a>
-                            </li>
-                            <li class="card-item swiper-slide">
-                                <a href="#" class="card-link card card-empresa">
-                                    <!-- <div class="card card-empresa"> -->
-                                        <div class="img-perfil"></div>
-                                        <div class="img-capa"></div>
-                                        <div class="textos">
-                                            <p class="nome">Nome da empresa</p>
-                                            <p class="descricao">
-                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam incidunt maxime quidem! Necessitatibus repudiandae veritatis nisi quis. Incidunt alias natus dignissimos sed ratione atque, temporibus, quod expedita sit earum quis.
-                                            </p>
-                                            <div class="categoria-favoritos">
-                                                <div class="categoria">Categoria</div>
-                                                <div class="favoritos">
-                                                    <img src="{% static 'images/icone-estrela.svg' %}" alt="Ícone estrela">
-                                                    <span>1.3K</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <!-- </div> -->
-                                </a>
-                            </li>
-                        </ul>
-            
-                        <!-- If we need pagination -->
-                        <div class="swiper-pagination"></div>
-            
-                        <!-- If we need navigation buttons -->
-                        <div class="swiper-slide-button swiper-button-prev"></div>
-                        <div class="swiper-slide-button swiper-button-next"></div>
-                    </div>
-                </div>
-            </section>
         </div>
     </main>
 

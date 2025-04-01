@@ -1,8 +1,13 @@
 from django.shortcuts import render, redirect
 from empresas.models import Empresa
 from produtos.models import Produto, Imagem_Produto
+from usuarios.models import Visualizacao_Empresa, Visualizacao_Produto
 from django.db.models import Count
 from django.db.models.functions import Least
+from django.utils import timezone
+from datetime import timedelta
+from django.db.models.functions import TruncDate
+from django.utils.timezone import now
 
 def home(request):
     if request.user.is_authenticated:
@@ -99,8 +104,136 @@ def set_favoritos_produto(request, produtos):
 
     return produtos_com_favoritos
 
-def retorna_dashboard_lojista(request):
+def retorna_dashboard_lojista(request, id_empresa):
 
-    #data = {}
-    #data['form'] = UsuarioRegistrationForm()
-    return render(request, 'dashboard-lojista.html')#, data)
+    data = {}
+
+    data['grafico_um'] = prepara_grafico_um(
+        30,
+        id_empresa
+    )
+
+    data['grafico_dois'] = prepara_grafico_dois(
+        30,
+        id_empresa
+    )
+
+    data['grafico_tres'] = prepara_grafico_tres(
+        30,
+        id_empresa
+    )
+
+    data['grafico_quatro'] = prepara_grafico_quatro(
+        30,
+        id_empresa
+    )
+
+    return render(request, 'dashboard-lojista.html', data)
+
+def prepara_grafico_um(
+    numero_dias,
+    id_empresa,
+):
+    data = {}
+
+    hoje = now().date()
+    dias = [(hoje - timedelta(days=i)) for i in range((numero_dias-1), -1, -1)]
+
+    visualizacoes = (
+        Visualizacao_Empresa.objects
+        .filter(id_empresa=id_empresa, created_at__date__gte=dias[0])
+        .annotate(data_criacao=TruncDate('created_at'))
+        .values("data_criacao")
+        .annotate(total=Count("id"))
+    )
+    
+    dados = {v["data_criacao"]: v["total"] for v in visualizacoes}
+    
+    data['id'] = 1
+    data['titulo'] = 'Dias com mais visualização da empresa'
+    data['subtitulo'] = 'Visualizações'
+    data['data'] = [dados.get(dia, 0) for dia in dias]
+
+    return data
+def prepara_grafico_dois(
+    numero_dias,
+    id_empresa,
+):
+    data_pesquisa = timezone.localtime() - timedelta(days=numero_dias)
+    data = {}
+
+    grafico = Visualizacao_Produto.objects.filter(
+        created_at__gte=data_pesquisa,
+        id_produto__id_empresa=id_empresa
+    ).annotate(
+        visualizacoes=Count('id')
+    ).values_list('id_produto__nome', 'visualizacoes').order_by('-visualizacoes')[:10]
+    
+    data['id'] = 2
+    data['titulo'] = 'Produtos mais visualizados'
+    data['subtitulo'] = 'Visualizações'
+    data['data'] = {
+        'labels': [x[0] for x in grafico],
+        'data': [x[1] for x in grafico]
+    }
+
+    return data
+def prepara_grafico_tres(
+    numero_dias,
+    id_empresa,
+):
+    data = {}
+
+    hoje = now().date()
+    dias = [(hoje - timedelta(days=i)) for i in range((numero_dias-1), -1, -1)]
+    
+    produtos_empresa = Produto.objects.filter(id_empresa=id_empresa).values_list("id", flat=True)
+    
+    visualizacoes = (
+        Visualizacao_Produto.objects
+        .filter(id_produto__in=produtos_empresa, created_at__date__gte=dias[0])
+        .annotate(data_criacao=TruncDate('created_at'))
+        .values("data_criacao")
+        .annotate(total=Count("id"))
+    )
+    
+    dados = {v["data_criacao"]: v["total"] for v in visualizacoes}
+    
+    data['id'] = 3
+    data['titulo'] = 'Dias com mais visualização de produtos'
+    data['subtitulo'] = 'Visualizações'
+    data['data'] = [dados.get(dia, 0) for dia in dias]
+
+    return data
+
+def prepara_grafico_quatro(
+    numero_dias,
+    id_empresa,
+):
+    data_pesquisa = timezone.localtime() - timedelta(days=numero_dias)
+    data = {}
+
+    grafico = Produto.objects.filter(
+        id_empresa=id_empresa,
+        created_at__gte=data_pesquisa
+    ).annotate(
+        curtidas=Count('favoritos_produtos')
+    ).values_list('nome', 'curtidas').order_by('-curtidas')[:10]
+
+    data['id'] = 4
+    data['titulo'] = 'Produtos mais salvos'
+    data['subtitulo'] = 'Salvos'
+    data['data'] = {
+        'labels': [x[0] for x in grafico],
+        'data': [x[1] for x in grafico]
+    }
+
+    return data
+
+
+
+
+
+
+
+
