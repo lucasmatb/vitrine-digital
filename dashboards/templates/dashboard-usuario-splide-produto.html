@@ -1,0 +1,192 @@
+{% load static %}
+
+<h1
+    class="pl-5"
+>
+    {{ titulo }}
+</h1>
+
+<div
+    id="splide_id_{{splide_id}}"
+    class="splide cards-empresa-grid"
+>
+    <div
+        class="splide__track"
+    >
+        <ul
+            class="splide__list"
+        >
+            {% for produto in produtos %}
+                <li
+                    class="
+                        splide__slide
+                        card-empresa-horizontal
+                    "
+                >
+                    <div
+                        class="agrupamento-imagens mr-4"
+                    >
+                        <img
+                            src="{{ produto.primeira_imagem.url }}"
+                            alt="imagem perfil produto {{ produto.nome }}"
+                            class="img-perfil"
+                        >
+                    </div>
+                    <div class="agrupamento-informacoes">
+                        <div class="nome-fantasia-empresa ellipse">
+                            {{ produto.nome }}
+                        </div>
+                        <div class="descricao-empresa ellipse">
+                            {{ produto.descricao }}
+                        </div>
+                        <div
+                            class="
+                                d-flex
+                                flex-column
+                                h-100
+                                align-items-center
+                                align-items-sm-start
+                                justify-content-center
+                                justify-content-sm-start
+                            "
+                        >
+                            <div
+                                class="
+                                    ellipse
+                                "
+                            >
+                                {% if produto.ativo == False  %}
+                                    <span class="disponibilidade indisponivel">Indisponível</span>
+                                {% elif produto.qtd == 0 %}
+                                    <span class="disponibilidade sem-estoque">Sem estoque</span>
+                                {% else %}
+                                    <span class="disponibilidade disponivel">Disponível</span>
+                                {% endif %}
+                            </div>
+                            {% if produto.preco_oferta %}
+                                <div
+                                    class="
+                                        ellipse
+                                    "
+                                >
+                                    Valor: 
+                                    <s>
+                                        R$
+                                        {{ produto.preco }}
+                                    </s>
+                                </div>
+                                <div
+                                    class="
+                                        ellipse
+                                    "
+                                >
+                                    Promo: 
+                                    R$
+                                    {{ produto.preco_oferta }}
+                                </div>
+                            {% else %}
+                                <div
+                                    class="
+                                        ellipse
+                                    "
+                                >
+                                    Valor: 
+                                    R$
+                                    {{ produto.preco }}
+                                </div>
+                            {% endif %}
+                            <div
+                                class="
+                                    ellipse
+                                "
+                            >
+                                {% if produto.porcentagem_desconto %}
+                                    <span
+                                        class="disponibilidade tag-oferta"
+                                    >
+                                        {{ produto.porcentagem_desconto }}% OFF
+                                    <span>
+                                {% endif %}
+                            </div>
+                            <div class="like-empresa ml-n1 mt-2">
+                                <img
+                                    class="fav-{{produto.id}}"
+                                    onclick="favnotfavproduct(
+                                        event,
+                                        'fav-{{produto.id}}',
+                                        'fav-number-{{produto.id}}',
+                                        {{produto.id}}
+                                    )"
+                                    {% if produto.favorito_usuario %}
+                                        src="{% static 'images/icone-salvar-fill.svg' %}"
+                                    {% else %}
+                                        src="{% static 'images/icone-salvar.svg' %}"
+                                    {% endif %}
+                                    alt="Ícone salvar"
+                                    style="cursor: pointer;"
+                                >
+                                <span
+                                    class="fav-number-{{produto.id}}"
+                                >
+                                    {% if produto.favorito_usuario %}
+                                        Salvo
+                                    {% else %}
+                                        Salvar
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            {% empty %}
+                <li>Não foram encontrados produtos.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+    <script>
+        new Splide( '#splide_id_{{splide_id}}', {
+            perPage: 3,
+            rewind : true,
+            gap: 20,
+            breakpoints: {
+                1199: {
+                    perPage: 2,
+                },
+                765: {
+                    perPage: 1
+                },
+            }
+          } ).mount();
+
+        function favnotfavproduct(event, id_icone, numero_salvos, id_produto) {
+            event.stopPropagation();
+            const url = "/empresas/salva-nao-salva-produto/" + id_produto + "/"
+            const icones = document.getElementsByClassName(id_icone);
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status === 'success'){
+                    for (let i = 0; i < icones.length; i++) {
+                        if(data.message === 'like'){
+                            icones[i].src = "{% static 'images/icone-salvar-fill.svg' %}";
+                        } else {
+                            icones[i].src = "{% static 'images/icone-salvar.svg' %}";
+                        }
+                    }
+                }else{
+                    alert('Não foi possível favoritar esse produto, tente novamente mais tarde.');
+                }
+            })
+            .catch(error => {
+                alert('Não foi possível favoritar esse produto, tente novamente mais tarde.');
+            });
+        }
+    </script>

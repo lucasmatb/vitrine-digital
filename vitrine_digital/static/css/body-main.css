@@ -29,7 +29,7 @@ body {
             height: 100%;
             position: relative;
 
-            @media all and (max-width: 768px) {
+            @media all and (max-width: 992px) {
                 padding-top: 35px;
             }
 
