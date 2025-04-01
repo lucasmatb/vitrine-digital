@@ -49,6 +49,7 @@
         height: 210px;
         border-radius: 5%;
         border: 1px solid #ccc;
+        cursor: pointer;
     }
 
     .agrupamento-imagens {
