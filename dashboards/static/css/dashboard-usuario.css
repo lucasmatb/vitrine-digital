@@ -58,7 +58,7 @@
         padding: 0.5px;
     }
 
-    .img-perfil {
+    .img-perfil-dashboard-usuario {
         height: 100%;
         width: 100%;
         border-radius: 6%;
@@ -178,7 +178,7 @@
             width: 100%;
         }
     
-        .img-perfil {
+        .img-perfil-dashboard-usuario {
             min-height: 200px;
             width: 100%;
             border-radius: 6% 6% 0 0;

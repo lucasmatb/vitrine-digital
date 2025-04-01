@@ -21,11 +21,13 @@
         }
 
         & .img-perfil {
-            max-width: 10rem;
+            width: 125px;
+            height: 125px;
             position: absolute;
-            top: 15rem;
-            left: 5rem;
-            border: solid 4px #fff;
+            top: 13.5rem;
+            left: 6rem;
+            border: solid 1px #fff;
+            border-radius: 50%;
         }
 
         & .informacoes {
