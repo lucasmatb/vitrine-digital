@@ -31,8 +31,8 @@ def retorna_dashboard_usuario(request):
 
         produtos_dois = Produto.objects.annotate(
             favoritos=Count('favoritos_produtos', distinct=True)
-        ).order_by('-favoritos', 'nome')
-        data['produtos_dois_titulo'] = 'Os produtos mais curtidos!'
+        ).filter(favoritos__gt=0).order_by('-favoritos', 'nome')
+        data['produtos_dois_titulo'] = 'Os produtos mais requisitados!'
         data['produtos_dois'] = set_favoritos_produto(request, produtos_dois)
 
         empresas_dois = Empresa.objects.annotate(

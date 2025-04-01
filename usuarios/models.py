@@ -193,20 +193,20 @@ class Pedido_Lojista(BaseModel):
 class Visualizacao_Empresa(BaseModel):
     id_empresa = models.ForeignKey(
         Empresa,
-        on_delete=models.DO_NOTHING
+        on_delete=models.CASCADE
     )
     id_usuario = models.ForeignKey(
         Usuario,
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE,
         related_name='visualizacao_empresa_usuario'
     )
 class Visualizacao_Produto(BaseModel):
     id_produto = models.ForeignKey(
         Produto,
-        on_delete=models.DO_NOTHING
+        on_delete=models.CASCADE
     )
     id_usuario = models.ForeignKey(
         Usuario,
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE,
         related_name='visualizacao_produto_usuario'
     )
