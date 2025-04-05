@@ -28,74 +28,94 @@
                     </div>
 
                     <div class="minhas-empresas-lojista">
-
                         {% for empresa in empresas %}
-                            <div class="card-empresa-faixa">
+                            <div>
                                 <div class="imagens">
-                                    <div class="img-capa">
+                                    <div
+                                        class="div-img-capa-minhas-empresas"
+                                    >
                                         <img
                                             src="{{ empresa.imagem_capa.url }}"
                                             alt="Imagem da empresa de capa"
-                                            class="img-responsive"
+                                            class="img-capa-minhas-empresas"
                                         >
                                     </div>
+                                    <!--
                                     <div>
                                         <img
                                             src="{{ empresa.imagem_perfil.url }}"
                                             alt="Imagem da empresa de perfil"
-                                            class="img-perfil"
+                                            class="img-perfil-minhas-empresas"
                                         >
+                                    </div>-->
+                                </div>
+                                <div
+                                    class="div-suporte"
+                                >
+                                    <div
+                                        class="suporte"
+                                    >
                                     </div>
                                 </div>
-                                <div class="textos-botoes">
-                                    <div class="textos">
-                                        <div class="informacoes">
-                                            <p class="nome">{{ empresa.nome_fantasia }}</p>
-                                            <p class="descricao">
-                                                {{ empresa.descricao }}
-                                            </p>
-                                            <div class="categorias">
-                                                {% for categoria in empresa.empresa_categoria.all|slice:":3" %}
-                                                    <div class="categoria">{{ categoria.descricao }}</div>
-                                                {% endfor %}      
-                                                {% if empresa.empresa_categoria.all|length > 3  %}
-                                                    ... 
-                                                {% endif %}                                             
+                                <div class="card-empresa-faixa">
+                                    <div class="textos-botoes">
+                                        <div class="textos">
+                                            <div class="informacoes">
+                                                <p class="nome">{{ empresa.nome_fantasia }}</p>
+                                                <p class="descricao">
+                                                    {{ empresa.descricao }}
+                                                </p>
+                                                <div class="categorias">
+                                                    {% for categoria in empresa.empresa_categoria.all|slice:":3" %}
+                                                        <div class="categoria">{{ categoria.descricao }}</div>
+                                                    {% endfor %}      
+                                                    {% if empresa.empresa_categoria.all|length > 3  %}
+                                                        ... 
+                                                    {% endif %}                                             
+                                                </div>
+                                            </div>
+                                            <div class="dados">
+                                                <p>{{ empresa.contador_favoritos }} favoritos</p>
+                                                {% if empresa.contador_produtos < 2  %}
+                                                    <p>{{ empresa.contador_produtos }} produto</p>
+                                                {% else  %}
+                                                    <p>{{ empresa.contador_produtos }} produtos</p>
+                                                {% endif %}
+                                                <p>{{ empresa.media_salvamento_produto }} salvamentos / produto</p>
                                             </div>
                                         </div>
-                                        <div class="dados">
-                                            <p>{{ empresa.contador_favoritos }} favoritos</p>
-                                            <p>{{ empresa.contador_produtos }} produtos</p>
-                                            <p>{{ empresa.media_salvamento_produto }} salvamentos / produto</p>
+                                        <div
+                                            class="div-botoes"
+                                        >
+                                            <div class="botoes">
+                                                <a
+                                                    href="{% url 'listagem_produto_por_empresa' empresa.id %}"
+                                                    class="botao botao-produtos"
+                                                >
+                                                    Produtos
+                                                </a>
+                                                <a
+                                                    href="{% url 'editar_empresa' empresa.id %}"
+                                                    class="botao botao-editar"
+                                                >
+                                                    Editar
+                                                </a>
+                                                <a
+                                                    href="{% url 'excluir_empresa' empresa.id %}"
+                                                    class="botao botao-excluir"
+                                                >
+                                                    Excluir
+                                                </a>
+                                            </div>
+                                            <div class="botoes">
+                                                <a
+                                                    href="{% url 'dashboard_lojista' empresa.id %}"
+                                                    class="botao-visualizacao-avancada text-center"
+                                                >
+                                                    Visualização Avançada
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="botoes">
-                                        <a
-                                            href="{% url 'listagem_produto_por_empresa' empresa.id %}"
-                                            class="botao botao-produtos"
-                                        >
-                                            Produtos
-                                        </a>
-                                        <a
-                                            href="{% url 'editar_empresa' empresa.id %}"
-                                            class="botao botao-editar"
-                                        >
-                                            Editar
-                                        </a>
-                                        <a
-                                            href="{% url 'excluir_empresa' empresa.id %}"
-                                            class="botao botao-excluir"
-                                        >
-                                            Excluir
-                                        </a>
-                                    </div>
-                                    <div class="botoes">
-                                        <a
-                                            href="{% url 'dashboard_lojista' empresa.id %}"
-                                            class="botao-visualizacao-avancada"
-                                        >
-                                            Visualização Avançada
-                                        </a>
                                     </div>
                                 </div>
                             </div>

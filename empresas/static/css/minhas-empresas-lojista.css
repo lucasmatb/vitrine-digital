@@ -1,5 +1,5 @@
 .secao-minhas-empresas {    
-    & .cabecalho {
+    .cabecalho {
         display: flex;
         gap: var(--spc-300);
         justify-content: space-between;
@@ -9,66 +9,41 @@
         }
     }
 
-    & .minhas-empresas-lojista {
+    .minhas-empresas-lojista {
         display: flex;
         flex-flow: column;
-        gap: var(--spc-500);
+        gap: var(--spc-800);
 
-        & .card-empresa-faixa {
-            width: 100%;
-            display: flex;
-            /* box-shadow: 0rem 0rem 8rem rgba(0,0,0,0.05); */
-            border-radius: 0.8rem;
-            max-height: 40rem;
-            height: max-content;
-            border: 1px solid rgba(0, 0, 0, .125);
+        .imagens {
+            justify-items: center;
+            .div-img-capa-minhas-empresas {
+                max-width: 70%;
+                max-height: 70%;
+                
+                @media all and (max-width: 600px){
+                    max-width: 100%;
+                }
 
-            @media all and (max-width: 980px){
-                flex-flow: column;
-                max-height: 100%;
-            }
+                .img-capa-minhas-empresas {
+                    max-width: 100%;
+                    border-radius: 0.8rem;
+                    border-bottom: solid 2px #ccc;
 
-            & .imagens {
-                position: relative;
-                height: 100%;
-
-                & .img-capa {
-                    /* max-width: 20rem; */
-                    border-top-left-radius: 0.8rem;
-                    border-bottom-left-radius: 0.8rem;
-                    overflow: hidden;
-                    aspect-ratio: 3/4;
-                    max-height: 30rem;
-                    min-height: 100%;
-                    
                     @media all and (max-width: 980px){
-                        /* width: 100%;
-                        height: auto;
-                        aspect-ratio: 5/1; */
 
-                        height: 15rem;
-                        width: 100%;
-
-                        border-top-left-radius: 0.8rem;
-                        border-bottom-left-radius: 0;
-                        border-top-right-radius: 0.8rem;
                     }
 
-                    & img {
-                        /* max-width: 100%; */
+                    @media all and (max-width: 600px){
 
-                        height: 100%;
-                        min-width: 100%;
-                        aspect-ratio: 15/20;
-                        object-fit: cover;
-                        object-position: 25% 25%;
+                    }
 
-                        
+                    @media all and (max-width: 500px){
+
                     }
                 }
-                
-                & .img-perfil {
 
+                .img-perfil-minhas-empresas {
+                    /*
                     background-position: 50%;
                     background-repeat: no-repeat;
                     background-size: cover;
@@ -82,97 +57,110 @@
                     left: 18rem;
                     width: 8rem;
                     object-fit: cover;
-                    object-position: 48%;
+                    object-position: 48%;*/
+                }
 
-                    @media all and (max-width: 980px){
-                        transform: none;
-                        bottom: 0;
-                        left: 0;
-                        transform: translate(50%, 50%);
-                    }
-                    
-                    & img {
-                        max-width: 100%;
-                    }
+            }
+        }
+        
+        .div-suporte {
+
+            .suporte {
+                margin: auto;
+                border-right: solid 12px #ccc;
+                border-left: solid 12px #ccc;
+                width: 15%;
+                height: 25px;
+
+                @media all and (max-width: 980px){
+                    border-right: solid 10px #ccc;
+                    border-left: solid 10px #ccc;
+                }
+
+                @media all and (max-width: 600px){
+                    display: none;
                 }
             }
-                
-            & .textos-botoes {
+        }
+
+        .card-empresa-faixa {
+            width: 100%;
+            display: flex;
+            border-radius: 0.8rem;
+            max-height: 40rem;
+            height: max-content;
+            border: 1px solid rgba(0, 0, 0, .125);
+
+            @media all and (max-width: 980px){
+                flex-flow: column;
+                max-height: 100%;
+            }
+
+            .textos-botoes {
                 display: flex;
                 flex-flow: column;
                 height: 100%;
                 justify-content: space-between;
                 gap: var(--spc-500);
-                padding: var(--spc-700);
-                padding-left: 8rem;
+                padding: var(--spc-500);
                 width: 100%;
 
                 @media all and (max-width: 980px){
-                    padding: var(--spc-700);
-                    padding-top: 7rem;
-                    gap: var(--spc-700);
+                    padding: var(--spc-500);
+                    gap: var(--spc-500);
                 }
 
                 @media all and (max-width: 500px){
                     padding: var(--spc-600);
-                    padding-top: 7rem;
                 }
                 
-                & .textos {
+                .textos {
                     display: flex;
                     width: 100%;
-                    
-                    @media all and (max-width: 980px){
-                        justify-content: space-between;
-                    }
 
                     @media all and (max-width: 600px){
                         flex-flow: column;
                         gap: var(--spc-300);
                     }
                     
-                    & .informacoes {
+                    .informacoes {
                         border-right: solid 2px #ccc;
-                        padding-right: var(--spc-700);
+                        padding-right: var(--spc-500);
 
                         width: 50%;
-                        
-                        @media all and (max-width: 980px){
-                            flex: 1;
-                            width: 100%;
-                        }
 
                         @media all and (max-width: 600px){
+                            width: 100%;
                             border-right: 0;
                             padding-right: 0;
                             border-bottom: solid 2px #ccc;
                             padding-bottom: var(--spc-400);
                         }
 
-                        & .nome {
+                        .nome {
                             font-size: var(--fs-300);
                             font-weight: 600;
-                            max-width: 20rem;
+                            max-width: 100%;
                             white-space: nowrap;                  
                             overflow: hidden;
                             text-overflow: ellipsis;
                         }
 
-                        & .descricao {
+                        .descricao {
                             font-size: var(--fs-300);
                             font-weight: 600;
-                            max-width: 20rem;
+                            max-width: 100%;
                             white-space: nowrap;                  
                             overflow: hidden;
                             text-overflow: ellipsis;
                         }
 
-                        & .categorias {
+                        .categorias {
                             display: flex;
                             flex-flow: row wrap;
                             gap: var(--spc-100);
 
-                            & .categoria {
+                            .categoria {
                                 padding: var(--spc-50) var(--spc-100);
                                 background-color: #f8e9ff;
                                 border-radius: 0.4rem;
@@ -184,53 +172,68 @@
                         
                     }
                     
-                    & .dados {
+                    .dados {
                         padding-left: var(--spc-500);
 
                         width: 50%;
-                        
-                        @media all and (max-width: 980px){
-                            flex: 1;
-                            width: 100%;
-                        }
 
                         @media all and (max-width: 600px){
+                            width: 100%;
                             padding-left: 0;
                         }
                     }
                 }
 
-                & .botoes {
+                .div-botoes {
                     display: flex;
-                    gap: var(--spc-100);
-                    
+                    flex-flow: column;
+                    gap: var(--spc-200);
+
                     @media all and (max-width: 500px){
-                        flex-flow: column;
-                        max-width: 20rem;
                         align-items: center;
                     }
 
-                    & a {
-                        align-self: start;
-                        cursor: pointer;
-
-                        @media all and (max-width: 500px){
-                            max-width: 10rem;
-                            max-width: none;
-                        }
-
-                        &.botao-produtos {
-                            background-color: #FCEAED;
-                        }
-
-                        &.botao-editar, &.botao-excluir {
-                            background-color: #F8F9FA;
-                        }
+                    .botoes {
+                        display: flex;
+                        justify-content: center;
+                        gap: var(--spc-200);
                         
-                        &.botao-visualizacao-avancada {
-                            padding: var(--spc-200) var(--spc-300);
-                            border-radius: 0.8rem;
-                            background-color: #ecf1f6;
+                        @media all and (max-width: 500px){
+                            flex-flow: column;
+                            width: 100%;
+                            align-items: center;
+
+                            .botao {
+                                padding: var(--spc-200) 0;
+                            }
+                        }
+    
+                        a {
+                            align-self: start;
+                            cursor: pointer;
+    
+                            @media all and (max-width: 500px){
+                                max-width: 10rem;
+                                max-width: none;
+                            }
+    
+                            &.botao-produtos {
+                                background-color: #FCEAED;
+                            }
+    
+                            &.botao-editar, &.botao-excluir {
+                                background-color: #F8F9FA;
+                            }
+                            
+                            &.botao-visualizacao-avancada {
+                                padding: var(--spc-200) var(--spc-300);
+                                border-radius: 0.8rem;
+                                background-color: #ecf1f6;
+
+                                @media all and (max-width: 500px){
+                                    width: 100%;
+                                }
+                            }
                         }
                     }
                 }

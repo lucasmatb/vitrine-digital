@@ -264,7 +264,7 @@ def retorna_minhas_empresas_lojista(request):
                 contador_fav_produtos += produto.favoritos_produtos.count()
             empresa.contador_favoritos = empresa.favoritos_empresas.count()
             empresa.contador_produtos = produtos.count()
-            empresa.media_salvamento_produto = contador_fav_produtos / produtos.count()
+            empresa.media_salvamento_produto = round(contador_fav_produtos / produtos.count(), 2)
 
     data['empresas'] = empresas
 
