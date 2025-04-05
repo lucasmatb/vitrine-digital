@@ -73,25 +73,17 @@
                                                 <span>
                                             {% endif %}
                                         </div>
-                                        <div class="favoritos">
-                                            <img
-                                                class="fav-{{produto.id}}"
-                                                onclick="favnotfavproduct(
-                                                    event,
-                                                    'fav-{{produto.id}}',
-                                                    'fav-number-{{produto.id}}',
-                                                    {{produto.id}}
-                                                )"
-                                                {% if produto.favorito_usuario %}
-                                                    src="{% static 'images/icone-salvar-fill.svg' %}"
-                                                {% else %}
-                                                    src="{% static 'images/icone-salvar.svg' %}"
-                                                {% endif %}
-                                                alt="Ícone salvar"
-                                                style="cursor: pointer;"
-                                            >
-                                        </div>
                                     </div>
+
+                                    <div class="categorias">
+                                        {% for categoria in produto.categoria_produto.all|slice:":4" %}
+                                            <div class="categoria">{{ categoria.descricao }}</div>
+                                        {% endfor %}
+                                        {% if produto.categoria_produto.all|length > 4  %}
+                                            ... 
+                                        {% endif %}
+                                    </div>
+
                                     <div
                                         class="h-100 align-content-center"
                                     >

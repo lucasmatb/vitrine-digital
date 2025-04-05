@@ -9,6 +9,7 @@ from empresas.models import Empresa
 from django.conf import settings
 from usuarios.models import Visualizacao_Produto
 from django.utils.timezone import now
+from decimal import Decimal
 
 def retorna_visualizar_produto(request, pk):
     data = {}
@@ -57,6 +58,7 @@ def retorna_listagem_produtos_por_empresa(request, id_empresa):
 def criar_produto(request, id_empresa):
     data = {}
     data['id_empresa'] = id_empresa
+
     if validacao_usuario_possui_empresa(request.user, id_empresa) == False:
         messages.error(request, 'Esta empresa não pertence ao usuário logado')
         return redirect('minhas_empresas_lojista')
@@ -66,6 +68,11 @@ def criar_produto(request, id_empresa):
         messages.error(request, 'Você chegou no limite de produtos para sua conta, o limite é 50.')
         return redirect('minhas_empresas_lojista')
 
+    imagens = request.FILES.getlist('imagens')
+    if not imagens:
+        messages.error(request, 'Você deve ao menos inserir uma imagem.')
+        return render(request, 'produto-form.html', data)
+
     if request.method == 'POST':
 
         data_post = request.POST.copy()
@@ -74,7 +81,7 @@ def criar_produto(request, id_empresa):
             data_post['preco'] = data_post['preco'].replace(",", ".")
 
         if 'preco_oferta' in data_post:
-            data_post['preco_oferta'] = data_post['preco_oferta'].replace(",", ".")
+            data_post['preco_oferta'] = Decimal(data_post['preco_oferta']) if data_post['preco_oferta'] != 0 else None
 
         form = ProdutoForm(data_post, request.FILES)
         
@@ -92,8 +99,6 @@ def criar_produto(request, id_empresa):
             )
 
             produto.categoria_produto.add(*form.cleaned_data['categorias'])
-
-            imagens = request.FILES.getlist('imagens')
 
             for imagem in imagens:
                 Imagem_Produto.objects.create(
@@ -123,9 +128,12 @@ def editar_produto(request, id_empresa, pk):
 
         if 'preco' in data_post:
             data_post['preco'] = data_post['preco'].replace(",", ".")
+            print(data_post['preco_oferta'])
 
         if 'preco_oferta' in data_post:
             data_post['preco_oferta'] = data_post['preco_oferta'].replace(",", ".")
+            if data_post['preco_oferta'] == '0.00':
+                data_post['preco_oferta'] = None
 
         form = ProdutoForm(data_post, request.FILES, instance=produto)
 
