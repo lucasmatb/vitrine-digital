@@ -206,11 +206,11 @@ class EmpresaForm(forms.ModelForm):
 
             if cleaned_data['imagem_capa'] is None:
                 cleaned_data['imagem_capa'] = 'default_capa_empresa.jpg'
-            elif verifica_resolucao_imagem(cleaned_data['imagem_capa'], 600, 300):
+            elif verifica_resolucao_imagem(cleaned_data['imagem_capa'], 601, 301):
                 self.add_error('imagem_capa', "As imagens devem ter uma resolução maior ou igual a 600x300")
             if cleaned_data['imagem_perfil'] is None:
                 cleaned_data['imagem_perfil'] = 'default_perfil_empresa.jpg'
-            elif verifica_resolucao_imagem(cleaned_data['imagem_perfil'], 300, 300):
+            elif verifica_resolucao_imagem(cleaned_data['imagem_perfil'], 301, 301):
                 self.add_error('imagem_perfil', "As imagens devem ter uma resolução maior ou igual a 300x300")
 
         return cleaned_data

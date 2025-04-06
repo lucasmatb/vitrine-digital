@@ -49,7 +49,9 @@
 #C3B1E1
 #6E85B7 */
 
-
+.container {
+    gap: 2rem;
+}
 
 form {
     & .input-wrapper.input-wrapper-checkbox {

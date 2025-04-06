@@ -1,8 +1,8 @@
 from django import forms
 from produtos.models import Produto, Categoria_Produto
-from django.core.exceptions import ValidationError
 from PIL import Image
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
+import re
 
 class ProdutoForm(forms.ModelForm):
     categorias = forms.ModelMultipleChoiceField(
@@ -17,6 +17,7 @@ class ProdutoForm(forms.ModelForm):
         ),
         required=True
     )
+
     imagens = forms.ImageField(
         widget=forms.ClearableFileInput(
             attrs={
@@ -30,26 +31,24 @@ class ProdutoForm(forms.ModelForm):
         required=False
     )
 
-    preco = forms.DecimalField(
+    preco = forms.CharField(
         label=("Preço"),
         required=True,
         widget=forms.TextInput(attrs={
             'id': 'preco',
             'name': 'preco'
         }),
-        decimal_places=2,
-        max_digits=8
+        max_length=14
     )
 
-    preco_oferta = forms.DecimalField(
+    preco_oferta = forms.CharField(
         label=("Preço oferta"),
         required=False,
         widget=forms.TextInput(attrs={
             'id': 'preco_oferta',
             'name': 'preco_oferta'
         }),
-        decimal_places=2,
-        max_digits=8
+        max_length=14
     )
 
     qtd = forms.IntegerField(
@@ -72,21 +71,50 @@ class ProdutoForm(forms.ModelForm):
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
 
-    def clean_imagens(self):
+    def clean(self):
+        cleaned_data = super(ProdutoForm, self).clean()
+
         imagens = self.files.getlist('imagens')
+
         if len(imagens) > 3:
-            raise ValidationError('Você pode enviar no máximo 3 imagens.')
+            self.add_error('imagens', "Você pode enviar no máximo 3 imagens.")
+
         for imagem in imagens:
             image = Image.open(imagem)
-            if image.width < 300 or image.height < 300:
-                raise ValidationError('As imagens devem ter uma resolução maior ou igual a 300x300.')
-        
-        return imagens
+            if image.width < 301 or image.height < 301:
+                self.add_error('imagens', "As imagens devem ter uma resolução maior ou igual a 300x300.")
+
+        if verifica_preco_tipo_correto(cleaned_data.get('preco')) == None:
+            self.add_error('preco', "O preço deve ser um valor válido.")
+        else:
+            cleaned_data['preco'] = verifica_preco_tipo_correto(cleaned_data.get('preco'))
+
+        if cleaned_data.get('preco_oferta'):
+            if verifica_preco_tipo_correto(cleaned_data.get('preco_oferta')) == None:
+                self.add_error('preco_oferta', "O preço promocional deve ser um valor válido.")
+            else:
+                cleaned_data['preco_oferta'] = verifica_preco_tipo_correto(cleaned_data.get('preco_oferta'))
+                if cleaned_data.get('preco') < (cleaned_data.get('preco_oferta') * Decimal('1.01')):
+                    self.add_error('preco_oferta', "O preço de oferta deve ser, ao menos, 1% menor que o preço normal.")
+
+        if cleaned_data.get('preco_oferta') == '' or cleaned_data.get('preco_oferta') == 0:
+            cleaned_data['preco_oferta'] = None
+
+        return cleaned_data
     
-    def clean_preco_oferta(self):
-        preco = self.cleaned_data.get('preco')
-        preco_oferta = self.cleaned_data.get('preco_oferta')
-        if preco_oferta and preco < (preco_oferta * Decimal('1.01')):
-            raise ValidationError('O preço de oferta deve ser menor que o preço normal.')
-        
-        return preco_oferta
+def verifica_preco_tipo_correto(valor: str):
+    print(valor)
+    if not re.fullmatch(r"[0-9.]+", valor):
+        return None
+    
+    cleaned = valor.replace(".", "")
+
+    if len(cleaned) < 3:
+        cleaned = cleaned.rjust(3, "0")
+
+    normalized = cleaned[:-2] + "." + cleaned[-2:]
+    print("teste44")
+    try:
+        return Decimal(normalized).normalize()
+    except InvalidOperation:
+        return None
