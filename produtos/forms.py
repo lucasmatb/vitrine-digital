@@ -78,7 +78,7 @@ class ProdutoForm(forms.ModelForm):
 
         if len(imagens) > 3:
             self.add_error('imagens', "Você pode enviar no máximo 3 imagens.")
-
+        
         for imagem in imagens:
             image = Image.open(imagem)
             if image.width < 301 or image.height < 301:
@@ -103,17 +103,16 @@ class ProdutoForm(forms.ModelForm):
         return cleaned_data
     
 def verifica_preco_tipo_correto(valor: str):
-    print(valor)
-    if not re.fullmatch(r"[0-9.]+", valor):
+    if not re.fullmatch(r"[0-9.,]+", valor):
         return None
     
-    cleaned = valor.replace(".", "")
+    cleaned = valor.replace(',', '.').replace(".", "")
 
     if len(cleaned) < 3:
         cleaned = cleaned.rjust(3, "0")
 
     normalized = cleaned[:-2] + "." + cleaned[-2:]
-    print("teste44")
+
     try:
         return Decimal(normalized).normalize()
     except InvalidOperation:

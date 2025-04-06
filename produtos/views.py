@@ -74,10 +74,11 @@ def criar_produto(request, id_empresa):
         form = ProdutoForm(data_post, request.FILES)
 
         imagens = request.FILES.getlist('imagens')
-        if imagens:
-            messages.error(request, 'O produto deve ter pelo menos uma imagem')
 
-        if imagens and form.is_valid():
+        if not imagens:
+            form.errors['imagens'] = form.error_class(["O produto deve ter pelo menos uma imagem."])
+
+        if form.is_valid():
             empresa = Empresa.objects.get(pk=id_empresa)
             produto = Produto.objects.create(
                 nome            =  form.cleaned_data['nome'],
