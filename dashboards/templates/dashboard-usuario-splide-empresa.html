@@ -1,7 +1,10 @@
 {% load static %}
 
 <h1
-    class="pl-5"
+    class="
+        pl-5
+        mb-5
+    "
 >
     {{ titulo }}
 </h1>
@@ -32,57 +35,92 @@
                         onclick="window.location.href='{% url 'visualizar_empresa' empresa.id %}'"
                     >
                         <div
-                            class="agrupamento-imagens mr-4"
+                            class="
+                                row
+                                no-gutters
+                                h-100
+                            "
                         >
-                            <img
-                                src="{{ empresa.imagem_perfil.url }}"
-                                alt="imagem perfil empresa {{ empresa.nome_fantasia }}"
-                                class="img-perfil-dashboard-usuario"
-                            >
-                        </div>
-                        <div class="agrupamento-informacoes">
-                            <div class="nome-fantasia-empresa ellipse">
-                                {{ empresa.nome_fantasia }}
-                            </div>
-                            <div class="descricao-empresa ellipse">
-                                {{ empresa.descricao }}
-                            </div>
-                            <div class="categorias-empresa">
-                                {% for categoria in empresa.categorias.all|slice:":2" %}
-                                    <div class="ellipse">{{ categoria.descricao }}</div>
-                                {% endfor %}      
-                                {% if empresa.categorias.all|length > 2  %}
-                                    <div>+</div>
-                                {% endif %}                                             
-                            </div>
                             <div
-                                class="like-empresa"
+                                class="
+                                    col-12 col-sm-6 col-xl-7
+                                    agrupamento-imagens
+                                "
                             >
                                 <img
-                                    class="fav-{{empresa.id}}"
-                                    onclick="favnotfav(
-                                        event,
-                                        'fav-{{empresa.id}}',
-                                        'fav-number-{{empresa.id}}',
-                                        {{empresa.id}}
-                                    )"
-                                    {% if empresa.favorito_usuario %}
-                                        src="{% static 'images/icone-coracao-preenchido.svg' %}"
-                                    {% else %}
-                                        src="{% static 'images/icone-coracao.svg' %}"
-                                    {% endif %}
-                                    alt="Ícone coraçao"
-                                    style="cursor: pointer;"
+                                    src="{{ empresa.imagem_perfil.url }}"
+                                    alt="imagem perfil empresa {{ empresa.nome_fantasia }}"
+                                    class="img-perfil-dashboard-usuario"
                                 >
-                                <span
-                                    class="fav-number-{{empresa.id}}"
+                            </div>
+                            <div class="
+                                    col-12 col-sm-6 col-xl-5
+                                    agrupamento-informacoes
+                                "
+                            >
+                                <div class="nome-fantasia-empresa">
+                                    {{ empresa.nome_fantasia }}
+                                </div>
+                                <div class="descricao-empresa">
+                                    {{ empresa.descricao }}
+                                </div>
+                                <div class="categorias-empresa">
+                                    {% for categoria in empresa.categorias.all|slice:":2" %}
+                                        {% if forloop.last %}
+                                            <div
+                                                class="d-flex"
+                                            >
+                                                <div
+                                                    class="categoria-empresa-style"
+                                                >
+                                                    {{ categoria.descricao }}
+                                                </div>
+                                                {% if empresa.categorias.all|length > 2 %}
+                                                    <div
+                                                        class="categoria-empresa-style px-3 ml-3"
+                                                    >
+                                                        +
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        {% else %}
+                                            <div
+                                                class="categoria-empresa-style"
+                                            >
+                                                {{ categoria.descricao }}
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div
+                                    class="like-empresa"
                                 >
-                                    {% if empresa.favorito_usuario %}
-                                        Curtido
-                                    {% else %}
-                                        Curtir
-                                    {% endif %}
-                                </span>
+                                    <img
+                                        class="fav-{{empresa.id}}"
+                                        onclick="favnotfav(
+                                            event,
+                                            'fav-{{empresa.id}}',
+                                            'fav-number-{{empresa.id}}',
+                                            {{empresa.id}}
+                                        )"
+                                        {% if empresa.favorito_usuario %}
+                                            src="{% static 'images/icone-coracao-preenchido.svg' %}"
+                                        {% else %}
+                                            src="{% static 'images/icone-coracao.svg' %}"
+                                        {% endif %}
+                                        alt="Ícone coraçao"
+                                        style="cursor: pointer;"
+                                    >
+                                    <span
+                                        class="fav-number-{{empresa.id}}"
+                                    >
+                                        {% if empresa.favorito_usuario %}
+                                            Curtido
+                                        {% else %}
+                                            Curtir
+                                        {% endif %}
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </li>
@@ -94,14 +132,11 @@
 
     <script>
         new Splide( '#splide_id_{{splide_id}}', {
-            perPage: 3,
+            perPage: 2,
             rewind : true,
             gap: 20,
             breakpoints: {
-                1199: {
-                    perPage: 2,
-                },
-                765: {
+                991: {
                     perPage: 1
                 },
             }
