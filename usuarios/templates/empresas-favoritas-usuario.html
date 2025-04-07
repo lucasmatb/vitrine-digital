@@ -12,85 +12,85 @@
 {% block 'conteudo'%}
     <main>
         <div class="main-scrollable">
-            {% if messages %}
-            {% for i in messages %}   
-                <div class="alert {{i.tags}}" role="alert">
-                    {{i}} 
+            <section class="secao">
+                {% if messages %}
+                    {% for i in messages %}   
+                        <div class="alert {{i.tags}}" role="alert">
+                            {{i}} 
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="cabecalho">
+                    <h1>Suas lojas favoritas</h1>
                 </div>
-            {% endfor %}
-        {% endif %}
-
-        <section>
-            <div class="cabecalho">
-                <h1>Suas lojas favoritas</h1>
-            </div>
-            <div class="todos-cards">
-                {% for empresa in empresas %}
-                    <div
-                        class="card card-empresa"
-                        onclick="window.location.href='{% url 'visualizar_empresa' empresa.id %}'"
-                        style="cursor: pointer;"
-                    >
-                        <div>
-                            <img
-                                class="img-perfil"
-                                src="{{ empresa.imagem_perfil.url }}"
-                                alt="imagem perfil empresa {{ empresa.nome_fantasia }}"
-                            >
-                        </div>
+                <div class="grid-produtos-empresas">
+                    {% for empresa in empresas %}
                         <div
-                           class="moving-container"
+                            class="card card-empresa"
+                            onclick="window.location.href='{% url 'visualizar_empresa' empresa.id %}'"
+                            style="cursor: pointer;"
                         >
-                            <img
-                                src="{{ empresa.imagem_capa.url }}"
-                                alt="imagem capa empresa {{ empresa.nome_fantasia }}"
+                            <div>
+                                <img
+                                    class="img-perfil"
+                                    src="{{ empresa.imagem_perfil.url }}"
+                                    alt="imagem perfil empresa {{ empresa.nome_fantasia }}"
+                                >
+                            </div>
+                            <div
+                                class="moving-container"
                             >
-                        </div>
-                        <div class="informacoes">
-                            <div class="nome-descricao">
-                                <p class="nome">{{ empresa.nome_fantasia }}</p>
-                                <p class="descricao">{{ empresa.descricao }}</p>
+                                <img
+                                    src="{{ empresa.imagem_capa.url }}"
+                                    alt="imagem capa empresa {{ empresa.nome_fantasia }}"
+                                >
                             </div>
-                            <div class="categoria-favoritos">
-                                <div class="categorias">
-                                    {% for categoria in empresa.categorias|slice:":3" %}
-                                        <div class="categoria">{{ categoria.descricao }}</div>
-                                    {% endfor %}
-                                    {% if empresa.categorias|length > 3  %}
-                                        ... 
-                                    {% endif %}
+                            <div class="informacoes">
+                                <div class="nome-descricao">
+                                    <p class="nome">{{ empresa.nome_fantasia }}</p>
+                                    <p class="descricao">{{ empresa.descricao }}</p>
                                 </div>
-                                <div class="favoritos">
-                                    <img
-                                        class="fav-{{empresa.id}}"
-                                        onclick="favnotfav(
-                                            event,
-                                            'fav-{{empresa.id}}',
-                                            'fav-number-{{empresa.id}}',
-                                            {{empresa.id}}
-                                        )"
-                                        {% if empresa.favorito_usuario %}
-                                            src="{% static 'images/icone-coracao-preenchido.svg' %}"
-                                        {% else %}
-                                            src="{% static 'images/icone-coracao.svg' %}"
+                                <div class="categoria-favoritos">
+                                    <div class="categorias">
+                                        {% for categoria in empresa.categorias|slice:":3" %}
+                                            <div class="categoria">{{ categoria.descricao }}</div>
+                                        {% endfor %}
+                                        {% if empresa.categorias|length > 3  %}
+                                            ... 
                                         {% endif %}
-                                        alt="Ícone coração"
-                                        style="cursor: pointer;"
-                                    >
-                                    <span
-                                        class="fav-number-{{empresa.id}}"
-                                    >
-                                        {{ empresa.favoritos }}
-                                    </span>
+                                    </div>
+                                    <div class="favoritos">
+                                        <img
+                                            class="fav-{{empresa.id}}"
+                                            onclick="favnotfav(
+                                                event,
+                                                'fav-{{empresa.id}}',
+                                                'fav-number-{{empresa.id}}',
+                                                {{empresa.id}}
+                                            )"
+                                            {% if empresa.favorito_usuario %}
+                                                src="{% static 'images/icone-coracao-preenchido.svg' %}"
+                                            {% else %}
+                                                src="{% static 'images/icone-coracao.svg' %}"
+                                            {% endif %}
+                                            alt="Ícone coração"
+                                            style="cursor: pointer;"
+                                        >
+                                        <span
+                                            class="fav-number-{{empresa.id}}"
+                                        >
+                                            {{ empresa.favoritos }}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                {% empty %}
-                    <p>Você não favoritou nenhum empresa.</p>
-                {% endfor %}
-            </div>
-        </section>
+                    {% empty %}
+                        <p>Você não favoritou nenhum empresa.</p>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
     </main>
 
     <script>
