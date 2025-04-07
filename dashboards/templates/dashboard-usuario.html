@@ -43,9 +43,9 @@
             {% endif %}
 
             {% if sem_pesquisa %}
-                <!--{% include 'dashboard-usuario-splide-produto.html' with produtos=produtos_um splide_id=1 titulo=produtos_um_titulo %}-->
+                {% include 'dashboard-usuario-splide-produto.html' with produtos=produtos_um splide_id=1 titulo=produtos_um_titulo %}
                 {% include 'dashboard-usuario-splide-empresa.html' with empresas=empresas_um splide_id=2 titulo=empresas_um_titulo %}
-                <!--{% include 'dashboard-usuario-splide-produto.html' with produtos=produtos_dois splide_id=3 titulo=produtos_dois_titulo %}-->
+                {% include 'dashboard-usuario-splide-produto.html' with produtos=produtos_dois splide_id=3 titulo=produtos_dois_titulo %}
                 {% include 'dashboard-usuario-splide-empresa.html' with empresas=empresas_dois splide_id=4 titulo=empresas_dois_titulo %}
             {% else %}
                 {% include 'dashboard-usuario-splide-empresa.html' with empresas=empresas_um splide_id=1 titulo=empresas_um_titulo %}

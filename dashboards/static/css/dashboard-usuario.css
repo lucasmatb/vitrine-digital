@@ -58,6 +58,12 @@
         }
     }
 
+    .card-empresa-horizontal-splide-produto {
+        @media (max-width: 576px) {
+            min-height: 520px;
+        }
+    }
+
     .agrupamento-imagens {
         max-height: 100%;
         max-width: 100%;
@@ -118,6 +124,12 @@
 
         @media (max-width: 576px) {
             min-height: 50px;
+        }
+    }
+
+    .descricao-empresa-splide-produto {
+        @media (max-width: 576px) {
+            min-height: 40px;
         }
     }
 
