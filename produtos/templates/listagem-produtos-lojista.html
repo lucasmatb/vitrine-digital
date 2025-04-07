@@ -12,9 +12,7 @@
 {% block 'conteudo'%}
     <main>
         <div class="main-scrollable">
-        
             <section class="secao">
-
                 {% if messages %}
                     {% for i in messages %}   
                         <div class="alert {{i.tags}}" role="alert">
@@ -30,7 +28,7 @@
                 <div class="meus-produtos-lojista">
                     {% for produto in produtos %}
                         <div
-                            class="card card-produto card-produto-usuario card-produto-usuario-edicao"
+                            class="card card-produto card-produto-usuario card-produto-usuario-visualizar"
                         >
                             <div class="moving-container">
                                 {% if produto.primeira_imagem %}
@@ -47,6 +45,8 @@
                             </div>
                             <div class="informacoes-botoes">
                                 <div class="tudo-menos-cat">
+                                    <div class="nome">{{ produto.nome }}</div>
+                                    <div class="descricao">{{ produto.descricao }}</div>
                                     <div
                                         class="
                                             d-flex
@@ -85,7 +85,7 @@
                                     </div>
 
                                     <div
-                                        class="h-100 align-content-center"
+                                        class="align-content-center"
                                     >
                                         <div class="preco-salvar">
                                             {% if produto.preco_oferta %}

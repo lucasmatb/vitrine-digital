@@ -2,7 +2,7 @@
     display: flex;
     gap: var(--spc-300);
 
-    @media all and (max-width: 576px){
+    @media all and (max-width: 768px){
         flex-flow: column;
         text-align: center;
     }
@@ -13,7 +13,7 @@
     grid-template-columns: repeat(auto-fill, 22.5rem);
     gap: var(--spc-700);
 
-    @media (max-width: 576px) {
+    @media (max-width: 768px) {
         justify-content: center;
     }
 }
