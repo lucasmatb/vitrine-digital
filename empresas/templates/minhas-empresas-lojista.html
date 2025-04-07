@@ -75,13 +75,17 @@
                                                 </div>
                                             </div>
                                             <div class="dados">
-                                                <p>{{ empresa.contador_favoritos }} favoritos</p>
-                                                {% if empresa.contador_produtos < 2  %}
-                                                    <p>{{ empresa.contador_produtos }} produto</p>
+                                                {% if empresa.contador_favoritos < 2  %}
+                                                    <p>{{ empresa.contador_favoritos }} curtida</p>
                                                 {% else  %}
-                                                    <p>{{ empresa.contador_produtos }} produtos</p>
+                                                    <p>{{ empresa.contador_favoritos }} curtidas</p>
                                                 {% endif %}
-                                                <p>{{ empresa.media_salvamento_produto }} salvamentos / produto</p>
+                                                {% if empresa.contador_produtos < 2  %}
+                                                    <p>{{ empresa.contador_produtos }} produto salvo</p>
+                                                {% else  %}
+                                                    <p>{{ empresa.contador_produtos }} produtos salvos</p>
+                                                {% endif %}
+                                                <p>{{ empresa.qtd_visualizacoes }} visualizações totais</p>
                                             </div>
                                         </div>
                                         <div
