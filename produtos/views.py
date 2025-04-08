@@ -9,6 +9,7 @@ from empresas.models import Empresa
 from django.conf import settings
 from usuarios.models import Visualizacao_Produto
 from django.utils.timezone import now
+from django.http import JsonResponse
 
 def retorna_visualizar_produto(request, pk):
     data = {}
@@ -170,10 +171,12 @@ def editar_produto(request, id_empresa, pk):
     return render(request, 'produto-form.html', data)
 
 def excluir_produto(request, id_empresa, pk):
-    produto = get_object_or_404(Produto, id=pk)
-    if validacao_usuario_possui_empresa(request.user, id_empresa) == False:
-        messages.error(request, 'Este produto não pertence ao usuário logado')
-        return redirect('listagem_produto_por_empresa', id_empresa)
-
-    produto.delete()
-    return redirect('listagem_produto_por_empresa', id_empresa)
+    try:
+        if validacao_usuario_possui_empresa(request.user, id_empresa) == False:
+            return JsonResponse({'status': 'error', 'message': 'Este produto não pertence ao usuário logado'})
+        
+        produto = get_object_or_404(Produto, id=pk)
+        produto.delete()
+        return JsonResponse({'status': 'success'})
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)})

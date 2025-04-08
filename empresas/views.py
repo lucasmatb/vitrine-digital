@@ -290,15 +290,15 @@ def verifica_cep(request, cep):
         return JsonResponse({'erro': 'Erro ao buscar CEP'}, status=500)
     
 def excluir_empresa(request, pk):
+    try:
+        if validacao_usuario_possui_empresa(request.user, pk) == False:
+            return JsonResponse({'status': 'error', 'message': 'Esta empresa não pertence ao usuário logado'})
 
-    if validacao_usuario_possui_empresa(request.user, pk) == False:
-        messages.error(request, 'Esta empresa não pertence ao usuário logado')
-        return redirect('minhas_empresas_lojista')
-
-    empresa = get_object_or_404(Empresa, pk=pk)
-    empresa.delete()
-    messages.success(request, 'Empresa excluída com sucesso')
-    return redirect('minhas_empresas_lojista')
+        empresa = get_object_or_404(Empresa, pk=pk)
+        empresa.delete()
+        return JsonResponse({'status': 'success'})
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)})
 
 def validacao_usuario_possui_empresa(usuario, id_empresa):
     empresa = Empresa.objects.get(pk=id_empresa)
