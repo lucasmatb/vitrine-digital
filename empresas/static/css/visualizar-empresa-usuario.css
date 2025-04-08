@@ -1,17 +1,18 @@
 .main-scrollable {
     padding: 0 !important;
+    gap: var(--spc-400);
     
     & .perfil {
         padding: 0;
         position: relative;    
 
-        & .div-img-capa {
+        .div-img-capa {
             width: 100%;
             min-height: 20rem;
             max-height: 20rem;
             overflow: hidden;
 
-            & .img-capa {
+            .img-capa {
                 height: 100%;
                 min-width: 100%;
                 aspect-ratio: 15/20;
@@ -20,23 +21,33 @@
             }
         }
 
-        & .img-perfil {
-            width: 125px;
-            height: 125px;
-            position: absolute;
-            top: 13.5rem;
+        .div-img-perfil-visualizacao-empresa-usuario {
+            min-width: 150px;
+            min-height: 150px;
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            position: relative;
+            bottom: 9rem;
             left: 6rem;
-            border: solid 1px #fff;
-            border-radius: 50%;
+            border: 3px solid rgb(239, 228, 255);
+            border-radius: 15px;
+
+            .img-perfil-visualizacao-empresa-usuario {
+                width: 125%;
+                height: 125%;
+                top: -15%;
+                left: -15%;
+                object-fit: cover;
+            }
         }
 
         & .informacoes {
             display: flex;
             justify-content: space-between;
             gap: var(--spc-600);
-            padding: var(--spc-900);
-            padding-bottom: var(--spc-600);
-            padding-top: var(--spc-1000);
+            padding: 0 var(--spc-900);
+            margin-top: -80px;
 
             @media all and (max-width: 650px){
                 flex-flow: column;
@@ -123,33 +134,6 @@
         gap: var(--spc-900);
         padding: var(--spc-600) var(--spc-900);
         padding-top: 0;
-
-        & .destaques {
-            width: 100%;
-            display: flex;
-            flex-flow: column;
-            gap: 1rem 3rem;
-
-            & .carrossel {
-                display: grid;
-                grid-auto-flow: column;
-                scroll-behavior: auto;
-                gap: var(--spc-300);
-                overflow-y: auto;
-                overscroll-behavior-x: contain;
-                scroll-snap-type: x mandatory;
-                scrollbar-width: none;
-                justify-content: start;
-
-                &::-webkit-scrollbar {
-                    display: none;
-                }
-
-                & .card {
-                    scroll-snap-align: start;
-                }
-            }
-        }
 
         & .todos {
             width: 100%;

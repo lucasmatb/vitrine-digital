@@ -29,12 +29,15 @@
                         alt="imagem capa empresa {{ empresa.nome_fantasia }}"
                     >
                 </div>
-                <img
-                    class="img-perfil"
-                    src="{{ empresa.imagem_perfil.url }}"
-                    alt="imagem perfil empresa {{ empresa.nome_fantasia }}"
+                <div
+                    class="div-img-perfil-visualizacao-empresa-usuario"
                 >
-
+                    <img
+                        class="img-perfil-visualizacao-empresa-usuario"
+                        src="{{ empresa.imagem_perfil.url }}"
+                        alt="imagem perfil empresa {{ empresa.nome_fantasia }}"
+                    >
+                </div>
                 <div class="informacoes">
                     <div class="nome-categorias">
                         <h1>{{ empresa.nome_fantasia }}</h1>
@@ -152,9 +155,9 @@
             </section>
 
             <section class="produtos">
-                <div class="destaques">
+                <div class="todos">
                     <h2>Destaques</h2>
-                    <div class="carrossel">
+                    <div class="todos-produtos">
                         {% for produto in produtos_destaque %}
                             <div
                                 class="card card-produto card-produto-usuario card-produto-usuario-visualizar"
