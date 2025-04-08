@@ -12,59 +12,97 @@
 {% block 'conteudo'%}
     <main>
         <div class="main-scrollable">
-            {% if messages %}
-                {% for i in messages %}   
-                    <div class="alert {{i.tags}}" role="alert">
-                        {{i}} 
-                    </div>
-        
-                {% endfor %}
-            {% endif %}
-            <section class="secao">
+            <section class="secao h-100">
                 <a href="{% url 'visualizar_empresa' produto.id_empresa.id %}" class="botao-voltar">
                     <img src="{% static 'images/seta-esquerda.svg' %}" alt="Seta para a esquerda">
                     <span>Voltar para a loja</span>
                 </a>
-                
-                <div class="apresentacao-produto">
-                    <div class="imagens">
-                        <div class="previas">
-                            {% if imagens_existentes %}
-                                {% for vinculo_imagem in imagens_existentes %}
-                                    <img
-                                        src="{{ vinculo_imagem.imagem.url }}"
-                                        alt="Imagem do produto"
-                                        class="img-previa"
-                                    >
-                                {% endfor %}
-                            {% else %}
-                                {% for _ in "123" %}
-                                    <img
-                                        src="{{ produto.primeira_imagem_default }}"
-                                        alt="imagem default produto {{ forloop.counter }}"
-                                        class="img-previa"
-                                    >
-                                {% endfor %}
-                            {% endif %}
+
+                {% if messages %}
+                    {% for i in messages %}   
+                        <div class="alert {{i.tags}}" role="alert">
+                            {{i}} 
                         </div>
-                        <div class="div-img-destaque">
-                            <img class="img-destaque" src="" alt="Imagem do produto">
+            
+                    {% endfor %}
+                {% endif %}
+                
+                <div
+                    class="
+                        conteudo
+                    "
+                >
+                    <div
+                        id="main-slider"
+                        class="
+                            splide
+                            splide-main
+                        "
+                    >
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                {% for vinculo_imagem in imagens_existentes %}
+                                    <li
+                                        class="
+                                            splide__slide
+                                            splide-main-img-style
+                                        "
+                                    >
+                                            <img
+                                                src="{{ vinculo_imagem.imagem.url }}"
+                                                alt="Imagem do produto"
+                                            >
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                        <div
+                            id="thumbnail-slider"
+                            class="splide splide-thumbnail"
+                        >
+                            <div class="splide__track">
+                                  <ul class="splide__list">
+                                    {% for vinculo_imagem in imagens_existentes %}
+                                        <li
+                                            class="
+                                                splide__slide
+                                                splide-thumbnail-img-style
+                                            "
+                                        >
+                                            <img
+                                                src="{{ vinculo_imagem.imagem.url }}"
+                                                alt="Imagem do produto"
+                                            >
+                                        </li>
+                                    {% endfor %}
+                                  </ul>
+                            </div>
                         </div>
                     </div>
-                    <div class="especificacoes">
-                        <div class="nome-descricao">
-                            <h1 class="nome">{{ produto.nome }}</h1>
-                            <p class="descricao">{{ produto.descricao }}</p>
+
+                    <div
+                        class="agrupamento-informacoes"
+                    >
+                        <div
+                            class="nome-produto"
+                        >
+                            <h1>{{ produto.nome }}</h1>
+                        </div>
+                        <div
+                            class="descricao-produto"
+                        >
+                            <h5>{{ produto.descricao }}</h5>
                         </div>
 
                         {% if produto.ativo == False  %}
-                            <span class="disponibilidade indisponivel">Indisponível</span>
+                            <div class="disponibilidade indisponivel">Indisponível</div>
                         {% elif produto.qtd == None %}
-                            <span class="disponibilidade disponivel">Disponível</span>
+                            <div class="disponibilidade disponivel">Disponível</div>
                         {% elif produto.qtd == 0 %}
-                            <span class="disponibilidade sem-estoque">Sem estoque</span>
+                            <div class="disponibilidade sem-estoque">Sem estoque</div>
                         {% else %}
-                            <span class="disponibilidade disponivel">Disponível - {{produto.qtd}} unidades</span>
+                            <div class="disponibilidade disponivel">Disponível - {{produto.qtd}} unidades</div>
                         {% endif %}
 
                         <div class="categorias">
@@ -76,41 +114,60 @@
                             {% endif %}
                         </div>
                         
-                        <div class="preco-favoritos">
+                        <div>
                             {% if produto.preco_oferta %}
-                                <span class="preco">
+                                <div>
                                     <s>
                                         R$
                                         {{ produto.preco }}
                                     </s>
-                                </span>
-                                <span class="preco preco-oferta">R$
+                                </div>
+                                <div
+                                    class="font-weight-bold"
+                                >R$
                                     {{ produto.preco_oferta }}
-                                </span>
+                                </div>
                             {% else %}
-                                <span class="preco">R$
+                                <div>R$
                                     {{ produto.preco }}
-                                </span>
+                                </div>
                             {% endif %}
-                            <div class="favoritos">
-                                <img
-                                    class="fav-{{produto.id}}"
-                                    onclick="favnotfav(
-                                        event,
-                                        'fav-{{produto.id}}',
-                                        'fav-number-{{produto.id}}',
-                                        {{produto.id}}
-                                    )"
-                                    {% if favorito_usuario %}
-                                        src="{% static 'images/icone-salvar-fill.svg' %}"
-                                    {% else %}
-                                        src="{% static 'images/icone-salvar.svg' %}"
-                                    {% endif %}
-                                    alt="Ícone salvar"
-                                    style="cursor: pointer;"
-                                    width="25px"
-                                    height="25px"
+                            
+                            <div
+                                class="
+                                    favoritar
+                                    fav-{{produto.id}}
+                                "
+                                onclick="favnotfav(
+                                    event,
+                                    'fav-{{produto.id}}',
+                                    'fav-number-{{produto.id}}',
+                                    {{produto.id}}
+                                )"
+                            >
+                                <div>
+                                    <img
+                                        id="icone-salvar"
+                                        {% if favorito_usuario %}
+                                            src="{% static 'images/icone-salvar-fill.svg' %}"
+                                        {% else %}
+                                            src="{% static 'images/icone-salvar.svg' %}"
+                                        {% endif %}
+                                        alt="Ícone salvar"
+                                        style="cursor: pointer;"
+                                        width="25px"
+                                        height="25px"
+                                    >
+                                </div>
+                                <div
+                                    id="icone-salvar-descricao"
                                 >
+                                    {% if favorito_usuario %}
+                                        Salvo
+                                    {% else %}
+                                        Salvar
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -120,10 +177,39 @@
     </main>
     
     <script>
+        let mainSlider = new Splide("#main-slider", {
+            width: 600,
+            height: 400,
+            cover: true,
+            arrows: false,
+            pagination: false
+        });
+
+        let thumbnails = new Splide( '#thumbnail-slider', {
+            fixedWidth  : 100,
+            fixedHeight : 60,
+            rewind      : true,
+            pagination  : false,
+            cover       : true,
+            isNavigation: true,
+            arrows      : true,
+            breakpoints : {
+              600: {
+                fixedWidth : 60,
+                fixedHeight: 44,
+              },
+            }
+          } );
+        
+        mainSlider.sync( thumbnails );
+        mainSlider.mount();
+        thumbnails.mount();
+
         function favnotfav(event, id_icone, numero_salvos, id_produto) {
-            event.stopPropagation();
             const url = "/empresas/salva-nao-salva-produto/" + id_produto + "/"
-            const icones = document.getElementsByClassName(id_icone);
+            const icone  = document.getElementById('icone-salvar');
+            const textoIcone = document.getElementById('icone-salvar-descricao');
+
             fetch(url, {
                 method: "POST",
                 headers: {
@@ -134,12 +220,12 @@
             .then(response => response.json())
             .then(data => {
                 if(data.status === 'success'){
-                    for (let i = 0; i < icones.length; i++) {
-                        if(data.message === 'like'){
-                            icones[i].src = "{% static 'images/icone-salvar-fill.svg' %}";
-                        } else {
-                            icones[i].src = "{% static 'images/icone-salvar.svg' %}";
-                        }
+                    if(data.message === 'like'){
+                        icone.src = "{% static 'images/icone-salvar-fill.svg' %}";
+                        textoIcone.innerText = "Salvo";
+                    } else {
+                        icone.src = "{% static 'images/icone-salvar.svg' %}";
+                        textoIcone.innerText = "Salvar";
                     }
                 }else{
                     alert('Não foi possível favoritar esse produto, tente novamente mais tarde.');
@@ -149,23 +235,6 @@
                 alert('Não foi possível favoritar esse produto, tente novamente mais tarde.');
             });
         }
-    </script>
-
-
-    <script>
-        const previas = document.querySelectorAll('.img-previa');
-        const imgDestaque = document.querySelector('.img-destaque');
-
-        imgDestaque.src = previas[0].src;
-
-        previas.forEach(p => {
-            p.addEventListener('click', () => {
-                const srcImagem = p.src;
-                imgDestaque.src = srcImagem;
-            });
-        })
-
-
     </script>
     
 {% endblock %}
