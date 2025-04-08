@@ -26,6 +26,11 @@
         align-items: center;
         align-content: center;
         padding: 30px;
+
+        @media (max-width: 1199px) {
+            flex-flow: column;
+            padding: 0;
+        }
     }
 
     .splide-main {
@@ -34,6 +39,12 @@
         margin-right: 2rem;
         height: 100%;
         align-content: center;
+
+        @media (max-width: 1199px) {
+            width: 100%;
+            max-width: 100%;
+            margin-right: 0;
+        }
     }
 
     .splide-thumbnail {
@@ -79,6 +90,19 @@
             -webkit-line-clamp: 5;
             line-clamp: 5;
             -webkit-box-orient: vertical;
+
+            @media (max-width: 1199px) {
+                -webkit-line-clamp: 10;
+                line-clamp: 10;
+            }
+        }
+
+        @media (max-width: 1199px) {
+            width: 100%;
+            max-width: 100%;
+            align-items: center;
+            padding-bottom: 20px;
+            margin-top: 1rem;
         }
     }
 
