@@ -25,7 +25,7 @@ class ProdutoForm(forms.ModelForm):
                 'name': 'imagens',
                 'allow_multiple_selected': True,
                 'multiple': True,
-                'accept': 'image/png, image/jpg, image/jpeg'
+                'accept': 'image/png, image/jpg, image/jpeg, image/webp'
             }
         ),
         required=False
@@ -84,6 +84,10 @@ class ProdutoForm(forms.ModelForm):
             if image.width < 301 or image.height < 301:
                 self.add_error('imagens', "As imagens devem ter uma resolução maior ou igual a 300x300.")
 
+        for imagem in imagens:
+            if imagem.size > 2 * 1024 * 1024:
+                self.add_error('imagens', "As imagens devem ter um tamanho menor ou igual a 2MB.")
+            
         if verifica_preco_tipo_correto(cleaned_data.get('preco')) == None:
             self.add_error('preco', "O preço deve ser um valor válido.")
         else:
