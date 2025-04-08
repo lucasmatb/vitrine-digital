@@ -149,6 +149,18 @@ def retorna_meus_dados_usuario(request):
         data['cidade_selecionada'] = None
         data['estado_selecionado'] = None
 
+    if request.user.has_perm('empresas.add_empresa'):
+        usuario_tem_pedido_em_aguardo = 'lojista'
+    elif Pedido_Lojista.objects.filter(
+            id_usuario=request.user,
+            status_pedido='Aguardando avaliação'
+        ).exists():
+
+        usuario_tem_pedido_em_aguardo = 'aguardando'
+    else:
+        usuario_tem_pedido_em_aguardo = 'usuario'
+
+    data['pedido_aguardo'] = usuario_tem_pedido_em_aguardo
     data['form'] = form
     data['email'] = descriptarAESGCM(usuario.email)
     data['cpf'] = descriptarAESGCM(usuario.cpf)

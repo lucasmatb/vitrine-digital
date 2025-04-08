@@ -28,10 +28,24 @@
         object-position: 50% 50%;
         border-radius: 100vh;
     }
+
+    .custom-botao {
+        max-width: fit-content;
+        width: fit-content;
+    }
     
     & .botao {
         background-color: #FCEAED !important;
         align-self: flex-end !important;
+    }
+
+    .pedido-analise {
+        display: flex;
+        align-items: center;
+        border-radius: 15px;
+        padding: 0 10px;
+        width: fit-content;
+        border: 3px solid gold;
     }
 }
 

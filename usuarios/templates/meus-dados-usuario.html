@@ -142,13 +142,72 @@
                                 {% endif %}
                             </div>
                         </div>
-                        <button class="botao" type="submit">Enviar</button>
+                        <div
+                            class="d-flex justify-content-between"
+                        >
+                            {% if pedido_aguardo == 'usuario' %}
+                                <button
+                                    id="botao-pedido-lojista"
+                                    class="botao custom-botao"
+                                    name="botao-pedido-lojista"
+                                >
+                                    Solicitar acesso lojista
+                                </button>
+                            {% elif pedido_aguardo == 'aguardando' %}
+                                <div
+                                    class="
+                                        pedido-analise
+                                    "
+                                >
+                                    <img
+                                        class="pr-2"
+                                        src="{% static 'images/icone-exclamacao.png' %}"
+                                        width="25px"
+                                        height="25px"
+                                    >
+                                    Pedido em análise.
+                                </div>
+                            {% endif %}
+                                <button class="botao custom-botao" type="submit">Enviar</button>
+                        </div>
                     </form>
                 </div>
             </section>
         </div>  
     </main>
     <script>
+
+        const botao = document.querySelector("#botao-pedido-lojista");
+        const novoBotao = document.createElement("div");
+        novoBotao.classList.add("div-botao");
+
+        if (botao) {
+            botao.addEventListener("click", (e)=>{
+                e.preventDefault();
+                botao.disabled = true;
+                const url = "/usuarios/criar-pedido-lojista/"
+                fetch(url, {
+                    method: "POST",
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',
+                        'Content-Type': 'application/json'
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if(data.status === 'success'){
+                        novoBotao.innerText = "Seu pedido foi enviado para avaliação.";
+                        botao.parentNode.replaceChild(novoBotao, botao);
+                    }else{
+                        novoBotao.innerText = "Ocorreu um erro. Tente novamente mais tarde.";
+                        botao.parentNode.replaceChild(novoBotao, botao);
+                    }
+                })
+                .catch(error => {
+                    botao.disabled = false;
+                });
+            });    
+        }
         
         document.addEventListener("DOMContentLoaded", function () {
             const idEstadoSelecionado = {{ estado_selecionado|default:"null" }};
