@@ -17,6 +17,7 @@ def home(request):
 
 def retorna_dashboard_usuario(request):
     data = {}
+    cidade_usuario = request.user.id_cidade
 
     pesquisa = request.GET.get('pesquisa')
 
@@ -24,23 +25,28 @@ def retorna_dashboard_usuario(request):
         produtos_um = Produto.objects.annotate(
             min_date=Least('created_at', 'updated_at'),
             favoritos=Count('favoritos_produtos')
-        ).filter(preco_oferta__isnull=False).order_by('min_date')
+        ).filter(preco_oferta__isnull=False, id_empresa__endereco__id_cidade=cidade_usuario).order_by('min_date')
         data['produtos_um_titulo'] = 'Essas ofertas acabaram de chegar!'
         data['produtos_um'] = set_favoritos_produto(request, produtos_um)
 
-        empresas_um = Empresa.objects.all().order_by('created_at').annotate(
+        empresas_um = Empresa.objects.filter(endereco__id_cidade=cidade_usuario).order_by('created_at').annotate(
             favoritos=Count('favoritos_empresas')
         )
+
         data['empresas_um_titulo'] = 'Essas empresas acabaram de chegar!'
         data['empresas_um'] = set_favoritos_empresa(request, empresas_um)
 
         produtos_dois = Produto.objects.annotate(
             favoritos=Count('favoritos_produtos', distinct=True)
-        ).filter(favoritos__gt=0).order_by('-favoritos', 'nome')
+        ).filter(favoritos__gt=0, id_empresa__endereco__id_cidade=cidade_usuario).order_by('-favoritos', 'nome')
         data['produtos_dois_titulo'] = 'Os produtos mais requisitados!'
         data['produtos_dois'] = set_favoritos_produto(request, produtos_dois)
 
-        empresas_dois = Empresa.objects.annotate(
+        empresas_um = Empresa.objects.filter(endereco__id_cidade=cidade_usuario).order_by('created_at').annotate(
+            favoritos=Count('favoritos_empresas')
+        )
+
+        empresas_dois = Empresa.objects.filter(endereco__id_cidade=cidade_usuario).annotate(
             favoritos=Count('favoritos_empresas', distinct=True)
         ).order_by('-favoritos', 'nome_fantasia')
         data['empresas_dois_titulo'] = ' As empresas mais curtidas!'
@@ -48,13 +54,13 @@ def retorna_dashboard_usuario(request):
 
         data['sem_pesquisa'] = True
     else:
-        empresas_um = Empresa.objects.filter(nome_fantasia__icontains=pesquisa).order_by('nome_fantasia').annotate(
+        empresas_um = Empresa.objects.filter(nome_fantasia__icontains=pesquisa, endereco__id_cidade=cidade_usuario).order_by('nome_fantasia').annotate(
             favoritos=Count('favoritos_empresas')
         )
         data['empresas_um_titulo']= 'Empresas encontradas'
         data['empresas_um'] = set_favoritos_empresa(request, empresas_um)
 
-        produtos_um = Produto.objects.filter(nome__icontains=pesquisa).order_by('nome').annotate(
+        produtos_um = Produto.objects.filter(nome__icontains=pesquisa, id_empresa__endereco__id_cidade=cidade_usuario).order_by('nome').annotate(
             favoritos=Count('favoritos_produtos')
         )
         data['produtos_um_titulo'] = 'Produtos encontrados'
