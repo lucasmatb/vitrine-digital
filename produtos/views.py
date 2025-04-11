@@ -8,8 +8,8 @@ from empresas.views import validacao_usuario_possui_empresa
 from empresas.models import Empresa
 from django.conf import settings
 from usuarios.models import Visualizacao_Produto
-from django.utils.timezone import now
 from django.http import JsonResponse
+from django.utils import timezone
 
 def retorna_visualizar_produto(request, pk):
     data = {}
@@ -18,10 +18,13 @@ def retorna_visualizar_produto(request, pk):
     produto.qtd_visualizacoes = produto.qtd_visualizacoes + 1
     produto.save()
 
+    hoje = timezone.now()
+    ontem = hoje - timezone.timedelta(days=1)
+
     visualizacao_existente = Visualizacao_Produto.objects.filter(
         id_produto=produto,
         id_usuario=request.user,
-        created_at__date=now().date()
+        created_at__range=(ontem, hoje)
     ).exists()
 
     if not visualizacao_existente:

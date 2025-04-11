@@ -156,7 +156,7 @@ def prepara_grafico_um(
     dados = {v["data_criacao"]: v["total"] for v in visualizacoes}
     
     data['id'] = 1
-    data['titulo'] = 'Dias com mais visualização da empresa'
+    data['titulo'] = 'Dias com mais visualizações da empresa'
     data['subtitulo'] = 'Visualizações'
     data['data'] = [dados.get(dia, 0) for dia in dias]
 
@@ -171,19 +171,22 @@ def prepara_grafico_dois(
     grafico = Visualizacao_Produto.objects.filter(
         created_at__gte=data_pesquisa,
         id_produto__id_empresa=id_empresa
-    ).annotate(
+    ).values('id_produto').annotate(
         visualizacoes=Count('id')
-    ).values_list('id_produto__nome', 'visualizacoes').order_by('-visualizacoes')[:10]
-    
+    ).order_by('-visualizacoes')[:5]
+
+    produtos = Produto.objects.filter(id__in=[x['id_produto'] for x in grafico]).order_by('id')
+
     data['id'] = 2
     data['titulo'] = 'Produtos mais visualizados'
     data['subtitulo'] = 'Visualizações'
     data['data'] = {
-        'labels': [x[0] for x in grafico],
-        'data': [x[1] for x in grafico]
+        'labels': [produto.nome for produto in produtos],
+        'data': [x['visualizacoes'] for x in grafico]
     }
 
     return data
+
 def prepara_grafico_tres(
     numero_dias,
     id_empresa,
@@ -206,7 +209,7 @@ def prepara_grafico_tres(
     dados = {v["data_criacao"]: v["total"] for v in visualizacoes}
     
     data['id'] = 3
-    data['titulo'] = 'Dias com mais visualização de produtos'
+    data['titulo'] = 'Dias com mais visualizações de produtos'
     data['subtitulo'] = 'Visualizações'
     data['data'] = [dados.get(dia, 0) for dia in dias]
 
@@ -224,11 +227,11 @@ def prepara_grafico_quatro(
         created_at__gte=data_pesquisa
     ).annotate(
         curtidas=Count('favoritos_produtos')
-    ).values_list('nome', 'curtidas').order_by('-curtidas')[:10]
+    ).values_list('nome', 'curtidas').order_by('-curtidas')[:5]
 
     data['id'] = 4
     data['titulo'] = 'Produtos mais salvos'
-    data['subtitulo'] = 'Salvos'
+    data['subtitulo'] = 'Produtos salvos'
     data['data'] = {
         'labels': [x[0] for x in grafico],
         'data': [x[1] for x in grafico]

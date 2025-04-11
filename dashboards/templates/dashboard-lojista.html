@@ -11,10 +11,17 @@
             main-scrollable
             p-5
         ">
-            <h1>
-                Visualização avançada dos últimos 30 dias
-            </h1>
+            <div>
+                <h1>
+                    Visualização avançada dos últimos 30 dias
+                </h1>
 
+                <h5
+                    class="pt-2 pl-4 text-muted font-bold"
+                >
+                    Visualização única por usuário e por dia*
+                </h5>
+            </div>
             {% include 'dashboard-grafico-tempo.html' with dados=grafico_um %}
             {% include 'dashboard-grafico-barras-horizontais.html' with dados=grafico_dois %}
             {% include 'dashboard-grafico-tempo.html' with dados=grafico_tres %}

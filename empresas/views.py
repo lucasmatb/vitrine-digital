@@ -10,7 +10,7 @@ import requests
 from django.db.models import Count
 from django.conf import settings
 from usuarios.models import Visualizacao_Empresa
-from django.utils.timezone import now
+from django.utils import timezone
 
 def retorna_cadastro_empresa(request):
     data = {}
@@ -203,10 +203,13 @@ def retorna_visualizar_empresa_usuario(request, id_empresa):
     empresa.qtd_visualizacoes = empresa.qtd_visualizacoes + 1
     empresa.save()
 
+    hoje = timezone.now()
+    ontem = hoje - timezone.timedelta(days=1)
+
     visualizacao_existente = Visualizacao_Empresa.objects.filter(
         id_empresa=empresa,
         id_usuario=request.user,
-        created_at__date=now().date()
+        created_at__range=(ontem, hoje)
     ).exists()
 
     if not visualizacao_existente:
