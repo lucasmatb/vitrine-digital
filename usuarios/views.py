@@ -9,10 +9,11 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import update_session_auth_hash
 from django.http import JsonResponse
-from empresas.models import Empresa, Cidade
+from empresas.models import Cidade
 from django.db.models import Count
 from produtos.models import Imagem_Produto
 from django.conf import settings
+from django.core.paginator import Paginator
 
 def login(request):
     if request.user.is_authenticated:
@@ -111,7 +112,10 @@ def retorna_empresas_favoritas_usuario(request):
         for empresa in empresas
     ]
 
-    data['empresas'] = empresas_com_favoritos
+    paginator = Paginator(empresas_com_favoritos, 5)
+    pages = request.GET.get('page')
+
+    data['empresas'] = paginator.get_page(pages)
 
     return render(request, 'empresas-favoritas-usuario.html', data)
 
@@ -171,7 +175,7 @@ def retorna_meus_dados_usuario(request):
 
 def retorna_produtos_salvos_usuario(request):
     data = {}
-    
+
     produtos = request.user.favorito_produto.all()
 
     produtos = [
@@ -195,7 +199,10 @@ def retorna_produtos_salvos_usuario(request):
         for produto in produtos
     ]
 
-    data['produtos'] = produtos
+    paginator = Paginator(produtos, 5)
+    pages = request.GET.get('page')
+
+    data['produtos'] = paginator.get_page(pages)
 
     return render(request, 'produtos-salvos-usuario.html', data)
 

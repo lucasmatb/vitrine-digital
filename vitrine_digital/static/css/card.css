@@ -288,6 +288,12 @@
       }
 }
 
+.paginacao {
+    display: flex;
+    justify-content: center;
+    gap: var(--spc-200);
+}
+
 .preco-oferta {
     font-weight: 800 !important;
 }

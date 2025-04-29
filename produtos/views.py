@@ -10,6 +10,7 @@ from django.conf import settings
 from usuarios.models import Visualizacao_Produto
 from django.http import JsonResponse
 from django.utils import timezone
+from django.core.paginator import Paginator
 
 def retorna_visualizar_produto(request, pk):
     data = {}
@@ -44,8 +45,9 @@ def retorna_visualizar_produto(request, pk):
 
 def retorna_listagem_produtos_por_empresa(request, id_empresa):
     data = {}
-    data['produtos'] = Produto.objects.filter(id_empresa=id_empresa).prefetch_related('categoria_produto')
-    for produto in data['produtos']:
+    produtos = Produto.objects.filter(id_empresa=id_empresa).prefetch_related('categoria_produto')
+
+    for produto in produtos:
         if produto.preco_oferta is not None:
             produto.porcentagem_desconto = int(((produto.preco - produto.preco_oferta) / produto.preco) * 100)
         else:
@@ -55,7 +57,13 @@ def retorna_listagem_produtos_por_empresa(request, id_empresa):
             produto.primeira_imagem = Imagem_Produto.objects.filter(id_produto=produto).order_by('id').first().imagem
         except AttributeError:
             produto.primeira_imagem = None
+
+    paginator = Paginator(produtos, 5)
+    pages = request.GET.get('page')
+
     data['id_empresa'] = id_empresa
+    data['produtos'] = paginator.get_page(pages)
+
     return render(request, 'listagem-produtos-lojista.html', data)
 
 def criar_produto(request, id_empresa):

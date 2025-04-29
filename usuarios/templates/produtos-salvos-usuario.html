@@ -137,7 +137,35 @@
                         <p>Você não salvou nenhum produto.</p>
                     {% endfor %}
                 </div>
+                <div class="paginacao">
+                    {% if produtos.has_previous %}
+                        <a href="?page={{produtos.previous_page_number}}">
+                            <img
+                                src="{% static 'images/flecha-esquerda-redonda.svg' %}"
+                                alt="Ícone retorna página"
+                                style="cursor: pointer;"
+                                width="25px"
+                                height="25px"
+                            >
+                        </a>
+                    {% endif %}
+                    
+                    <h2>Página {{produtos.number}}</h2>
+                    
+                    {% if produtos.has_next %}
+                        <a href="?page={{produtos.next_page_number}}">
+                            <img
+                                src="{% static 'images/flecha-direita-redonda.svg' %}"
+                                alt="Ícone próxima página"
+                                style="cursor: pointer;"
+                                width="25px"
+                                height="25px"
+                            >
+                        </a>
+                    {% endif %}
+                </div>
             </section>
+
         </div>
     </main>
 

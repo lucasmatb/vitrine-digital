@@ -23,9 +23,11 @@ def retorna_dashboard_usuario(request):
 
     if not pesquisa:
         produtos_um = Produto.objects.annotate(
-            min_date=Least('created_at', 'updated_at'),
             favoritos=Count('favoritos_produtos')
-        ).filter(preco_oferta__isnull=False, id_empresa__endereco__id_cidade=cidade_usuario).order_by('min_date')
+        ).filter(
+            preco_oferta__isnull=False,
+            id_empresa__endereco__id_cidade=cidade_usuario
+        ).order_by('-updated_at')
         data['produtos_um_titulo'] = 'Essas ofertas acabaram de chegar!'
         data['produtos_um'] = set_favoritos_produto(request, produtos_um)
 
