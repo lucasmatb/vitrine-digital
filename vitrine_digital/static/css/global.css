@@ -63,6 +63,10 @@ a {
 
 .logo-text-size {
     font-size: 40px;
+
+    @media all and (max-width: 450px) {
+        font-size: 24px;
+    }
 }
 
 .alert {

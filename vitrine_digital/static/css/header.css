@@ -15,39 +15,43 @@ header {
         margin: 0 auto;
         max-width: 100rem;
         gap: 3rem;
+
+        @media all and (max-width: 450px) {
+            gap: 1rem;
+        }
     }
 
-        & ul {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-            transform: translateY(1rem);
+    & ul {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+        transform: translateY(1rem);
 
-            @media all and (max-width: 450px) {
-                gap: 1.5rem;
-                font-size: var(--fs-100);
+        @media all and (max-width: 450px) {
+            gap: 1.5rem;
+            font-size: 12px;
+        }
+
+        & li {
+            width: max-content;
+            display: flex;
+            flex-flow: column;
+            gap: 0.5rem;
+            
+            & a {
+                font-weight: 400 !important;
             }
 
-            & li {
-                width: max-content;
-                display: flex;
-                flex-flow: column;
-                gap: 0.5rem;
-                
-                & a {
-                    font-weight: 400 !important;
-                }
+            & div {
+                width: 0;
+                transition: 500ms ease;
+                background-color: #cfb2ff;
+                height: 2px;
+            }
 
-                & div {
-                    width: 0;
-                    transition: 500ms ease;
-                    background-color: #cfb2ff;
-                    height: 2px;
-                }
-
-                &:hover div {
-                    width: 100%;
-                }
+            &:hover div {
+                width: 100%;
             }
         }
+    }
 }

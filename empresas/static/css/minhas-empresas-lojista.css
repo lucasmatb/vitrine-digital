@@ -147,8 +147,7 @@
                         }
 
                         .descricao {
-                            font-size: var(--fs-300);
-                            font-weight: 600;
+                            font-size: 14px;
                             max-width: 100%;
                             white-space: nowrap;                  
                             overflow: hidden;
