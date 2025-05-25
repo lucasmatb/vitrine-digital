@@ -10,7 +10,7 @@ body {
     margin: 0 auto;
     width: max-content;
     gap: var(--spc-400);
-    /* padding: var(--spc-700) var(--spc-300); */
+    padding: 20px var(--spc-700) 0 var(--spc-700) !important;
 
     width: 100%;
     
@@ -27,7 +27,7 @@ body {
         width: 100%;
         display: flex;
         flex-flow: column;
-        gap: var(--spc-600);
+        gap: var(--spc-300);
         overflow-y: auto;
         
         & form {

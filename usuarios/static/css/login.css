@@ -1,0 +1,122 @@
+body {
+    overflow: auto;
+
+    & main {
+        all: unset;
+        height: calc(100vh - 100px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @media screen and (max-width: 450px) {
+            height: calc(100vh - 76px);
+        }
+    }
+}
+
+.secao-cadastro, .secao-login {
+    margin: 0 auto;
+    width: max-content;
+    gap: var(--spc-400);
+    padding: 20px var(--spc-700) 0 var(--spc-700) !important;
+
+    width: 100%;
+    
+    & .alert {
+        color: red;
+        padding: 0;
+        margin: 0;
+        font-size: var(--fs-100);
+    }
+    
+    & .container-login, & .container-cadastro {
+        margin: 0 auto;
+        max-width: 75rem;
+        width: 100%;
+        display: flex;
+        flex-flow: column;
+        gap: var(--spc-300);
+        overflow-y: auto;
+        
+        & form {
+            width: 100%;
+            display: flex;
+            flex-flow: column;
+            gap: var(--spc-500);
+
+            & .input-wrappers {
+                display: flex;
+                flex-flow: column;
+                gap: var(--spc-200);
+
+                & .input-wrapper {
+                    border-radius: 0.8rem;
+                    border: solid 1px #ccc;
+                    padding: var(--spc-80) var(--spc-100);
+                    display: flex;
+                    flex-flow: column;
+                    gap: var(--spc-50);
+                    
+                    & label {
+                        margin: 0;
+                        font-size: var(--spc-200);
+                    }
+                    
+                    & input {
+                        all: unset;
+                    }
+                }
+            }
+            
+
+            & .esqueceu-senha {
+                align-self: flex-end;
+                font-size: var(--fs-100);
+                font-weight: 400;
+            }
+
+            & button {
+                all: unset;
+                align-self: center;
+                padding: var(--spc-100) var(--spc-200);
+                background-color: #ccc;
+                border-radius: 0.8rem;
+                max-width: 15rem;
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        & .trocar-login-cadastro {
+            display: flex;
+            flex-flow: column;
+            gap: var(--spc-200);
+            align-self: center;
+            align-items: center;
+
+            & span {
+                font-size: var(--fs-100);
+            }
+
+            & a {
+                padding: var(--spc-100) var(--spc-200);
+                background-color: #ccc;
+                border-radius: 0.8rem;
+                font-weight: 400;
+                max-width: 15rem;
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        & button {
+            background-color: #FCEAED !important;
+        }
+    
+        & .trocar-login-cadastro {
+            & a {
+                background-color: #F8F9FA !important;
+            }
+        }
+    }
+}
