@@ -35,12 +35,14 @@ class Produto(BaseModel):
         verbose_name='Preço com desconto do produto',
         null=True,
         decimal_places=2,
-        max_digits=8
+        max_digits=8,
+        blank=True
     )
     qtd = models.IntegerField(
         verbose_name='Quantidade em estoque',
         null=True,
-        default=0
+        default=0,
+        blank=True
     )
     ativo = models.BooleanField(
         default=True,
