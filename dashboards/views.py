@@ -132,7 +132,6 @@ def retorna_dashboard_lojista(request, id_empresa):
     )
 
     data['grafico_quatro'] = prepara_grafico_quatro(
-        30,
         id_empresa
     )
 
@@ -218,22 +217,19 @@ def prepara_grafico_tres(
     return data
 
 def prepara_grafico_quatro(
-    numero_dias,
     id_empresa,
 ):
-    data_pesquisa = timezone.localtime() - timedelta(days=numero_dias)
     data = {}
 
     grafico = Produto.objects.filter(
         id_empresa=id_empresa,
-        created_at__gte=data_pesquisa
     ).annotate(
         curtidas=Count('favoritos_produtos')
     ).values_list('nome', 'curtidas').order_by('-curtidas')[:5]
 
     data['id'] = 4
-    data['titulo'] = 'Produtos mais salvos'
-    data['subtitulo'] = 'Produtos salvos'
+    data['titulo'] = 'Produtos mais salvos (desde o início da empresa)'
+    data['subtitulo'] = 'Salvamentos'
     data['data'] = {
         'labels': [x[0] for x in grafico],
         'data': [x[1] for x in grafico]
