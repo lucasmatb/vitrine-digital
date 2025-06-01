@@ -291,7 +291,14 @@
 .paginacao {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: var(--spc-200);
+
+    .h2-sem-margem {
+        h2 {
+            margin-bottom: 0 !important;
+        }
+    }
 }
 
 .preco-oferta {

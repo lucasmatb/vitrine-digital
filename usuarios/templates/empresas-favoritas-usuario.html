@@ -87,31 +87,39 @@
                     {% endfor %}
                 </div>
                 <div class="paginacao">
-                    {% if empresas.has_previous %}
-                        <a href="?page={{empresas.previous_page_number}}">
-                            <img
-                                src="{% static 'images/flecha-esquerda-redonda.svg' %}"
-                                alt="Ícone retorna página"
-                                style="cursor: pointer;"
-                                width="25px"
-                                height="25px"
-                            >
-                        </a>
-                    {% endif %}
-
-                    <h2>Página {{empresas.number}}</h2>
+                    <div>
+                        {% if empresas.has_previous %}
+                            <a href="?page={{empresas.previous_page_number}}">
+                                <img
+                                    src="{% static 'images/flecha-esquerda-redonda.svg' %}"
+                                    alt="Ícone retorna página"
+                                    style="cursor: pointer;"
+                                    width="25px"
+                                    height="25px"
+                                >
+                            </a>
+                        {% endif %}
+                    </div>
                     
-                    {% if empresas.has_next %}
-                        <a href="?page={{empresas.next_page_number}}">
-                            <img
-                                src="{% static 'images/flecha-direita-redonda.svg' %}"
-                                alt="Ícone próxima página"
-                                style="cursor: pointer;"
-                                width="25px"
-                                height="25px"
-                            >
-                        </a>
-                    {% endif %}
+                    <div
+                        class="h2-sem-margem"
+                    >
+                        <h2>Página {{empresas.number}}</h2>
+                    </div>
+                    
+                    <div>
+                        {% if empresas.has_next %}
+                            <a href="?page={{empresas.next_page_number}}">
+                                <img
+                                    src="{% static 'images/flecha-direita-redonda.svg' %}"
+                                    alt="Ícone próxima página"
+                                    style="cursor: pointer;"
+                                    width="25px"
+                                    height="25px"
+                                >
+                            </a>
+                        {% endif %}
+                    </div>
                 </div>
             </section>
         </div>

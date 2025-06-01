@@ -11,6 +11,7 @@ from django.db.models import Count
 from django.conf import settings
 from usuarios.models import Visualizacao_Empresa
 from django.utils import timezone
+from django.core.paginator import Paginator
 
 def retorna_cadastro_empresa(request):
     data = {}
@@ -269,7 +270,10 @@ def retorna_minhas_empresas_lojista(request):
             empresa.contador_produtos = produtos.count()
             empresa.media_salvamento_produto = round(contador_fav_produtos / produtos.count(), 2)
 
-    data['empresas'] = empresas
+    paginator = Paginator(empresas, 1)
+    pages = request.GET.get('page')
+
+    data['empresas'] = paginator.get_page(pages)
 
     return render(request, 'minhas-empresas-lojista.html', data)
 
