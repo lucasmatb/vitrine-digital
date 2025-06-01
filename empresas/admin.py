@@ -5,5 +5,10 @@ admin.site.register(Categoria_Empresa)
 
 @admin.register(Empresa)
 class ProdutoAdmin(admin.ModelAdmin):
+    exclude = (
+        'id_usuario',
+        'qtd_visualizacoes'
+    )
+
     def has_add_permission(self, request):
         return False

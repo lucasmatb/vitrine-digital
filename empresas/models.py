@@ -115,17 +115,20 @@ class Empresa(BaseModel):
     link_whatsapp = models.CharField(
         verbose_name='Link para Whatsapp',
         max_length=254,
-        null=True
+        null=True,
+        blank=True
     )
     link_facebook = models.CharField(
         verbose_name='Link para Facebook',
         max_length=254,
-        null=True
+        null=True,
+        blank=True
     )
     link_instagram = models.CharField(
         verbose_name='Link para Instagram',
         max_length=254,
-        null=True
+        null=True,
+        blank=True
     )
     empresa_categoria = models.ManyToManyField(Categoria_Empresa)
 
