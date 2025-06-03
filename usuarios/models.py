@@ -105,6 +105,12 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
         verbose_name="CPF"
     )
 
+    nascimento = models.CharField(
+        max_length=254,
+        blank=False,
+        verbose_name="Data de nascimento"
+    )
+
     imagem = StdImageField(
         verbose_name="imagem",
         default='default_profile.jpg',
@@ -134,7 +140,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
 
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'cpf']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'cpf', 'nascimento']
     
     def __str__(self):
         return descriptarAESGCM(self.email)

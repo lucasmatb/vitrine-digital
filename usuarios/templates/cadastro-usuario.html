@@ -69,6 +69,19 @@
                             </div>
                         {% endif %}
                         <div class="input-wrapper">
+                            <label>Data de nascimento</label>
+                            {{ form.nascimento }}
+                        </div>
+                        {% if form.nascimento.errors %}
+                            <div>
+                                {% for error in form.nascimento.errors %}
+                                    <div>
+                                        <strong>{{ error }}</strong>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <div class="input-wrapper">
                             <label>Email</label>
                             {{ form.email }}
                         </div>
@@ -123,7 +136,7 @@
 
 <script>
     $(document).ready(function(){
-        $('#cpf').mask('000.000.000-00');  // Aplica a máscara de CPF
+        $('#cpf').mask('000.000.000-00');
     });
 </script>
 

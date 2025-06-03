@@ -6,6 +6,11 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.forms import UserChangeForm
 from empresas.models import Estado, Cidade
 import re
+from datetime import date
+
+hoje = date.today()
+max_date_nascimento = hoje.replace(year=hoje.year - 14)
+min_date_nascimento = hoje.replace(year=hoje.year - 120)
 
 class UsuarioLoginForm(forms.ModelForm):
     class Meta:
@@ -55,6 +60,17 @@ class UsuarioRegistrationForm(forms.ModelForm):
             'placeholder': '000.000.000-00'
         })
     )
+    nascimento = forms.DateField(
+        label=("Data de nascimento"),
+        required=True,
+        widget=forms.DateInput(attrs={
+            'id': 'nascimento',
+            'name': 'nascimento',
+            'type': 'date',
+            'max': max_date_nascimento.strftime('%Y-%m-%d'), 
+            'min': min_date_nascimento.strftime('%Y-%m-%d'),
+        })
+    )
     email = forms.EmailField(
         label=("E-mail"),
         max_length=254,
@@ -88,13 +104,13 @@ class UsuarioRegistrationForm(forms.ModelForm):
 
     class Meta:
         model = Usuario
-        fields = ['first_name', 'last_name', 'cpf', 'email', 'password']
+        fields = ['first_name', 'last_name', 'cpf', 'email', 'password', 'nascimento']
     
     def clean(self):
         return custom_clean(
             self,
             UsuarioRegistrationForm,
-            ['first_name', 'last_name', 'cpf', 'email', 'password'],
+            ['first_name', 'last_name', 'cpf', 'email', 'password', 'nascimento'],
             False
         )
     
@@ -129,6 +145,17 @@ class UsuarioAdminRegistrationForm(forms.ModelForm):
             'placeholder': '000.000.000-00'
         })
     )
+    nascimento = forms.DateField(
+        label=("Data de nascimento"),
+        required=True,
+        widget=forms.DateInput(attrs={
+            'id': 'nascimento',
+            'name': 'nascimento',
+            'type': 'date',
+            'max': max_date_nascimento.strftime('%Y-%m-%d'), 
+            'min': min_date_nascimento.strftime('%Y-%m-%d'),
+        })
+    )
     email = forms.EmailField(
         label=("E-mail"),
         max_length=254,
@@ -178,13 +205,13 @@ class UsuarioAdminRegistrationForm(forms.ModelForm):
 
     class Meta:
         model = Usuario
-        fields = ['first_name', 'last_name', 'cpf', 'email', 'password', 'is_superuser', 'is_staff', 'groups']
+        fields = ['first_name', 'last_name', 'cpf', 'nascimento', 'email', 'password', 'is_superuser', 'is_staff', 'groups']
     
     def clean(self):
         return custom_clean(
             self,
             UsuarioAdminRegistrationForm,
-            ['first_name', 'last_name', 'cpf', 'email', 'password', 'is_superuser', 'is_staff', 'groups'],
+            ['first_name', 'last_name', 'cpf', 'nascimento', 'email', 'password', 'is_superuser', 'is_staff', 'groups'],
             True
         )
 
@@ -212,6 +239,15 @@ class UsuarioChangeForm(UserChangeForm):
             'readonly': 'readonly'
         })
     )
+    nascimento_descriptografado = forms.DateField(
+        required=False,
+        label=("Data de nascimento"),
+        widget=forms.DateInput(attrs={
+            'id': 'nascimento',
+            'name': 'nascimento',
+            'type': 'date'
+        })
+    )
     is_staff = forms.BooleanField(
         label=("É staff?"),
         required=False,
@@ -237,6 +273,7 @@ class UsuarioChangeForm(UserChangeForm):
         if instance:
             self.fields['email_descriptografado'].initial = descriptarAESGCM(instance.email)
             self.fields['cpf_descriptografado'].initial = descriptarAESGCM(instance.cpf)
+            self.fields['nascimento_descriptografado'].initial = descriptarAESGCM(instance.nascimento)
 
     class Meta:
         model = Usuario
@@ -335,6 +372,8 @@ def custom_clean(self, forms, campos, admin):
         self.add_error('confirm_password', "As senhas não coincidem")
     if verifica_email_unico(cleaned_data.get("email")):
         self.add_error('email', "Email já cadastrado")
+    if verifica_data_valida(cleaned_data.get("nascimento")):
+        self.add_error('nascimento', "Data inválida")
     if verifica_cpf_valido(cleaned_data.get("cpf")):
         self.add_error('cpf', "CPF inválido")
     cpfTratado = trata_cpf_apenas_numeros(cleaned_data.get("cpf"))
@@ -345,6 +384,7 @@ def custom_clean(self, forms, campos, admin):
         return cleaned_data
         
     cleaned_data['cpf'] = cpfTratado
+    nascimento_str = cleaned_data['nascimento'].strftime('%Y-%m-%d')
 
     if admin:
         cleaned_data['groups']          =   clean_groups(self, cleaned_data['groups'])
@@ -353,6 +393,7 @@ def custom_clean(self, forms, campos, admin):
         cleaned_data['first_name']      =   encriptarAESGCM(cleaned_data['first_name'])
         cleaned_data['last_name']       =   encriptarAESGCM(cleaned_data['last_name'])
         cleaned_data['cpf']             =   encriptarAESGCM(cleaned_data['cpf'])
+        cleaned_data['nascimento']      =   encriptarAESGCM(nascimento_str)
         cleaned_data['is_staff']        =   False
         cleaned_data['is_superuser']    =   False
 
@@ -413,3 +454,16 @@ def metodo_padrao_valida_cpf(formCpf: str) -> bool:
 
 def trata_cpf_apenas_numeros(cpf: str) -> str:
     return re.sub(r'\D', '', cpf)
+
+def verifica_data_valida(nascimento: date) -> bool:
+    if not isinstance(nascimento, date):
+        return True
+
+    if nascimento > max_date_nascimento:
+        return True
+
+    if nascimento < min_date_nascimento:
+        return True
+
+    return False
+

@@ -4,10 +4,9 @@ from .models import Usuario, Tipo_Assinatura, Pedido_Lojista
 from .forms import UsuarioAdminRegistrationForm, UsuarioChangeForm
 from vitrine_digital.helper import descriptarAESGCM
 
-# Personalize os textos do Admin0
-admin.site.site_title = "Vi²Mu"  # Título da aba do navegador
-admin.site.site_header = "Gerenciamento da plataforma"  # Cabeçalho principal
-admin.site.index_title = "Painel Administrativo"  # Subtítulo na página inicial
+admin.site.site_title = "Vi²Mu"
+admin.site.site_header = "Gerenciamento da plataforma"
+admin.site.index_title = "Painel Administrativo"
 
 class MyUserAdmin(UserAdmin):
     add_form = UsuarioAdminRegistrationForm
@@ -34,9 +33,13 @@ class MyUserAdmin(UserAdmin):
         return descriptarAESGCM(obj.cpf)
     cpf_descriptografado.short_description = "CPF"
 
+    def nascimento_descriptografado(self, obj):
+        return descriptarAESGCM(obj.nascimento)
+    nascimento_descriptografado.short_description = "Data de nascimento"
+
     def grupos(self, obj):
         return ", ".join([group.name for group in obj.groups.all()])
-    grupos.short_description = "Grupos"  # Nome da coluna no admin
+    grupos.short_description = "Grupos"
 
     list_display = [
         'email_descriptografado',
@@ -51,17 +54,17 @@ class MyUserAdmin(UserAdmin):
     ordering = ['is_superuser']
 
     fieldsets = (
-        (None, {'fields': ('email_descriptografado', 'cpf_descriptografado')}),
+        (None, {'fields': ('email_descriptografado', 'cpf_descriptografado', 'nascimento_descriptografado')}),
         ('Permissões', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups')})
     )
 
     add_fieldsets = (
         (None, {'fields': ('email', 'password', 'confirm_password')}),
-        ('Informações pessoais', {'fields': ('first_name', 'last_name', 'cpf')}),
+        ('Informações pessoais', {'fields': ('first_name', 'last_name', 'cpf', 'nascimento')}),
         ('Permissões', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups')})
     )
 
-    list_filter = ("is_superuser", "is_active", "groups")  # Filtros padrão e adicionais
+    list_filter = ("is_superuser", "is_active", "groups")
 
 class MyPedidoLojistaAdmin(admin.ModelAdmin):
 
@@ -79,7 +82,7 @@ class MyPedidoLojistaAdmin(admin.ModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
-        if obj:  # Check if it's an edit action
+        if obj:
             form.base_fields.pop('id_usuario', None)
         return form
     

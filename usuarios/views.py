@@ -79,7 +79,8 @@ def valida_cadastro(request):
             password    =  form.cleaned_data['password'],
             first_name  =  encriptarAESGCM(form.cleaned_data['first_name']),
             last_name   =  encriptarAESGCM(form.cleaned_data['last_name']),
-            cpf         =  encriptarAESGCM(form.cleaned_data['cpf'])
+            cpf         =  encriptarAESGCM(form.cleaned_data['cpf']),
+            nascimento  =  encriptarAESGCM(str(form.cleaned_data['nascimento'])),
         )
 
         grupo = Group.objects.get(name='Usuário')
@@ -164,12 +165,13 @@ def retorna_meus_dados_usuario(request):
     else:
         usuario_tem_pedido_em_aguardo = 'usuario'
 
-    data['pedido_aguardo'] = usuario_tem_pedido_em_aguardo
-    data['form'] = form
-    data['email'] = descriptarAESGCM(usuario.email)
-    data['cpf'] = descriptarAESGCM(usuario.cpf)
-    data['first_name'] = descriptarAESGCM(usuario.first_name)
-    data['last_name'] = descriptarAESGCM(usuario.last_name)
+    data['pedido_aguardo']  = usuario_tem_pedido_em_aguardo
+    data['form']            = form
+    data['email']           = descriptarAESGCM(usuario.email)
+    data['cpf']             = descriptarAESGCM(usuario.cpf)
+    data['nascimento']      = descriptarAESGCM(usuario.nascimento)
+    data['first_name']      = descriptarAESGCM(usuario.first_name)
+    data['last_name']       = descriptarAESGCM(usuario.last_name)
 
     return render(request, 'meus-dados-usuario.html', data)
 
