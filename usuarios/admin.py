@@ -80,15 +80,11 @@ class MyPedidoLojistaAdmin(admin.ModelAdmin):
         'id_tipo_assinatura'
     ]
 
-    def get_form(self, request, obj=None, **kwargs):
-        form = super().get_form(request, obj, **kwargs)
-        if obj:
-            form.base_fields.pop('id_usuario', None)
-        return form
-    
     ordering = ['status_pedido']
 
     list_filter = ("status_pedido", "ultimo_pagamento", "ativo")
+
+    raw_id_fields = ('id_usuario',)
 
 admin.site.register(Usuario, MyUserAdmin)
 admin.site.register(Tipo_Assinatura)
