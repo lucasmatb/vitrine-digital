@@ -84,7 +84,10 @@ class MyPedidoLojistaAdmin(admin.ModelAdmin):
 
     list_filter = ("status_pedido", "ultimo_pagamento", "ativo")
 
-    raw_id_fields = ('id_usuario',)
+    def get_readonly_fields(self, request, obj=None):
+        if obj:
+            return ['id_usuario']
+        return []
 
 admin.site.register(Usuario, MyUserAdmin)
 admin.site.register(Tipo_Assinatura)
