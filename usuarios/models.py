@@ -71,7 +71,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(
         max_length=254,
         blank=False,
-        verbose_name="Último nome"
+        verbose_name="Sobrenome"
     )
 
     is_staff = models.BooleanField(

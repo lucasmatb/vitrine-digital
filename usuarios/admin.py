@@ -23,10 +23,10 @@ class MyUserAdmin(UserAdmin):
         return descriptarAESGCM(obj.first_name)
     primeiro_nome_descriptografado.short_description = "Primeiro Nome"
 
-    # Descriptografa o último nome
-    def ultimo_nome_descriptografado(self, obj):
+    # Descriptografa o sobrenome
+    def sobrenome_descriptografado(self, obj):
         return descriptarAESGCM(obj.last_name)
-    ultimo_nome_descriptografado.short_description = "Último Nome"
+    sobrenome_descriptografado.short_description = "Sobrenome"
 
     # Descriptografa o CPF
     def cpf_descriptografado(self, obj):
@@ -44,7 +44,7 @@ class MyUserAdmin(UserAdmin):
     list_display = [
         'email_descriptografado',
         'primeiro_nome_descriptografado',
-        'ultimo_nome_descriptografado',
+        'sobrenome_descriptografado',
         'cpf_descriptografado',
         'is_active',
         'is_superuser',

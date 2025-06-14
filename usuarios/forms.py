@@ -41,7 +41,7 @@ class UsuarioRegistrationForm(forms.ModelForm):
         })
     )
     last_name = forms.CharField(
-        label=("Último nome"),
+        label=("Sobrenome"),
         max_length=254,
         required=True,
         widget=forms.TextInput(attrs={
@@ -126,7 +126,7 @@ class UsuarioAdminRegistrationForm(forms.ModelForm):
         })
     )
     last_name = forms.CharField(
-        label=("Último nome"),
+        label=("Sobrenome"),
         max_length=254,
         required=True,
         widget=forms.TextInput(attrs={
